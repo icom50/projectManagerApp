@@ -9,49 +9,24 @@ import { PageUserComponent } from './pages/page-user/page-user.component';
 import { PageTaskListComponent } from './pages/page-task-list/page-task-list.component';
 import { PageProjectManagementComponent } from './pages/page-project-management/page-project-management.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+
 import { FormSignUpComponent } from './pages/forms/form-sign-up/form-sign-up.component';
+import { FormLoginComponent } from './pages/forms/form-login/form-login.component';
 
 const routes: Routes = [
-  {
-    path : "",
-    component : PageLandingComponent
-  },
-  {
-    path : "home",
-    component : PageHomeComponent
-  },
-  {
-    path : "log",
-    component : PageLogComponent
-  },
-  {
-    path : "project/:id",
-    component : PageProjectComponent
-  },
-  {
-    path : "projects/:id",
-    component : PageProjectsComponent
-  },
-  {
-    path : "user/:id",
-    component : PageUserComponent
-  },
-  {
-    path : "task-list/:id",
-    component : PageTaskListComponent
-  },
-  {
-    path : "project-management/:id",
-    component : PageProjectManagementComponent
-  },
-  {
-    path : "sign-up",
-    component : FormSignUpComponent
-  },
-  {
-    path : "**",
-    component : PageNotFoundComponent
-  }
+  { path : "", component : PageLandingComponent },
+  { path : "home", component : PageHomeComponent },
+  { path : "log", component : PageLogComponent },
+  { path : "project/:id", component : PageProjectComponent },
+  { path : "projects/:id", component : PageProjectsComponent },
+  { path : "user/:id", component : PageUserComponent },
+  { path : "task-list/:id", component : PageTaskListComponent },
+  { path : "project-management/:id", component : PageProjectManagementComponent },
+  
+  { path : "login", component : FormLoginComponent },
+  { path : "sign-up", component : FormSignUpComponent },
+
+  { path : "**", component : PageNotFoundComponent }
 ];
 
 @NgModule({
