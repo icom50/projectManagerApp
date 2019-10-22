@@ -17,9 +17,12 @@
             </div>    
             <div>
                 <mat-form-field>
-                    <input matInput placeholder="Password" type="password" formControlName="password"/>
-                    <mat-error *ngIf="form.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
+                    <input matInput placeholder="Password confirmation" formControleName="confirmPassword" type="password" />
+                    <mat-error >passwords do not match</mat-error>
                 </mat-form-field>
+            </div>
+            <div>
+                <button mat-stroked-button type="submit" [disabled]="form.controls['email'].invalid || form.controls['password'].invalid">Sign Up</button>
             </div>
         </form>
     </mat-card-content>
