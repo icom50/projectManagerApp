@@ -69,6 +69,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatListModule,
     MatSelectModule,
     MatInputModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
