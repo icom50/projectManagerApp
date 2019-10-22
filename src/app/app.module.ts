@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 /* Components */
@@ -22,6 +24,16 @@ import { PageUserComponent } from './pages/page-user/page-user.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { PageTaskListComponent } from './pages/page-task-list/page-task-list.component';
 import { PageProjectManagementComponent } from './pages/page-project-management/page-project-management.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+/* Material Modules */
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -45,7 +57,18 @@ import { PageProjectManagementComponent } from './pages/page-project-management/
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NoopAnimationsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatListModule,
+    MatSelectModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

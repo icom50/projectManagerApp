@@ -1,5 +1,26 @@
-<div>
-    <h2>SIGN UP</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, harum?</p>
-    
-</div>
+<mat-card>
+    <mat-card-content>
+        <h2>SIGN UP</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, harum?</p>
+        <form [formGroup]="form" (submit)="signUp()">
+            <div>
+                <mat-form-field >
+                    <input matInput placeholder="email" type="email" formControlName="email"/>
+                    <mat-error *ngIf="form.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field >
+                    <input matInput placeholder="Password" type="password" formControlName="password" />
+                    <mat-error *ngIf="form.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
+                </mat-form-field>
+            </div>    
+            <div>
+                <mat-form-field>
+                    <input matInput placeholder="Password" type="password" formControlName="password"/>
+                    <mat-error *ngIf="form.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
