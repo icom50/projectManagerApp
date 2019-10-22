@@ -8,11 +8,13 @@ export class Project {
         public finish_date? : number,
         public deadline? : number,
         public status? : string,
+        public _id? : string,
         public users? : [
             {
                 user_id? : string,
                 job? : string,
-                role? : string
+                role? : string,
+                _id? : string
             }
         ],
         public is_private? : boolean,
@@ -20,14 +22,16 @@ export class Project {
             {
                 path? : string,
                 name? : string,
-                description? : string
+                description? : string,
+                _id? : string
             }
         ],
         public comments? : [
             {
                 author_id? : string,
                 comment? : string,
-                date? : number
+                date? : number,
+                _id? : string,
             }
         ],
         public git? : string,
@@ -37,7 +41,8 @@ export class Project {
                 description? : string,
                 url? : string,
                 author? : string,
-                date? : number
+                date? : number,
+                _id? : string,
             },
         ],
         public tasks? : [
@@ -48,7 +53,8 @@ export class Project {
                 labels? : [
                     {
                         name? : string,
-                        color? : string
+                        color? : string,
+                        _id? : string
                     },
                 ],
             },
@@ -56,7 +62,8 @@ export class Project {
                 assigned? : [
                     {
                         user_id? : string,
-                        spend? : number
+                        spend? : number,
+                        _id? : string
                     },
                 ]
             },
@@ -64,7 +71,8 @@ export class Project {
                 checklist? : [
                     {
                         name? : string,
-                        done? : boolean
+                        done? : boolean,
+                        _id? : string
                     },
                 ]
             },
@@ -79,7 +87,8 @@ export class Project {
                         description? : string,
                         path? : string,
                         author_id? : string,
-                        date? : number
+                        date? : number,
+                        _id? : string
                     }
                 ]
             },
@@ -88,7 +97,8 @@ export class Project {
                     {
                         author_id? : string,
                         comment? : string,
-                        date? : number
+                        date? : number,
+                        _id? : string
                     }
                 ]
             },

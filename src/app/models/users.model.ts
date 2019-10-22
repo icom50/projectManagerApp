@@ -11,12 +11,14 @@ export class User {
         public job? : string,
         public links? : string[],
         public phone? : number,
+        public _id? : string,
         public projects? : [
             {
                 id? : string,
                 acepted? : boolean,
                 invitedBy : string,
-                favorite : boolean
+                favorite : boolean,
+                _id? : string
             }    
         ],
         public tasks? : string[]
