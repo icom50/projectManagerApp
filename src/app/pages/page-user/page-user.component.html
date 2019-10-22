@@ -18,42 +18,75 @@
 </div>
 
 <div>
-    <form action="">
+    <form [formGroup]="form">
         <label for="username">Username</label>
-        <input type="text" name="username" id="username">
+        <input 
+        type="text" 
+        name="username" 
+        id="username"
+        >
         <br />
 
         <label for="firstname">Firstname</label>
-        <input type="text" name="firstname" id="firstname">
+        <input 
+        type="text" 
+        name="firstname" 
+        id="firstname">
         <br />
         
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name">
+        <label for="lastname">Name</label>
+        <input 
+        type="text" 
+        name="lastname" 
+        id="lastname">
         <br />
         
         <label for="email">Email</label>
-        <input type="text" name="email" id="email">
+        <input 
+        type="text" 
+        name="email" 
+        id="email"
+        formControlName="email"
+        >
         <br />
         
-        <a href="#">Change Password</a>
+        <label for="password">Password</label>
+        <input 
+        type="text" 
+        name="password" 
+        id="password"
+        formControlName="password"
+        >
         <br />
         
-        <label for="tel">Tel</label>
-        <input type="text" name="tel" id="tel">
+        <label for="phone">Telephone</label>
+        <input 
+        type="text" 
+        name="phone" 
+        id="phone">
         <br />
         
         <label for="company">Company</label>
-        <input type="text" name="company" id="company">
+        <input 
+        type="text" 
+        name="company" 
+        id="company">
         <br />
 
         <h3>Links</h3>
 
         <label for="github">Github</label>
-        <input type="text" name="github" id="github">
+        <input 
+        type="text" 
+        name="github" 
+        id="github">
         <br />
 
         <label for="linkedin">Linkedin</label>
-        <input type="text" name="linkedin" id="linkedin">
+        <input 
+        type="text" 
+        name="linkedin" 
+        id="linkedin">
         <br />
     </form>
 </div>
