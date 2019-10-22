@@ -18,17 +18,21 @@ export class FormSignUpComponent implements OnInit {
   constructor(fb : FormBuilder, private dataService : DataService) { 
     this.form = fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.email])],
-      'password' : ['', Validators.compose([Validators.required])],
-      //'confirmPassword' : ['', this.checkPasswords]
-    })
+      'password' : ['', [Validators.required]],
+      'confirmPassword' : ['']
+    },{validator : this.checkPasswords})
     
   }
 
   checkPasswords(group: FormGroup) {
   let pass = group.get('password').value;
-  let confirmPass = group.get('confirmPass').value;
-
-  return pass === confirmPass;
+  let confirmPass = group.get('confirmPassword').value;
+    if(pass === confirmPass){
+      return true;
+    }
+    else{
+      return false;
+    }
 }
 
   signUp(){
