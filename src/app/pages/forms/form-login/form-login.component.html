@@ -1,1 +1,27 @@
-<p>form-login works!</p>
+<mat-card>
+    <mat-card-content>
+        <h2>Login bitch</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, harum?</p>
+        <form [formGroup]="form" (submit)="login()">
+            <div>
+                <mat-form-field >
+                    <input matInput placeholder="Email" type="email" formControlName="email"/>
+                    <mat-error *ngIf="form.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field >
+                    <input matInput placeholder="Password" type="password" formControlName="password" />
+                    <mat-error *ngIf="form.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
+                </mat-form-field>
+            </div>    
+            <div>
+                <a routerLink="/reset-password" mat-button><small>Forgot Password ?</small></a>
+            </div>
+            <div>
+                <button mat-stroked-button type="submit">Log in</button>
+                <p>No Account ? <button mat-stroked-button routerLink="/sign-up">Sign up</button></p>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

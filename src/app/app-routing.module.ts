@@ -9,7 +9,7 @@ import { PageUserComponent } from './pages/page-user/page-user.component';
 import { PageTaskListComponent } from './pages/page-task-list/page-task-list.component';
 import { PageProjectManagementComponent } from './pages/page-project-management/page-project-management.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-
+import { FormSignUpComponent } from './pages/forms/form-sign-up/form-sign-up.component';
 
 const routes: Routes = [
   {
@@ -43,6 +43,10 @@ const routes: Routes = [
   {
     path : "project-management/:id",
     component : PageProjectManagementComponent
+  },
+  {
+    path : "sign-up",
+    component : FormSignUpComponent
   },
   {
     path : "**",
