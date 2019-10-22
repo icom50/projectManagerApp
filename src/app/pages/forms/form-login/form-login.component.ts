@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../../models/users.model';
 import { FormGroup, FormBuilder,FormControl, Validators, AbstractControl } from '@angular/forms';
+import { DataService } from '../../../services/data.service'; 
 
 @Component({
   selector: 'app-form-login',
@@ -8,11 +10,12 @@ import { FormGroup, FormBuilder,FormControl, Validators, AbstractControl } from 
 })
 export class FormLoginComponent implements OnInit {
 
+  user: User;
   form: FormGroup;
   loginControl: AbstractControl;
   passwordControl: AbstractControl;
 
-  constructor(fb: FormBuilder) { 
+  constructor(fb: FormBuilder, private dataService: DataService) { 
     this.form = fb.group({
       'login': ['', Validators.compose([Validators.required, Validators.email])],
       'password': ['', Validators.required]
@@ -36,6 +39,10 @@ export class FormLoginComponent implements OnInit {
 
   login(value: any): void {
     console.log(this.form);
+    // this.user = this.form.value;
+    // this.dataService.getUserByEmail(this.user.email).subscribe((data:User) => {
+    //   console.log(this.user);
+    // });
   }
 
   ngOnInit() {
