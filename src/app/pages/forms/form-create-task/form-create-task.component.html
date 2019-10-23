@@ -1,1 +1,68 @@
-<p>form-create-task works!</p>
+<div>
+    <form>
+        <section>
+            <button (onClick)="editTask()">Edit</button>
+            <button (onClick)="deleteTask()">Deletet</button>
+            <!-- <div>Barre d'évolution</div> --> <span>{{task.progression}}%</span>
+            <!-- <span>Mark complete</span> -->
+        </section>
+        <section>
+            <h2>{{task.name}}</h2>
+            <span>{{task.estimated}}</span>
+            <span>{{task.deadline}}</span>
+            <span>created by {{getMember(task.author_id)}}</span>
+        </section>
+        <section>
+            <h3>Members</h3>
+            <div>Priority : <span [class]="task.priority">O</span></div>
+            <select name="priority" id="priority">
+                <option value="none" [selected]="task.priority === 'none' || !task.priority">None</option>
+                <option value="high" [selected]="task.priority === 'high'">High</option>
+                <option value="middle" [selected]="task.priority === 'middle'">Middle</option>
+                <option value="low" [selected]="task.priority === 'low'">Low</option>
+            </select>
+            <ul>
+                <li *ngFor="let member of task.assigned">{{getAuthor(task.author_id)}}</li>
+                <li>
+                    <select name="assigned" id="assigned">
+                        <option value="">Assign a member</option>
+                        <option *ngFor="let user of task.assigned">{{getMember(user.user_id}}</option>
+                    </select>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Task Description</h3>
+            <textarea name="description" maxlength="250">
+                {{task.description}}
+            </textarea>
+        </section>
+        <section>
+            <div *ngFor="let comment of task.comments">
+                <h4>{{getMember(comment.author_id)}} - {{comment.date}}</h4>
+                <span>{{comment.comment}}</span>
+            </div>
+            <span>{{logged.username || logged.firstname || logged.email || 'My username'}}</span>
+            <textarea name="comments.comment" maxlength="250">
+            </textarea>
+            <button (onClick)="sendComment()">Send your comment</button>
+        </section>
+        <section>
+            <h3>To do list</h3>
+            <ul>
+                <li *ngFor="let c of task.checklist">
+                    <input type="checkbox" [name]="c.name" [id]="c.name" [checked]="c.done">
+                    <label [for]="c.name">{{c.name}}</label>
+                </li>
+                </ul>
+                <input type="text" maxlength="20"> <button (onClick)="addItem()">Add item</button>
+        </section>
+        <section>
+            <h3>Time spend</h3>
+            <input type="text" maxlength="20"> <button (onClick)="addTime()">Add my time</button>
+            <span>Total time : {{getTotalTime()}}</span>
+            <span>My time : {{getUserTime()}}</span>
+        </section>
+
+    </form>
+</div>

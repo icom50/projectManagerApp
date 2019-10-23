@@ -25,6 +25,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { PageTaskListComponent } from './pages/page-task-list/page-task-list.component';
 import { PageProjectManagementComponent } from './pages/page-project-management/page-project-management.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TaskTileComponent } from './pages/task-tile/task-tile.component';
 
 /* Material Modules */
 import { MatListModule } from '@angular/material/list';
@@ -57,7 +58,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PageUserComponent,
     PageNotFoundComponent,
     PageTaskListComponent,
-    PageProjectManagementComponent
+    PageProjectManagementComponent,
+    TaskTileComponent
   ],
   imports: [
     BrowserModule,
