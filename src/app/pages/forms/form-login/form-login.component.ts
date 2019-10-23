@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../../models/users.model';
 import { FormGroup, FormBuilder,FormControl, Validators, AbstractControl } from '@angular/forms';
+import { DataService } from '../../../services/data.service'; 
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-form-login',
@@ -8,11 +11,13 @@ import { FormGroup, FormBuilder,FormControl, Validators, AbstractControl } from 
 })
 export class FormLoginComponent implements OnInit {
 
+  user: User;
   form: FormGroup;
   loginControl: AbstractControl;
   passwordControl: AbstractControl;
+  loginRoute;
 
-  constructor(fb: FormBuilder) { 
+  constructor(fb: FormBuilder, private dataService: DataService) { 
     this.form = fb.group({
       'login': ['', Validators.compose([Validators.required, Validators.email])],
       'password': ['', Validators.required]
@@ -31,11 +36,28 @@ export class FormLoginComponent implements OnInit {
     Object.keys(this.form.controls[field].errors).map((key, index)=>{
       returnValue += `${error[key]}`;
     })
-    return returnValue
+    return returnValue;
   }
 
   login(value: any): void {
-    console.log(this.form);
+    // console.log(this.form);
+    
+    this.user = this.form.value;
+    this.dataService.loginUser(this.user).subscribe((data:any) => {
+      // console.log(data.error);   
+      if(data.error === 403) {
+        alert('This user does not exist. Please verify your email and password or create an account');
+        this.loginRoute = "/login";
+      } else {
+        //if user found, go find his _id and add it to url
+        this.dataService.getUserByEmail(this.user.email).subscribe((data:any) => {
+          const userId = data.users._id;
+          this.loginRoute = `/user/`+userId;;
+        })
+      }
+    });
+    
+    
   }
 
   ngOnInit() {
