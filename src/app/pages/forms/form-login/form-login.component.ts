@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/users.model';
 import { FormGroup, FormBuilder,FormControl, Validators, AbstractControl } from '@angular/forms';
 import { DataService } from '../../../services/data.service'; 
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-form-login',

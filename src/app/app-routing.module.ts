@@ -17,13 +17,13 @@ const routes: Routes = [
   { path : "", component : PageLandingComponent },
   { path : "home", component : PageHomeComponent },
   { path : "log", component : PageLogComponent },
-  { path : "project/:id", component : PageProjectComponent },
+  //besoin d'un /project pour arriver sur la page 'board' avec tout les projets
+  { path : "project/:id", component : PageProjectComponent }, // page avec tout les tasks en tiles
   { path : "projects/:id", component : PageProjectsComponent },
   { path : "user/:id", component : PageUserComponent },
   { path : "task-list/:id", component : PageTaskListComponent },
   { path : "project-management/:id", component : PageProjectManagementComponent },
   
-  { path : "login", component : FormLoginComponent },
   { path : "sign-up", component : FormSignUpComponent },
 
   { path : "**", component : PageNotFoundComponent }
