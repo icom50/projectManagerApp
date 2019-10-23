@@ -14,6 +14,7 @@ export class FormLoginComponent implements OnInit {
   form: FormGroup;
   loginControl: AbstractControl;
   passwordControl: AbstractControl;
+  loginRoute;
 
   constructor(fb: FormBuilder, private dataService: DataService) { 
     this.form = fb.group({
@@ -34,15 +35,27 @@ export class FormLoginComponent implements OnInit {
     Object.keys(this.form.controls[field].errors).map((key, index)=>{
       returnValue += `${error[key]}`;
     })
-    return returnValue
+    return returnValue;
   }
 
   login(value: any): void {
-    console.log(this.form);
-    // this.user = this.form.value;
-    // this.dataService.getUserByEmail(this.user.email).subscribe((data:User) => {
-    //   console.log(this.user);
-    // });
+    // console.log(this.form);
+    
+    this.user = this.form.value;
+    this.dataService.loginUser(this.user).subscribe((data:any) => {
+      // console.log(data.error);   
+      if(data.error === 403) {
+        alert('This user does not exist. Please verify your email and password or create an account');
+        this.loginRoute = "/login";
+      } else {
+        // console.log('Login found');
+        this.loginRoute = "/user/:id";
+      }
+      
+      
+    });
+    
+    
   }
 
   ngOnInit() {

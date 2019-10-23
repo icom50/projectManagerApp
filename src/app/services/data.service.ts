@@ -46,7 +46,9 @@ export class DataService {
   //devrait renvoyer un Token, mais inutile pour le moment
   loginUser(user:User): Observable<User>{
     const headers = new HttpHeaders().set('content-type','application/json');
-    return this.http.post(`${this.urlUser}login`,user,{headers});
+    const token = this.http.post(`${this.urlUser}login`,user,{headers});
+    //not a token anymore
+    return token;
   }
 
   // /api/projects
