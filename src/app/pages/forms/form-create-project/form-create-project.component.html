@@ -1,1 +1,33 @@
-<p>form-create-project works!</p>
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="formCreateProject" (submit)="CreateProject()">
+            <div>
+                <mat-form-field >
+                    <input matInput placeholder="Title project" type="text" formControlName="title"/>
+                    <mat-error *ngIf="formCreateProject.controls['title'].invalid">{{getErrorMessage('title')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field >
+                    <textarea matInput placeholder="Description" type="text" formControlName="description"></textarea>
+                    <mat-error *ngIf="formCreateProject.controls['description'].invalid">{{getErrorMessage('description')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input matInput placeholder="Author_Id" formControleName="author_id" type="text" />
+                    <mat-error *ngIf="formCreateProject.controls['author_id'].invalid">{{getErrorMessage('author_id')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input matInput placeholder="Start date" formControleName="start_date" type="date" />
+                    <!-- <mat-error *ngIf="formCreateProject.controls['start_date'].invalid">{{getErrorMessage('start_date)}}</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-stroked-button type="submit">Create</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/users.model';
 import { FormGroup, FormBuilder,FormControl, Validators, AbstractControl } from '@angular/forms';
 import { DataService } from '../../../services/data.service'; 
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-form-login',
@@ -48,11 +49,12 @@ export class FormLoginComponent implements OnInit {
         alert('This user does not exist. Please verify your email and password or create an account');
         this.loginRoute = "/login";
       } else {
-        // console.log('Login found');
-        this.loginRoute = "/user/:id";
+        //if user found, go find his _id and add it to url
+        this.dataService.getUserByEmail(this.user.email).subscribe((data:any) => {
+          const userId = data.users._id;
+          this.loginRoute = `/user/`+userId;;
+        })
       }
-      
-      
     });
     
     
