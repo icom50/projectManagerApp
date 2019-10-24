@@ -3,8 +3,8 @@
         <h1>My Profil settings</h1>
     </div>
     <div>
-        <a href="">Edit</a>
-        <a href="">Delete</a>
+        <a routerLink="/user-edit/:id">Edit</a>
+        <a href="#">Delete</a>
     </div>
 </div>
 
@@ -19,87 +19,41 @@
 
 <div>
     <form [formGroup]="form">
-        <label for="username">Username</label>
-        <input 
-        type="text" 
-        name="username" 
-        id="username"
-        formControlName="username"
-        > 
+        <label for="username">Username : </label>
+        <span>{{user.username}}</span>
         <br />
 
-        <label for="firstname">Firstname</label>
-        <input 
-        type="text" 
-        name="firstname" 
-        id="firstname"
-        formControlName="firstname"
-        >
+        <label for="firstname">Firstname : </label>
+        <span>{{user.firstname}}</span>
         <br />
         
-        <label for="lastname">Name</label>
-        <input 
-        type="text" 
-        name="lastname" 
-        id="lastname"
-        formControlName="lastname"
-        >
+        <label for="lastname">Name : </label>
+        <span>{{user.lastname}}</span>
         <br />
         
-        <label for="email">Email</label>
-        <input 
-        type="text" 
-        name="email" 
-        id="email"
-        formControlName="email"
-        >
+        <label for="email">Email : </label>
+        <span>{{user.email}}</span>
         <br />
         
-        <label for="password">Password</label>
-        <input 
-        type="password" 
-        name="password" 
-        id="password"
-        formControlName="password"
-        >
+        <p>Cliquez sur Edit pour changer le password</p>
+        
+        <label for="phone">Telephone : </label>
+        <span>{{user.phone}}</span>
         <br />
         
-        <label for="phone">Telephone</label>
-        <input 
-        type="text" 
-        name="phone" 
-        id="phone"
-        formControlName="phone"
-        >
-        <br />
-        
-        <label for="company">Company</label>
-        <input 
-        type="text" 
-        name="company" 
-        id="company"
-        formControlName="company"
-        >
+        <label for="company">Company : </label>
+        <span>{{user.company}}</span>
+
         <br />
 
         <h3>Links</h3>
 
-        <label for="github">Github</label>
-        <input 
-        type="text" 
-        name="github" 
-        id="github"
-        formControlName="links"        
-        >
+        <label for="github">Github : </label>
+        <span>{{user.links}}</span>
         <br />
 
-        <label for="linkedin">Linkedin</label>
-        <input 
-        type="text" 
-        name="linkedin" 
-        id="linkedin"
-        formControlName="links"
-        >
+        <label for="linkedin">Linkedin : </label>
+        <span>{{user.links}}</span>
         <br />
     </form>
 </div>

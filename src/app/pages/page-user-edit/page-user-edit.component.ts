@@ -14,34 +14,56 @@ export class PageUserEditComponent implements OnInit {
   user: User;
   form: FormGroup;
   constructor(private _dataService: DataService,
-    // private router: Router,
+    private router: Router,
     private route: ActivatedRoute) { }
 
 
+  submitForm(){
+    this.user = this.form.value;
+    this._dataService.putUser(this.user).subscribe((data : User) => {
+      this.user = data;
+      this.router.navigate(['user/:id']); /** la navigation retourne a 'users' */
+    })
+  }
 
-  task: any;
+  getErrorMessage(field:string): string { // gestion des erreurs
+    const errors = {
+      required:'This field is required',
+      email:'This field must contains a valid email',
+      maxlength:'This field contains too many characters'
+    };
+    let returnValue = '';
+    Object.keys(this.form.controls[field].errors).map((key, index) => {
+      returnValue += `Rule ${index} - ${errors[key]}`
+    });
+    return returnValue
+  }
+
+
+  // task: any;
   ngOnInit() {
     //this.dataService.getUserSecure()
 
     this.form = new FormGroup({
-      username: new FormControl(null, [Validators.required]),
-      firstname: new FormControl(null, [Validators.required]),
-      lastname: new FormControl(),
+      username: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
+      firstname: new FormControl(null, [Validators.maxLength(50)]),
+      lastname: new FormControl(null, [Validators.maxLength(50)]),
       avatar_url: new FormControl(),
-      email: new FormControl(null, [Validators.required, Validators.email]),
+      email: new FormControl(null, [Validators.required, Validators.email, Validators.maxLength(50)]),
       password: new FormControl(null, [Validators.required]),
-      phone: new FormControl(null, [Validators.required]),
-      company: new FormControl(null, [Validators.required]),
-      links: new FormControl(null, [Validators.required]),
-      tasks: new FormControl(null, [Validators.required]),
-      _id: new FormControl(null, [Validators.required]),
-      job: new FormControl(null, [Validators.required]),
-      projects: new FormControl(null, [Validators.required]),
-      __v: new FormControl(null, [Validators.required])
+      phone: new FormControl(null, [Validators.maxLength(20)]),
+      company: new FormControl(null, [Validators.maxLength(50)]),
+      links: new FormControl(),
+      tasks: new FormControl(),
+      _id: new FormControl(),
+      job: new FormControl(null, [Validators.maxLength(50)]),
+      projects: new FormControl(),
+      __v: new FormControl()
     });
 
-    const id = this.route.snapshot.params.id;
-    
+    // const id = this.route.snapshot.params.id;
+    const id = "5da987981a158f09eb249ceb"
+
     this
     ._dataService
     .getUserSecure(id)
@@ -52,5 +74,4 @@ export class PageUserEditComponent implements OnInit {
       console.log(this.user)
     })
   }
-
 }

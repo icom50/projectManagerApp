@@ -21,27 +21,28 @@ export class PageUserComponent implements OnInit {
 
   task: any;
   ngOnInit() {
-    //this.dataService.getUserSecure()
 
     this.form = new FormGroup({
-      username: new FormControl(null, [Validators.required]),
-      firstname: new FormControl(null, [Validators.required]),
+      username: new FormControl(),
+      firstname: new FormControl(),
       lastname: new FormControl(),
       avatar_url: new FormControl(),
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required]),
-      phone: new FormControl(null, [Validators.required]),
-      company: new FormControl(null, [Validators.required]),
-      links: new FormControl(null, [Validators.required]),
-      tasks: new FormControl(null, [Validators.required]),
-      _id: new FormControl(null, [Validators.required]),
-      job: new FormControl(null, [Validators.required]),
-      projects: new FormControl(null, [Validators.required]),
-      __v: new FormControl(null, [Validators.required])
+      phone: new FormControl(),
+      company: new FormControl(),
+      links: new FormControl(),
+      tasks: new FormControl(),
+      _id: new FormControl(),
+      job: new FormControl(),
+      projects: new FormControl(),
+      __v: new FormControl()
     });
 
-    const id = this.route.snapshot.params.id;
-    
+    // const id = this.route.snapshot.params.id;
+    const id = "5da987981a158f09eb249ceb"
+
+
     this
     ._dataService
     .getUserSecure(id)
