@@ -9,16 +9,17 @@ import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 })
 export class PageProjectsComponent implements OnInit {
 
-  faSortUp = faSortUp;
-  faSortDown = faSortDown;
-  isActived = true;
+
 
   constructor() { }
 
-  toggleClick(){
-    console.log("object");
-    // this.isActived = !this.isActived;
-  
+  faSortUp = faSortUp;
+  faSortDown = faSortDown;
+  isShow = false;
+ 
+ 
+  toggleDisplay() {
+    this.isShow = !this.isShow;
   }
 
   ngOnInit() {
