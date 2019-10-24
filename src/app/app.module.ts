@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 
+
 /* Components */
 import { CommonNavbarComponent } from './pages/commons/common-navbar/common-navbar.component';
 import { FormCreateProjectComponent } from './pages/forms/form-create-project/form-create-project.component';
@@ -35,9 +36,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+
 
 // FontAwesomeModule
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MY_FORMAT } from './utils/formats/date.format';
 
 
 @NgModule({
@@ -75,10 +80,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatListModule,
     MatSelectModule,
     MatInputModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule,
+    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+{ provide: MAT_DATE_FORMATS, useValue: MY_FORMAT }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
