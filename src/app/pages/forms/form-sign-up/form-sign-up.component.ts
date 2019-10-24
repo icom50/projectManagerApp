@@ -17,8 +17,8 @@ export class FormSignUpComponent implements OnInit {
  
   constructor(fb : FormBuilder, private dataService : DataService) { 
     this.form = fb.group({
-      'email': ['', Validators.compose([Validators.required, Validators.email])],
-      'password' : ['', [Validators.required]],
+      'email': ['', Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])],
+      'password' : ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
       'confirmPassword' : ['']
     },{validator : this.checkPasswords})
     
@@ -45,7 +45,8 @@ export class FormSignUpComponent implements OnInit {
   getErrorMessage(field:string):string {
     const error = {
       required : "This field is required",
-      email: "This field must contains a valid email"
+      email: "This field must contains a valid email",
+      maxLength : "This field cannot contain more data"
     };
     let returnValue = '';
     Object.keys(this.form.controls[field].errors).map(key=>{

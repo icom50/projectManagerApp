@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 
+
 /* Components */
 import { CommonNavbarComponent } from './pages/commons/common-navbar/common-navbar.component';
 import { FormCreateProjectComponent } from './pages/forms/form-create-project/form-create-project.component';
@@ -28,6 +29,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TaskTileComponent } from './pages/task-tile/task-tile.component';
 import { CommonSidebarComponent } from './pages/commons/common-sidebar/common-sidebar.component';
 
+import { PageUserEditComponent } from './pages/page-user-edit/page-user-edit.component';
 
 /* Material Modules */
 import { MatListModule } from '@angular/material/list';
@@ -37,6 +39,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MY_FORMAT } from './utils/formats/date.format';
+
 
 // FontAwesomeModule
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -62,7 +68,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PageTaskListComponent,
     PageProjectManagementComponent,
     TaskTileComponent,
+<<<<<<< HEAD
     CommonSidebarComponent
+=======
+    PageUserEditComponent
+>>>>>>> 38e6ca364d4367141df13aaed1a0cd6ae1c33cf2
   ],
   imports: [
     BrowserModule,
@@ -78,10 +88,20 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatListModule,
     MatSelectModule,
     MatInputModule,
+<<<<<<< HEAD
     FontAwesomeModule 
+=======
+    FontAwesomeModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+>>>>>>> 38e6ca364d4367141df13aaed1a0cd6ae1c33cf2
   
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule,
+    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+  { provide: MAT_DATE_FORMATS, useValue: MY_FORMAT }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
