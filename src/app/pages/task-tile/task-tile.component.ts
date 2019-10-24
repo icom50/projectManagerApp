@@ -17,8 +17,22 @@ export class TaskTileComponent implements OnInit {
   taskTitle;
   taskPriority;
   taskComment;
+  taskCollaborator;
 
   constructor(private router: Router, private dataService: DataService) { }
+  
+  priorityColor(priority) {
+    switch(priority) {
+      case 'high' :
+        return 'red';
+      case 'middle' :
+        return 'orange';
+      case 'low' :
+        return "green"
+      default :
+        return 'grey';
+    }
+  }
 
   ngOnInit() {
 
@@ -40,9 +54,13 @@ export class TaskTileComponent implements OnInit {
 
         this.taskTitle = this.task.name;
         this.taskPriority = this.task.priority;
-        this.taskComment = this.task.comments; // juste afficher s'il y en a ou pas
 
-        console.log(this.taskTitle);
+        this.taskComment = this.task.comments;
+        this.taskComment = this.taskComment.length;
+
+        this.taskCollaborator = this.task.assigned;
+        this.taskCollaborator.map(person => console.log(person._id));
+        // console.log(this.taskTitle);
 
         // return this.task;
         //console.log(this.task.title)
