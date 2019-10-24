@@ -1,0 +1,30 @@
+.title{
+    cursor: pointer;
+    fa-icon{
+        font-size: 30px;
+        background: red;
+        float: left;
+    }
+    h4{
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.projects {
+    border-top: 1px solid black;
+    width: 400px;
+    .wrapper-project{
+        width: 150px;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .project {
+            width: 150px;
+            height: 150px;
+            background: aqua;
+            border-radius: 30px;
+        }
+    }
+}

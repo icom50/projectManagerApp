@@ -36,6 +36,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
+// FontAwesomeModule
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -71,7 +74,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     MatListModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    FontAwesomeModule
   
   ],
   providers: [],
