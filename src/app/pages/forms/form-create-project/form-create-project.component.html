@@ -12,6 +12,7 @@
                 <mat-form-field >
                     <textarea matInput placeholder="Description" type="text" formControlName="description"></textarea>
                     <mat-error *ngIf="formCreateProject.controls['description'].invalid">{{getErrorMessage('description')}}</mat-error>
+                    
                 </mat-form-field>
             </div>
             <div>
