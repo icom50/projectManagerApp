@@ -88,7 +88,7 @@ import { MY_FORMAT } from './utils/formats/date.format';
   providers: [
     MatDatepickerModule,
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
-{ provide: MAT_DATE_FORMATS, useValue: MY_FORMAT }
+  { provide: MAT_DATE_FORMATS, useValue: MY_FORMAT }
   ],
   bootstrap: [AppComponent]
 })
