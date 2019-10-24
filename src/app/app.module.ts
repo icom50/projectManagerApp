@@ -27,6 +27,8 @@ import { PageTaskListComponent } from './pages/page-task-list/page-task-list.com
 import { PageProjectManagementComponent } from './pages/page-project-management/page-project-management.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TaskTileComponent } from './pages/task-tile/task-tile.component';
+import { CommonSidebarComponent } from './pages/commons/common-sidebar/common-sidebar.component';
+
 import { PageUserEditComponent } from './pages/page-user-edit/page-user-edit.component';
 
 /* Material Modules */
@@ -66,6 +68,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PageTaskListComponent,
     PageProjectManagementComponent,
     TaskTileComponent,
+    CommonSidebarComponent,
     PageUserEditComponent
   ],
   imports: [
