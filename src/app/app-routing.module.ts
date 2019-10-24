@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { FormSignUpComponent } from './pages/forms/form-sign-up/form-sign-up.component';
 import { FormLoginComponent } from './pages/forms/form-login/form-login.component';
 import { FormCreateProjectComponent } from './pages/forms/form-create-project/form-create-project.component';
+import { FormCreateTaskComponent } from './pages/forms/form-create-task/form-create-task.component';
 
 const routes: Routes = [
   { path : "", component : PageLandingComponent },
@@ -24,7 +25,7 @@ const routes: Routes = [
   { path : "user/:id", component : PageUserComponent },
   { path : "task-list/:id", component : PageTaskListComponent },
   { path : "project-management/:id", component : PageProjectManagementComponent },
-  { path : "test", component : FormCreateProjectComponent},
+  { path : "test", component : FormCreateTaskComponent},
   
   { path : "sign-up", component : FormSignUpComponent },
 

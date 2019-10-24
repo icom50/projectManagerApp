@@ -47,6 +47,7 @@ export class FormCreateTaskComponent implements OnInit {
   ngOnInit() {
     this._dataService.getTaskById(this.project_id,this.task_id).subscribe((data:any)=>{
       this.task = data;
+      console.log(data)
     })
     // this.form = new FormGroup({
     //   name: new FormControl(null),
