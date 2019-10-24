@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { DataService } from '../../services/data.service';
+import { Project } from 'src/app/models/projects.model';
+
 
 @Component({
   selector: 'app-page-projects',
@@ -9,20 +10,28 @@ import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 })
 export class PageProjectsComponent implements OnInit {
 
+  projects: Project[];
+  constructor(private _dataService: DataService) { }
 
+  // SortUp & SortDown
+  sortUp = '../../../assets/img/icons/arrowUp.png';
+  sortDown = '../../../assets/img/icons/arrowDown.png';
 
-  constructor() { }
-
-  faSortUp = faSortUp;
-  faSortDown = faSortDown;
+  // Isvisible ?
   isShow = false;
- 
- 
   toggleDisplay() {
     this.isShow = !this.isShow;
   }
 
   ngOnInit() {
-  }
+    this._dataService
+    .getProjects()
+    .subscribe((data: Project[]) =>{
+      this.projects = data['projects'];
+      console.log(data);
+    })
 
 }
+  }
+
+
