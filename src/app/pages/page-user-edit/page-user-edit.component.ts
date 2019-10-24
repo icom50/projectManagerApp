@@ -4,13 +4,13 @@ import { DataService } from '../../services/data.service';
 import { User } from 'src/app/models/users.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 @Component({
-  selector: 'app-page-user',
-  templateUrl: './page-user.component.html',
-  styleUrls: ['./page-user.component.scss']
+  selector: 'app-page-user-edit',
+  templateUrl: './page-user-edit.component.html',
+  styleUrls: ['./page-user-edit.component.scss']
 })
-export class PageUserComponent implements OnInit {
+export class PageUserEditComponent implements OnInit {
+
   user: User;
   form: FormGroup;
   constructor(private _dataService: DataService,
@@ -52,4 +52,5 @@ export class PageUserComponent implements OnInit {
       console.log(this.user)
     })
   }
+
 }

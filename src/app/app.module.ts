@@ -38,6 +38,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 // FontAwesomeModule
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PageUserEditComponent } from './pages/page-user-edit/page-user-edit.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PageNotFoundComponent,
     PageTaskListComponent,
     PageProjectManagementComponent,
-    TaskTileComponent
+    TaskTileComponent,
+    PageUserEditComponent
   ],
   imports: [
     BrowserModule,
