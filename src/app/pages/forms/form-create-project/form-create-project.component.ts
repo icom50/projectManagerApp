@@ -28,7 +28,7 @@ export class FormCreateProjectComponent implements OnInit {
   getErrorMessage(field: string):string{
     const errors = {
       required : "this field is required",
-      maxLength : "This field cannot contain data"
+      maxLength : "This field cannot contain more data"
     };
     let returnValue;
     Object.keys(this.formCreateProject.controls[field].errors).map(key =>{
