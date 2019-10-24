@@ -28,6 +28,9 @@ import { PageTaskListComponent } from './pages/page-task-list/page-task-list.com
 import { PageProjectManagementComponent } from './pages/page-project-management/page-project-management.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TaskTileComponent } from './pages/task-tile/task-tile.component';
+import { CommonSidebarComponent } from './pages/commons/common-sidebar/common-sidebar.component';
+
+import { PageUserEditComponent } from './pages/page-user-edit/page-user-edit.component';
 
 /* Material Modules */
 import { MatListModule } from '@angular/material/list';
@@ -39,11 +42,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MY_FORMAT } from './utils/formats/date.format';
 
 
 // FontAwesomeModule
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MY_FORMAT } from './utils/formats/date.format';
 
 
 
@@ -66,7 +69,9 @@ import { MY_FORMAT } from './utils/formats/date.format';
     PageNotFoundComponent,
     PageTaskListComponent,
     PageProjectManagementComponent,
-    TaskTileComponent
+    TaskTileComponent,
+    CommonSidebarComponent,
+    PageUserEditComponent
   ],
   imports: [
     BrowserModule,

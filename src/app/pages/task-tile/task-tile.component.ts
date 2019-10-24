@@ -9,7 +9,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./task-tile.component.scss']
 })
 export class TaskTileComponent implements OnInit {
-
+  
   projectUrl;
   projectId;
   projectName;
@@ -18,6 +18,8 @@ export class TaskTileComponent implements OnInit {
   taskPriority;
   taskComment;
   taskCollaborator;
+  coucou;
+  allTasks: {};
 
   constructor(private router: Router, private dataService: DataService) { }
   
@@ -43,30 +45,37 @@ export class TaskTileComponent implements OnInit {
     //TODO:créer une boucle pour aller récupérer tout les tasks (a faire dans l'autre doc)
 
 
-    this.dataService
-      .getProjectById(this.projectId)
-      .subscribe((data:any) => {
+      this.dataService
+      .getTasksByProject(this.projectId)
+      .subscribe((data: any) => {
         console.log(data);
-        this.projectName = data.projects.name;
-        this.task = data.projects.tasks[0];
-        
-        console.log(this.task);
 
-        this.taskTitle = this.task.name;
-        this.taskPriority = this.task.priority;
+        data.map(index => {
 
-        this.taskComment = this.task.comments;
-        this.taskComment = this.taskComment.length;
+          this.taskTitle = index.name;
+          this.taskPriority = index.priority;
 
-        this.taskCollaborator = this.task.assigned;
-        this.taskCollaborator.map(person => console.log(person._id));
-        // console.log(this.taskTitle);
+          this.taskComment = index.comments;
+          this.taskComment = this.taskComment.length;
 
-        // return this.task;
-        //console.log(this.task.title)
-    });
-  
-    
+          this.taskCollaborator = index.assigned;
+
+
+          this.taskCollaborator.map(person => {
+            console.log("collabo : " + person._id);
+            this.coucou = person._id;
+          });
+        });
+      });
+
+      
+
+      // this.dataService
+      // .getUserById(this.coucou)
+      // .subscribe((data:any) => {
+      //   console.log("data collabo : "+data);
+      // });
+      
   }
 
 }
