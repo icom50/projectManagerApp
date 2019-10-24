@@ -1,14 +1,13 @@
 <p>Boards</p>
 
-<div class="title" (click)="toggleClick()">
-        <h4>Projects</h4>
-</div>
-
-<div class="projects">
-    <div class="wrapper-project">
-        <div class="project"></div>
-        <span>Project's name</span>
+<div class="toggleContent" (click)="toggleDisplay(); hello()">
+    <fa-icon [icon]="isShow ? faSortUp : faSortDown"></fa-icon>
+    <h4>Projects</h4>
+  </div>
+   
+  <div *ngIf ="!isShow" class="test">
+    <div class="projects">
+      <div class="project"></div>
+      <span>Name</span>
     </div>
-
-
-</div>
+  </div>
