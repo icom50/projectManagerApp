@@ -70,10 +70,14 @@ export class DataService {
     const headers = new HttpHeaders().set('content-type','application/json');
     return this.http.delete(`${this.urlProjects}${id}`,{headers})
   }
-  // Je créerai une nouvelle route en Back si ça ne fonctionne pas
   getTaskById(project_id:string, task_id:string): Observable<any>{
     return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
-      return data['tasks'].map( task => task._id === task_id ? task : '')
+      return data['projects'].tasks.filter( task =>  (task._id === task_id))[0]
+    }))
+  }
+  getTasksByProject(project_id:string): Observable<any[]>{
+    return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
+      return data['projects'].tasks.map(task => task)
     }))
   }
 }
