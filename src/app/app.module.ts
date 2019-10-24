@@ -68,11 +68,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PageTaskListComponent,
     PageProjectManagementComponent,
     TaskTileComponent,
-<<<<<<< HEAD
-    CommonSidebarComponent
-=======
+    CommonSidebarComponent,
     PageUserEditComponent
->>>>>>> 38e6ca364d4367141df13aaed1a0cd6ae1c33cf2
   ],
   imports: [
     BrowserModule,
@@ -88,13 +85,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatListModule,
     MatSelectModule,
     MatInputModule,
-<<<<<<< HEAD
-    FontAwesomeModule 
-=======
     FontAwesomeModule,
     MatDatepickerModule,
     MatNativeDateModule
->>>>>>> 38e6ca364d4367141df13aaed1a0cd6ae1c33cf2
   
   ],
   providers: [
