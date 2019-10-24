@@ -17,6 +17,7 @@ export class FormCreateProjectComponent implements OnInit {
   constructor(private dataService : DataService, private router : Router ) { }
 
   CreateProject(){
+    console.log(this.formCreateProject.value)
     this.project = this.formCreateProject.value;
     this.dataService.postProject(this.project).subscribe((data:Project)=>{
       this.project = data;
@@ -27,7 +28,7 @@ export class FormCreateProjectComponent implements OnInit {
   getErrorMessage(field: string):string{
     const errors = {
       required : "this field is required",
-      maxLength : "This field cannot contain data"
+      maxlength : "This field cannot contain more data"
     };
     let returnValue;
     Object.keys(this.formCreateProject.controls[field].errors).map(key =>{
@@ -38,10 +39,11 @@ export class FormCreateProjectComponent implements OnInit {
 
   ngOnInit() {
     this.formCreateProject = new FormGroup({
-      title: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
-      description : new FormControl(null,Validators.maxLength(500) ),
-      author_id : new FormControl(null, []),
-      start_date : new FormControl(null,[])
+      name: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
+      description : new FormControl(null,[Validators.maxLength(500)]),
+      author_id : new FormControl(null, [Validators.required]),
+      start_date : new FormControl(null,[]),
+      deadline : new FormControl(null,[])
     })
   }
 

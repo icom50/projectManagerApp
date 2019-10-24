@@ -1,10 +1,11 @@
-
-<h2>{{ projectName }}</h2>
-
 <mat-card >
-    <mat-card-title><span></span>{{ projectTitle }}</mat-card-title>
-    <mat-card-footer>Collaborators - days left - </mat-card-footer>
-    <p>{{ taskTitle }}</p>
-    <p>{{ taskPriority }}</p>
-    <p>{{ taskComment }}</p>
+    <mat-card-title>
+        <span [style.backgroundColor]="priorityColor(taskPriority)"></span> 
+        {{ taskTitle }}
+    </mat-card-title>
+
+    
+    <mat-card-footer>
+        <p>{{ taskComment }} comment(s)</p>
+    </mat-card-footer>
 </mat-card>

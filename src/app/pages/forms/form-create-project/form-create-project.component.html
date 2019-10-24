@@ -1,32 +1,42 @@
 <mat-card>
     <mat-card-content>
+        <h2>Create a project</h2>
         <form [formGroup]="formCreateProject" (submit)="CreateProject()">
             <div>
                 <mat-form-field >
-                    <input matInput placeholder="Title project" type="text" formControlName="title"/>
-                    <mat-error *ngIf="formCreateProject.controls['title'].invalid">{{getErrorMessage('title')}}</mat-error>
+                    <input matInput placeholder="Title project" type="text" formControlName="name"/>
+                    <mat-error *ngIf="formCreateProject.controls['name'].invalid">{{getErrorMessage('name')}}</mat-error>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field >
                     <textarea matInput placeholder="Description" type="text" formControlName="description"></textarea>
                     <mat-error *ngIf="formCreateProject.controls['description'].invalid">{{getErrorMessage('description')}}</mat-error>
+                    
                 </mat-form-field>
             </div>
             <div>
-                <mat-form-field>
-                    <input matInput placeholder="Author_Id" formControleName="author_id" type="text" />
+                <mat-form-field >
+                    <input matInput placeholder="Author"  formControlName="author_id" type="text" />
                     <mat-error *ngIf="formCreateProject.controls['author_id'].invalid">{{getErrorMessage('author_id')}}</mat-error>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field>
-                    <input matInput placeholder="Start date" formControleName="start_date" type="date" />
-                    <!-- <mat-error *ngIf="formCreateProject.controls['start_date'].invalid">{{getErrorMessage('start_date)}}</mat-error> -->
+                    <input matInput [matDatepicker]="start_date" placeholder="Start date" formControlName="start_date">
+                    <mat-datepicker-toggle matSuffix [for]="start_date"></mat-datepicker-toggle>
+                    <mat-datepicker #start_date></mat-datepicker>
                 </mat-form-field>
             </div>
             <div>
-                <button mat-stroked-button type="submit">Create</button>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="deadline" placeholder="Deadline" formControlName="deadline">
+                    <mat-datepicker-toggle matSuffix [for]="deadline"></mat-datepicker-toggle>
+                    <mat-datepicker #deadline></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-stroked-button type="submit" [disabled]="formCreateProject.controls['name'].invalid || formCreateProject.controls['author_id'].invalid" >Create</button>
             </div>
         </form>
     </mat-card-content>

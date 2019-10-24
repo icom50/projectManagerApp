@@ -18,7 +18,7 @@
             <div>
                 <mat-form-field>
                     <input matInput placeholder="Password confirmation" formControleName="confirmPassword" type="password" />
-                    <mat-error *ngIf="form.errors">passwords do not match</mat-error>
+                    <mat-error *ngIf="form.controls['confirmPassword'].invalid" >passwords do not match</mat-error>
                 </mat-form-field>
             </div>
             <div>
