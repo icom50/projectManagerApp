@@ -1,3 +1,33 @@
 <h2>{{ projectName }}</h2>
 
-<app-task-tile></app-task-tile>   
+<ul *ngFor="let task of tasks">
+    <li>
+        <mat-card >
+            <mat-card-title>
+                <div [ngSwitch]="task.priority">
+                    <div *ngSwitchCase="'high'">
+                        <span style="background-color: red;"></span>
+                    </div>
+                    <div *ngSwitchCase="'middle'">
+                        <span style="background-color: orange;"></span>
+                    </div>
+                    <div *ngSwitchCase="'low'">
+                        <span style="background-color: green;"></span>
+                    </div>
+                    <div *ngSwitchDefault>
+                        <span style="background-color: grey;">lol</span>
+                    </div>
+                </div>
+                {{ task.name }}
+            </mat-card-title>
+        
+            <mat-card-footer>
+                <p>{{ tasks.comment?.length || '0' }} comment(s)</p>
+                <p>{{ tasks.assigned?.length || '0' }} people assigned</p> 
+                <!-- ajouter du contenu dans la db pour avoir toutes les infos -->
+            </mat-card-footer>
+        </mat-card>
+    </li>
+</ul>
+
+<!-- <app-task-tile></app-task-tile>    -->

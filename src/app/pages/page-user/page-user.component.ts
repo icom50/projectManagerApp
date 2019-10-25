@@ -13,15 +13,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PageUserComponent implements OnInit {
   user: User;
   form: FormGroup;
+  
   constructor(private _dataService: DataService,
-    // private router: Router,
+    private router: Router,
     private route: ActivatedRoute) { }
 
 
+    deleteUser(id){
+      console.log("hjgjhgjgh")
+      this._dataService.deleteUser(id).subscribe(res => res);
+      this.router.navigate(['/']);
+    }
 
-  task: any;
+  // task: any;
   ngOnInit() {
-
     this.form = new FormGroup({
       username: new FormControl(),
       firstname: new FormControl(),
@@ -39,8 +44,8 @@ export class PageUserComponent implements OnInit {
       __v: new FormControl()
     });
 
-    // const id = this.route.snapshot.params.id;
-    const id = "5da987981a158f09eb249ceb"
+    const id = this.route.snapshot.params.id;
+    // const id = "5db2b0cfde25681058101ead"
 
 
     this
