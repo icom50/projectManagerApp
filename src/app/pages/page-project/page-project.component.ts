@@ -12,8 +12,24 @@ export class PageProjectComponent implements OnInit {
   projectUrl;
   projectId;
   projectName;
+  comments;
+  priority;
+  tasks: string[];
 
   constructor(private router: Router, private dataService: DataService) { }
+
+  priorityColor(priority) {
+    switch(priority) {
+      case 'high' :
+        return 'red';
+      case 'middle' :
+        return 'orange';
+      case 'low' :
+        return "green"
+      default :
+        return 'grey';
+    }
+  }
 
   ngOnInit() {
 
@@ -26,6 +42,17 @@ export class PageProjectComponent implements OnInit {
       .subscribe((data:any) => {
         this.projectName = data.projects.name;
     });
+
+
+    this.dataService
+      .getTasksByProject(this.projectId)
+      .subscribe((data:any) => {
+        // console.log(data);
+        this.tasks = data;
+        // this.taskPriority = this.tasks.priority;
+        console.log(this.tasks);
+      });
+
   }
 
 }

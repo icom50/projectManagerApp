@@ -19,6 +19,7 @@ export class TaskTileComponent implements OnInit {
   taskComment;
   taskCollaborator;
   coucou;
+  
   allTasks: {};
 
   constructor(private router: Router, private dataService: DataService) { }
@@ -42,31 +43,31 @@ export class TaskTileComponent implements OnInit {
     this.projectUrl = this.router.url;
     this.projectId = this.projectUrl.split('/').pop(); // get last element of splited array => id from url
 
-    //TODO:créer une boucle pour aller récupérer tout les tasks (a faire dans l'autre doc)
 
 
-      this.dataService
-      .getTasksByProject(this.projectId)
-      .subscribe((data: any) => {
-        console.log(data);
+      // this.dataService
+      // .getTasksByProject(this.projectId)
+      // .subscribe((data: any) => {
+      //   console.log(data);
 
-        data.map(index => {
+      //   data.map(index => {
 
-          this.taskTitle = index.name;
-          this.taskPriority = index.priority;
+      //     this.taskTitle = index.name;
+      //     this.taskPriority = index.priority;
 
-          this.taskComment = index.comments;
-          this.taskComment = this.taskComment.length;
+      //     this.taskComment = index.comments;
+      //     this.taskComment = this.taskComment.length;
 
-          this.taskCollaborator = index.assigned;
+      //     this.taskCollaborator = index.assigned;
 
-
-          this.taskCollaborator.map(person => {
-            console.log("collabo : " + person._id);
-            this.coucou = person._id;
-          });
-        });
-      });
+      //     this.coucou.push(index);
+      //     // console.log(this.coucou);
+      //     this.taskCollaborator.map(person => {
+      //       console.log("collabo : " + person._id);
+      //       this.coucou = person._id;
+      //     });
+      //   });
+      // });
 
       
 
