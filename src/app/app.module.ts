@@ -29,7 +29,7 @@ import { PageProjectManagementComponent } from './pages/page-project-management/
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TaskTileComponent } from './pages/task-tile/task-tile.component';
 import { CommonSidebarComponent } from './pages/commons/common-sidebar/common-sidebar.component';
-
+import { PasswordForgottenComponent } from './pages/forms/password-forgotten/password-forgotten.component';
 import { PageUserEditComponent } from './pages/page-user-edit/page-user-edit.component';
 
 /* Material Modules */
@@ -47,6 +47,8 @@ import { MY_FORMAT } from './utils/formats/date.format';
 
 // FontAwesomeModule
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
 
 
 
@@ -71,7 +73,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PageProjectManagementComponent,
     TaskTileComponent,
     CommonSidebarComponent,
-    PageUserEditComponent
+    PageUserEditComponent,
+    PasswordForgottenComponent
   ],
   imports: [
     BrowserModule,

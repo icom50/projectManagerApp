@@ -23,7 +23,9 @@
             </div>
             <div>
                 <button mat-stroked-button type="submit" [disabled]="form.controls['email'].invalid || form.controls['password'].invalid ">Sign Up</button>
+                <p>Already an account ? <button mat-stroked-button routerLink="/">Sign in</button></p>
             </div>
+            
         </form>
     </mat-card-content>
 </mat-card>
