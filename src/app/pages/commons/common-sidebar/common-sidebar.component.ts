@@ -3,6 +3,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { faBorderAll } from '@fortawesome/free-solid-svg-icons';
 import { faTasks } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -15,9 +16,16 @@ export class CommonSidebarComponent implements OnInit {
   faBorderAll = faBorderAll;
   faTasks = faTasks;
   faSignOutAlt = faSignOutAlt;
-  
+
 
   constructor() { }
+  toggle = false;
+  status = 'Disable';
+
+  enableDisableRule($event) {    
+    this.toggle = !this.toggle;
+        
+  }
 
   ngOnInit() {
   }

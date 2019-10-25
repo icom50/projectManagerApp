@@ -28,8 +28,42 @@
         &:hover{
             color:#52DE97;
         }
-        &:target{
+       
+    }
+    .home{
+        &.enabled{
+            fa-icon{
             color: #52DE97;
+            }
+        }
+        &.disabled{
+            fa-icon{
+            color: #3C698A;
+            }
+        }
+    }
+    .board{
+        &.enabled{
+            fa-icon{
+            color: #52DE97;
+            }
+        }
+        &.disabled{
+            fa-icon{
+            color: #3C698A;
+            }
+        }
+    }
+    .task{
+        &.enabled{
+            fa-icon{
+            color: #52DE97;
+            }
+        }
+        &.disabled{
+            fa-icon{
+            color: #3C698A;
+            }
         }
     }
     .exit{     
@@ -42,6 +76,12 @@
         left: 50%;
         transform: translateX(-50%);
 
+        fa-icon{
+            color: #3C698A;
+            &:hover{
+                color:#C0FFB3;
+            }
+        }
 
     }
 
