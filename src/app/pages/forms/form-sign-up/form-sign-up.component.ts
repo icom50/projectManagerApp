@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/users.model';
-import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { DataService } from '../../../services/data.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-sign-up',
@@ -14,7 +15,7 @@ export class FormSignUpComponent implements OnInit {
   form : FormGroup
 
  
-  constructor(private fb: FormBuilder, private dataService : DataService) { 
+  constructor(private fb: FormBuilder, private dataService : DataService, private router : Router) { 
     this.form = this.fb.group({
       email: new FormControl(null, [Validators.required, Validators.email, Validators.maxLength(50)]),
       password : new FormControl(null , [Validators.required, Validators.maxLength(50)]),
@@ -29,6 +30,7 @@ export class FormSignUpComponent implements OnInit {
     this.dataService.postUser(this.user).subscribe((data:User)=>{
       this.user = data;
     })
+    this.router.navigate(['/'])
   }
 
   getErrorMessage(field:string):string {
