@@ -14,6 +14,7 @@ import { FormSignUpComponent } from './pages/forms/form-sign-up/form-sign-up.com
 import { FormLoginComponent } from './pages/forms/form-login/form-login.component';
 import { FormCreateProjectComponent } from './pages/forms/form-create-project/form-create-project.component';
 import { FormCreateTaskComponent } from './pages/forms/form-create-task/form-create-task.component';
+import { PageUserEditComponent } from './pages/page-user-edit/page-user-edit.component';
 
 const routes: Routes = [
   { path : "", component : PageLandingComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path : "project/:id", component : PageProjectComponent }, // page avec tout les tasks en tiles
   { path : "projects/:id", component : PageProjectsComponent },
   { path : "user/:id", component : PageUserComponent },
+  { path : "user-edit/:id", component : PageUserEditComponent },
   { path : "task-list/:id", component : PageTaskListComponent },
   { path : "project-management/:id", component : PageProjectManagementComponent },
   { path : "test", component : FormCreateTaskComponent},

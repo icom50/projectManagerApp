@@ -1,5 +1,7 @@
 .toggleContent{
     width: 400px;
+    display: flex;
+    align-items: center;
  
     cursor: pointer;
     fa-icon{
@@ -8,22 +10,42 @@
         vertical-align: center;
     }
     h4{
+        width: 600px;
         border-bottom: 1px solid black;
-        padding-bottom: 5px;
+        background: green;
+    
     }
 }
- 
-.projects{
-    width: 100px;
+
+.wrapperProjects{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-   
-    .project{
-        width:100px;
-        height: 100px;
-        background: red;
-        border-radius: 30px;
+    .projects{
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: space-between;
+
+       .wrapperProject{
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .project{
+            width:150px;
+            height: 150px;
+            border-radius: 30px;
+            background: red;
+           
+         
+        }
+
+        span{
+          
+            text-align: center;
+            margin-top: 15px;
+        }
+       }
      
     }
 }
+ 
