@@ -25,7 +25,7 @@ const routes: Routes = [
   { path : "user/:id", component : PageUserComponent },
   { path : "task-list/:id", component : PageTaskListComponent },
   { path : "project-management/:id", component : PageProjectManagementComponent },
-  { path : "test", component : FormCreateProjectComponent},
+  { path : "test", component : FormCreateTaskComponent},
   
   { path : "sign-up", component : FormSignUpComponent },
 

@@ -1,5 +1,5 @@
 <div>
-    <form [formGroup]="form">
+    <form #f="ngForm" >
         <section>
             <button (click)="editTask()">Edit</button>
             <button (click)="deleteTask()">Deletet</button>
@@ -7,15 +7,15 @@
             <!-- <span>Mark complete</span> -->
         </section>
         <section>
-            <h2>{{task.name}} </h2> <input formControlName="name" [value]="task.name"> <br/>
-            <span>{{task.estimated}}</span><input formControlName="estimated" [value]="task.estimated">
-            <span>{{task.deadline}}</span><input formControlName="deadline" [value]="task.deadline">
+            <h2>{{task.name}} </h2> <input name="name" [value]="task.name" ngModel #name="ngModel"> <br/>
+            <span>{{task.estimated}}</span><input name="estimated" [value]="task.estimated">
+            <span>{{task.deadline}}</span><input name="deadline" [value]="task.deadline">
             <span>created by {{getMember(task.author_id)}}</span>
         </section>
         <section>
             <h3>Members</h3>
             <div>Priority : <span [class]="task.priority">O</span></div>
-            <select formControlName="priority" id="priority" (change)="updatePriority()">
+            <select name="priority" id="priority" (change)="updatePriority()">
                 <option value="none" [selected]="task.priority === 'none' || !task.priority">None</option>
                 <option value="high" [selected]="task.priority === 'high'">High</option>
                 <option value="middle" [selected]="task.priority === 'middle'">Middle</option>
@@ -24,7 +24,7 @@
             <ul>
                 <li *ngFor="let member of task.assigned">{{getMember(member.author_id)}}</li>
                 <li>
-                    <select formControlName="assigned" id="assigned">
+                    <select name="assigned" id="assigned">
                         <option value="">Assign a member</option>
                         <option *ngFor="let user of task.assigned">{{getUnassignedMembers(user.user_id)}}</option>
                     </select>
@@ -33,7 +33,7 @@
         </section>
         <section>
             <h3>Task Description</h3>
-            <textarea formControlName="description" maxlength="250">{{task.description}}</textarea>
+            <textarea name="description" maxlength="250">{{task.description}}</textarea>
         </section>
         <section>
             <div *ngFor="let comment of task.comments">
@@ -41,14 +41,14 @@
                 <span>{{comment.comment}}</span>
             </div>
             <span>{{logged.username || logged.firstname || logged.email || 'Your comment'}} :</span>
-            <textarea formControlName="comments.comment" maxlength="250"></textarea>
+            <textarea name="comments.comment" maxlength="250"></textarea>
             <button (click)="sendComment()">Send your comment</button>
         </section>
         <section>
             <h3>To do list</h3>
             <ul>
                 <li *ngFor="let c of task.checklist">
-                    <input type="checkbox"  [id]="c.name" [checked]="c.done">
+                    <input type="checkbox" [name]="c.name" [id]="c.name" [checked]="c.done">
                     <label [for]="c.name">{{c.name}}</label>
                 </li>
                 </ul>
@@ -60,6 +60,6 @@
             <span>Total time : {{getTotalTime()}}</span>
             <span>My time : {{getUserTime()}}</span>
         </section>
-        <button (click)="showForm()">SHOW FORM CONSOLE BISOU</button>
+        <button (click)="updateTask(f.value)">Update task</button>
     </form>
 </div>
