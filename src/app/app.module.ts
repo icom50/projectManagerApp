@@ -31,6 +31,7 @@ import { TaskTileComponent } from './pages/task-tile/task-tile.component';
 import { CommonSidebarComponent } from './pages/commons/common-sidebar/common-sidebar.component';
 import { PasswordForgottenComponent } from './pages/forms/password-forgotten/password-forgotten.component';
 import { PageUserEditComponent } from './pages/page-user-edit/page-user-edit.component';
+import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
 
 /* Material Modules */
 import { MatListModule } from '@angular/material/list';
@@ -47,6 +48,12 @@ import { MY_FORMAT } from './utils/formats/date.format';
 
 // FontAwesomeModule
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+// pipe
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
+
 
 
 
@@ -74,7 +81,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     TaskTileComponent,
     CommonSidebarComponent,
     PageUserEditComponent,
-    PasswordForgottenComponent
+    PasswordForgottenComponent,
+    ProjectDetailsComponent
   ],
   imports: [
     BrowserModule,
