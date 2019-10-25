@@ -17,7 +17,7 @@ export class FormCreateProjectComponent implements OnInit {
   constructor(private dataService : DataService, private router : Router ) { }
 
   CreateProject(){
-    console.log(this.formCreateProject.value)
+    //console.log(this.formCreateProject.value)
     this.project = this.formCreateProject.value;
     this.dataService.postProject(this.project).subscribe((data:Project)=>{
       this.project = data;

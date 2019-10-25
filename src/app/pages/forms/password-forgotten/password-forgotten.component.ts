@@ -22,7 +22,18 @@ export class PasswordForgottenComponent implements OnInit {
     setTimeout(()=>{
       alert('Instructions send')
     },1000)
-    
+  }
+
+  getErrorMessage(field:string):string {
+    const error = {
+      required : "This field is required",
+      email: "This field must contains a valid email",
+    };
+    let returnValue = '';
+    Object.keys(this.formPass.controls[field].errors).map(key=>{
+      returnValue += `${error[key]}`;
+    })
+    return returnValue
   }
 
   ngOnInit() {
