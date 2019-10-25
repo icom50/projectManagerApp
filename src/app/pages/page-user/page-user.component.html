@@ -4,13 +4,20 @@
     </div>
     <div>
         <a routerLink="/user-edit/:id">Edit</a>
-        <a href="#">Delete</a>
+        <button 
+        mat-raised-button
+        (click)="deleteUser(user._id)"
+        >
+        Delete
+        </button>
     </div>
 </div>
 
 <div>
     <div>
-        <img src="" alt="Photo de profil">
+        <img 
+        src=""
+        alt="Photo de profil">
     </div>
     <div>
         <h2>Section Comment</h2>

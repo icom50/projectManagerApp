@@ -45,7 +45,7 @@ export class PageUserEditComponent implements OnInit {
     //this.dataService.getUserSecure()
 
     this.form = new FormGroup({
-      username: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
+      username: new FormControl(),
       firstname: new FormControl(null, [Validators.maxLength(50)]),
       lastname: new FormControl(null, [Validators.maxLength(50)]),
       avatar_url: new FormControl(),
@@ -62,7 +62,7 @@ export class PageUserEditComponent implements OnInit {
     });
 
     // const id = this.route.snapshot.params.id;
-    const id = "5da987981a158f09eb249ceb"
+    const id = "5db2b0cfde25681058101ead"
 
     this
     ._dataService
