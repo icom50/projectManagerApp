@@ -16,10 +16,12 @@
             <p>{{comment.author_id}}</p>
             <p>{{comment.comment}}</p>
         </div>
-        <form [formGroup]="formComment" (submit)="addComment()">
+        <form [formGroup]="formComment">
             <mat-form-field>
-                <textarea matInput placeholder="Comment"></textarea>
+                <textarea matInput placeholder="Comment" formControlName="comment" (keyup.enter)="addComment()" ></textarea>
+                <mat-error *ngIf="formComment.controls['comment'].invalid">The contain is too heavy</mat-error>
             </mat-form-field>
+            
         </form>
     </mat-card-content>
 </mat-card>

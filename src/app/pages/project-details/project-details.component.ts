@@ -12,6 +12,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   project : Project;
   formComment : FormGroup
+  commentValue: string;
 
   constructor(private _dataService : DataService, private fb : FormBuilder) {
     this.formComment = this.fb.group({
@@ -20,6 +21,8 @@ export class ProjectDetailsComponent implements OnInit {
    }
 
    addComment(){
+     console.log('polo');
+     this.formComment.reset();
      
    }
 
