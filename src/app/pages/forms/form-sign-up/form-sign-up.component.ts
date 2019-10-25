@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/users.model';
-import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder } from '@angular/forms';
-import { MyErrorStateMatcher } from 'src/app/utils/validators/form.validators.password';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { DataService } from '../../../services/data.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-sign-up',
@@ -13,40 +13,31 @@ export class FormSignUpComponent implements OnInit {
 
   user : User
   form : FormGroup
-  matcher = new MyErrorStateMatcher();
+
  
-  constructor(fb : FormBuilder, private dataService : DataService) { 
-    this.form = fb.group({
-      'email': ['', Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])],
-      'password' : ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
-      'confirmPassword' : ['']
-    },{validator : this.checkPasswords})
-    
+  constructor(private fb: FormBuilder, private dataService : DataService, private router : Router) { 
+    this.form = this.fb.group({
+      email: new FormControl(null, [Validators.required, Validators.email, Validators.maxLength(50)]),
+      password : new FormControl(null , [Validators.required, Validators.maxLength(50)]),
+      confirmPassword : new FormControl(null, [])
+    })
+
   }
 
-  checkPasswords(group: FormGroup) {
-  let pass = group.get('password').value;
-  let confirmPass = group.get('confirmPassword').value;
-    if(pass === confirmPass){
-      return true;
-    }
-    else{
-      return false;
-    }
-}
 
   signUp(){
     this.user = this.form.value;
     this.dataService.postUser(this.user).subscribe((data:User)=>{
       this.user = data;
     })
+    this.router.navigate(['/'])
   }
 
   getErrorMessage(field:string):string {
     const error = {
       required : "This field is required",
       email: "This field must contains a valid email",
-      maxLength : "This field cannot contain more data"
+      maxlength : "This field cannot contain more data"
     };
     let returnValue = '';
     Object.keys(this.form.controls[field].errors).map(key=>{

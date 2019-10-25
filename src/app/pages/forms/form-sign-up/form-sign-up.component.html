@@ -18,12 +18,14 @@
             <div>
                 <mat-form-field>
                     <input matInput placeholder="Password confirmation" formControleName="confirmPassword" type="password" />
-                    <mat-error *ngIf="form.errors">passwords do not match</mat-error>
+                    <mat-error *ngIf="form.controls['confirmPassword'].invalid" >passwords do not match</mat-error>
                 </mat-form-field>
             </div>
             <div>
                 <button mat-stroked-button type="submit" [disabled]="form.controls['email'].invalid || form.controls['password'].invalid ">Sign Up</button>
+                <p>Already an account ? <button mat-stroked-button routerLink="/">Sign in</button></p>
             </div>
+            
         </form>
     </mat-card-content>
 </mat-card>

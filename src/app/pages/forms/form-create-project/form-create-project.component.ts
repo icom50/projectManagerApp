@@ -28,7 +28,7 @@ export class FormCreateProjectComponent implements OnInit {
   getErrorMessage(field: string):string{
     const errors = {
       required : "this field is required",
-      maxLength : "This field cannot contain more data"
+      maxlength : "This field cannot contain more data"
     };
     let returnValue;
     Object.keys(this.formCreateProject.controls[field].errors).map(key =>{
@@ -40,7 +40,7 @@ export class FormCreateProjectComponent implements OnInit {
   ngOnInit() {
     this.formCreateProject = new FormGroup({
       name: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
-      description : new FormControl(null,Validators.maxLength(500) ),
+      description : new FormControl(null,[Validators.maxLength(500)]),
       author_id : new FormControl(null, [Validators.required]),
       start_date : new FormControl(null,[]),
       deadline : new FormControl(null,[])

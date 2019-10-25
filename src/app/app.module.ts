@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DataService } from './services/data.service';
 
 
 
@@ -28,7 +29,7 @@ import { PageProjectManagementComponent } from './pages/page-project-management/
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TaskTileComponent } from './pages/task-tile/task-tile.component';
 import { CommonSidebarComponent } from './pages/commons/common-sidebar/common-sidebar.component';
-
+import { PasswordForgottenComponent } from './pages/forms/password-forgotten/password-forgotten.component';
 import { PageUserEditComponent } from './pages/page-user-edit/page-user-edit.component';
 
 /* Material Modules */
@@ -46,6 +47,9 @@ import { MY_FORMAT } from './utils/formats/date.format';
 
 // FontAwesomeModule
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
+
 
 
 @NgModule({
@@ -69,7 +73,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PageProjectManagementComponent,
     TaskTileComponent,
     CommonSidebarComponent,
-    PageUserEditComponent
+    PageUserEditComponent,
+    PasswordForgottenComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +98,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   providers: [
     MatDatepickerModule,
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
-  { provide: MAT_DATE_FORMATS, useValue: MY_FORMAT }
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMAT },
+    DataService
   ],
   bootstrap: [AppComponent]
 })
