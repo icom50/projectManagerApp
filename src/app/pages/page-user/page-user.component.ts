@@ -44,8 +44,8 @@ export class PageUserComponent implements OnInit {
       __v: new FormControl()
     });
 
-    // const id = this.route.snapshot.params.id;
-    const id = "5db2b0cfde25681058101ead"
+    const id = this.route.snapshot.params.id;
+    // const id = "5db2b0cfde25681058101ead"
 
 
     this

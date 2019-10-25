@@ -3,7 +3,7 @@
         <h1>My Profil settings</h1>
     </div>
     <div>
-        <a routerLink="/user-edit/:id">Edit</a>
+        <a routerLink="/user-edit/{{user._id}}">Edit</a>
         <button 
         mat-raised-button
         (click)="deleteUser(user._id)"
@@ -16,8 +16,10 @@
 <div>
     <div>
         <img 
-        src=""
-        alt="Photo de profil">
+        src={{user.avatar_url}}
+        alt="Photo de profil de {{user.username}}"
+        title="Photo de profil de {{user.username}}"
+        >
     </div>
     <div>
         <h2>Section Comment</h2>
