@@ -46,7 +46,9 @@ export class DataService {
   //devrait renvoyer un Token, mais inutile pour le moment
   loginUser(user:User): Observable<User>{
     const headers = new HttpHeaders().set('content-type','application/json');
-    return this.http.post(`${this.urlUser}login`,user,{headers});
+    const token = this.http.post(`${this.urlUser}login`,user,{headers});
+    //not a token anymore
+    return token;
   }
 
   // /api/projects
@@ -67,5 +69,16 @@ export class DataService {
   deleteProject(id:string): Observable<Project>{
     const headers = new HttpHeaders().set('content-type','application/json');
     return this.http.delete(`${this.urlProjects}${id}`,{headers})
+  }
+  
+  getTaskById(project_id:string, task_id:string): Observable<any>{
+    return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
+      return data['projects'].tasks.filter( task =>  (task._id === task_id))[0]
+    }))
+  }
+  getTasksByProject(project_id:string): Observable<any[]>{
+    return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
+      return data['projects'].tasks.map(task => task)
+    }))
   }
 }

@@ -3,10 +3,10 @@ export class Project {
         public name? : string,
         public description? : string,
         public author_id? : string,
-        public creation_date? : number,
-        public start_date? : number,
-        public finish_date? : number,
-        public deadline? : number,
+        public creation_date? : string,
+        public start_date? : string,
+        public finish_date? : string,
+        public deadline? : string,
         public status? : string,
         public _id? : string,
         public users? : [
@@ -56,28 +56,22 @@ export class Project {
                         color? : string,
                         _id? : string
                     },
-                ],
-            },
-            {
+                ],            
                 assigned? : [
                     {
                         user_id? : string,
                         spend? : number,
                         _id? : string
                     },
-                ]
-            },
-            {
+                ],
                 checklist? : [
                     {
                         name? : string,
                         done? : boolean,
                         _id? : string
                     },
-                ]
-            },
-            {
-                deadline? : number,
+                ],
+                deadline? : string,
                 progression? : number,
                 estimated? : number,
                 priority? : string,
@@ -90,9 +84,7 @@ export class Project {
                         date? : number,
                         _id? : string
                     }
-                ]
-            },
-            {
+                ],  
                 comments? : [
                     {
                         author_id? : string,
@@ -100,9 +92,7 @@ export class Project {
                         date? : number,
                         _id? : string
                     }
-                ]
-            },
-            {
+                ],
                 status? : string
             }
         ]

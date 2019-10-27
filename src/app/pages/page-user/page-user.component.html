@@ -3,14 +3,23 @@
         <h1>My Profil settings</h1>
     </div>
     <div>
-        <a href="">Edit</a>
-        <a href="">Delete</a>
+        <a routerLink="/user-edit/{{user._id}}">Edit</a>
+        <button 
+        mat-raised-button
+        (click)="deleteUser(user._id)"
+        >
+        Delete
+        </button>
     </div>
 </div>
 
 <div>
     <div>
-        <img src="" alt="Photo de profil">
+        <img 
+        src={{user.avatar_url}}
+        alt="Photo de profil de {{user.username}}"
+        title="Photo de profil de {{user.username}}"
+        >
     </div>
     <div>
         <h2>Section Comment</h2>
@@ -19,81 +28,41 @@
 
 <div>
     <form [formGroup]="form">
-        <label for="username">Username</label>
-        <input 
-        type="text" 
-        name="username" 
-        id="username"
-        [value]=
-        >
+        <label for="username">Username : </label>
+        <span>{{user.username}}</span>
         <br />
 
-        <label for="firstname">Firstname</label>
-        <input 
-        type="text" 
-        name="firstname" 
-        id="firstname"
-        >
+        <label for="firstname">Firstname : </label>
+        <span>{{user.firstname}}</span>
         <br />
         
-        <label for="lastname">Name</label>
-        <input 
-        type="text" 
-        name="lastname" 
-        id="lastname"
-        >
+        <label for="lastname">Name : </label>
+        <span>{{user.lastname}}</span>
         <br />
         
-        <label for="email">Email</label>
-        <input 
-        type="text" 
-        name="email" 
-        id="email"
-        formControlName="email"
-        >
+        <label for="email">Email : </label>
+        <span>{{user.email}}</span>
         <br />
         
-        <label for="password">Password</label>
-        <input 
-        type="text" 
-        name="password" 
-        id="password"
-        formControlName="password"
-        >
+        <p>Cliquez sur Edit pour changer le password</p>
+        
+        <label for="phone">Telephone : </label>
+        <span>{{user.phone}}</span>
         <br />
         
-        <label for="phone">Telephone</label>
-        <input 
-        type="text" 
-        name="phone" 
-        id="phone"
-        >
-        <br />
-        
-        <label for="company">Company</label>
-        <input 
-        type="text" 
-        name="company" 
-        id="company"
-        >
+        <label for="company">Company : </label>
+        <span>{{user.company}}</span>
+
         <br />
 
         <h3>Links</h3>
 
-        <label for="github">Github</label>
-        <input 
-        type="text" 
-        name="github" 
-        id="github"
-        >
+        <label for="github">Github : </label>
+        <span>{{user.links}}</span>
         <br />
 
-        <label for="linkedin">Linkedin</label>
-        <input 
-        type="text" 
-        name="linkedin" 
-        id="linkedin"
-        >
+        <label for="linkedin">Linkedin : </label>
+        <span>{{user.links}}</span>
         <br />
     </form>
 </div>

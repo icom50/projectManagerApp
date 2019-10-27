@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DataService } from './services/data.service';
+
 
 
 /* Components */
@@ -25,6 +27,11 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { PageTaskListComponent } from './pages/page-task-list/page-task-list.component';
 import { PageProjectManagementComponent } from './pages/page-project-management/page-project-management.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TaskTileComponent } from './pages/task-tile/task-tile.component';
+import { CommonSidebarComponent } from './pages/commons/common-sidebar/common-sidebar.component';
+import { PasswordForgottenComponent } from './pages/forms/password-forgotten/password-forgotten.component';
+import { PageUserEditComponent } from './pages/page-user-edit/page-user-edit.component';
+import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
 
 /* Material Modules */
 import { MatListModule } from '@angular/material/list';
@@ -34,6 +41,24 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MY_FORMAT } from './utils/formats/date.format';
+
+
+// FontAwesomeModule
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
+// pipe
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -53,7 +78,12 @@ import { MatIconModule } from '@angular/material/icon';
     PageUserComponent,
     PageNotFoundComponent,
     PageTaskListComponent,
-    PageProjectManagementComponent
+    PageProjectManagementComponent,
+    TaskTileComponent,
+    CommonSidebarComponent,
+    PageUserEditComponent,
+    PasswordForgottenComponent,
+    ProjectDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -68,10 +98,18 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     MatListModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FontAwesomeModule
   
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule,
+    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMAT },
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

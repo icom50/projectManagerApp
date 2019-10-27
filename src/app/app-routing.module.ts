@@ -12,21 +12,29 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 
 import { FormSignUpComponent } from './pages/forms/form-sign-up/form-sign-up.component';
 import { FormLoginComponent } from './pages/forms/form-login/form-login.component';
+import { FormCreateProjectComponent } from './pages/forms/form-create-project/form-create-project.component';
+import { FormCreateTaskComponent } from './pages/forms/form-create-task/form-create-task.component';
+import { PageUserEditComponent } from './pages/page-user-edit/page-user-edit.component';
+import { PasswordForgottenComponent } from './pages/forms/password-forgotten/password-forgotten.component';
+import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
 
 const routes: Routes = [
   { path : "", component : PageLandingComponent },
   { path : "home", component : PageHomeComponent },
   { path : "log", component : PageLogComponent },
-  { path : "project/:id", component : PageProjectComponent },
+  //besoin d'un /project pour arriver sur la page 'board' avec tout les projets
+  { path : "project/:id", component : PageProjectComponent }, // page avec tout les tasks en tiles
   { path : "projects/:id", component : PageProjectsComponent },
   { path : "user/:id", component : PageUserComponent },
+  { path : "user-edit/:id", component : PageUserEditComponent },
   { path : "task-list/:id", component : PageTaskListComponent },
   { path : "project-management/:id", component : PageProjectManagementComponent },
-  
-  { path : "login", component : FormLoginComponent },
+  { path : "test", component : ProjectDetailsComponent},
+  { path : "reset-password", component : PasswordForgottenComponent },
   { path : "sign-up", component : FormSignUpComponent },
 
   { path : "**", component : PageNotFoundComponent }
+  
 ];
 
 @NgModule({

@@ -1,1 +1,72 @@
-<p>page-project works!</p>
+<h2>{{ projects?.projects.name }}</h2> 
+
+<div *ngFor="let user of users">
+    <p>{{ user.user_id }} is a user</p>
+</div>
+
+<!-- <p>{{ projects?.projects.users[0].user_id }} is a user</p> -->
+
+
+<!-- <div *ngFor="let task of tasks">
+    
+    <ul *ngIf="task.status==='todo'">
+        <h4>Todo</h4>
+        <li>
+            <mat-card >
+                <mat-card-title>
+                    <div [ngSwitch]="task.priority">
+                        <div *ngSwitchCase="'high'">
+                            <span style="background-color: red;"></span>
+                        </div>
+                        <div *ngSwitchCase="'middle'">
+                            <span style="background-color: orange;"></span>
+                        </div>
+                        <div *ngSwitchCase="'low'">
+                            <span style="background-color: green;"></span>
+                        </div>
+                        <div *ngSwitchDefault>
+                            <span style="background-color: grey;">lol</span>
+                        </div>
+                    </div>
+                    {{ task.name }}
+                </mat-card-title>
+            
+                <mat-card-footer>
+                    <p>{{ tasks.comment?.length || '0' }} comment(s)</p>
+                    <p>{{ tasks.assigned?.length || '0' }} people assigned</p> 
+                </mat-card-footer>
+            </mat-card>
+        </li>
+    </ul> 
+</div> -->
+
+
+<h4>Todo</h4>
+<ul *ngFor="let task of tasks">
+    <li *ngIf="todo">
+        <mat-card >
+            <mat-card-title>
+                <div [ngSwitch]="task.priority">
+                    <div *ngSwitchCase="'high'">
+                        <span style="background-color: red;"></span>
+                    </div>
+                    <div *ngSwitchCase="'middle'">
+                        <span style="background-color: orange;"></span>
+                    </div>
+                    <div *ngSwitchCase="'low'">
+                        <span style="background-color: green;"></span>
+                    </div>
+                    <div *ngSwitchDefault>
+                        <span style="background-color: grey;">lol</span>
+                    </div>
+                </div>
+                {{ task.name }}
+            </mat-card-title>
+        
+            <mat-card-footer>
+                <p>{{ tasks.comment?.length || '0' }} comment(s)</p>
+                <p>{{ tasks.assigned?.length || '0' }} people assigned</p> 
+            </mat-card-footer>
+        </mat-card>
+    </li>
+</ul> 

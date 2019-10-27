@@ -1,0 +1,90 @@
+.sidebar {
+    padding: 0;
+    margin: 0;
+    width: 100px;
+    height: 100vh;
+    background-color: #0A3D62;
+    position: relative;
+    .logo{
+        display: flex;
+        justify-content: center;
+        padding-top: 30px;
+        cursor: pointer;
+
+    }
+    .menu{      
+        padding-top: 184px;
+        width: 100px;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }  
+    fa-icon{
+        width: 37px;
+        height: 56px;
+        color: #3C698A;
+        &:hover{
+            color:#52DE97;
+        }
+       
+    }
+    .home{
+        &.enabled{
+            fa-icon{
+            color: #52DE97;
+            }
+        }
+        &.disabled{
+            fa-icon{
+            color: #3C698A;
+            }
+        }
+    }
+    .board{
+        &.enabled{
+            fa-icon{
+            color: #52DE97;
+            }
+        }
+        &.disabled{
+            fa-icon{
+            color: #3C698A;
+            }
+        }
+    }
+    .task{
+        &.enabled{
+            fa-icon{
+            color: #52DE97;
+            }
+        }
+        &.disabled{
+            fa-icon{
+            color: #3C698A;
+            }
+        }
+    }
+    .exit{     
+        display: flex;        
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
+        padding-bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        fa-icon{
+            color: #3C698A;
+            &:hover{
+                color:#C0FFB3;
+            }
+        }
+
+    }
+
+}
+
+
