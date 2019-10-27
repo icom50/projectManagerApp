@@ -49,7 +49,6 @@ import { MY_FORMAT } from './utils/formats/date.format';
 // FontAwesomeModule
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-
 // pipe
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
