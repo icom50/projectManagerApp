@@ -14,7 +14,6 @@ export class FormSignUpComponent implements OnInit {
 
     user : User;
     registerForm: FormGroup;
-    submitted = false;
 
     constructor(private formBuilder: FormBuilder, private _dataService : DataService, private router : Router) { }
 
@@ -30,10 +29,9 @@ export class FormSignUpComponent implements OnInit {
 
     get f() { return this.registerForm.controls; }
 
-    onSubmit() {
-        this.submitted = true;
+    onSubmit(e) {
         if (this.registerForm.invalid) {
-            return console.log('invalid');
+            e.preventDefault();
         }
         else{
             this.user = this.registerForm.value;
