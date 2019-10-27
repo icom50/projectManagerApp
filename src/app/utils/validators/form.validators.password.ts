@@ -1,11 +1,21 @@
-import { ErrorStateMatcher } from '@angular/material/core';
-import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-      const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
-      const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
-  
-      return (invalidCtrl || invalidParent);
+// custom validator to check that two fields match
+export function MustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+
+        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+            // return if another validator has already found an error on the matchingControl
+            return;
+        }
+
+        // set error on matchingControl if validation fails
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ mustMatch: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
     }
-  }
+}
