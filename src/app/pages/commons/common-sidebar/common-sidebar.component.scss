@@ -31,8 +31,10 @@
             float: left;            
             width: 100%;
             margin-top: 35px;
+            
             .is-active{
-            border-left: 3px solid #52DE97;
+                border-left: 3px solid #52DE97;
+            border-color:#52DE97;
             
                 fa-icon{
                     color: #52DE97;
@@ -41,13 +43,16 @@
             a{
                 display: flex;
                 justify-content: center;
-                
-                height: 30px;
+                align-items: center;
+                padding: 10px 0;
+                // height: 30px;
                 
                 fa-icon{
                     width: 37px;
-                    height: 56px;
+                    height: 100%;
                     color: #3C698A;
+                    display: flex;
+                    justify-content: center;
                     transition: color .8s cubic-bezier(0.075, 0.82, 0.165, 1);
                     &:hover{
                         color:#52DE97;
@@ -68,11 +73,17 @@
         padding-bottom: 30px;
         left: 50%;
         transform: translateX(-50%);
+        
 
         fa-icon{
             color: #3C698A;
+             
             &:hover{
                 color:#C0FFB3;
+                transition: color .8s cubic-bezier(0.075, 0.82, 0.165, 1);
+            }
+            &:focus{
+                outline:none;
             }
         }
 

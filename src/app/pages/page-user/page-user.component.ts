@@ -3,6 +3,11 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { DataService } from '../../services/data.service';
 import { User } from 'src/app/models/users.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { faBlogger } from '@fortawesome/free-brands-svg-icons';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faGithubSquare } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+
 
 
 @Component({
@@ -13,7 +18,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PageUserComponent implements OnInit {
   user: User;
   form: FormGroup;
-  
+  faBlogger = faBlogger;
+  faGlobe = faGlobe;
+  faGithub = faGithubSquare;
+  faLinkedin = faLinkedin;
+
   constructor(private _dataService: DataService,
     private router: Router,
     private route: ActivatedRoute) { }

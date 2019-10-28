@@ -24,12 +24,12 @@
             <p>{{comment.author_id}}</p>
             <p>{{comment.comment}}</p>
         </div>
-        <!-- <form [formGroup]="formComment">
+        <form [formGroup]="formComment">
             <mat-form-field>
                 <textarea matInput placeholder="Comment" formControlName="comment" (keyup.enter)="addComment()" ></textarea>
                 <mat-error *ngIf="formComment.controls['comment'].invalid">The contain is too heavy</mat-error>
             </mat-form-field>
-        </form> -->
+        </form>
         <p>{{isPrivate}}</p>
     </mat-card-content>
 </mat-card>
