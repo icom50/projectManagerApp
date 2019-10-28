@@ -39,6 +39,10 @@ export class FormSignUpComponent implements OnInit {
                 this.user = data;
                 this.router.navigate(['/']);
             })
+            setTimeout(()=>{
+                alert('the user was created')
+            },1000)
+            
         }
     }
 }
