@@ -73,6 +73,7 @@ export class PageUserEditComponent implements OnInit {
       description: new FormControl(null, [Validators.maxLength(500)]),
     });
 
+
     const id = this.route.snapshot.params.id;
     // const id = "5db2b0cfde25681058101ead"
 
@@ -84,6 +85,7 @@ export class PageUserEditComponent implements OnInit {
       this.form.setValue(this.user) // va remplir tout les champs correspondant
       console.log('data -----------------')
       console.log(this.user)
+      console.log(this.user.avatar_url);
     })
   }
 }

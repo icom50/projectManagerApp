@@ -3,3 +3,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.page{
+    min-width: 100vh;
+    display:flex;
+    flex-direction: row;
+}
+
+.content{
+    flex-grow: 1;
+}
