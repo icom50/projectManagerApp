@@ -4,7 +4,7 @@
 </h2> 
 
 <p>Collaborators of the project : </p>
-<div *ngFor="let user of users">
+<div *ngFor="let user of projects?.users">
     <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
 </div>
 
@@ -32,10 +32,19 @@
         
             <mat-card-footer>
                 <p>{{ task.comments?.length || '0' }} comment(s)</p>
-                <p>{{ task.assigned?.length || '0' }} people assigned</p> 
-                <p *ngIf="task.checklist?.length != 0">Checklist : {{ checkedList || '0' }}/{{ task.checklist?.length }}</p> 
-                <p>Due for {{ task.deadline | date:"longDate" }}</p>
+                <div *ngIf="task.assigned?.length != 0">
+                    <div *ngFor="let user of task.assigned">
+                        <h2>{{user.email}}</h2>
+                        <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
+                    </div>
+                </div>
+                
 
+                <!-- <p>{{ task.assigned?.length || '0' }} people assigned</p>  -->
+                <p *ngIf="task.checklist?.length != 0">
+                    Checklist : {{ checkedList || '0' }}/{{ task.checklist?.length }}
+                </p> 
+                <p>Due for {{ task.deadline | date:"longDate" }}</p>
             </mat-card-footer>
         </mat-card>
     </li>

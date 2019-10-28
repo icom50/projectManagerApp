@@ -37,7 +37,6 @@ export class PageProjectComponent implements OnInit {
         // TODO: adapter la ternaire pour les autres cas de figure (ou l'enlever, a voir) 
         this.users = this.projects.users;
         console.log(this.users)
-        // console.log(this.todo)
     });
 
     this.dataService
@@ -50,7 +49,6 @@ export class PageProjectComponent implements OnInit {
           oneTask.checklist.map(el => {
             el.done === true ? this.checkedList += 1 : this.checkedList += 0;
           });
-          // console.log("Total done : " + this.checkedList);
         });
       });
   }
