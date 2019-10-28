@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 export class ProjectDetailsComponent implements OnInit {
 
   project : Project;
-  formComment : FormGroup
+  isPrivate: String;
+  formComment : FormGroup;
   commentValue: string;
 
   constructor(private _dataService : DataService, private fb : FormBuilder, private router : Router) {
@@ -41,16 +42,7 @@ export class ProjectDetailsComponent implements OnInit {
     const id = "5db1853aa88e5d252bb4a749";
     this._dataService.getProjectById(id).subscribe((data : Project)=>{
       this.project = data['projects'];
-      console.log(this.project)
+      this.isPrivate = this.project.is_private  ? "the project is in private" : "The project is in public";
     })
   }
-
-  // getPrivate() {
-    
-  //   console.log(this.project.is_private);
-  //  let returnValue;
-  //  returnValue = this.project.is_private  ? "the project is in private" : "The project is in public";
-  //  return returnValue;
-   
-  // }
 }
