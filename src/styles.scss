@@ -24,3 +24,14 @@ html {
   -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
+
+
+.page{
+    min-width: 100vh;
+    display:flex;
+    flex-direction: row;
+}
+
+.content{
+    flex-grow: 1;
+}
