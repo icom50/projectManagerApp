@@ -3,14 +3,23 @@
         <h1>My Profil settings</h1>
     </div>
     <div>
-        <a routerLink="/user-edit/:id">Edit</a>
-        <a href="#">Delete</a>
+        <a routerLink="/user-edit/{{user._id}}">Edit</a>
+        <button 
+        mat-raised-button
+        (click)="deleteUser(user._id)"
+        >
+        Delete
+        </button>
     </div>
 </div>
 
 <div>
     <div>
-        <img src="" alt="Photo de profil">
+        <img 
+        src={{user.avatar_url}}
+        alt="Photo de profil de {{user.username}}"
+        title="Photo de profil de {{user.username}}"
+        >
     </div>
     <div>
         <h2>Section Comment</h2>
@@ -49,11 +58,11 @@
         <h3>Links</h3>
 
         <label for="github">Github : </label>
-        <span>{{user.links}}</span>
+        <span>{{user.links.github}}</span>
         <br />
 
         <label for="linkedin">Linkedin : </label>
-        <span>{{user.links}}</span>
+        <span>{{user.links.linkedin}}</span>
         <br />
     </form>
 </div>

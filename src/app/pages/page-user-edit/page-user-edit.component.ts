@@ -21,8 +21,15 @@ export class PageUserEditComponent implements OnInit {
   submitForm(){
     this.user = this.form.value;
     this._dataService.putUser(this.user).subscribe((data : User) => {
+      // console.log(data._id)
       this.user = data;
-      this.router.navigate(['user/:id']); /** la navigation retourne a 'users' */
+      const userId: string = this.user._id;
+      // console.log(this.user._id);
+      console.log(this.user);
+      console.log(this.user['users']._id);
+      // console.log(userId);
+      // this.router.navigate(['user/'+this.user._id]); /** la navigation retourne a 'users' */
+      this.router.navigate([`user/${this.user['users']._id}`]);
     })
   }
 
@@ -34,18 +41,18 @@ export class PageUserEditComponent implements OnInit {
     };
     let returnValue = '';
     Object.keys(this.form.controls[field].errors).map((key, index) => {
-      returnValue += `Rule ${index} - ${errors[key]}`
+      returnValue += `Rule ${index} - ${errors[key]}`;
     });
-    return returnValue
+    return returnValue;
   }
 
 
   // task: any;
   ngOnInit() {
-    //this.dataService.getUserSecure()
+    // this.dataService.getUserSecure()
 
     this.form = new FormGroup({
-      username: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
+      username: new FormControl(),
       firstname: new FormControl(null, [Validators.maxLength(50)]),
       lastname: new FormControl(null, [Validators.maxLength(50)]),
       avatar_url: new FormControl(),
@@ -58,11 +65,10 @@ export class PageUserEditComponent implements OnInit {
       _id: new FormControl(),
       job: new FormControl(null, [Validators.maxLength(50)]),
       projects: new FormControl(),
-      __v: new FormControl()
     });
 
-    // const id = this.route.snapshot.params.id;
-    const id = "5da987981a158f09eb249ceb"
+    const id = this.route.snapshot.params.id;
+    // const id = "5db2b0cfde25681058101ead"
 
     this
     ._dataService

@@ -3,14 +3,38 @@
         <h1>My Profil settings</h1>
     </div>
     <div>
-        <a routerLink="/user/:id">Profil</a>
-        <a href="">Delete</a>
+        <a routerLink="/user/{{user._id}}">Profil</a>
     </div>
 </div>
 
 <div>
+<form [formGroup]="form" (submit)="submitForm()">
+<div>
     <div>
-        <img src="" alt="Photo de profil">
+        <div>
+            <img 
+            src={{user.avatar_url}}
+            alt="Photo de profil de {{user.username}}"
+            title="Photo de profil de {{user.username}}"
+            >
+        </div>
+        <div>
+            <mat-form-field>
+                <label for="avatar_url">Url de l'avatar</label>
+                <input 
+                matInput
+                type="text" 
+                name="avatar_url" 
+                id="avatar_url"
+                formControlName="avatar_url"
+                >
+                <mat-error 
+                *ngIf="form.controls['avatar_url'].invalid">
+                {{getErrorMessage('avatar_url')}}
+                </mat-error>
+            </mat-form-field>
+            <br />
+        </div>
     </div>
     <div>
         <h2>Section Comment</h2>
@@ -18,7 +42,6 @@
 </div>
 
 <div>
-    <form [formGroup]="form" (submit)="submitForm()">
 
         <mat-form-field>
             <label for="username">Username</label>
@@ -168,5 +191,6 @@
 
         <button mat-raised-button>Submit</button>
 
-    </form>
+    </div>
+</form>
 </div>

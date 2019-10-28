@@ -1,29 +1,41 @@
+<!-- main app container -->
 <mat-card>
     <mat-card-content>
-        <h2>SIGN UP</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, harum?</p>
-        <form [formGroup]="form" (submit)="signUp()">
-            <div>
-                <mat-form-field >
-                    <input matInput placeholder="email" type="email" formControlName="email"/>
-                    <mat-error *ngIf="form.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
-                </mat-form-field>
+    <h1 class="text-center">Sign Up</h1>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit($event)">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" formControlName="email" name="email"  class="form-control" [ngClass]="{ 'is-invalid': f.email.touched &&  f.email.errors }" />
+                <div *ngIf=" f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.touched && f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.touched && f.email.errors.email">Email must be a valid email address</div>
+                    <div *ngIf="f.email.touched && f.email.errors.minlength">Password must be at below 50 characters</div>
+                </div>
             </div>
-            <div>
-                <mat-form-field >
-                    <input matInput placeholder="Password" type="password" formControlName="password"/>
-                    <mat-error *ngIf="form.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
-                </mat-form-field>
-            </div>    
-            <div>
-                <mat-form-field>
-                    <input matInput placeholder="Password confirmation" formControleName="confirmPassword" type="password" />
-                    <mat-error *ngIf="form.controls['confirmPassword'].invalid" >passwords do not match</mat-error>
-                </mat-form-field>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" name="password"  class="form-control" [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" />
+                    <div *ngIf=" f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.touched && f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.touched && f.password.errors.minlength">Password must be at least 6 characters</div>
+                        <div *ngIf="f.password.touched && f.password.errors.maxlength">Password must be at below 50 characters</div>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" formControlName="confirmPassword" name="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': f.confirmPassword.touched &&  f.confirmPassword.errors }" />
+                    <div *ngIf="f.confirmPassword.touched && f.confirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.confirmPassword.touched && f.confirmPassword.errors.required">Confirm Password is required</div>
+                        <div *ngIf="f.confirmPassword.touched && f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <button mat-stroked-button type="submit" [disabled]="form.controls['email'].invalid || form.controls['password'].invalid ">Sign Up</button>
+            <div class="text-center">
+                <button class="btn btn-secondary">Register</button>
+                <button class="btn btn-primary" routerLink="/">Already an account ?</button>
             </div>
+            
         </form>
     </mat-card-content>
 </mat-card>

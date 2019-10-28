@@ -9,9 +9,13 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class PageProjectComponent implements OnInit {
 
+  projects;
   projectUrl;
   projectId;
-  projectName;
+  comments;
+  priority;
+  tasks: string[];
+  todo;
 
   constructor(private router: Router, private dataService: DataService) { }
 
@@ -24,8 +28,33 @@ export class PageProjectComponent implements OnInit {
     this.dataService
       .getProjectById(this.projectId)
       .subscribe((data:any) => {
-        this.projectName = data.projects.name;
+        this.projects = data;
+        console.log(this.projects);
+        // console.log(data.projects.status)
+        data.projects.status === 'todo' || data.projects.status === 'created' ? this.todo = true : this.todo = false; 
+        console.log(this.todo)
     });
-  }
 
+    // this.projects.map((users: string[]) => {
+    //   console.log(users)
+    //   // console.log(this.projects.projects.user_id);
+    // });
+
+    // this.dataService  
+    //   .getUserById(this.projects.projects.user_id)
+    //   .subscribe((data:any) => {
+    //     console.log(data);
+    //   })
+
+
+    this.dataService
+      .getTasksByProject(this.projectId)
+      .subscribe((data:any) => {
+        // console.log(data);
+        this.tasks = data;
+        // this.taskPriority = this.tasks.priority;
+        // console.log(this.tasks);
+      });
+
+  }
 }
