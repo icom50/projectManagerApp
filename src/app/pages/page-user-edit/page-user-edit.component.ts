@@ -60,11 +60,17 @@ export class PageUserEditComponent implements OnInit {
       password: new FormControl(null, [Validators.required]),
       phone: new FormControl(null, [Validators.maxLength(20)]),
       company: new FormControl(null, [Validators.maxLength(50)]),
-      links: new FormControl(),
+      links: new FormGroup({
+        github: new FormControl(),
+        linkedin: new FormControl(),
+        blog: new FormControl(),
+        website: new FormControl(),
+      }),
       tasks: new FormControl(),
       _id: new FormControl(),
       job: new FormControl(null, [Validators.maxLength(50)]),
       projects: new FormControl(),
+      description: new FormControl(null, [Validators.maxLength(500)]),
     });
 
     const id = this.route.snapshot.params.id;
