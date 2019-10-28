@@ -64,7 +64,7 @@ export class PageUserEditComponent implements OnInit {
       tasks: new FormControl(),
       _id: new FormControl(),
       job: new FormControl(null, [Validators.maxLength(50)]),
-      projects: new FormControl()
+      projects: new FormControl(),
     });
 
     const id = this.route.snapshot.params.id;
