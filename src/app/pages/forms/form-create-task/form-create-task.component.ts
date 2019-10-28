@@ -15,6 +15,8 @@ export class FormCreateTaskComponent implements OnInit {
   task_id: string;
   task: any;
   logged:any;
+  totalTime: number;
+  user_id = "Fake ID"
   constructor(private _dataService: DataService, ) { 
 
   }
@@ -25,17 +27,19 @@ export class FormCreateTaskComponent implements OnInit {
   getUnassignedMembers(id){
     return 'check getUnassignedMembers(id) function ' + (id || 'missing id')
   }
-  sendComment() {
+  sendComment(nc) {
     event.preventDefault()
-    console.log('send comment')
+    console.log(nc)
+    this.task.comments.push({comment: nc, author_id: this.user_id})
     // this.updateTask()
   }
-  updateTask(f) {
+  updateTask() {
     event.preventDefault()
-    let output = f;
-    for (let key in f) {
-      console.log(key) 
-    }
+    // let output = f;
+    // for (let key in f) {
+    //   console.log(key) 
+    // }
+    console.log(this.task)
 
     // console.log('task update')
     // console.log(f)
@@ -44,15 +48,18 @@ export class FormCreateTaskComponent implements OnInit {
     event.preventDefault()
     console.log('add item to checklist')
   }
-  addTime() {
+  addTime(time) {
     event.preventDefault()
-    console.log('add time to the task')
+    time = + time
+    if (!isNaN(time)) this.task.assigned.map(user => {if (user.user_id === this.user_id) user.spend += time} );
   }
   getTotalTime() {
-    return ' check getTotalTime()'
+    this.totalTime = this.task.assigned.reduce((user, tot) => {tot + user.spend},0) || 0
   }
-  getUserTime() {
-    return 'check getUserTime()'
+  getUserTime(id) {
+    let output =this.task.assigned.reduce((user,next) => { next + user.spend},0 )
+    console.log(output)
+    return this.task.assigned.map(user => {if (user.user_id === this.user_id) user.spend} )
   }
   updatePriority(){
     // console.log('updatePriority() to '+ this.form['priority'])
@@ -64,6 +71,7 @@ export class FormCreateTaskComponent implements OnInit {
       console.log(' ------- DATA --------')
       console.log(data)
     })
+    // this.getTotalTime()
   }
 
 }

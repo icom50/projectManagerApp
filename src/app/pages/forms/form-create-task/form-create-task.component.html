@@ -1,65 +1,66 @@
 <div>
-    <form #f="ngForm" >
+    <form  #f="ngForm">
         <section>
-            <button (click)="editTask()">Edit</button>
-            <button (click)="deleteTask()">Deletet</button>
-            <!-- <div>Barre d'évolution</div> --> <span>{{task.progression}}%</span>
+            <!-- <button (click)="editTask()">Edit</button> -->
+            <button (click)="deleteTask()">Delete</button>
+            <!-- <div>Barre d'évolution</div> --> <span>{{task?.progression}}%</span>
             <!-- <span>Mark complete</span> -->
         </section>
         <section>
-            <h2>{{task.name}} </h2> <input name="name" [value]="task.name" ngModel #name="ngModel"> <br/>
-            <span>{{task.estimated}}</span><input name="estimated" [value]="task.estimated">
-            <span>{{task.deadline}}</span><input name="deadline" [value]="task.deadline">
-            <span>created by {{getMember(task.author_id)}}</span>
+            <h2>{{task?.name}} </h2> <input name="name" [value]="task?.name" ngModel #name="ngModel" (change)="task.name=name.value"> <br/>
+            <span>{{task?.estimated}}</span><input name="estimated" [value]="task?.estimated" ngModel #estimated="ngModel" (change)="task.estimated=estimated.value">
+            <span>{{task?.deadline}}</span><input name="deadline" [value]="task?.deadline" ngModel #deadline="ngModel" (change)="task.deadline=deadline.value">
+            <span>created by {{getMember(task?.author_id)}}</span>
         </section>
         <section>
             <h3>Members</h3>
-            <div>Priority : <span [class]="task.priority">O</span></div>
-            <select name="priority" id="priority" (change)="updatePriority()">
-                <option value="none" [selected]="task.priority === 'none' || !task.priority">None</option>
-                <option value="high" [selected]="task.priority === 'high'">High</option>
-                <option value="middle" [selected]="task.priority === 'middle'">Middle</option>
-                <option value="low" [selected]="task.priority === 'low'">Low</option>
+            <div>Priority : <span [class]="task?.priority">O</span></div>
+            <select name="priority" id="priority" (change)="updatePriority()" ngModel (change)="task.priority=f.value.priority">
+                <option value="none" [selected]="task?.priority === 'none' || !task?.priority">None</option>
+                <option value="high" [selected]="task?.priority === 'high'">High</option>
+                <option value="middle" [selected]="task?.priority === 'middle'">Middle</option>
+                <option value="low" [selected]="task?.priority === 'low'">Low</option>
             </select>
             <ul>
-                <li *ngFor="let member of task.assigned">{{getMember(member.author_id)}}</li>
+                <li *ngFor="let member of task?.assigned">{{getMember(member.user_id)}}</li>
                 <li>
-                    <select name="assigned" id="assigned">
+                    <select name="assigned" id="assigned" ngModel #assigned="ngModel" (change)="task.assigned.push(assigned.value)">
                         <option value="">Assign a member</option>
-                        <option *ngFor="let user of task.assigned">{{getUnassignedMembers(user.user_id)}}</option>
+                        <option *ngFor="let user of task?.assigned">{{getUnassignedMembers(user.user_id)}}</option>
                     </select>
                 </li>
             </ul>
         </section>
         <section>
             <h3>Task Description</h3>
-            <textarea name="description" maxlength="250">{{task.description}}</textarea>
+            <textarea name="description" [value]="task?.description" ngMaxlength="250" ngModel  (change)="task.description= f.value.description"></textarea>
+            <!-- <input name="description" [value]="task?.description" ngMaxlength="250" ngModel  (change)="task.description= f.value.description"> -->
         </section>
         <section>
-            <div *ngFor="let comment of task.comments">
+            <div *ngFor="let comment of task?.comments">
                 <h4>{{getMember(comment.author_id)}} - {{comment.date}}</h4>
                 <span>{{comment.comment}}</span>
             </div>
             <span>{{logged.username || logged.firstname || logged.email || 'Your comment'}} :</span>
-            <textarea name="comments.comment" maxlength="250"></textarea>
-            <button (click)="sendComment()">Send your comment</button>
+            <textarea ngModel name="newComment" maxlength="250"></textarea>
+            <button (click)="sendComment(f.value.newComment)">Send your comment</button>
         </section>
         <section>
             <h3>To do list</h3>
             <ul>
-                <li *ngFor="let c of task.checklist">
-                    <input type="checkbox" [name]="c.name" [id]="c.name" [checked]="c.done">
+                <li *ngFor="let c of task?.checklist">
+                    <input type="checkbox" [name]="c.name" [id]="c.name" [checked]="c.done" (change)="c.done = $event.currentTarget.checked">
                     <label [for]="c.name">{{c.name}}</label>
                 </li>
                 </ul>
-                <input type="text" maxlength="20"> <button (click)="addItem()">Add item</button>
+                <input ngModel name="checklist" type="text" maxlength="20"> <button (click)="task.checklist.push({name:f.value.checklist, done: false})">Add item</button>
         </section>
         <section>
             <h3>Time spend</h3>
-            <input type="text" maxlength="20"> <button (click)="addTime()">Add my time</button>
-            <span>Total time : {{getTotalTime()}}</span>
-            <span>My time : {{getUserTime()}}</span>
+            <input ngModel name="spend" type="text" maxlength="20"> <button (click)="addTime(f.value.spend)">Add my time</button> <br/>
+            <span>Total time : {{ 'NEED TO UPDATE DB '}}</span> <br/>
+            <span *ngIf="task?.assigned">My time : {{getUserTime('5db1700245b9db1ab813c738') }}</span>
         </section>
-        <button (click)="updateTask(f.value)">Update task</button>
+        <button (click)="updateTask()">Update task</button>
     </form>
 </div>
