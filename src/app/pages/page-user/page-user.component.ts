@@ -40,12 +40,11 @@ export class PageUserComponent implements OnInit {
       tasks: new FormControl(),
       _id: new FormControl(),
       job: new FormControl(),
-      projects: new FormControl(),
-      __v: new FormControl()
+      projects: new FormControl()
     });
 
     const id = this.route.snapshot.params.id;
-    // const id = "5db2b0cfde25681058101ead"
+    // const id = "5db6af162d24d6190d8855f6"
 
 
     this
