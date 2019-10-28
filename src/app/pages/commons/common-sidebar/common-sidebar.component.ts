@@ -22,8 +22,9 @@ export class CommonSidebarComponent implements OnInit {
   toggle = false;
   status = 'Disable';
 
-  enableDisableRule($event) {    
-    this.toggle = !this.toggle;
+  enableDisableRule(event) {
+    console.log(event);
+    // this.toggle = !this.toggle;
         
   }
 
