@@ -13,7 +13,7 @@
     <div>
         <div>
             <img 
-            src={{user.avatar_url}}
+            src={{user?.avatar_url}}
             alt="Photo de profil de {{user.username}}"
             title="Photo de profil de {{user.username}}"
             >
@@ -38,6 +38,23 @@
     </div>
     <div>
         <h2>Section Comment</h2>
+        <mat-form-field>
+            <label for="description">Description</label>
+            <textarea 
+            matInput
+            name="description" 
+            id="description" 
+            formControlName="description" 
+            cols="30" 
+            rows="10"
+            >
+            </textarea>
+            <mat-error 
+            *ngIf="form.controls['description'].invalid">
+            {{getErrorMessage('description')}}
+            </mat-error>
+        </mat-form-field>
+        <br />
     </div>
 </div>
 
@@ -156,38 +173,72 @@
         <br />
 
         <h3>Links</h3>
+        <div [formGroup]="form.controls.links">
+            <mat-form-field>
+                <label for="github">Github</label>
+                <input 
+                matInput
+                type="text" 
+                name="github" 
+                id="github"
+                formControlName="github"        
+                >
+                <mat-error 
+                *ngIf="form.controls['links'].invalid">
+                {{getErrorMessage('links')}}
+                </mat-error>
+            </mat-form-field>
+            <br />
 
-        <mat-form-field>
-            <label for="github">Github</label>
-            <input 
-            matInput
-            type="text" 
-            name="github" 
-            id="github"
-            formControlName="links"        
-            >
-            <mat-error 
-            *ngIf="form.controls['links'].invalid">
-            {{getErrorMessage('links')}}
-            </mat-error>
-        </mat-form-field>
-        <br />
+            <mat-form-field>
+                <label for="linkedin">Linkedin</label>
+                <input 
+                matInput
+                type="text" 
+                name="linkedin" 
+                id="linkedin"
+                formControlName="linkedin"
+                >
+                <mat-error 
+                *ngIf="form.controls['links'].invalid">
+                {{getErrorMessage('links')}}
+                </mat-error>
+            </mat-form-field>
+            <br />
 
-        <mat-form-field>
-            <label for="linkedin">Linkedin</label>
-            <input 
-            matInput
-            type="text" 
-            name="linkedin" 
-            id="linkedin"
-            formControlName="links"
-            >
-            <mat-error 
-            *ngIf="form.controls['links'].invalid">
-            {{getErrorMessage('links')}}
-            </mat-error>
-        </mat-form-field>
-        <br />
+            <mat-form-field>
+                <label for="blog">blog</label>
+                <input 
+                matInput
+                type="text" 
+                name="blog" 
+                id="blog"
+                formControlName="blog"        
+                >
+                <mat-error 
+                *ngIf="form.controls['links'].invalid">
+                {{getErrorMessage('links')}}
+                </mat-error>
+            </mat-form-field>
+            <br />
+
+            <mat-form-field>
+                <label for="website">website</label>
+                <input 
+                matInput
+                type="text" 
+                name="website" 
+                id="website"
+                formControlName="website"        
+                >
+                <mat-error 
+                *ngIf="form.controls['links'].invalid">
+                {{getErrorMessage('links')}}
+                </mat-error>
+            </mat-form-field>
+            <br />
+
+        </div>
 
         <button mat-raised-button>Submit</button>
 

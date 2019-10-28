@@ -36,11 +36,17 @@ export class PageUserComponent implements OnInit {
       password: new FormControl(null, [Validators.required]),
       phone: new FormControl(),
       company: new FormControl(),
-      links: new FormControl(),
+      links: new FormGroup({
+        github: new FormControl(),
+        linkedin: new FormControl(),
+        blog: new FormControl(),
+        website: new FormControl(),
+      }),
       tasks: new FormControl(),
       _id: new FormControl(),
       job: new FormControl(),
-      projects: new FormControl()
+      projects: new FormControl(),
+      description: new FormControl(),
     });
 
     const id = this.route.snapshot.params.id;

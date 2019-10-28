@@ -60,12 +60,19 @@ export class PageUserEditComponent implements OnInit {
       password: new FormControl(null, [Validators.required]),
       phone: new FormControl(null, [Validators.maxLength(20)]),
       company: new FormControl(null, [Validators.maxLength(50)]),
-      links: new FormControl(),
+      links: new FormGroup({
+        github: new FormControl(),
+        linkedin: new FormControl(),
+        blog: new FormControl(),
+        website: new FormControl(),
+      }),
       tasks: new FormControl(),
       _id: new FormControl(),
       job: new FormControl(null, [Validators.maxLength(50)]),
       projects: new FormControl(),
+      description: new FormControl(null, [Validators.maxLength(500)]),
     });
+
 
     const id = this.route.snapshot.params.id;
     // const id = "5db2b0cfde25681058101ead"
@@ -78,6 +85,7 @@ export class PageUserEditComponent implements OnInit {
       this.form.setValue(this.user) // va remplir tout les champs correspondant
       console.log('data -----------------')
       console.log(this.user)
+      console.log(this.user.avatar_url);
     })
   }
 }

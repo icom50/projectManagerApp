@@ -14,55 +14,66 @@
 </div>
 
 <div>
-    <div>
-        <img 
-        src={{user.avatar_url}}
-        alt="Photo de profil de {{user.username}}"
-        title="Photo de profil de {{user.username}}"
-        >
-    </div>
-    <div>
-        <h2>Section Comment</h2>
-    </div>
-</div>
-
-<div>
     <form [formGroup]="form">
-        <label for="username">Username : </label>
-        <span>{{user.username}}</span>
-        <br />
-
-        <label for="firstname">Firstname : </label>
-        <span>{{user.firstname}}</span>
-        <br />
+        <div>
+            <div>
+                <img 
+                src={{user.avatar_url}}
+                alt="Photo de profil de {{user.username}}"
+                title="Photo de profil de {{user.username}}"
+                >
+            </div>
+            <div>
+                <h2>Section Comment</h2>
+                <p>{{user.description}}</p>
+            </div>
+        </div>
         
-        <label for="lastname">Name : </label>
-        <span>{{user.lastname}}</span>
-        <br />
-        
-        <label for="email">Email : </label>
-        <span>{{user.email}}</span>
-        <br />
-        
-        <p>Cliquez sur Edit pour changer le password</p>
-        
-        <label for="phone">Telephone : </label>
-        <span>{{user.phone}}</span>
-        <br />
-        
-        <label for="company">Company : </label>
-        <span>{{user.company}}</span>
+        <div>
+            <label for="username">Username : </label>
+            <span>{{user.username}}</span>
+            <br />
+            
+            <label for="firstname">Firstname : </label>
+            <span>{{user.firstname}}</span>
+            <br />
+            
+            <label for="lastname">Name : </label>
+            <span>{{user.lastname}}</span>
+            <br />
+            
+            <label for="email">Email : </label>
+            <span>{{user.email}}</span>
+            <br />
+            
+            <p>Cliquez sur Edit pour changer le password</p>
+            
+            <label for="phone">Telephone : </label>
+            <span>{{user.phone}}</span>
+            <br />
+            
+            <label for="company">Company : </label>
+            <span>{{user.company}}</span>
+            
+            <br />
+            
+            <h3>Links</h3>
+            
+            <label for="github">Github : </label>
+            <span>{{user.links.github}}</span>
+            <br />
+            
+            <label for="linkedin">Linkedin : </label>
+            <span>{{user.links.linkedin}}</span>
+            <br />
 
-        <br />
-
-        <h3>Links</h3>
-
-        <label for="github">Github : </label>
-        <span>{{user.links.github}}</span>
-        <br />
-
-        <label for="linkedin">Linkedin : </label>
-        <span>{{user.links.linkedin}}</span>
-        <br />
+            <label for="blog">Blog : </label>
+            <span>{{user.links.blog}}</span>
+            <br />
+            
+            <label for="website">Website : </label>
+            <span>{{user.links.website}}</span>
+            <br />
+        </div>
     </form>
 </div>
