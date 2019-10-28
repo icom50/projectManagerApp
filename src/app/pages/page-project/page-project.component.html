@@ -1,4 +1,7 @@
-<h2>{{ projects?.projects.name }}</h2> 
+<h2>    
+    <span class="project--color" [ngStyle]="{'background-color': projects?.projects.color}"></span>
+    {{ projects?.projects.name }}
+</h2> 
 
 <div *ngFor="let user of users">
     <p>{{ user.user_id }} is a user</p>
@@ -66,6 +69,8 @@
             <mat-card-footer>
                 <p>{{ tasks.comment?.length || '0' }} comment(s)</p>
                 <p>{{ tasks.assigned?.length || '0' }} people assigned</p> 
+                <p>Checklist : {{ tasks.checklist?.done }} on {{ tasks.checklist?.length || '0' }}</p> 
+                <p>Due for {{ task.deadline | date:"longDate" }}</p>
             </mat-card-footer>
         </mat-card>
     </li>

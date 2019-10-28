@@ -32,7 +32,7 @@ export class PageProjectComponent implements OnInit {
         console.log(this.projects);
         // console.log(data.projects.status)
         data.projects.status === 'todo' || data.projects.status === 'created' ? this.todo = true : this.todo = false; 
-        console.log(this.todo)
+        // console.log(this.todo)
     });
 
     // this.projects.map((users: string[]) => {
