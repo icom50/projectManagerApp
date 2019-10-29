@@ -28,6 +28,7 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
+    "hammerjs": "^2.0.8",
     "mongoose": "^5.7.5",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
