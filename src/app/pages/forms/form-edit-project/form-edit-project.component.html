@@ -1,1 +1,28 @@
-<p>form-edit-project works!</p>
+<mat-card>
+    <mat-card-header>
+        <span><a routerLink="/project/:id">Back</a></span>
+    </mat-card-header>
+    <mat-card-content>
+        <h2>{{project?.name}}</h2>
+        <form [formGroup]="editProject">
+            <div>
+                <mat-form-field>
+                    <mat-label>status</mat-label>
+                    <select matNativeControl formControlName="status">
+                        <option value="created">Created</option>
+                        <option value="started">Started</option>
+                        <option value="finished">Finished</option>
+                        <option value="abandonned">Abandonned</option>
+                    </select>
+                </mat-form-field>
+            </div>
+            <div>
+                <label id="example-radio-group-label">Select the type of project</label>
+                <mat-radio-group aria-label="Select the type of project" class="radio-button" formControlName="is_private">
+                    <mat-radio-button value="true" checked="">Private</mat-radio-button>
+                    <mat-radio-button value="false">Public</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

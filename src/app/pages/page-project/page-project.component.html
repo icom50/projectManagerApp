@@ -1,48 +1,12 @@
 <h2>    
-    <span class="project--color" [ngStyle]="{'background-color': projects?.projects.color}"></span>
-    {{ projects?.projects.name }}
+    <span class="project--color" [ngStyle]="{'background-color': projects?.color}"></span>
+    {{ projects?.name }}
 </h2> 
 
-<div *ngFor="let user of users">
-    <p>{{ user.user_id }} is a user</p>
+<p>Collaborators of the project : </p>
+<div *ngFor="let user of projects?.users">
+    <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
 </div>
-
-<!-- <p>{{ projects?.projects.users[0].user_id }} is a user</p> -->
-
-
-<!-- <div *ngFor="let task of tasks">
-    
-    <ul *ngIf="task.status==='todo'">
-        <h4>Todo</h4>
-        <li>
-            <mat-card >
-                <mat-card-title>
-                    <div [ngSwitch]="task.priority">
-                        <div *ngSwitchCase="'high'">
-                            <span style="background-color: red;"></span>
-                        </div>
-                        <div *ngSwitchCase="'middle'">
-                            <span style="background-color: orange;"></span>
-                        </div>
-                        <div *ngSwitchCase="'low'">
-                            <span style="background-color: green;"></span>
-                        </div>
-                        <div *ngSwitchDefault>
-                            <span style="background-color: grey;">lol</span>
-                        </div>
-                    </div>
-                    {{ task.name }}
-                </mat-card-title>
-            
-                <mat-card-footer>
-                    <p>{{ tasks.comment?.length || '0' }} comment(s)</p>
-                    <p>{{ tasks.assigned?.length || '0' }} people assigned</p> 
-                </mat-card-footer>
-            </mat-card>
-        </li>
-    </ul> 
-</div> -->
-
 
 <h4>Todo</h4>
 <ul *ngFor="let task of tasks">
@@ -67,9 +31,19 @@
             </mat-card-title>
         
             <mat-card-footer>
-                <p>{{ tasks.comment?.length || '0' }} comment(s)</p>
-                <p>{{ tasks.assigned?.length || '0' }} people assigned</p> 
-                <p>Checklist : {{ tasks.checklist?.done }} on {{ tasks.checklist?.length || '0' }}</p> 
+                <p>{{ task.comments?.length || '0' }} comment(s)</p>
+                <div *ngIf="task.assigned?.length != 0">
+                    <div *ngFor="let user of task.assigned">
+                        <h2>{{user.email}}</h2>
+                        <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
+                    </div>
+                </div>
+                
+
+                <!-- <p>{{ task.assigned?.length || '0' }} people assigned</p>  -->
+                <p *ngIf="task.checklist?.length != 0">
+                    Checklist : {{ checkedList || '0' }}/{{ task.checklist?.length }}
+                </p> 
                 <p>Due for {{ task.deadline | date:"longDate" }}</p>
             </mat-card-footer>
         </mat-card>
