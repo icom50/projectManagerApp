@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from '../../../models/users.model';
+import { Project } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
 
 @Component({
@@ -10,68 +11,40 @@ import { DataService } from '../../../services/data.service';
 })
 export class FormCreateTaskComponent implements OnInit {
   user: User;
-  // form: FormGroup;
-  project_id:string;
-  task_id: string;
-  task: any;
-  logged:any;
-  totalTime: number;
-  user_id = "Fake ID"
+  users: User[];
+  project: Project;
+  newTask = {assigned : [], checklist: []}
+  user_id = "5dada94a26a3f42e962c215a";
+  project_id = "5db6b138fc2046172f2b0c56";
   constructor(private _dataService: DataService, ) { 
 
   }
 
-  getMember(id) {
-    return 'check getMember(id) function ' + (id || 'missing id')
+  createTask(f){
+    f.value.checklist = this.newTask.checklist
+    f.value.assigned = this.newTask.assigned
+    console.log(f.value)
   }
-  getUnassignedMembers(id){
-    return 'check getUnassignedMembers(id) function ' + (id || 'missing id')
+  addAssignedUser(id){
+    let addedUser
+    this._dataService.getUserById(id).subscribe((data:User)=> {
+      this.newTask.assigned.push({...data['users'], user_id: data['users']._id})
+      console.log(this.newTask)
+    })
+    console.log(addedUser)
   }
-  sendComment(nc) {
-    event.preventDefault()
-    console.log(nc)
-    this.task.comments.push({comment: nc, author_id: this.user_id})
-    // this.updateTask()
-  }
-  updateTask() {
-    event.preventDefault()
-    // let output = f;
-    // for (let key in f) {
-    //   console.log(key) 
-    // }
-    console.log(this.task)
-
-    // console.log('task update')
-    // console.log(f)
-  }
-  addItem() {
-    event.preventDefault()
-    console.log('add item to checklist')
-  }
-  addTime(time) {
-    event.preventDefault()
-    time = + time
-    if (!isNaN(time)) this.task.assigned.map(user => {if (user.user_id === this.user_id) user.spend += time} );
-  }
-  getTotalTime() {
-    this.totalTime = this.task.assigned.reduce((user, tot) => {tot + user.spend},0) || 0
-  }
-  getUserTime(id) {
-    let output =this.task.assigned.reduce((user,next) => { next + user.spend},0 )
-    console.log(output)
-    return this.task.assigned.map(user => {if (user.user_id === this.user_id) user.spend} )
-  }
-  updatePriority(){
-    // console.log('updatePriority() to '+ this.form['priority'])
+  addToCheckList(name){
+    console.log(name)
+    this.newTask.checklist.push({name, done: false})
   }
   ngOnInit() {
-    this.logged = '5dadbfd634f4a93c8c9936c1'
-    this._dataService.getTaskById('5dadaeea6bf9623416eb3fc8','5dadaeea6bf9623416eb3fcb').subscribe((data:any)=>{
-      this.task = data;
-      console.log(' ------- DATA --------')
-      console.log(data)
+    this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
+      this.project = data['projects'];
+      console.log(this.project)
     })
-    // this.getTotalTime()
+    this._dataService.getUsersByProject(this.project_id).subscribe((data:User[]) =>{
+      this.users = data;
+      console.log(this.users)
+    })
   }
-
 }
