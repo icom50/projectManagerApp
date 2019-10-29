@@ -81,4 +81,9 @@ export class DataService {
       return data['projects'].tasks.map(task => task)
     }))
   }
+  getUsersByProject(project_id:string): Observable<any[]>{
+    return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
+      return data['projects'].users.map(user => user)
+    }))
+  }
 }

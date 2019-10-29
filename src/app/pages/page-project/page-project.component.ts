@@ -9,27 +9,17 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class PageProjectComponent implements OnInit {
 
+  projects;
   projectUrl;
   projectId;
-  projectName;
   comments;
   priority;
-  tasks: string[];
+  tasks;
+  todo;
+  users;
+  checkedList = 0;
 
   constructor(private router: Router, private dataService: DataService) { }
-
-  priorityColor(priority) {
-    switch(priority) {
-      case 'high' :
-        return 'red';
-      case 'middle' :
-        return 'orange';
-      case 'low' :
-        return "green"
-      default :
-        return 'grey';
-    }
-  }
 
   ngOnInit() {
 
@@ -40,19 +30,26 @@ export class PageProjectComponent implements OnInit {
     this.dataService
       .getProjectById(this.projectId)
       .subscribe((data:any) => {
-        this.projectName = data.projects.name;
+        this.projects = data.projects;
+        console.log(this.projects);
+        // console.log(data.projects.status)
+        data.projects.status === 'todo' || data.projects.status === 'created' ? this.todo = true : this.todo = false;
+        // TODO: adapter la ternaire pour les autres cas de figure (ou l'enlever, a voir) 
+        this.users = this.projects.users;
+        console.log(this.users)
     });
-
 
     this.dataService
       .getTasksByProject(this.projectId)
       .subscribe((data:any) => {
         // console.log(data);
         this.tasks = data;
-        // this.taskPriority = this.tasks.priority;
-        console.log(this.tasks);
+  
+        this.tasks.map(oneTask => {
+          oneTask.checklist.map(el => {
+            el.done === true ? this.checkedList += 1 : this.checkedList += 0;
+          });
+        });
       });
-
   }
-
 }

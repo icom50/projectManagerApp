@@ -1,19 +1,21 @@
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
-export function passValidator(control: AbstractControl) {
-  if (control && (control.value !== null || control.value !== undefined)) {
-      const cnfpassValue = control.value;
+// custom validator to check that two fields match
+export function MustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
 
-      const passControl = control.root.get('password');
-      if (passControl) {
-          const passValue = passControl.value;
-          if (passValue !== cnfpassValue || passValue === '') {
-              return {
-                  isError: true
-              };
-          }
-      }
-  }
+        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+            // return if another validator has already found an error on the matchingControl
+            return;
+        }
 
-  return null;
+        // set error on matchingControl if validation fails
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ mustMatch: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
 }

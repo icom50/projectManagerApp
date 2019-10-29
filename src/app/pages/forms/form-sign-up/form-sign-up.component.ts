@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/users.model';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MustMatch } from 'src/app/utils/validators/form.validators.password';
 import { DataService } from '../../../services/data.service'
 import { Router } from '@angular/router';
 
@@ -11,43 +12,37 @@ import { Router } from '@angular/router';
 })
 export class FormSignUpComponent implements OnInit {
 
-  user : User
-  form : FormGroup
+    user : User;
+    registerForm: FormGroup;
 
- 
-  constructor(private fb: FormBuilder, private dataService : DataService, private router : Router) { 
-    this.form = this.fb.group({
-      email: new FormControl(null, [Validators.required, Validators.email, Validators.maxLength(50)]),
-      password : new FormControl(null , [Validators.required, Validators.maxLength(50)]),
-      confirmPassword : new FormControl(null, [])
-    })
+    constructor(private formBuilder: FormBuilder, private _dataService : DataService, private router : Router) { }
 
-  }
+    ngOnInit() {
+        this.registerForm = this.formBuilder.group({
+            email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
+            password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+            confirmPassword: ['', Validators.required],
+        }, {
+            validator: MustMatch('password', 'confirmPassword')
+        });
+    }
 
+    get f() { return this.registerForm.controls; }
 
-  signUp(){
-    this.user = this.form.value;
-    this.dataService.postUser(this.user).subscribe((data:User)=>{
-      this.user = data;
-    })
-    this.router.navigate(['/'])
-  }
-
-  getErrorMessage(field:string):string {
-    const error = {
-      required : "This field is required",
-      email: "This field must contains a valid email",
-      maxlength : "This field cannot contain more data"
-    };
-    let returnValue = '';
-    Object.keys(this.form.controls[field].errors).map(key=>{
-      returnValue += `${error[key]}`;
-    })
-    return returnValue
-  }
-
-  ngOnInit() {
-    
-  }
-
+    onSubmit(e) {
+        if (this.registerForm.invalid) {
+            e.preventDefault();
+        }
+        else{
+            this.user = this.registerForm.value;
+            this._dataService.postUser(this.user).subscribe((data : User)=>{
+                this.user = data;
+                this.router.navigate(['/']);
+            })
+            setTimeout(()=>{
+                alert('the user was created')
+            },1000)
+            
+        }
+    }
 }
