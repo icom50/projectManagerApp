@@ -1,0 +1,34 @@
+$colorText : rgb(77, 77, 77);
+
+#global{
+    width: 900px;
+    margin:auto;
+}
+
+#avatardescription{
+    border: 1px solid black;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    img{
+        margin-right: 10px;
+        border-radius: 50%;
+    }
+    #description{
+        border: 1px solid black;
+        background-color: lightgrey;
+        padding: 15px;
+        color: $colorText;
+        border-radius: 5px;
+        width: 100%;
+    }
+}
+
+#infomembre{
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+}
