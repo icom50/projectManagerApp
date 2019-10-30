@@ -42,32 +42,31 @@ export class FormEditProjectComponent implements OnInit {
    }
 
   ngOnInit() {
-    const id = this.route.snapshot.params.id;
-    this._dataService.getProjectById(id).subscribe((data : Project)=>{
-      this.project = data['projects'];
-      console.log(this.project)
-    })
     this.editProject = new FormGroup({
       name: new FormControl(),
-      description: new FormControl(''),
+      description: new FormControl(),
       git: new FormControl(),
       color: new FormControl(),
       author_id: new FormControl(),
       creation_date: new FormControl(),
       start_date: new FormControl(),
-      finish_date: new FormControl(null, [Validators.required]),
-      deadline: new FormControl(null, [Validators.maxLength(20)]),
-      status: new FormControl(null, [Validators.maxLength(50)]),
-      users:new FormControl([]),
-      comments: new FormControl([]),
+      finish_date: new FormControl(),
+      deadline: new FormControl(),
+      status: new FormControl(),
+      users:new FormControl(),
+      comments: new FormControl(),
       attachments: new FormControl(),
-      ressources: new FormControl([]),
-      tasks: new FormControl([]),
+      ressources: new FormControl(),
+      tasks: new FormControl(),
       _id: new FormControl(),
       is_private: new FormControl()
     });
 
-    
+    const id = this.route.snapshot.params.id;
+    this._dataService.getProjectById(id).subscribe((data : Project)=>{
+      this.project = data['projects'];
+      console.log(this.project)
+    })
   }
   
 }

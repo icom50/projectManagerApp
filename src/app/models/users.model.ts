@@ -15,7 +15,7 @@ export class User {
         public projects? : [
             {
                 id? : string,
-                acepted? : boolean,
+                accepted? : boolean,
                 invitedBy : string,
                 favorite : boolean,
                 _id? : string
@@ -24,5 +24,3 @@ export class User {
         public tasks? : string[]
     ) {}
 }
-
-const colorValidator = (v) => (/^#([0-9a-f]{3}){1,2}$/i).test(v);
