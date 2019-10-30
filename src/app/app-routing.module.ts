@@ -32,6 +32,7 @@ const routes: Routes = [
   { path : "project-management/:id", component : PageProjectManagementComponent },
   { path : "test", component : ProjectDetailsComponent},
   { path : "test2", component : FormCreateProjectComponent},
+  { path : "testgwen", component : FormCreateTaskComponent},
   { path : "reset-password", component : PasswordForgottenComponent },
   { path : "sign-up", component : FormSignUpComponent },
   { path : "project/:id/edit", component : FormEditProjectComponent },
