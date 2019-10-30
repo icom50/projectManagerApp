@@ -1,13 +1,21 @@
-<h2>    
-    <span class="project--color" [ngStyle]="{'background-color': projects?.color}"></span>
-    {{ projects?.name }}
-</h2> 
 
-<p>Collaborators of the project : </p>
-<div *ngFor="let user of users">
-    <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
-    <p>{{user._id}}</p>
+<div class="project--header">
+    <h2>    
+        <span class="project--color" [ngStyle]="{'background-color': projects?.color}"></span>
+        {{ projects?.name }}
+    </h2> 
+
+    <!-- <p>My Tasks</p>
+    <p>All Tasks</p> -->
+    
+    <div class="project--collaborators">
+        <div *ngFor="let user of users">
+            <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
+            <!-- <p>{{user._id}}</p> -->
+        </div>
+    </div>
 </div>
+
 
 
 
