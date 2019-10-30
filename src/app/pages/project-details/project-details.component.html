@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-header>
-        <span><a routerLink="/project/:id/edit">Edit</a></span><span (click)="deleteProject(project._id)">Delete</span>
+        <span><a routerLink="/project/details/{{project?._id}}/edit">Edit</a></span><span (click)="deleteProject(project._id)">Delete</span>
     </mat-card-header>
     <mat-card-content>
         <h2>{{project?.name}}
