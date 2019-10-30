@@ -30,6 +30,7 @@ export class PageUserEditComponent implements OnInit {
       // console.log(userId);
       // this.router.navigate(['user/'+this.user._id]); /** la navigation retourne a 'users' */
       this.router.navigate([`user/${this.user['users']._id}`]);
+      console.log(this.user)
     })
   }
 
