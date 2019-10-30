@@ -26,12 +26,24 @@ export class FormCreateTaskComponent implements OnInit {
     console.log(f.value)
   }
   addAssignedUser(id){
+    if (id != "Assign a member"){
     let addedUser
     this._dataService.getUserById(id).subscribe((data:User)=> {
       this.newTask.assigned.push({...data['users'], user_id: data['users']._id})
       console.log(this.newTask)
     })
-    console.log(addedUser)
+    console.log(addedUser)}
+  }
+  checkAssigned(id){
+    if (this.newTask) {
+      return this.newTask.assigned.reduce((next, current)=> {
+        if (next === false) return false
+        if (current.user_id === id) return false
+        return true
+      }, true)
+    } else {
+      return true
+    }
   }
   addToCheckList(name){
     console.log(name)

@@ -22,11 +22,11 @@
                 <option value="low" >Low</option>
             </select>
             <ul>
-                <!-- <li *ngFor="let member of task?.assigned">{{getMember(member.user_id)}}</li> -->
+                <li *ngFor="let member of newTask?.assigned">{{member.user_id}}</li>
                 <li>
                     <select name="assigned" id="assigned" ngModel #assignation="ngModel" (change)="addAssignedUser(assignation.value)">
-                        <option value="">Assign a member</option>
-                        <option *ngFor="let user of project?.users">{{user.user_id}}</option>
+                        <option>Assign a member</option>
+                        <option *ngFor="let user of project?.users" >{{user.user_id}}</option>
                     </select>
                 </li>
             </ul>
