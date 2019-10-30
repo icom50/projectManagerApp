@@ -1,97 +1,103 @@
 .sidebar {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
+  width: 100px;
+  height: 100vh;
+  background-color: #0A3D62;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    cursor: pointer;
+
+    .logocroco {
+      outline: none;
+    }
+
+  }
+
+  .menu {
     width: 100px;
-    height: 100vh;
-    background-color: #0A3D62;
-    position: fixed;
-    top: 0;
-    left: 0;
-    .logo{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    list-style: none;
+    margin: 0;
+    padding: 184px 0 0 0;
+    float: left;
+
+    li {
+      display: block;
+      float: left;
+      width: 100%;
+      margin-top: 35px;
+
+      .is-active {
+        border-left: 3px solid #52DE97;
+        border-color: #52DE97;
+
+        fa-icon {
+          color: #52DE97;
+        }
+      }
+
+      a {
         display: flex;
         justify-content: center;
-        padding-top: 30px;
-        cursor: pointer;
-        .logocroco{
-            outline: none;
-        }
-
-    }
-    .menu{      
-        width: 100px;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
-        list-style: none;
-        margin: 0;
-        padding: 184px 0 0 0;
-        float: left;
-        
-        li{
-            display: block;
-            float: left;            
-            width: 100%;
-            margin-top: 35px;
-            
-            .is-active{
-                border-left: 3px solid #52DE97;
-            border-color:#52DE97;
-            
-                fa-icon{
-                    color: #52DE97;
-                }
-            }
-            a{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 10px 0;
-                // height: 30px;
-                
-                fa-icon{
-                    width: 37px;
-                    height: 100%;
-                    color: #3C698A;
-                    display: flex;
-                    justify-content: center;
-                    transition: color .8s cubic-bezier(0.075, 0.82, 0.165, 1);
-                    &:hover{
-                        color:#52DE97;
-                    }
-                }
-                &:focus{
-                    outline:none;
-                }
-            }
-        }
-    }
-    .exit{     
-        display: flex;        
-        flex-direction: column;
-        align-items: center;
-        position: absolute;
-        bottom: 0;
-        padding-bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        
+        padding: 10px 0;
+        // height: 30px;
 
-        fa-icon{
-            color: #3C698A;
-             
-            &:hover{
-                color:#C0FFB3;
-                transition: color .8s cubic-bezier(0.075, 0.82, 0.165, 1);
-            }
-            &:focus{
-                outline:none;
-            }
+        fa-icon {
+          width: 37px;
+          height: 100%;
+          color: #3C698A;
+          display: flex;
+          justify-content: center;
+          transition: color .8s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+          &:hover {
+            color: #52DE97;
+          }
         }
 
+        &:focus {
+          outline: none;
+        }
+      }
     }
+  }
+
+  .exit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+
+
+    fa-icon {
+      color: #3C698A;
+
+      &:hover {
+        color: #C0FFB3;
+        transition: color .8s cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+  }
 
 }
-
-
