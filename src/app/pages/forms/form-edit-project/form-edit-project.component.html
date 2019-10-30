@@ -7,13 +7,13 @@
         <form [formGroup]="editProject" (submit)=onSubmit()>
             <div>
                 <mat-form-field>
-                    <input matInput placeholder="Name" type="text" name="name" formControlName="name" value="{{project?.name}}">
+                    <input matInput placeholder="Name" type="text" name="name" formControlName="name">
                     <mat-error *ngIf="f['name'].invalid">{{getErrorMessage('name')}}</mat-error>
                 </mat-form-field>
             </div>
             <div>
             <mat-form-field >
-                    <textarea matInput placeholder="Description" type="text" formControlName="description" value="{{project?.description}}"></textarea>
+                    <textarea matInput placeholder="Description" type="text" formControlName="description"></textarea>
                     <mat-error *ngIf="f['description'].invalid">{{getErrorMessage('description')}}</mat-error>
                 </mat-form-field>
             </div>
@@ -33,20 +33,20 @@
                 <label id="example-radio-group-label">Select the type of project :</label>
                 <mat-radio-group aria-label="Select the type of project" class="radio-button"
                     formControlName="is_private">
-                    <mat-radio-button value="true" checked="">Private</mat-radio-button>
+                    <mat-radio-button value="true">Private</mat-radio-button>
                     <mat-radio-button value="false">Public</mat-radio-button>
                 </mat-radio-group>
             </div>
             <div>
                 <mat-form-field>
-                    <input matInput [matDatepicker]="start_date" placeholder="Start date" formControlName="start_date" value="{{project?.start_date}}">
+                    <input matInput [matDatepicker]="start_date" placeholder="Start date" formControlName="start_date">
                     <mat-datepicker-toggle matSuffix [for]="start_date"></mat-datepicker-toggle>
                     <mat-datepicker #start_date></mat-datepicker>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field>
-                    <input matInput [matDatepicker]="deadline" placeholder="Deadline" formControlName="deadline" value="{{project?.deadline}}">
+                    <input matInput [matDatepicker]="deadline" placeholder="Deadline" formControlName="deadline">
                     <mat-datepicker-toggle matSuffix [for]="deadline"></mat-datepicker-toggle>
                     <mat-datepicker #deadline></mat-datepicker>
                 </mat-form-field>

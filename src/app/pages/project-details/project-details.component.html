@@ -14,6 +14,7 @@
                 Created by {{project?.author_id}}
             </span>
         </h2>
+        <p>Status : {{project?.status}}</p>
         <h4>Members</h4>
         <div *ngFor="let user of project?.users">
             <img src="{{user.avatar_url}}" alt="user : {{user.user_id}}" title="{{user.user_id}}"> <span>+</span>
@@ -27,7 +28,7 @@
         <form [formGroup]="formComment">
             <mat-form-field>
                 <textarea matInput placeholder="Comment" formControlName="comment" (keyup.enter)="addComment()" ></textarea>
-                <mat-error *ngIf="formComment.controls['comment'].invalid">The contain is too heavy</mat-error>
+                <mat-error *ngIf="formComment.controls['comment'].invalid">The content is too heavy</mat-error>
             </mat-form-field>
         </form>
         <p>{{isPrivate}}</p>

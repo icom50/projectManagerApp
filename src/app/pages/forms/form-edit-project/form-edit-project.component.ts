@@ -22,7 +22,8 @@ export class FormEditProjectComponent implements OnInit {
 
    getErrorMessage(field:string): string {
      const errors = {
-      required : 'this field is required'
+      required : 'this field is required',
+      maxlength : 'the content is too big'
      }
      let returnValue ='';
     Object.keys(this.editProject.controls[field].errors).map(key=>{
@@ -32,19 +33,25 @@ export class FormEditProjectComponent implements OnInit {
    }
 
    onSubmit(){
-    console.log(this.project)
     this.project = this.editProject.value;
-    console.log(this.project)
+    
     this._dataService.putProject(this.project).subscribe((data : Project) => {
       this.project = data;
-      //this.router.navigate([`project/details/${this.project['project']._id}/edit`]);
+      this.router.navigate([`project/details/${this.project['projects']._id}`]);
     })
    }
 
   ngOnInit() {
+    
+
+    const id = this.route.snapshot.params.id;
+    this._dataService.getProjectById(id).subscribe((data : Project)=>{
+      this.project = data['projects'];
+      this.editProject.setValue(this.project)
+    })
     this.editProject = new FormGroup({
-      name: new FormControl(),
-      description: new FormControl(),
+      name: new FormControl('',Validators.required),
+      description: new FormControl('', Validators.maxLength(54)),
       git: new FormControl(),
       color: new FormControl(),
       author_id: new FormControl(),
@@ -61,13 +68,6 @@ export class FormEditProjectComponent implements OnInit {
       _id: new FormControl(),
       is_private: new FormControl()
     });
-
-    const id = this.route.snapshot.params.id;
-    this._dataService.getProjectById(id).subscribe((data : Project)=>{
-      this.project = data['projects'];
-      console.log(this.project)
-    })
   }
   
 }
-
