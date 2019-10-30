@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 import { User } from '../../../models/users.model';
 import { Project } from '../../../models/projects.model';
@@ -17,16 +18,26 @@ export class FormCreateTaskComponent implements OnInit {
   user_id = "5dada94a26a3f42e962c215a";
   project_id = "5db6b138fc2046172f2b0c56";
   constructor(private _dataService: DataService, ) { 
-
+    // @Input("user_id") user_id // <app-form-create-task [user_id]="id" [project_id]="project._id">
+    // @Input("project_id") project_id 
   }
 
-  createTask(f){
+   createTask(f){
+    event.preventDefault()
     f.value.checklist = this.newTask.checklist
     f.value.assigned = this.newTask.assigned
-    console.log(f.value)
+    // Update the project before saving for not erasing new datas
+    console.log(this.project.tasks)
+    this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
+      this.project = data['projects'];
+      this.project.tasks.push(f.value)
+      this._dataService.putProject(this.project).subscribe()
+    })
+    
+
   }
   addAssignedUser(id){
-    if (id != "Assign a member"){
+    if (id != "Assign a member" && !(this.checkAssigned(id))){
     let addedUser
     this._dataService.getUserById(id).subscribe((data:User)=> {
       this.newTask.assigned.push({...data['users'], user_id: data['users']._id})
@@ -35,19 +46,15 @@ export class FormCreateTaskComponent implements OnInit {
     console.log(addedUser)}
   }
   checkAssigned(id){
-    if (this.newTask) {
-      return this.newTask.assigned.reduce((next, current)=> {
-        if (next === false) return false
-        if (current.user_id === id) return false
-        return true
-      }, true)
-    } else {
-      return true
-    }
+    return this.newTask.assigned.some((el) => {
+      return el.user_id === id;
+    }); 
   }
-  addToCheckList(name){
-    console.log(name)
+  addToCheckList(i: NgForm){
+    let name = i.value
+    console.log(i.value)
     this.newTask.checklist.push({name, done: false})
+    // i.controls.value.reset
   }
   ngOnInit() {
     this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
