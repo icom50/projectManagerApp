@@ -30,6 +30,7 @@ export class PageUserEditComponent implements OnInit {
       // console.log(userId);
       // this.router.navigate(['user/'+this.user._id]); /** la navigation retourne a 'users' */
       this.router.navigate([`user/${this.user['users']._id}`]);
+      console.log(this.user)
     })
   }
 
@@ -61,10 +62,10 @@ export class PageUserEditComponent implements OnInit {
       phone: new FormControl(null, [Validators.maxLength(20)]),
       company: new FormControl(null, [Validators.maxLength(50)]),
       links: new FormGroup({
-        github: new FormControl(),
-        linkedin: new FormControl(),
-        blog: new FormControl(),
-        website: new FormControl(),
+        linkedin: new FormControl(null),
+        github: new FormControl(null),
+        blog: new FormControl(null),
+        website: new FormControl(null),
       }),
       tasks: new FormControl(),
       _id: new FormControl(),

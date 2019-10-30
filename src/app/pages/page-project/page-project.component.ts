@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
+
 @Component({
   selector: 'app-page-project',
   templateUrl: './page-project.component.html',
@@ -15,9 +16,14 @@ export class PageProjectComponent implements OnInit {
   comments;
   priority;
   tasks;
-  todo;
   users;
   checkedList = 0;
+  taskStatus;
+  todoArray: String[];
+  doingArray: String[];
+  doneArray: String[];
+  pausedArray: String[];
+
 
   constructor(private router: Router, private dataService: DataService) { }
 
@@ -31,12 +37,10 @@ export class PageProjectComponent implements OnInit {
       .getProjectById(this.projectId)
       .subscribe((data:any) => {
         this.projects = data.projects;
-        console.log(this.projects);
-        // console.log(data.projects.status)
-        data.projects.status === 'todo' || data.projects.status === 'created' ? this.todo = true : this.todo = false;
-        // TODO: adapter la ternaire pour les autres cas de figure (ou l'enlever, a voir) 
+        // console.log(this.projects);
+
         this.users = this.projects.users;
-        console.log(this.users)
+        // console.log(this.users)
     });
 
     this.dataService
@@ -44,11 +48,38 @@ export class PageProjectComponent implements OnInit {
       .subscribe((data:any) => {
         // console.log(data);
         this.tasks = data;
+
   
         this.tasks.map(oneTask => {
-          oneTask.checklist.map(el => {
+          // console.log(oneTask)
+          oneTask.checklist.map(el => { //for checklist
             el.done === true ? this.checkedList += 1 : this.checkedList += 0;
           });
+
+          //filter by status of task
+          // console.log(oneTask.status);
+          this.taskStatus = oneTask.status;
+
+          //convert to array
+          this.todoArray = this.todoArray || [];
+          this.doingArray = this.doingArray || [];
+          this.doneArray = this.doneArray || [];
+          this.pausedArray = this.pausedArray || [];
+
+          switch(this.taskStatus) {
+            case 'todo' :
+              this.todoArray.push(oneTask);
+              break;
+            case 'doing' :
+              this.doingArray.push(oneTask);
+              break;
+            case 'done' :
+              this.doneArray.push(oneTask);
+              break;
+            case 'paused' :
+              this.pausedArray.push(oneTask);
+              break;
+          }
         });
       });
   }
