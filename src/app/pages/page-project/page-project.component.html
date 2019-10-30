@@ -1,44 +1,63 @@
-<h2>    
-    <span class="project--color" [ngStyle]="{'background-color': projects?.color}"></span>
-    {{ projects?.name }}
-</h2> 
 
-<p>Collaborators of the project : </p>
-<div *ngFor="let user of users">
-    <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
-    <p>{{user._id}}</p>
+<div class="project--header">
+    
+    <div class="project--title">
+        <span class="project--color" [ngStyle]="{'background-color': projects?.color}"></span>
+        <h2> {{ projects?.name }}</h2> 
+    </div>
+    
+
+    <!-- <p>My Tasks</p>
+    <p>All Tasks</p> -->
+    
+    <div class="project--collaborators">
+        <div *ngFor="let user of users">
+            <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
+            <!-- <p>{{user._id}}</p> -->
+        </div>
+    </div>
 </div>
 
 
+<div class="task--board">
 
 
+    <div class="task--col">
+        <h3>Todo</h3>
+        <div *ngFor="let task of todoArray">
+            
+            <app-task-tile [task]="task"></app-task-tile>
+            
+        </div> 
+    </div>
 
-<h4>Todo</h4>
-<ul *ngFor="let task of todoArray">
-    <li>
-        <app-task-tile [task]="task"></app-task-tile>
-    </li>
-</ul> 
-
-<h4>Doing</h4>
-<ul *ngFor="let task of doingArray">
-    <li>
-        <app-task-tile [task]="task"></app-task-tile>
-    </li>
-</ul> 
-
-
-<h4>Done</h4>
-<ul *ngFor="let task of doneArray">
-    <li>
-        <app-task-tile [task]="task"></app-task-tile>
-    </li>
-</ul> 
+    <div class="task--col">
+        <h3>Doing</h3>
+        <div *ngFor="let task of doingArray">
+            
+            <app-task-tile [task]="task"></app-task-tile>
+            
+        </div> 
+    </div>
 
 
-<h4>Paused</h4>
-<ul *ngFor="let task of pausedArray">
-    <li>
-        <app-task-tile [task]="task"></app-task-tile>
-    </li>
-</ul> 
+    <div class="task--col">
+        <h3>Done</h3>
+        <div *ngFor="let task of doneArray">
+            
+            <app-task-tile [task]="task"></app-task-tile>
+            
+        </div> 
+    </div>
+
+
+    <div class="task--col"> 
+        <h3>Paused</h3>
+        <div *ngFor="let task of pausedArray">
+            
+            <app-task-tile [task]="task"></app-task-tile>
+            
+        </div>
+    </div> 
+
+</div>
