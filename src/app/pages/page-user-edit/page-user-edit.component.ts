@@ -61,8 +61,8 @@ export class PageUserEditComponent implements OnInit {
       phone: new FormControl(null, [Validators.maxLength(20)]),
       company: new FormControl(null, [Validators.maxLength(50)]),
       links: new FormGroup({
-        github: new FormControl(),
         linkedin: new FormControl(),
+        github: new FormControl(),
         blog: new FormControl(),
         website: new FormControl(),
       }),
