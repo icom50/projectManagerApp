@@ -1,0 +1,29 @@
+.form-bg{
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    
+}
+.form-content{
+    align-items: flex-start;
+    width: 70vw;
+    // min-height: 30vh;
+    margin: 50px 0;
+    padding: 50px 0;
+    text-align: center;
+    background-color: white;
+    border-radius: 30px;
+    position: relative;
+}
+.closer{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+
+
+}

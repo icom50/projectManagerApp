@@ -1,1 +1,68 @@
-<p>form-edit-task works!</p>
+<div class="form-bg"><div class="form-content">
+        <span class="closer" (click)="goBack()">Back</span>
+        <h2>{{project?.name}}</h2>
+        <form  #f="ngForm" (submit)="editTask(f)" ngNativeValidate>
+            <section>
+
+                <!-- <div>Barre d'évolution</div>  <span>{{task?.progression}}%</span>-->
+                <!-- <span>Mark complete</span> -->
+            </section>
+            <section>
+                <label for="name">Task's name </label> <br/><input name="name" ngModel #name="ngModel" [value]="task.name"required > <br/>
+                <label for="name">Estimated time </label> <br/><input name="estimated" ngModel #estimated="ngModel" [value]="task.estimated" > <br/>
+                <label for="name">Deadline </label> <br/><input name="deadline"  ngModel #deadline="ngModel" [value]="task.deadline"> <br/>
+                <div>Priority : </div>
+                <select name="priority" id="priority" ngModel>
+                    <option value="none" [selected]="task?.priority === 'none'">None</option>
+                    <option value="high" [selected]="task?.priority === 'high'" >High</option>
+                    <option value="middle" [selected]="task?.priority === 'middle'">Middle</option>
+                    <option value="low" [selected]="task?.priority === 'low'">Low</option>
+                </select> <br/>
+                <span>created by {{task?.author_id}}</span>
+            </section>
+            <section>
+                <h3>Members</h3>
+    
+                <ul>
+                    <li *ngFor="let member of task?.assigned">{{member.user_id}} - {{member.email}} <button (click)="unnasignedUser(member.user_id)">Remove user</button></li>
+                    <li>
+                        <select name="assigned" id="assigned" ngModel #assignation="ngModel" (change)="addAssignedUser(assignation.value)">
+                            <option>Assign a member</option>
+                            <option *ngFor="let user of project?.users" [value]="user.user_id" >{{user.email}}</option>
+                        </select>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3>Task Description</h3>
+                <textarea name="description" ngMaxlength="250" ngModel></textarea>
+            </section>
+            <!-- <section>
+                <div *ngFor="let comment of task?.comments">
+                    <h4>{{getMember(comment.author_id)}} - {{comment.date}}</h4>
+                    <span>{{comment.comment}}</span>
+                </div>
+                <span>{{logged.username || logged.firstname || logged.email || 'Your comment'}} :</span>
+                <textarea ngModel name="newComment" maxlength="250"></textarea>
+                <button (click)="sendComment(f.value.newComment)">Send your comment</button>
+            </section> -->
+            <section>
+                <h3>To do list</h3>
+                <ul>
+                    <li *ngFor="let c of task?.checklist; let i = index">
+                        <input type="checkbox" [name]="c.name" [id]="c.name" [checked]="c.done" (change)="c.done = $event.currentTarget.checked">
+                        <label [for]="c.name">{{c.name}}</label>
+                        <button (click)="removeFromChecklist(i)">Remove</button>
+                    </li>
+                    </ul>
+                    <input ngModel name="addingtochecklist" #checklistinput="ngModel" type="text" maxlength="20"> <button (click)="addToCheckList(checklistinput)">Add item</button>
+            </section>
+            <!-- <section>
+                <h3>Time spend</h3>
+                <input ngModel name="spend" type="text" maxlength="20"> <button (click)="addTime(f.value.spend)">Add my time</button> <br/>
+                <span>Total time : {{ 'NEED TO UPDATE DB '}}</span> <br/>
+                <span *ngIf="task?.assigned">My time : {{time_total }}</span>
+            </section> -->
+            <br/> <button type="submit">Edit Task</button> <button (click)="goBack()">Back</button> <button (click)="deleteTask()">Delete</button>
+        </form>
+    </div></div>

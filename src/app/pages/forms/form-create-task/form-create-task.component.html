@@ -1,5 +1,5 @@
 <div class="form-bg"><div class="form-content">
-    <span class="closer">Back</span>
+    <span class="closer" (click)="goBack()">Back</span>
     <h2>{{project?.name}}</h2>
     <form  #f="ngForm" (submit)="createTask(f)" ngNativeValidate>
         <section>
@@ -63,6 +63,6 @@
             <span>Total time : {{ 'NEED TO UPDATE DB '}}</span> <br/>
             <span *ngIf="task?.assigned">My time : {{time_total }}</span>
         </section> -->
-        <br/> <button type="submit">Create Task task</button> <button (click)="deleteTask()">Back</button>
+        <br/> <button type="submit">Create Task task</button> <button (click)="goBack()">Back</button>
     </form>
 </div></div>
