@@ -4,13 +4,18 @@
 </h2> 
 
 <p>Collaborators of the project : </p>
-<div *ngFor="let user of projects?.users">
+<div *ngFor="let user of users">
     <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
+    <p>{{user._id}}</p>
 </div>
 
+
+
+
+
 <h4>Todo</h4>
-<ul *ngFor="let task of tasks">
-    <li *ngIf="todo">
+<ul *ngFor="let task of todoArray">
+    <li>
         <mat-card >
             <mat-card-title>
                 <div [ngSwitch]="task.priority">
@@ -34,13 +39,133 @@
                 <p>{{ task.comments?.length || '0' }} comment(s)</p>
                 <div *ngIf="task.assigned?.length != 0">
                     <div *ngFor="let user of task.assigned">
-                        <h2>{{user.email}}</h2>
                         <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
                     </div>
                 </div>
                 
 
-                <!-- <p>{{ task.assigned?.length || '0' }} people assigned</p>  -->
+                <p *ngIf="task.checklist?.length != 0">
+                    Checklist : {{ checkedList || '0' }}/{{ task.checklist?.length }}
+                </p> 
+                <p>Due for {{ task.deadline | date:"longDate" }}</p>
+            </mat-card-footer>
+        </mat-card>
+    </li>
+</ul> 
+
+<h4>Doing</h4>
+<ul *ngFor="let task of doingArray">
+    <li>
+        <mat-card >
+            <mat-card-title>
+                <div [ngSwitch]="task.priority">
+                    <div *ngSwitchCase="'high'">
+                        <span style="background-color: red;"></span>
+                    </div>
+                    <div *ngSwitchCase="'middle'">
+                        <span style="background-color: orange;"></span>
+                    </div>
+                    <div *ngSwitchCase="'low'">
+                        <span style="background-color: green;"></span>
+                    </div>
+                    <div *ngSwitchDefault>
+                        <span style="background-color: grey;">lol</span>
+                    </div>
+                </div>
+                {{ task.name }}
+            </mat-card-title>
+        
+            <mat-card-footer>
+                <p>{{ task.comments?.length || '0' }} comment(s)</p>
+                <div *ngIf="task.assigned?.length != 0">
+                    <div *ngFor="let user of task.assigned">
+                        <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
+                    </div>
+                </div>
+                
+
+                <p *ngIf="task.checklist?.length != 0">
+                    Checklist : {{ checkedList || '0' }}/{{ task.checklist?.length }}
+                </p> 
+                <p>Due for {{ task.deadline | date:"longDate" }}</p>
+            </mat-card-footer>
+        </mat-card>
+    </li>
+</ul> 
+
+
+<h4>Done</h4>
+<ul *ngFor="let task of doneArray">
+    <li>
+        <mat-card >
+            <mat-card-title>
+                <div [ngSwitch]="task.priority">
+                    <div *ngSwitchCase="'high'">
+                        <span style="background-color: red;"></span>
+                    </div>
+                    <div *ngSwitchCase="'middle'">
+                        <span style="background-color: orange;"></span>
+                    </div>
+                    <div *ngSwitchCase="'low'">
+                        <span style="background-color: green;"></span>
+                    </div>
+                    <div *ngSwitchDefault>
+                        <span style="background-color: grey;">lol</span>
+                    </div>
+                </div>
+                {{ task.name }}
+            </mat-card-title>
+        
+            <mat-card-footer>
+                <p>{{ task.comments?.length || '0' }} comment(s)</p>
+                <div *ngIf="task.assigned?.length != 0">
+                    <div *ngFor="let user of task.assigned">
+                        <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
+                    </div>
+                </div>
+                
+
+                <p *ngIf="task.checklist?.length != 0">
+                    Checklist : {{ checkedList || '0' }}/{{ task.checklist?.length }}
+                </p> 
+                <p>Due for {{ task.deadline | date:"longDate" }}</p>
+            </mat-card-footer>
+        </mat-card>
+    </li>
+</ul> 
+
+
+<h4>Paused</h4>
+<ul *ngFor="let task of pausedArray">
+    <li>
+        <mat-card >
+            <mat-card-title>
+                <div [ngSwitch]="task.priority">
+                    <div *ngSwitchCase="'high'">
+                        <span style="background-color: red;"></span>
+                    </div>
+                    <div *ngSwitchCase="'middle'">
+                        <span style="background-color: orange;"></span>
+                    </div>
+                    <div *ngSwitchCase="'low'">
+                        <span style="background-color: green;"></span>
+                    </div>
+                    <div *ngSwitchDefault>
+                        <span style="background-color: grey;">lol</span>
+                    </div>
+                </div>
+                {{ task.name }}
+            </mat-card-title>
+        
+            <mat-card-footer>
+                <p>{{ task.comments?.length || '0' }} comment(s)</p>
+                <div *ngIf="task.assigned?.length != 0">
+                    <div *ngFor="let user of task.assigned">
+                        <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
+                    </div>
+                </div>
+                
+
                 <p *ngIf="task.checklist?.length != 0">
                     Checklist : {{ checkedList || '0' }}/{{ task.checklist?.length }}
                 </p> 
