@@ -5,10 +5,13 @@
             <h1>My Profil settings</h1>
         </div>
         <div>
-            <a routerLink="/user-edit/{{user._id}}">Edit</a>
-            <button mat-raised-button (click)="deleteUser(user._id)">
+            <ul>
+                <li><a routerLink="/user-edit/{{user._id}}">Edit</a></li>
+                <li><a href="#" (click)="deleteUser(user._id)">Delete</a></li>
+            </ul>
+            <!-- <button mat-raised-button (click)="deleteUser(user._id)">
                 Delete
-            </button>
+            </button> -->
         </div>
     </div>
 
