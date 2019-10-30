@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/projects.model';
 import { DataService } from 'src/app/services/data.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-project-details',
@@ -16,7 +16,7 @@ export class ProjectDetailsComponent implements OnInit {
   formComment : FormGroup;
   commentValue: string;
 
-  constructor(private _dataService : DataService, private fb : FormBuilder, private router : Router) {
+  constructor(private _dataService : DataService, private fb : FormBuilder, private router : Router, private route : ActivatedRoute) {
     this.formComment = this.fb.group({
       comment : new FormControl(null, [Validators.maxLength(400)])
     })
@@ -38,8 +38,10 @@ export class ProjectDetailsComponent implements OnInit {
      
    }
 
+   
+
   ngOnInit() {
-    const id = "5db1853aa88e5d252bb4a749";
+    const id = this.route.snapshot.params.id;
     this._dataService.getProjectById(id).subscribe((data : Project)=>{
       this.project = data['projects'];
       this.isPrivate = this.project.is_private  ? "the project is in private" : "The project is in public";
