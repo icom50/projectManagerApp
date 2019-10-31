@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'common-navbar',
@@ -7,7 +7,8 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./common-navbar.component.scss']
 })
 export class CommonNavbarComponent implements OnInit {
-  faPlusCircle = faPlusCircle;
+  faPlus = faPlus;
+ 
 
   constructor() { }
 
