@@ -6,7 +6,7 @@
         </div>
         <div>
             <ul>
-                <li><a href="#" (click)="deleteUser(user._id)">Delete</a></li>
+                <li><a href="#" (click)="deleteUser($event, user._id)">Delete</a></li>
                 <li><a routerLink="/user-edit/{{user._id}}">Edit</a></li>
             </ul>
             <!-- <button mat-raised-button (click)="deleteUser(user._id)">
@@ -63,7 +63,12 @@
 
                     <div class="inputinfo">
                         <fa-icon [icon]="faGithub" size="2x"></fa-icon>
-                        <span><a>{{user.links.github}}</a></span>
+                        <span><a 
+                            href={{user.links.github}} 
+                            target="_blank"
+                            >
+                            {{user.links.github}}
+                        </a></span>
                     </div>
 
                     <div class="inputinfo">

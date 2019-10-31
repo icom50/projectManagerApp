@@ -1,8 +1,12 @@
 $colorText : rgb(77, 77, 77);
+h1{
+    font-size: 2rem;
+}
 
 #global{
     width: 900px;
     margin:auto;
+    color: $colorText;
 }
 
 #title{
@@ -25,6 +29,8 @@ $colorText : rgb(77, 77, 77);
     }
 }
 
+
+
 #avatardescription{
     width: 100%;
     display: flex;
@@ -37,10 +43,9 @@ $colorText : rgb(77, 77, 77);
         border-radius: 50%;
     }
     #description{
-        border: 1px solid black;
+        border: 1px solid darkgray;
         background-color: lightgrey;
         padding: 15px;
-        color: $colorText;
         border-radius: 5px;
         width: 100%;
     }
@@ -50,4 +55,8 @@ $colorText : rgb(77, 77, 77);
     width: 100%;
     display:flex;
     justify-content: space-between;
+}
+
+label{
+    font-weight: bolder;
 }

@@ -1,8 +1,18 @@
 $colorText : rgb(77, 77, 77);
 
+a{
+    color:$colorText;
+    text-decoration: none;
+}
+
+h1{
+    font-size: 2rem;
+}
+
 #global{
     width: 900px;
     margin:auto;
+    color:$colorText;
 }
 
 #title{
@@ -37,7 +47,6 @@ $colorText : rgb(77, 77, 77);
     #description{
         background-color: lightgrey;
         padding: 15px;
-        color: $colorText;
         border-radius: 5px;
     }
 }

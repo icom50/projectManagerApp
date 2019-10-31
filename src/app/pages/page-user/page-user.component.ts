@@ -28,10 +28,16 @@ export class PageUserComponent implements OnInit {
     private route: ActivatedRoute) { }
 
 
-    deleteUser(id){
-      console.log("hjgjhgjgh")
-      this._dataService.deleteUser(id).subscribe(res => res);
-      this.router.navigate(['/']);
+    deleteUser(e, id){
+      e.preventDefault();
+      const confirmation = confirm("Etes vous sur de vouloir surpprimer votre compte ?");
+      if(confirmation){
+        this._dataService.deleteUser(id).subscribe(res => res);
+        this.router.navigate(['/']);
+      }else{
+        this.router.navigate([`user/${this.user['users']._id}`]);
+      }
+      console.log("user supprimé")
     }
 
   // task: any;

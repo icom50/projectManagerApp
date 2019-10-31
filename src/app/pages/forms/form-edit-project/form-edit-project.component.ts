@@ -13,6 +13,7 @@ export class FormEditProjectComponent implements OnInit {
 
   project : Project;
   editProject : FormGroup;
+  date = Date.now();
 
   constructor(private _dataService : DataService, private router : Router, private fb : FormBuilder, private route : ActivatedRoute) {
 
@@ -39,6 +40,11 @@ export class FormEditProjectComponent implements OnInit {
       this.project = data;
       this.router.navigate([`project/details/${this.project['projects']._id}`]);
     })
+   }
+   ProjectFinished(){
+     if(this.project.status === 'finished'){
+       return this.date;
+     }
    }
 
   ngOnInit() {
