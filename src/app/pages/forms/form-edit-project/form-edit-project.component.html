@@ -31,8 +31,7 @@
             </div>
             <div>
                 <label id="example-radio-group-label">Select the type of project :</label>
-                <mat-radio-group aria-label="Select the type of project" class="radio-button"
-                    formControlName="is_private">
+                <mat-radio-group  class="radio-button" formControlName="is_private" value="{{project?.is_private}}">
                     <mat-radio-button value="true">Private</mat-radio-button>
                     <mat-radio-button value="false">Public</mat-radio-button>
                 </mat-radio-group>

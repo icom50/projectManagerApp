@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { DataService } from '../../services/data.service';
 import { User } from 'src/app/models/users.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-page-user-edit',
@@ -15,7 +16,8 @@ export class PageUserEditComponent implements OnInit {
   form: FormGroup;
   constructor(private _dataService: DataService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private nav: NavbarService) { }
 
 
   submitForm(){
@@ -51,6 +53,7 @@ export class PageUserEditComponent implements OnInit {
   // task: any;
   ngOnInit() {
     // this.dataService.getUserSecure()
+    this.nav.show();
 
     this.form = new FormGroup({
       username: new FormControl(),

@@ -26,15 +26,15 @@ const routes: Routes = [
   { path : "log", component : PageLogComponent },
   //besoin d'un /project pour arriver sur la page 'board' avec tout les projets
   { path : "project/:id", component : PageProjectComponent }, // page avec tout les tasks en tiles
-  { path : "projects/:id", component : PageProjectsComponent },
+  { path : "projects", component : PageProjectsComponent },
   { path : "user/:id", component : PageUserComponent },
   { path : "user-edit/:id", component : PageUserEditComponent },
   { path : "task-list/:id", component : PageTaskListComponent },
   { path : "project-management/:id", component : PageProjectManagementComponent },
   { path : "project/details/:id", component : ProjectDetailsComponent},
   { path : "project/details/:id/edit", component : FormEditProjectComponent },
-  { path : "test2", component : FormCreateProjectComponent},
-  { path : "testgwen", component : FormEditTaskComponent },
+  { path : "create", component : FormCreateProjectComponent},
+  { path : "testgwen", component : FormEditTaskComponent},
   { path : "reset-password", component : PasswordForgottenComponent },
   { path : "sign-up", component : FormSignUpComponent },
   { path : "project/:id/edit", component : FormEditProjectComponent },

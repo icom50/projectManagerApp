@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './services/data.service';
+import { NavbarService } from './services/navbar.service';
 
 
 
@@ -32,6 +33,8 @@ import { CommonSidebarComponent } from './pages/commons/common-sidebar/common-si
 import { PasswordForgottenComponent } from './pages/forms/password-forgotten/password-forgotten.component';
 import { PageUserEditComponent } from './pages/page-user-edit/page-user-edit.component';
 import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
+import { ZippyComponent } from './pages/commons/common-zippy/zippy.component';
+import { ProjectComponent } from './pages/commons/common-project/project.component';
 
 /* Material Modules */
 import { MatListModule } from '@angular/material/list';
@@ -53,6 +56,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // pipe
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+
 registerLocaleData(localeFr, 'fr');
 
 
@@ -83,7 +87,10 @@ registerLocaleData(localeFr, 'fr');
     CommonSidebarComponent,
     PageUserEditComponent,
     PasswordForgottenComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    ZippyComponent,
+    ProjectComponent,
+    //??ProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -109,7 +116,8 @@ registerLocaleData(localeFr, 'fr');
     MatDatepickerModule,
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMAT },
-    DataService
+    DataService,
+    NavbarService
   ],
   bootstrap: [AppComponent]
 })

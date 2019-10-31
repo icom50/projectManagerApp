@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
+import { faCommentDots, faClock } from '@fortawesome/free-regular-svg-icons';
+import { faTasks } from '@fortawesome/free-solid-svg-icons';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-task-tile',
@@ -18,11 +21,15 @@ export class TaskTileComponent implements OnInit {
   tasks;
   users;
 
+  faCommentDots = faCommentDots;
+  faTasks = faTasks;
+  faClock = faClock;
 
-  constructor(private router: Router, private dataService: DataService) { }
+
+  constructor(private router: Router, private dataService: DataService, private nav : NavbarService) { }
 
   ngOnInit() {
-
+    this.nav.show();
     this.projectUrl = this.router.url;
     this.projectId = this.projectUrl.split('/').pop(); // get last element of splited array => id from url
 

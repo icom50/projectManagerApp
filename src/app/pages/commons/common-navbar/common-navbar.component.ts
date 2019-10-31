@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'common-navbar',
@@ -10,7 +11,7 @@ export class CommonNavbarComponent implements OnInit {
   faPlus = faPlus;
  
 
-  constructor() { }
+  constructor(private nav: NavbarService) { }
 
   ngOnInit() {
   }
