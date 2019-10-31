@@ -54,11 +54,12 @@ mat-card-title{
     &--board {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        
     }
 
     &--col {
         margin-right: 15px;
+        width: calc((100% - 45px )/ 4); // largeur du parent - espacements / 4
 
         &:last-child {
             margin-right: 0;

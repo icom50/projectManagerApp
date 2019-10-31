@@ -1,5 +1,11 @@
 mat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     box-shadow: none!important;  
+    min-height: 120px;
+    padding: 10px;
 }
 
 mat-card-title {
@@ -12,8 +18,23 @@ mat-card-title {
         height: 10px;
         display: block;
         border-radius: 50%;
-        margin-right: 15px;
+        margin-right: 10px;
     }
+
+    h6 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+    }
+}
+
+mat-card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
 }
 
 .todo {
@@ -30,13 +51,6 @@ mat-card-title {
 
 .paused {
     background: pink;
-}
-    
-mat-card-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .task {
@@ -61,5 +75,27 @@ mat-card-content {
         -webkit-box-shadow: 0px 2px 5px 0px rgba(41,41,41,0.3);
         -moz-box-shadow: 0px 2px 5px 0px rgba(41,41,41,0.3);
         box-shadow: 0px 2px 5px 0px rgba(41,41,41,0.3);
+    }
+
+    &--info {
+        display: flex;
+        flex-direction: row;
+
+        p {
+            background: rgb(230, 230, 230);
+            margin-right: 5px;
+            padding: 4px 6px;
+            border-radius: 2px;
+            line-height: 1;
+            color: rgb(106, 106, 106);
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            fa-icon {
+                margin-right: 2px;
+            }
+        }
     }
 }

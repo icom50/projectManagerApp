@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
+import { faCommentDots, faClock } from '@fortawesome/free-regular-svg-icons';
+import { faTasks } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-task-tile',
@@ -17,6 +19,10 @@ export class TaskTileComponent implements OnInit {
   checkedList = 0;
   tasks;
   users;
+
+  faCommentDots = faCommentDots;
+  faTasks = faTasks;
+  faClock = faClock;
 
 
   constructor(private router: Router, private dataService: DataService) { }
