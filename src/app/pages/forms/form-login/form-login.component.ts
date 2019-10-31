@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/users.model';
 import { FormGroup, FormBuilder,FormControl, Validators, AbstractControl } from '@angular/forms';
 import { DataService } from '../../../services/data.service'; 
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-form-login',
@@ -16,7 +17,7 @@ export class FormLoginComponent implements OnInit {
   passwordControl: AbstractControl;
   loginRoute;
 
-  constructor(fb: FormBuilder, private dataService: DataService) { 
+  constructor(fb: FormBuilder, private dataService: DataService, private nav : NavbarService) { 
     this.form = fb.group({
       'login': ['', Validators.compose([Validators.required, Validators.email])],
       'password': ['', Validators.required]
@@ -51,7 +52,7 @@ export class FormLoginComponent implements OnInit {
         //if user found, go find his _id and add it to url
         this.dataService.getUserByEmail(this.user.email).subscribe((data:any) => {
           const userId = data.users._id;
-          this.loginRoute = `/user/`+userId;;
+          this.loginRoute = `/user/`+userId;
         })
       }
     });
@@ -60,6 +61,7 @@ export class FormLoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.nav.hide();
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required])
