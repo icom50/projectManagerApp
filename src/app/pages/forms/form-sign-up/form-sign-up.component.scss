@@ -1,0 +1,29 @@
+
+
+h1{
+    margin-bottom: 20px;
+    font-size: 3em;
+}
+
+mat-card{
+    width: 800px;
+    margin: auto;
+}
+
+mat-form-field{
+    width: 300px;
+    margin-top: 10px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+button {
+    width: 200px;
+    margin-top: 20px;
+}
