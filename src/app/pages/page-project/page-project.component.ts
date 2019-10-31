@@ -13,7 +13,7 @@ export class PageProjectComponent implements OnInit {
 
   projects;
   projectUrl;
-  projectId;
+  // project_id;
   comments;
   priority;
   tasks;
@@ -25,17 +25,29 @@ export class PageProjectComponent implements OnInit {
   doneArray: String[];
   pausedArray: String[];
 
+  project_id;
+  // task_id;
+  // user_id = "5da98b33867e3d0a5e31c9d9";
+
+  isHidden = true;
+
 
   constructor(private router: Router, private dataService: DataService, private nav : NavbarService) { }
+
+  // exportId(id) {
+  //   console.log('clicked');
+  //   this.task_id = id;
+  //   // this.project_id = thiproject_id;
+  // }
 
   ngOnInit() {
     this.nav.show();
     this.projectUrl = this.router.url;
-    this.projectId = this.projectUrl.split('/').pop(); // get last element of splited array => id from url
+    this.project_id = this.projectUrl.split('/').pop(); // get last element of splited array => id from url
 
     //get name of the project
     this.dataService
-      .getProjectById(this.projectId)
+      .getProjectById(this.project_id)
       .subscribe((data:any) => {
         this.projects = data.projects;
         // console.log(this.projects);
@@ -45,7 +57,7 @@ export class PageProjectComponent implements OnInit {
     });
 
     this.dataService
-      .getTasksByProject(this.projectId)
+      .getTasksByProject(this.project_id)
       .subscribe((data:any) => {
         // console.log(data);
         this.tasks = data;

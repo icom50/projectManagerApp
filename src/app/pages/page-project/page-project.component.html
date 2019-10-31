@@ -23,19 +23,15 @@
 
     <div class="task--col">
         <h3>Todo</h3>
-        <div *ngFor="let task of todoArray">
-            
-            <app-task-tile [task]="task"></app-task-tile>
-            
+        <div *ngFor="let task of todoArray"> 
+            <app-task-tile [task]="task"></app-task-tile>  
         </div> 
     </div>
 
     <div class="task--col">
         <h3>Doing</h3>
-        <div *ngFor="let task of doingArray">
-            
+        <div *ngFor="let task of doingArray">  
             <app-task-tile [task]="task"></app-task-tile>
-            
         </div> 
     </div>
 
@@ -43,9 +39,7 @@
     <div class="task--col">
         <h3>Done</h3>
         <div *ngFor="let task of doneArray">
-            
             <app-task-tile [task]="task"></app-task-tile>
-            
         </div> 
     </div>
 
@@ -53,10 +47,15 @@
     <div class="task--col"> 
         <h3>Paused</h3>
         <div *ngFor="let task of pausedArray">
-            
             <app-task-tile [task]="task"></app-task-tile>
-            
         </div>
     </div> 
-
 </div>
+
+
+<!-- <app-form-edit-task 
+    [hidden]="isHidden"
+    [task_id]="task_id" 
+    [project_id]="project_id" 
+    [user_id]="user_id" >
+</app-form-edit-task> -->

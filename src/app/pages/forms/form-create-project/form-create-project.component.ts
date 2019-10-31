@@ -39,7 +39,7 @@ export class FormCreateProjectComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.nav.hide()
+    this.nav.show()
     this.formCreateProject = new FormGroup({
       name: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
       description : new FormControl(null,[Validators.maxLength(500)]),
