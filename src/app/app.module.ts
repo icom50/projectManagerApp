@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './services/data.service';
+import { NavbarService } from './services/navbar.service';
 
 
 
@@ -53,6 +54,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // pipe
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+
 registerLocaleData(localeFr, 'fr');
 
 
@@ -109,7 +111,8 @@ registerLocaleData(localeFr, 'fr');
     MatDatepickerModule,
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMAT },
-    DataService
+    DataService,
+    NavbarService
   ],
   bootstrap: [AppComponent]
 })
