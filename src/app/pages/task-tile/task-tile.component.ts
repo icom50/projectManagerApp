@@ -15,25 +15,33 @@ export class TaskTileComponent implements OnInit {
   @Input("task") task: any;
 
   projectUrl;
-  projectId;
   checkedList = 0;
   tasks;
   users;
+
+  project_id;
+  task_id;
+  user_id = "5da98b33867e3d0a5e31c9d9";
 
   faCommentDots = faCommentDots;
   faTasks = faTasks;
   faClock = faClock;
 
-
   constructor(private router: Router, private dataService: DataService) { }
+
+  exportId(id) {
+    console.log('clicked');
+    this.task_id = id;
+    // this.project_id = thiproject_id;
+  }
 
   ngOnInit() {
 
     this.projectUrl = this.router.url;
-    this.projectId = this.projectUrl.split('/').pop(); // get last element of splited array => id from url
+    this.project_id = this.projectUrl.split('/').pop(); // get last element of splited array => id from url
 
     this.dataService
-      .getTasksByProject(this.projectId)
+      .getTasksByProject(this.project_id)
       .subscribe((data:any) => {
         // console.log(data);
         this.tasks = data;

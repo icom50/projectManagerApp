@@ -1,4 +1,4 @@
-<mat-card >
+<mat-card>
     <mat-card-title>
         <div [ngSwitch]="task.priority">
             <div *ngSwitchCase="'high'">
@@ -16,8 +16,6 @@
         </div>
         <h6>{{ task.name }}</h6>
     </mat-card-title>
-
-    <!-- <p>{{task._id}}</p> -->
 
     <mat-card-content>
         <div *ngIf="task.assigned?.length != 0"  class="task--collaborators">
@@ -44,4 +42,5 @@
             </p>
         </div>
     </mat-card-content>
+    <button (click)="exportId(task._id)">show me ur task</button>
 </mat-card>
