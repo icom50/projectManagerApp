@@ -17,7 +17,7 @@ export class FormCreateTaskComponent implements OnInit {
   newTask = {assigned : [], checklist: []}
   user_id = "5dada94a26a3f42e962c215a";
   project_id = "5db6b138fc2046172f2b0c56";
-  constructor(private _dataService: DataService, ) { 
+  constructor(private _dataService: DataService ) { 
     // @Input("user_id") user_id // <app-form-create-task [user_id]="id" [project_id]="project._id">
     // @Input("project_id") project_id 
   }
@@ -38,12 +38,10 @@ export class FormCreateTaskComponent implements OnInit {
   }
   addAssignedUser(id){
     if (id != "Assign a member" && !(this.checkAssigned(id))){
-    let addedUser
     this._dataService.getUserById(id).subscribe((data:User)=> {
       this.newTask.assigned.push({...data['users'], user_id: data['users']._id})
       console.log(this.newTask)
-    })
-    console.log(addedUser)}
+    })}
   }
   checkAssigned(id){
     return this.newTask.assigned.some((el) => {

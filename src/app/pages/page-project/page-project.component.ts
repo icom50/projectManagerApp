@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
+
 @Component({
   selector: 'app-page-project',
   templateUrl: './page-project.component.html',
@@ -18,11 +19,11 @@ export class PageProjectComponent implements OnInit {
   users;
   checkedList = 0;
   taskStatus;
-
   todoArray: String[];
   doingArray: String[];
   doneArray: String[];
   pausedArray: String[];
+
 
   constructor(private router: Router, private dataService: DataService) { }
 
@@ -50,6 +51,7 @@ export class PageProjectComponent implements OnInit {
 
   
         this.tasks.map(oneTask => {
+          // console.log(oneTask)
           oneTask.checklist.map(el => { //for checklist
             el.done === true ? this.checkedList += 1 : this.checkedList += 0;
           });
@@ -67,29 +69,18 @@ export class PageProjectComponent implements OnInit {
           switch(this.taskStatus) {
             case 'todo' :
               this.todoArray.push(oneTask);
-              console.log(this.todoArray)
               break;
             case 'doing' :
               this.doingArray.push(oneTask);
-              console.log(this.doingArray)
               break;
             case 'done' :
               this.doneArray.push(oneTask);
-              console.log(this.doneArray)
               break;
             case 'paused' :
               this.pausedArray.push(oneTask);
-              console.log(this.pausedArray)
               break;
           }
-
-          // console.log("TODO   : " + this.todoArray);
-          // console.log("DOING  : " + this.doingArray);
-          // console.log("DONE   : " + this.doneArray);
-          // console.log("PAUSED : " + this.pausedArray);
         });
       });
-
-      
   }
 }

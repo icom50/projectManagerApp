@@ -22,7 +22,8 @@ export class FormEditProjectComponent implements OnInit {
 
    getErrorMessage(field:string): string {
      const errors = {
-      required : 'this field is required'
+      required : 'this field is required',
+      maxlength : 'the content is too big'
      }
      let returnValue ='';
     Object.keys(this.editProject.controls[field].errors).map(key=>{
@@ -32,43 +33,41 @@ export class FormEditProjectComponent implements OnInit {
    }
 
    onSubmit(){
-    console.log(this.project)
     this.project = this.editProject.value;
-    console.log(this.project)
+    
     this._dataService.putProject(this.project).subscribe((data : Project) => {
       this.project = data;
-      //this.router.navigate([`project/details/${this.project['project']._id}/edit`]);
+      this.router.navigate([`project/details/${this.project['projects']._id}`]);
     })
    }
 
   ngOnInit() {
+    
+
     const id = this.route.snapshot.params.id;
     this._dataService.getProjectById(id).subscribe((data : Project)=>{
       this.project = data['projects'];
-      console.log(this.project)
+      this.editProject.setValue(this.project)
     })
     this.editProject = new FormGroup({
-      name: new FormControl(),
-      description: new FormControl(''),
+      name: new FormControl('',Validators.required),
+      description: new FormControl('', Validators.maxLength(54)),
       git: new FormControl(),
       color: new FormControl(),
       author_id: new FormControl(),
       creation_date: new FormControl(),
       start_date: new FormControl(),
-      finish_date: new FormControl(null, [Validators.required]),
-      deadline: new FormControl(null, [Validators.maxLength(20)]),
-      status: new FormControl(null, [Validators.maxLength(50)]),
-      users:new FormControl([]),
-      comments: new FormControl([]),
+      finish_date: new FormControl(),
+      deadline: new FormControl(),
+      status: new FormControl(),
+      users:new FormControl(),
+      comments: new FormControl(),
       attachments: new FormControl(),
-      ressources: new FormControl([]),
-      tasks: new FormControl([]),
+      ressources: new FormControl(),
+      tasks: new FormControl(),
       _id: new FormControl(),
       is_private: new FormControl()
     });
-
-    
   }
   
 }
-
