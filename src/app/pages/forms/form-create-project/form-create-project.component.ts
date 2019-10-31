@@ -3,6 +3,7 @@ import { Project } from 'src/app/models/projects.model';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { DataService } from '../../../services/data.service'
 import { Router } from '@angular/router';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-form-create-project',
@@ -14,7 +15,7 @@ export class FormCreateProjectComponent implements OnInit {
   project : Project
   formCreateProject : FormGroup
 
-  constructor(private dataService : DataService, private router : Router ) { }
+  constructor(private dataService : DataService, private router : Router, private nav: NavbarService ) { }
 
   CreateProject(){
     //console.log(this.formCreateProject.value)
@@ -38,6 +39,7 @@ export class FormCreateProjectComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.nav.show()
     this.formCreateProject = new FormGroup({
       name: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
       description : new FormControl(null,[Validators.maxLength(500)]),

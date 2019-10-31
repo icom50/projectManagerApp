@@ -4,6 +4,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MustMatch } from 'src/app/utils/validators/form.validators.password';
 import { DataService } from '../../../services/data.service'
 import { Router } from '@angular/router';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-form-sign-up',
@@ -15,9 +16,10 @@ export class FormSignUpComponent implements OnInit {
     user : User;
     registerForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder, private _dataService : DataService, private router : Router) { }
+    constructor(private formBuilder: FormBuilder, private _dataService : DataService, private router : Router, private nav: NavbarService) { }
 
     ngOnInit() {
+        this.nav.hide();
         this.registerForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
             password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],

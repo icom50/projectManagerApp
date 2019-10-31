@@ -4,6 +4,7 @@ import {NgForm} from '@angular/forms';
 import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-form-edit-task',
@@ -17,12 +18,21 @@ export class FormEditTaskComponent implements OnInit {
   project: Project;
   task: Task = {}
 
+
   @Input("user_id") user_id;
   @Input("project_id") project_id;
   @Input("task_id") task_id;
-    
-  constructor(private _dataService: DataService) {}
 
+  // user_id = "5dada94a26a3f42e962c215a";
+  // project_id = "5db6b138fc2046172f2b0c56";
+  // task_id = "5dadaeea6bf9623416eb3fcb"
+  // // task = {assigned : [], checklist: [], comments: [], labels : [], attachments : [], _id : this.task_id, total_time: 0, progression : 0, estimated: 0, priority: "none", status: "", deadline: "", name : "", author_id : "", description : ""}
+  // // task;
+  constructor(private _dataService: DataService, private nav : NavbarService) { 
+    // @Input("user_id") user_id // <app-form-create-task [user_id]="id" [project_id]="project._id" [task_id]="project.tasks[]._id">
+    // @Input("project_id") project_id 
+    // @Input("task_id") task_id 
+  }
 
   fillTask(f){
     console.log(f)
@@ -100,6 +110,7 @@ export class FormEditTaskComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.nav.hide();
     this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
       this.project = data['projects'];
       console.log(this.project)

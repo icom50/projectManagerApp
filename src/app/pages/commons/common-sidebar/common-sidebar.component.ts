@@ -4,6 +4,7 @@ import { faBorderAll } from '@fortawesome/free-solid-svg-icons';
 import { faTasks } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { ClassGetter } from '@angular/compiler/src/output/output_ast';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class CommonSidebarComponent implements OnInit {
   faSignOutAlt = faSignOutAlt;
 
 
-  constructor() { }
+  constructor(private nav :NavbarService) { }
   toggle = false;
   status = 'Disable';
 

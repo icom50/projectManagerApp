@@ -3,6 +3,7 @@ import { Project } from 'src/app/models/projects.model';
 import { DataService } from 'src/app/services/data.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-project-details',
@@ -16,7 +17,7 @@ export class ProjectDetailsComponent implements OnInit {
   formComment : FormGroup;
   commentValue: string;
 
-  constructor(private _dataService : DataService, private fb : FormBuilder, private router : Router, private route : ActivatedRoute) {
+  constructor(private _dataService : DataService, private fb : FormBuilder, private router : Router, private route : ActivatedRoute, private nav : NavbarService) {
     this.formComment = this.fb.group({
       comment : new FormControl(null, [Validators.maxLength(400)])
     })
@@ -41,6 +42,7 @@ export class ProjectDetailsComponent implements OnInit {
    
 
   ngOnInit() {
+    this.nav.show();
     const id = this.route.snapshot.params.id;
     this._dataService.getProjectById(id).subscribe((data : Project)=>{
       this.project = data['projects'];
