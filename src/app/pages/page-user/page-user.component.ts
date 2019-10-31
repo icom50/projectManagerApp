@@ -29,9 +29,14 @@ export class PageUserComponent implements OnInit {
 
 
     deleteUser(id){
-      console.log("hjgjhgjgh")
-      this._dataService.deleteUser(id).subscribe(res => res);
-      this.router.navigate(['/']);
+      // const confirmation = confirm("Etes vous sur de vouloir surpprimer votre compte ?");
+      // setTimeout(() => {alert(confirmation)},2000);
+      // if(confirmation){
+        this._dataService.deleteUser(id).subscribe(res => res);
+        this.router.navigate(['/']);
+
+      // }
+      // console.log("user supprimé")
     }
 
   // task: any;
