@@ -13,10 +13,10 @@ export class FormEditTaskComponent implements OnInit {
   user: User;
   users: User[];
   project: Project;
-  task = {assigned : [], checklist: []}
-  user_id = "5dada94a26a3f42e962c215a";
+    user_id = "5dada94a26a3f42e962c215a";
   project_id = "5db6b138fc2046172f2b0c56";
   task_id = "5dadaeea6bf9623416eb3fcb"
+  task = {assigned : [], checklist: [], comments: [], labels : [], attachments : [], _id : this.task_id, total_time: 0, progression : 0, estimated: 0, priority: "none", status: "", deadline: "", name : "", author_id : "", description : ""}
   constructor(private _dataService: DataService,) { 
     // @Input("user_id") user_id // <app-form-create-task [user_id]="id" [project_id]="project._id" [task_id]="project.tasks[]._id">
     // @Input("project_id") project_id 
@@ -32,6 +32,12 @@ export class FormEditTaskComponent implements OnInit {
     event.preventDefault();
     this.fillTask(f)
     console.log(this.task)
+    this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
+      this.project = data['projects'];
+      this.project.tasks.splice(this.project.tasks.findIndex(task => task._id === this.task_id ),1,this.task)
+      this._dataService.putProject(this.project).subscribe()
+      this.goBack()
+    })
     // console.log(f.value)
   }
   addAssignedUser(id){
@@ -66,7 +72,21 @@ export class FormEditTaskComponent implements OnInit {
     // i.controls.value.reset
   }
   removeFromChecklist(i){
+    event.preventDefault()
     this.task.checklist.splice(i,1)
+  }
+  goBack(){
+    event.preventDefault()
+    console.log('check function goBack() in form-edit-task.component.ts')
+  }
+  deleteTask(){
+    event.preventDefault()
+    this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
+      this.project = data['projects'];
+      this.project.tasks.splice(this.project.tasks.findIndex(task => task._id === this.task_id ),1)
+      this._dataService.putProject(this.project).subscribe()
+      this.goBack()
+    })
   }
   ngOnInit() {
     this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
