@@ -63,7 +63,12 @@
 
                     <div class="inputinfo">
                         <fa-icon [icon]="faGithub" size="2x"></fa-icon>
-                        <span><a>{{user.links.github}}</a></span>
+                        <span><a 
+                            href={{user.links.github}} 
+                            target="_blank"
+                            >
+                            {{user.links.github}}
+                        </a></span>
                     </div>
 
                     <div class="inputinfo">
