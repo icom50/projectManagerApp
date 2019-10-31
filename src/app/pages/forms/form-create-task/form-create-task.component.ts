@@ -37,6 +37,7 @@ export class FormCreateTaskComponent implements OnInit {
 
   }
   addAssignedUser(id){
+    event.preventDefault()
     if (id != "Assign a member" && !(this.checkAssigned(id))){
     this._dataService.getUserById(id).subscribe((data:User)=> {
       this.newTask.assigned.push({...data['users'], user_id: data['users']._id})
@@ -49,6 +50,7 @@ export class FormCreateTaskComponent implements OnInit {
     }); 
   }
   addToCheckList(i: NgForm){
+    event.preventDefault()
     let name = i.value
     console.log(i.value)
     this.newTask.checklist.push({name, done: false})

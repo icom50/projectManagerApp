@@ -6,7 +6,7 @@
         </div>
         <div>
             <ul>
-                <li><a href="#" (click)="deleteUser(user._id)">Delete</a></li>
+                <li><a href="#" (click)="deleteUser($event, user._id)">Delete</a></li>
                 <li><a routerLink="/user-edit/{{user._id}}">Edit</a></li>
             </ul>
             <!-- <button mat-raised-button (click)="deleteUser(user._id)">
