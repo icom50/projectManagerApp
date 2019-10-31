@@ -10,7 +10,7 @@
             <section>
                 <label for="name">Task's name </label> <br/><input name="name" ngModel #name="ngModel" [value]="task.name"required > <br/>
                 <label for="name">Estimated time </label> <br/><input name="estimated" ngModel #estimated="ngModel" [value]="task.estimated" > <br/>
-                <label for="name">Deadline </label> <br/><input matInput [matDatePicker]="deadline" name="deadline"  ngModel #deadline="ngModel" [value]="task.deadline"><mat-datepicker-toggle matSuffix [for]="deadline"></mat-datepicker-toggle>
+                <label for="name">Deadline </label> <br/><input  name="deadline"  ngModel #deadline="ngModel" [value]="task.deadline">
                 <mat-datepicker #deadline></mat-datepicker> <br/>
                 <div>Priority : </div>
                 <select name="priority" id="priority" ngModel>
