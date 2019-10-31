@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 
 @Component({
@@ -25,10 +26,10 @@ export class PageProjectComponent implements OnInit {
   pausedArray: String[];
 
 
-  constructor(private router: Router, private dataService: DataService) { }
+  constructor(private router: Router, private dataService: DataService, private nav : NavbarService) { }
 
   ngOnInit() {
-
+    this.nav.show();
     this.projectUrl = this.router.url;
     this.projectId = this.projectUrl.split('/').pop(); // get last element of splited array => id from url
 

@@ -3,6 +3,7 @@ import { DataService } from 'src/app/services/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/models/projects.model';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-form-edit-project',
@@ -15,7 +16,7 @@ export class FormEditProjectComponent implements OnInit {
   editProject : FormGroup;
   date = Date.now();
 
-  constructor(private _dataService : DataService, private router : Router, private fb : FormBuilder, private route : ActivatedRoute) {
+  constructor(private _dataService : DataService, private router : Router, private fb : FormBuilder, private route : ActivatedRoute, private nav : NavbarService) {
 
    }
 
@@ -48,6 +49,7 @@ export class FormEditProjectComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.nav.hide();
     
 
     const id = this.route.snapshot.params.id;

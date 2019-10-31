@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-page-landing',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageLandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private nav: NavbarService) { }
 
   ngOnInit() {
+    this.nav.show();
   }
 
 }

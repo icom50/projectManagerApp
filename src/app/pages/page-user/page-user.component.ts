@@ -7,6 +7,7 @@ import { faBlogger } from '@fortawesome/free-brands-svg-icons';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 
 
@@ -25,7 +26,8 @@ export class PageUserComponent implements OnInit {
 
   constructor(private _dataService: DataService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private nav: NavbarService) { }
 
 
     deleteUser(e, id){
@@ -42,6 +44,7 @@ export class PageUserComponent implements OnInit {
 
   // task: any;
   ngOnInit() {
+    this.nav.show();
     this.form = new FormGroup({
       username: new FormControl(),
       firstname: new FormControl(),
