@@ -64,6 +64,9 @@ export class DataService {
   }
   putProject(project:Project): Observable<Project>{
     const headers = new HttpHeaders().set('content-type','application/json');
+    console.log(`${this.urlProjects}${project._id}`)
+    console.log(project)
+    console.log({...project})
     return this.http.put(`${this.urlProjects}${project._id}`,project,{headers})
   }
   deleteProject(id:string): Observable<Project>{
@@ -79,6 +82,11 @@ export class DataService {
   getTasksByProject(project_id:string): Observable<any[]>{
     return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
       return data['projects'].tasks.map(task => task)
+    }))
+  }
+  getUsersByProject(project_id:string): Observable<any[]>{
+    return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
+      return data['projects'].users.map(user => user)
     }))
   }
 }

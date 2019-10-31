@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
+
 @Component({
   selector: 'app-page-project',
   templateUrl: './page-project.component.html',
@@ -14,8 +15,15 @@ export class PageProjectComponent implements OnInit {
   projectId;
   comments;
   priority;
-  tasks: string[];
-  todo;
+  tasks;
+  users;
+  checkedList = 0;
+  taskStatus;
+  todoArray: String[];
+  doingArray: String[];
+  doneArray: String[];
+  pausedArray: String[];
+
 
   constructor(private router: Router, private dataService: DataService) { }
 
@@ -28,33 +36,51 @@ export class PageProjectComponent implements OnInit {
     this.dataService
       .getProjectById(this.projectId)
       .subscribe((data:any) => {
-        this.projects = data;
-        console.log(this.projects);
-        // console.log(data.projects.status)
-        data.projects.status === 'todo' || data.projects.status === 'created' ? this.todo = true : this.todo = false; 
-        // console.log(this.todo)
+        this.projects = data.projects;
+        // console.log(this.projects);
+
+        this.users = this.projects.users;
+        // console.log(this.users)
     });
-
-    // this.projects.map((users: string[]) => {
-    //   console.log(users)
-    //   // console.log(this.projects.projects.user_id);
-    // });
-
-    // this.dataService  
-    //   .getUserById(this.projects.projects.user_id)
-    //   .subscribe((data:any) => {
-    //     console.log(data);
-    //   })
-
 
     this.dataService
       .getTasksByProject(this.projectId)
       .subscribe((data:any) => {
         // console.log(data);
         this.tasks = data;
-        // this.taskPriority = this.tasks.priority;
-        // console.log(this.tasks);
-      });
 
+  
+        this.tasks.map(oneTask => {
+          // console.log(oneTask)
+          oneTask.checklist.map(el => { //for checklist
+            el.done === true ? this.checkedList += 1 : this.checkedList += 0;
+          });
+
+          //filter by status of task
+          // console.log(oneTask.status);
+          this.taskStatus = oneTask.status;
+
+          //convert to array
+          this.todoArray = this.todoArray || [];
+          this.doingArray = this.doingArray || [];
+          this.doneArray = this.doneArray || [];
+          this.pausedArray = this.pausedArray || [];
+
+          switch(this.taskStatus) {
+            case 'todo' :
+              this.todoArray.push(oneTask);
+              break;
+            case 'doing' :
+              this.doingArray.push(oneTask);
+              break;
+            case 'done' :
+              this.doneArray.push(oneTask);
+              break;
+            case 'paused' :
+              this.pausedArray.push(oneTask);
+              break;
+          }
+        });
+      });
   }
 }

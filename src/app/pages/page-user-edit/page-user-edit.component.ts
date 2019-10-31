@@ -30,6 +30,7 @@ export class PageUserEditComponent implements OnInit {
       // console.log(userId);
       // this.router.navigate(['user/'+this.user._id]); /** la navigation retourne a 'users' */
       this.router.navigate([`user/${this.user['users']._id}`]);
+      console.log(this.user)
     })
   }
 
@@ -60,12 +61,19 @@ export class PageUserEditComponent implements OnInit {
       password: new FormControl(null, [Validators.required]),
       phone: new FormControl(null, [Validators.maxLength(20)]),
       company: new FormControl(null, [Validators.maxLength(50)]),
-      links: new FormControl(),
+      links: new FormGroup({
+        linkedin: new FormControl(null),
+        github: new FormControl(null),
+        blog: new FormControl(null),
+        website: new FormControl(null),
+      }),
       tasks: new FormControl(),
       _id: new FormControl(),
       job: new FormControl(null, [Validators.maxLength(50)]),
       projects: new FormControl(),
+      description: new FormControl(null, [Validators.maxLength(500)]),
     });
+
 
     const id = this.route.snapshot.params.id;
     // const id = "5db2b0cfde25681058101ead"
@@ -78,6 +86,7 @@ export class PageUserEditComponent implements OnInit {
       this.form.setValue(this.user) // va remplir tout les champs correspondant
       console.log('data -----------------')
       console.log(this.user)
+      console.log(this.user.avatar_url);
     })
   }
 }

@@ -17,6 +17,8 @@ import { FormCreateTaskComponent } from './pages/forms/form-create-task/form-cre
 import { PageUserEditComponent } from './pages/page-user-edit/page-user-edit.component';
 import { PasswordForgottenComponent } from './pages/forms/password-forgotten/password-forgotten.component';
 import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
+import { FormEditProjectComponent } from './pages/forms/form-edit-project/form-edit-project.component';
+import { FormEditTaskComponent } from './pages/forms/form-edit-task/form-edit-task.component';
 
 const routes: Routes = [
   { path : "", component : PageLandingComponent },
@@ -29,10 +31,13 @@ const routes: Routes = [
   { path : "user-edit/:id", component : PageUserEditComponent },
   { path : "task-list/:id", component : PageTaskListComponent },
   { path : "project-management/:id", component : PageProjectManagementComponent },
-  { path : "test", component : ProjectDetailsComponent},
+  { path : "project/details/:id", component : ProjectDetailsComponent},
+  { path : "project/details/:id/edit", component : FormEditProjectComponent },
+  { path : "test2", component : FormCreateProjectComponent},
+  { path : "testgwen", component : FormCreateTaskComponent},
   { path : "reset-password", component : PasswordForgottenComponent },
   { path : "sign-up", component : FormSignUpComponent },
-
+  { path : "project/:id/edit", component : FormEditProjectComponent },
   { path : "**", component : PageNotFoundComponent }
   
 ];

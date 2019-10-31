@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/projects.model';
 import { DataService } from 'src/app/services/data.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-project-details',
@@ -11,28 +12,39 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 export class ProjectDetailsComponent implements OnInit {
 
   project : Project;
-  formComment : FormGroup
+  isPrivate: String;
+  formComment : FormGroup;
   commentValue: string;
 
-  constructor(private _dataService : DataService, private fb : FormBuilder) {
+  constructor(private _dataService : DataService, private fb : FormBuilder, private router : Router, private route : ActivatedRoute) {
     this.formComment = this.fb.group({
       comment : new FormControl(null, [Validators.maxLength(400)])
     })
    }
 
+  deleteProject(id)  {
+     this._dataService.deleteProject(id).subscribe((data:Project)=>{
+       this.project = data;
+       this.router.navigate(['/home'])
+     });
+     setTimeout(()=>{
+      alert('Project deleted');
+     },1000)
+      
+   }
+
    addComment(){
-     console.log('polo');
      this.formComment.reset();
      
    }
 
+   
 
   ngOnInit() {
-    const id = "5daec4f318f7f705f803cbe8";
+    const id = this.route.snapshot.params.id;
     this._dataService.getProjectById(id).subscribe((data : Project)=>{
       this.project = data['projects'];
-      console.log(this.project)
+      this.isPrivate = this.project.is_private  ? "the project is in private" : "The project is in public";
     })
   }
-
 }

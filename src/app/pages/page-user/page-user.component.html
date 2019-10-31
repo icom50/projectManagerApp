@@ -1,68 +1,93 @@
-<div>
-    <div>
-        <h1>My Profil settings</h1>
+<div id="global">
+
+    <div id="title">
+        <div>
+            <h1>My Profil settings</h1>
+        </div>
+        <div>
+            <ul>
+                <li><a href="#" (click)="deleteUser($event, user._id)">Delete</a></li>
+                <li><a routerLink="/user-edit/{{user._id}}">Edit</a></li>
+            </ul>
+            <!-- <button mat-raised-button (click)="deleteUser(user._id)">
+                Delete
+            </button> -->
+        </div>
     </div>
+
     <div>
-        <a routerLink="/user-edit/{{user._id}}">Edit</a>
-        <button 
-        mat-raised-button
-        (click)="deleteUser(user._id)"
-        >
-        Delete
-        </button>
+        <form [formGroup]="form">
+            <div id="avatardescription">
+                <div>
+                    <img src={{user.avatar_url}} alt="Photo de profil de {{user.username}}"
+                        title="Photo de profil de {{user.username}}">
+                </div>
+                <div id="description">
+                    <p>{{user.description}}</p>
+                </div>
+            </div>
+
+            <div id="infomembre">
+                <div>
+                    <div class="inputinfo">
+                        <label for="username">Username</label>
+                        <span>{{user.username}}</span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <label for="firstname">Firstname</label>
+                        <span>{{user.firstname}}</span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <label for="lastname">Name</label>
+                        <span>{{user.lastname}}</span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <label for="email">Email</label>
+                        <span>{{user.email}}</span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <label for="phone">Telephone</label>
+                        <span>{{user.phone}}</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="inputinfo">
+                        <label for="company">Company</label>
+                        <span>{{user.company}}</span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <fa-icon [icon]="faGithub" size="2x"></fa-icon>
+                        <span><a 
+                            href={{user.links.github}} 
+                            target="_blank"
+                            >
+                            {{user.links.github}}
+                        </a></span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <fa-icon [icon]="faLinkedin" size="2x"></fa-icon>
+                        <span>{{user.links.linkedin}}</span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <fa-icon [icon]="faBlogger" size="2x"></fa-icon>
+                        <span>{{user.links.blog}}</span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <fa-icon [icon]="faGlobe" size="2x"></fa-icon>
+                        <span>{{user.links.website}}</span>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-</div>
 
-<div>
-    <div>
-        <img 
-        src={{user.avatar_url}}
-        alt="Photo de profil de {{user.username}}"
-        title="Photo de profil de {{user.username}}"
-        >
-    </div>
-    <div>
-        <h2>Section Comment</h2>
-    </div>
-</div>
-
-<div>
-    <form [formGroup]="form">
-        <label for="username">Username : </label>
-        <span>{{user.username}}</span>
-        <br />
-
-        <label for="firstname">Firstname : </label>
-        <span>{{user.firstname}}</span>
-        <br />
-        
-        <label for="lastname">Name : </label>
-        <span>{{user.lastname}}</span>
-        <br />
-        
-        <label for="email">Email : </label>
-        <span>{{user.email}}</span>
-        <br />
-        
-        <p>Cliquez sur Edit pour changer le password</p>
-        
-        <label for="phone">Telephone : </label>
-        <span>{{user.phone}}</span>
-        <br />
-        
-        <label for="company">Company : </label>
-        <span>{{user.company}}</span>
-
-        <br />
-
-        <h3>Links</h3>
-
-        <label for="github">Github : </label>
-        <span>{{user.links.github}}</span>
-        <br />
-
-        <label for="linkedin">Linkedin : </label>
-        <span>{{user.links.linkedin}}</span>
-        <br />
-    </form>
 </div>

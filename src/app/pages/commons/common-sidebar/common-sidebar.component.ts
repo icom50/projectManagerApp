@@ -22,11 +22,6 @@ export class CommonSidebarComponent implements OnInit {
   toggle = false;
   status = 'Disable';
 
-  enableDisableRule($event) {    
-    this.toggle = !this.toggle;
-        
-  }
-
   ngOnInit() {
   }
 

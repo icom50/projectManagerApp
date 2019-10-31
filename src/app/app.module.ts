@@ -46,6 +46,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MY_FORMAT } from './utils/formats/date.format';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 // FontAwesomeModule
@@ -105,7 +106,8 @@ registerLocaleData(localeFr, 'fr');
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatRadioModule
   
   ],
   providers: [

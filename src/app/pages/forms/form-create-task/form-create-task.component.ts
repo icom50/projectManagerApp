@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import {NgForm} from '@angular/forms';
 
 import { User } from '../../../models/users.model';
+import { Project } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
 
 @Component({
@@ -11,106 +12,58 @@ import { DataService } from '../../../services/data.service';
 })
 export class FormCreateTaskComponent implements OnInit {
   user: User;
-  form: FormGroup;
-  project_id:string;
-  task_id: string;
-  task: any;
-  logged:any;
-  constructor(private _dataService: DataService, ) { }
+  users: User[];
+  project: Project;
+  newTask = {assigned : [], checklist: []}
+  user_id = "5dada94a26a3f42e962c215a";
+  project_id = "5db6b138fc2046172f2b0c56";
+  constructor(private _dataService: DataService ) { 
+    // @Input("user_id") user_id // <app-form-create-task [user_id]="id" [project_id]="project._id">
+    // @Input("project_id") project_id 
+  }
 
-  getMember(id) {
-    return 'check getMember(id) function ' + (id || 'missing id')
-  }
-  getUnassignedMembers(id){
-    return 'check getUnassignedMembers(id) function ' + (id || 'missing id')
-  }
-  sendComment() {
+   createTask(f){
     event.preventDefault()
-    console.log('send comment')
-    this.updateTask()
+    f.value.checklist = this.newTask.checklist
+    f.value.assigned = this.newTask.assigned
+    // Update the project before saving for not erasing new datas
+    console.log(this.project.tasks)
+    this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
+      this.project = data['projects'];
+      this.project.tasks.push(f.value)
+      this._dataService.putProject(this.project).subscribe()
+    })
+    
+
   }
-  updateTask() {
+  addAssignedUser(id){
     event.preventDefault()
-    console.log('task update')
+    if (id != "Assign a member" && !(this.checkAssigned(id))){
+    this._dataService.getUserById(id).subscribe((data:User)=> {
+      this.newTask.assigned.push({...data['users'], user_id: data['users']._id})
+      console.log(this.newTask)
+    })}
   }
-  addItem() {
+  checkAssigned(id){
+    return this.newTask.assigned.some((el) => {
+      return el.user_id === id;
+    }); 
+  }
+  addToCheckList(i: NgForm){
     event.preventDefault()
-    console.log('add item to checklist')
-  }
-  addTime() {
-    event.preventDefault()
-    console.log('add time to the task')
-  }
-  getTotalTime() {
-    return ' check getTotalTime()'
-  }
-  getUserTime() {
-    return 'check getUserTime()'
-  }
-  updatePriority(){
-    console.log('updatePriority() to '+ this.form['priority'])
-  }
-  showForm(){
-    event.preventDefault();
-    console.log(this.task)
+    let name = i.value
+    console.log(i.value)
+    this.newTask.checklist.push({name, done: false})
+    // i.controls.value.reset
   }
   ngOnInit() {
-    this._dataService.getTaskById('5dadaeea6bf9623416eb3fc8','5dadaeea6bf9623416eb3fcb').subscribe((data:any)=>{
-      this.task = data;
-      this.form.setValue = data
-      console.log(' DATA --------')
-      console.log(data)
-      console.log(' this.form ----------')
-      console.log(this.form)
+    this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
+      this.project = data['projects'];
+      console.log(this.project)
     })
-    this.logged = '5dadbfd634f4a93c8c9936c1'
-    this.form = new FormGroup({
-      name: new FormControl(),
-      description: new FormControl(),
-      author_id: new FormControl(),
-      deadline: new FormControl(),
-      progression: new FormControl(),
-      estimated: new FormControl(),
-      priority: new FormControl(),
-      labels: new FormGroup({
-        name: new FormControl(),
-        color: new FormControl(),
-        _id: new FormControl()
-      }
-      ),
-      assigned: new FormGroup(
-        {
-          user_id: new FormControl(),
-          spend: new FormControl(),
-          _id: new FormControl()
-        }
-      ),
-      checklist: new FormGroup(
-        {
-          name: new FormControl(),
-          done: new FormControl(),
-          _id: new FormControl()
-        }
-      ),
-      attachments: new FormGroup(
-        {
-          name: new FormControl(),
-          description: new FormControl(),
-          path: new FormControl(),
-          author_id: new FormControl(),
-          date: new FormControl(),
-          _id: new FormControl()
-        }
-      ),
-      comments: new FormGroup({
-        author_id: new FormControl(),
-        comment: new FormControl(),
-        date: new FormControl(),
-        _id: new FormControl()
-      }
-      ),
-      status: new FormControl()
+    this._dataService.getUsersByProject(this.project_id).subscribe((data:User[]) =>{
+      this.users = data;
+      console.log(this.users)
     })
   }
-
 }
