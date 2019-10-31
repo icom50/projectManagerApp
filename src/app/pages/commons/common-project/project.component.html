@@ -1,0 +1,9 @@
+<div class="projects">
+        <div class="wrapper" *ngFor="let project of projects">
+            <div class="project" *ngIf="project.status === 'created'">
+                    <span>{{project.status}}</span>
+            </div>
+            <!-- <img [src]="isSelected ? favNotSelect : favSelect" alt="Favorite Icon" width="20px" (click)="toggleFav()"> -->
+            
+        </div>
+    </div>
