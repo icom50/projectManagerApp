@@ -1,11 +1,10 @@
 <div class="wrapperProjects">
-
         <div class="toggleContent" (click)="toggleDisplay()">
             <div class="content">
                 <span><img [src]="isShow ? sortUp : sortDown" alt="Sort Up and Down"></span>
                 <h4>{{title}}</h4>
             </div>
-          </div>
-          <ng-content></ng-content>
-      
+        </div>
+        {{projects[0].name}}
+        <ng-content></ng-content>
 </div>

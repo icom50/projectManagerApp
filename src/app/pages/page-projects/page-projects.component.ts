@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DataService } from '../../services/data.service';
+import { Project } from 'src/app/models/projects.model';
 
 
 
@@ -9,14 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageProjectsComponent implements OnInit {
 
-  create = "Projects created";
 
-  constructor() { }
+  projects: Project[];
+  status: string;
+
+  constructor(private _dataService: DataService) { }
 
 
 
   ngOnInit() {
-  
+    this._dataService
+    .getProjects()
+    .subscribe((data: Project[]) =>{
+      this.projects = data['projects'];
+      //console.log(this.projects);
+    })
 
   }
 }

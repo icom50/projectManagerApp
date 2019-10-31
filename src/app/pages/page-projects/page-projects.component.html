@@ -1,9 +1,14 @@
 <h1>Boards</h1>
 
 <div>
-    <app-zippy [title]="create">
-        <app-project></app-project>
+    <app-zippy [title]="'create'" [projects]="projects">
+        <div *ngFor="let project of projects">
+            <div *ngIf="project.status === 'created'">{{project.status}}
+                <app-project></app-project>
+            </div>  
+        </div>    
     </app-zippy>
+   
 </div>
     
 

@@ -24,19 +24,21 @@ export class ZippyComponent implements OnInit {
   isSelected: boolean = false;
 
   @Input() title: string;
-
-
+  @Input() projects;
+ 
+  
   toggleDisplay() {
     this.isShow = !this.isShow;
-    //console.log(this.project);
   }
 
   toggleFav() {
     this.isSelected = !this.isSelected;
+
   }
 
   ngOnInit() {
-  
+    
+    
 
 }
 
