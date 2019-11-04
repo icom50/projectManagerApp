@@ -3,7 +3,7 @@
         Tasks Completed Soon
         <span class="task-list"><a routerLink="/task-list/:id">See complete list</a></span>
     </h2>
-    
+
 </div>
 
 
@@ -11,6 +11,8 @@
 <div>
     <h2>Favorites Projects</h2>
 </div>
-<div *ngFor="let project of user?.projects">
-    <app-project [project_id]="project._id"></app-project>
+<div class="container">
+    <div *ngFor="let project of user?.projects | slice:0:3" [style.marginRight.px]="'20'">
+        <app-project [project_id]="project?._id" *ngIf="project?.favorite === true"></app-project>
+    </div>
 </div>
