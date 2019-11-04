@@ -49,6 +49,7 @@ export class DataService {
     const token = this.http.post(`${this.urlUser}login`,user,{headers});
     //not a token anymore
     return token;
+    // can't use shareReplay() - do not seem to be a big issue
   }
 
   // /api/projects
