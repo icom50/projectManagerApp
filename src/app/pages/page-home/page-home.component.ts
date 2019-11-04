@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarService } from 'src/app/services/navbar.service';
+import { DataService } from 'src/app/services/data.service';
+import { User } from 'src/app/models/users.model';
 
 
 @Component({
@@ -8,11 +10,20 @@ import { NavbarService } from 'src/app/services/navbar.service';
   styleUrls: ['./page-home.component.scss']
 })
 export class PageHomeComponent implements OnInit {
+  user : User;
 
-  constructor(private nav : NavbarService) { }
+  constructor(private nav : NavbarService, private _dataService : DataService) { }
 
   ngOnInit() {
     this.nav.show();
+    const id = "5da98631e2dcd109d6ab35db";
+
+    this._dataService.getUserById(id).subscribe((data:User)=>{
+      this.user = data['users'];
+      console.log(this.user)
+    })
+    
+
   }
 
 }
