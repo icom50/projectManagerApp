@@ -9,21 +9,23 @@ import { Project } from 'src/app/models/projects.model';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
-  
-  
+
+
   projects: Project[];
-  project;
+  project: Project;
   status: string;
+
+  @Input() project_id: string;
 
   constructor(private _dataService: DataService) { }
 
   ngOnInit() {
-
     this._dataService
-    .getProjects()
-    .subscribe((data: Project[]) =>{
-      this.projects = data['projects'];
-    })
+      .getProjectById(this.project_id)
+      .subscribe((data: Project) => {
+        this.project = data['projects'];
+        console.log(this.project);
+      })
   }
 
 }
