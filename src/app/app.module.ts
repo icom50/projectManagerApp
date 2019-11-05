@@ -56,6 +56,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // pipe
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { AuthentificatorService } from './services/authentificator.service';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -117,7 +119,9 @@ registerLocaleData(localeFr, 'fr');
     { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMAT },
     DataService,
-    NavbarService
+    NavbarService,
+    AuthentificatorService,
+    AuthInterceptorService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,103 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Project } from '../models/projects.model';
+import { User } from '../models/users.model';
+import { AuthInterceptorService} from './auth-interceptor.service'
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RestService {
+
+  constructor(private http: HttpClient, auth: AuthInterceptorService) { }
+
+    // change API's url HERE
+    url:string = 'http://localhost:8001/';
+    urlUsers:string = `${this.url}api/users/`;
+    urlUser:string = `${this.url}api/user/`;
+    urlProjects:string = `${this.url}api/projects/`;
+
+    // /api/users
+  getUsers():Observable<User[]>{
+    return this.http.get(this.urlUsers).pipe(map (data => data as User[]))
+  }
+  getUserById(id:string): Observable<User>{
+    return this.http.get(`${this.urlUsers}${id}`).pipe(map(data => data as User))
+  }
+  getUserByEmail(email:string): Observable<User>{
+    return this.http.get(`${this.urlUsers}email/${email}`).pipe(map(data => data as User))
+  }
+
+  // /api/user
+  getUserSecure(id:string): Observable<User>{
+    return this.http.get(`${this.urlUser}${id}`).pipe(map(data => data as User))
+  }
+  postUser(user:User): Observable<User>{
+    const headers = new HttpHeaders().set('content-type','application/json');
+    return this.http.post(`${this.urlUser}`,user,{headers});
+  }
+  putUser(user:User): Observable<User>{
+    const headers = new HttpHeaders().set('content-type','application/json');
+    return this.http.put(`${this.urlUser}${user._id}`,user,{headers})
+  }
+  deleteUser(id:string): Observable<User>{
+    const headers = new HttpHeaders().set('content-type','application/json');
+    return this.http.delete(`${this.urlUser}${id}`,{headers})
+  }
+  //devrait renvoyer un Token, mais inutile pour le moment
+  loginUser(user:User): Observable<User>{
+    // const headers = new HttpHeaders().set('content-type','application/json');
+    const headers = new HttpHeaders({"content-type":"application/json","authorization":"bearer coucou"});
+    console.log(headers)
+    const token = this.http.post(`${this.urlUser}login`,user,{headers});
+    //not a token anymore
+    return token;
+    // can't use shareReplay() - do not seem to be a big issue
+  }
+
+  // /api/projects
+  getProjects():Observable<Project[]>{
+    // const bearerToken = localStorage.getItem('id_token');
+    // console.log('ci dessous, un token ourseur')
+    // console.log(localStorage);
+    // const headers = new HttpHeaders().set('authorization' , bearerToken)
+    const headers = new HttpHeaders().set('content-type','application/json');
+    return this.http.get(this.urlProjects, {headers}).pipe(map (data => data as Project[]))
+  }
+  getProjectById(id:string): Observable<Project>{
+    return this.http.get(`${this.urlProjects}${id}`).pipe(map(data => data as Project))
+  }
+  postProject(project:Project): Observable<Project>{
+    const headers = new HttpHeaders().set('content-type','application/json');
+    return this.http.post(`${this.urlProjects}`,project,{headers});
+  }
+  putProject(project:Project): Observable<Project>{
+    const headers = new HttpHeaders().set('content-type','application/json');
+    console.log(`${this.urlProjects}${project._id}`)
+    console.log(project)
+    console.log({...project})
+    return this.http.put(`${this.urlProjects}${project._id}`,project,{headers})
+  }
+  deleteProject(id:string): Observable<Project>{
+    const headers = new HttpHeaders().set('content-type','application/json');
+    return this.http.delete(`${this.urlProjects}${id}`,{headers})
+  }
+  
+  getTaskById(project_id:string, task_id:string): Observable<any>{
+    return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
+      return data['projects'].tasks.filter( task =>  (task._id === task_id))[0]
+    }))
+  }
+  getTasksByProject(project_id:string): Observable<any[]>{
+    return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
+      return data['projects'].tasks.map(task => task)
+    }))
+  }
+  getUsersByProject(project_id:string): Observable<any[]>{
+    return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
+      return data['projects'].users.map(user => user)
+    }))
+  }
+}
