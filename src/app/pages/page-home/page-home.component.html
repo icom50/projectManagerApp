@@ -1,26 +1,22 @@
 <div class="content">
 
-<div>
-    <h2>
-        Tasks Completed Soon
-        <span class="task-list"><a routerLink="/task-list/:id">See complete list</a></span>
-    </h2>
-    <div class="container">
-        <div *ngFor="let project of user?.projects | slice:0:3" [style.marginRight.px]="'20'">
-            <app-project [project_id]="project?._id" *ngIf="project?.favorite === true"></app-project>
+    <section>
+        <h2>
+            Tasks Completed Soon
+            <span class="task-list"><a routerLink="/task-list/:id">See complete list</a></span>
+        </h2>
+        <div class="container">
+            <div *ngFor="let project of user?.projects | slice:0:3" [style.marginRight.px]="'20'">
+                <app-project [project_id]="project?._id" *ngIf="project?.favorite === true"></app-project>
+            </div>
         </div>
-    </div>
-
-</div>
-
-
-
-<div>
-    <h2>Favorites Projects</h2>
-</div>
-<div class="container">
-    <div *ngFor="let project of user?.projects | slice:0:3" [style.marginRight.px]="'20'">
-        <app-project [project_id]="project?._id" *ngIf="project?.favorite === true"></app-project>
-    </div>
-</div>
+    </section>
+    <section>
+        <h2>Favorites Projects</h2>
+        <div class="container">
+            <div *ngFor="let project of user?.projects | slice:0:3" [style.marginRight.px]="'20'">
+                <app-project [project_id]="project?._id" *ngIf="project?.favorite === true"></app-project>
+            </div>
+        </div>
+    </section>
 </div>

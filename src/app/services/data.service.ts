@@ -92,4 +92,15 @@ export class DataService {
     }))
     
   }
+  getProjectsByUser(user_id:string): Observable<any[]>{
+    let output = []
+    return this.restService.getProjects().pipe(map((data)=> {
+      data['projects'].map(project => {
+        return project.users.map(user =>{
+          if (user._id === user_id || user.user_id === user_id) return output.push(project)
+        })
+      })
+      return output
+    }))
+  }
 }
