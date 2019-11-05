@@ -42,7 +42,7 @@ export class ProjectDetailsComponent implements OnInit {
    
 
   ngOnInit() {
-    this.nav.show();
+    this.nav.hide();
     const id = this.route.snapshot.params.id;
     this._dataService.getProjectById(id).subscribe((data : Project)=>{
       this.project = data['projects'];
