@@ -1,8 +1,20 @@
 <h1>Boards</h1>
 
+<div class="wrapperProjects">
+    <div class="toggleContent" (click)="toggleDisplay()">
+        <div class="content">
+            <span>Arrow</span>
+            <h4>Zippy created</h4>
+        </div>
+    </div>
+
 <div>
     <div *ngFor="let project of user?.projects">
-        <app-project [project_id]="project._id"></app-project>
+            <app-project [project_id]="project._id"></app-project>
     </div>
 
 </div>
+   
+</div>
+
+
