@@ -2,9 +2,9 @@
 
 <div class="wrapperProjects">
     <div class="toggleContent" (click)="toggleDisplay()">
-        <div class="content">
+        <div class="wrapper-toggleContent">
             <span>Arrow</span>
-            <h4>Zippy created</h4>
+            <h4>Zippy Created</h4>
         </div>
     </div>
 
@@ -12,7 +12,6 @@
     <div *ngFor="let project of user?.projects">
             <app-project [project_id]="project._id"></app-project>
     </div>
-
 </div>
    
 </div>

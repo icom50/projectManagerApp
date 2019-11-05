@@ -14,14 +14,24 @@ export class PageHomeComponent implements OnInit {
 
   constructor(private nav : NavbarService, private _dataService : DataService) { }
 
+  favorite(){
+    const polo = this.user.projects.map((item)=>{
+      if(item.favorite === true){
+        console.log(polo)
+        return true
+      }
+    })
+  }
+
   ngOnInit() {
     this.nav.show();
     const id = "5da98631e2dcd109d6ab35db";
 
     this._dataService.getUserById(id).subscribe((data:User)=>{
       this.user = data['users'];
-      console.log(this.user)
+      //console.log(this.user['projects'][0].favorite)
     })
+    
     
 
   }
