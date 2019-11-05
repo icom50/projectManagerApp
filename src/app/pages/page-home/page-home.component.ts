@@ -31,9 +31,5 @@ export class PageHomeComponent implements OnInit {
       this.user = data['users'];
       //console.log(this.user['projects'][0].favorite)
     })
-    
-    
-
   }
-
 }
