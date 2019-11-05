@@ -84,13 +84,12 @@ export class DataService {
       data['projects'].map(task => {
         return task.tasks.map(projectTask => {
           return projectTask.assigned.map((oneAssigned) => {
-            if (oneAssigned.user_id === user_id) return output.push(projectTask)
+            if (oneAssigned.user_id === user_id || oneAssigned._id === user_id) return output.push({...projectTask, project_id: task._id})
           })
         })
       })
       return output
-    }))
-    
+    }))    
   }
   getProjectsByUser(user_id:string): Observable<any[]>{
     let output = []
@@ -98,6 +97,17 @@ export class DataService {
       data['projects'].map(project => {
         return project.users.map(user =>{
           if (user._id === user_id || user.user_id === user_id) return output.push(project)
+        })
+      })
+      return output
+    }))
+  }
+  getTasksByProjectAndUser(project_id: string, user_id:string): Observable<any[]>{
+    let output = []
+    return this.restService.getProjectById(project_id).pipe(map(data => {
+      data['projects'].tasks.map(task => {
+        return task.assigned.map(oneAssigned =>{
+          if (oneAssigned.user_id === user_id || oneAssigned._id === user_id) output.push(task)
         })
       })
       return output
