@@ -1,3 +1,9 @@
+.container {
+    &--overflow {
+        overflow: hidden;
+    }
+}
+
 mat-card-title{
     span {
         height: 10px;
@@ -52,14 +58,23 @@ mat-card-title{
 
 .task {
     &--board {
-        display: flex;
+        display: -webkit-box;
+    /* display: flex; */
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
         flex-direction: row;
-        
+        overflow: auto;
+        // min-width: 1250px;
+        height: 80%; //valeur a ajuster avec calc()
+        width: calc(100vw - 130px);
+        padding: 0 5px;
     }
 
     &--col {
         margin-right: 15px;
-        width: calc((100% - 45px )/ 4); // largeur du parent - espacements / 4
+        // width: calc((100% - 45px ) / 4); // largeur du parent - espacements / 4
+        width: 300px;
+
 
         &:last-child {
             margin-right: 0;

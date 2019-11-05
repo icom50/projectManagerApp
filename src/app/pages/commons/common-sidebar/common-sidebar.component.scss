@@ -7,17 +7,16 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 100;
 
   .logo {
-    display: flex;
-    justify-content: center;
     padding-top: 30px;
-    cursor: pointer;
-
     .logocroco {
+      width: 80px;
+      margin: 10px;
       outline: none;
+      
     }
-
   }
 
   .menu {

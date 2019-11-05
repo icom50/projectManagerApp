@@ -4,7 +4,10 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Project } from '../models/projects.model';
 import { User } from '../models/users.model';
+<<<<<<< HEAD
 import { AuthInterceptorService} from './auth-interceptor.service'
+=======
+>>>>>>> d58df5f61caa6dfea1011b5f28c4e662c402fc65
 import { RestService } from './rest.service'
 
 @Injectable({
@@ -85,12 +88,21 @@ export class DataService {
       data['projects'].map(task => {
         return task.tasks.map(projectTask => {
           return projectTask.assigned.map((oneAssigned) => {
+<<<<<<< HEAD
             if (oneAssigned.user_id === user_id || oneAssigned._id === user_id) return output.push({...projectTask, project_id: task._id})
+=======
+            if (oneAssigned.user_id === user_id) return output.push(projectTask)
+>>>>>>> d58df5f61caa6dfea1011b5f28c4e662c402fc65
           })
         })
       })
       return output
+<<<<<<< HEAD
     }))    
+=======
+    }))
+    
+>>>>>>> d58df5f61caa6dfea1011b5f28c4e662c402fc65
   }
   getProjectsByUser(user_id:string): Observable<any[]>{
     let output = []
@@ -103,6 +115,7 @@ export class DataService {
       return output
     }))
   }
+<<<<<<< HEAD
   getTasksByProjectAndUser(project_id: string, user_id:string): Observable<any[]>{
     let output = []
     return this.restService.getProjectById(project_id).pipe(map(data => {
@@ -114,4 +127,6 @@ export class DataService {
       return output
     }))
   }
+=======
+>>>>>>> d58df5f61caa6dfea1011b5f28c4e662c402fc65
 }

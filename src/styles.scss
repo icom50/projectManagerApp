@@ -37,6 +37,8 @@ html {
     flex-grow: 1;
     margin-left: 100px;
     padding: 15px;
+    height: 100vh;
+    width: calc(100vw - 100px);
 }
 
 p {
