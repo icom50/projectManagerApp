@@ -19,13 +19,13 @@ export class FormEditTaskComponent implements OnInit {
   task: Task = {}
 
 
-  @Input("user_id") user_id;
-  @Input("project_id") project_id;
-  @Input("task_id") task_id;
+  // @Input("user_id") user_id;
+  // @Input("project_id") project_id;
+  // @Input("task_id") task_id;
 
-  // user_id = "5dada94a26a3f42e962c215a";
-  // project_id = "5db6b138fc2046172f2b0c56";
-  // task_id = "5dadaeea6bf9623416eb3fcb"
+  user_id = "5dada94a26a3f42e962c215a";
+  project_id = "5db6b138fc2046172f2b0c56";
+  task_id = "5dadaeea6bf9623416eb3fcb"
   // // task = {assigned : [], checklist: [], comments: [], labels : [], attachments : [], _id : this.task_id, total_time: 0, progression : 0, estimated: 0, priority: "none", status: "", deadline: "", name : "", author_id : "", description : ""}
   // // task;
   constructor(private _dataService: DataService, private nav : NavbarService) { 
