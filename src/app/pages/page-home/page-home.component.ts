@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { DataService } from 'src/app/services/data.service';
 import { User } from 'src/app/models/users.model';
+import { Task } from 'src/app/models/projects.model';
 
 
 @Component({
@@ -11,17 +12,9 @@ import { User } from 'src/app/models/users.model';
 })
 export class PageHomeComponent implements OnInit {
   user : User;
+  tasks : Task[];
 
   constructor(private nav : NavbarService, private _dataService : DataService) { }
-
-  favorite(){
-    const polo = this.user.projects.map((item)=>{
-      if(item.favorite === true){
-        console.log(polo)
-        return true
-      }
-    })
-  }
 
   ngOnInit() {
     this.nav.show();
@@ -30,10 +23,11 @@ export class PageHomeComponent implements OnInit {
     this._dataService.getUserById(id).subscribe((data:User)=>{
       this.user = data['users'];
       //console.log(this.user['projects'][0].favorite)
+      this._dataService.getTasksByUser(id)
+    .subscribe((data: Task[])=>{
+      this.tasks = data;
+      //console.log(this.tasks);
     })
-    
-    
-
+    })
   }
-
 }

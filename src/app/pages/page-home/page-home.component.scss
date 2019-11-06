@@ -1,9 +1,37 @@
 .task-list{
-    font-size: 75%;
+    font-size: 50%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-weight: normal;
 }
 
 .container{
     display: flex;
     flex-direction: row;
     margin: 0;
+}
+.display{
+    display: none;
+}
+
+section{
+    margin-top: 20px;
+}
+
+.tasks{
+    border-bottom: solid 1px black;
+    width: 75%;
+    position: relative;
+}
+.projects{
+    border-bottom: solid 1px black;
+    width: 75%;
+}
+
+app-project{
+    cursor: pointer;
+}
+app-common-task{
+    cursor: pointer;
 }

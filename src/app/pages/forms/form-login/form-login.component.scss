@@ -1,10 +1,15 @@
 .background{
-    
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    background-image: url("../../../../assets/img/background/backgroundAkroko.jpg");
+    width: 100vw;
+    background-image: url("../../../../assets/img/background/tache.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    
 }
 
 h1{
@@ -15,6 +20,7 @@ h1{
 mat-card{
     width: 800px;
     margin: auto;
+    text-align: center;
 }
 
 mat-form-field{
@@ -33,4 +39,16 @@ mat-form-field{
 button {
     width: 200px;
     margin-top: 20px;
+}
+.Imagebasgauche{
+    display: flex;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+.Imagebasdroite{
+    display: flex;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
 }
