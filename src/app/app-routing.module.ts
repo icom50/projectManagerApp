@@ -35,7 +35,6 @@ const routes: Routes = [
   { path : "reset-password", component : PasswordForgottenComponent },
   { path : "sign-up", component : FormSignUpComponent },
   { path : "**", component : PageNotFoundComponent }
-  
 ];
 
 @NgModule({

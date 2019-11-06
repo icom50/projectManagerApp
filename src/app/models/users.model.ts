@@ -28,6 +28,10 @@ export class User {
                 _id: string
             }
         ],
-        public tasks?: string[]
+        public tasks?: [
+            {
+                id: string
+            }
+        ]
     ) { }
 }
