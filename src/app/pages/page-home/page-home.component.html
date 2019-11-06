@@ -6,7 +6,7 @@
         </h2>
         <div class="container">
             <ng-container *ngFor="let task of tasks | slice:0:5">
-                <app-common-task [task_id]="task._id" [project_id]="task.project_id" routerLink="/{{task._id}}" ></app-common-task>
+                <app-common-task [task_id]="task._id" [project_id]="task.project_id" routerLink="/task/{{task._id}}" ></app-common-task>
             </ng-container>
         </div>
     </section>
