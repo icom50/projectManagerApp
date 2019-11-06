@@ -1,13 +1,29 @@
 .wrapperProjects{
-    background: #DCDCDC;
     span,h4{
-     
-        color: white;
+        color: #0a3d62;
+    }
+    h4{
+        width: 75%;
+        border-bottom: 2px solid #0a3d62;
+        position: relative;
+        display: flex;
+        align-items: center;
+        .arrow{
+            width: 15px;
+            height: 15px;
+            background: red;
+            margin-right: 0.5rem;
+        }
+    }
+    .toggleContent{
+        
+        cursor: pointer;
     }
     .wrapper-toggleContent{
-        background: red;
-        margin: 0;
-        padding: 0;
-        
+       
+        display: flex;
+    }
+    .wrapperProject{
+        display: flex;
     }
 }
