@@ -48,6 +48,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MY_FORMAT } from './utils/formats/date.format';
 import {MatRadioModule} from '@angular/material/radio';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 // FontAwesomeModule
@@ -56,6 +57,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // pipe
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+
 
 registerLocaleData(localeFr, 'fr');
 
@@ -109,7 +111,8 @@ registerLocaleData(localeFr, 'fr');
     MatDatepickerModule,
     MatNativeDateModule,
     FontAwesomeModule,
-    MatRadioModule
+    MatRadioModule,
+    DragDropModule
   
   ],
   providers: [
