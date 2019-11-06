@@ -21,6 +21,35 @@
 
     <div class="task--board">
 
+<<<<<<< HEAD
+    <div 
+        class="task--col"
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[doingList, doneList, pausedList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <h3>Todo</h3>
+        <div *ngFor="let task of todoArray"> 
+            <app-task-tile class="example-box" [task]="task" cdkDrag></app-task-tile>  
+        </div> 
+    </div>
+
+    <div 
+        class="task--col"
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="doing"
+        [cdkDropListConnectedTo]="[todoList, doneList, pausedList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <h3>Doing</h3>
+        <div *ngFor="let task of doingArray">  
+            <app-task-tile class="example-box" [task]="task" cdkDrag></app-task-tile>
+        </div> 
+    </div>
+=======
         <div class="task--col">
             <h3>Todo</h3>
             <div *ngFor="let task of todoArray">
@@ -34,6 +63,7 @@
                 <app-task-tile [task]="task"></app-task-tile>
             </div>
         </div>
+>>>>>>> 2950b00fe2e689db4a48ff228f234b3a3e7dba0a
 
 
         <div class="task--col">
