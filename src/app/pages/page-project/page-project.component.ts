@@ -21,6 +21,7 @@ export class PageProjectComponent implements OnInit {
   users;
   checkedList = 0;
   taskStatus;
+  
   todoArray: String[];
   doingArray: String[];
   doneArray: String[];
@@ -42,15 +43,16 @@ export class PageProjectComponent implements OnInit {
   // }
 
   drop(event: CdkDragDrop<string[]>) {
-    console.log("Item dropped")
-    // if (event.previousContainer === event.container) {
-    //   // moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    // } else {
-    //   // transferArrayItem(event.previousContainer.data,
-    //   //                   event.container.data,
-    //   //                   event.previousIndex,
-    //   //                   event.currentIndex);
-    // }
+    if (event.previousContainer === event.container) {
+      console.log("changed column");
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      console.log("didn't changed column");
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
   }
 
   ngOnInit() {
