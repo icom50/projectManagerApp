@@ -7,6 +7,7 @@ import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { from } from 'rxjs';
+import { AuthentificatorService } from '../../../services/authentificator.service';
 
 
 @Component({
@@ -22,9 +23,13 @@ export class CommonSidebarComponent implements OnInit {
   faClipboardCheck = faClipboardCheck;
 
 
-  constructor(private nav :NavbarService) { }
+  constructor(private nav :NavbarService, public auth : AuthentificatorService) { }
   toggle = false;
   status = 'Disable';
+
+  logout(){
+    this.auth.logout()
+  }
 
   ngOnInit() {
   }

@@ -10,8 +10,25 @@ import { AuthInterceptorService} from './auth-interceptor.service'
   providedIn: 'root'
 })
 export class RestService {
+  current_user;
+  token;
+  headers;
+  constructor(private http: HttpClient, auth: AuthInterceptorService) { 
+        //headers
+        this.current_user = localStorage.getItem('current_user') || null
+        this.token = localStorage.getItem("id_token") || null
+        if (this.token != null) {
+          this.headers = new HttpHeaders({
+            "authorization" : `Bearer ${this.token}`,
+            "content-type" : "application/json"
+          })
+      } else {
+        this.headers = new HttpHeaders({
+          "content-type" : "application/json"
+        })
+      }
+  }
 
-  constructor(private http: HttpClient, auth: AuthInterceptorService) { }
 
     // change API's url HERE
     url:string = 'http://localhost:8001/';
@@ -35,23 +52,23 @@ export class RestService {
     return this.http.get(`${this.urlUser}${id}`).pipe(map(data => data as User))
   }
   postUser(user:User): Observable<User>{
-    const headers = new HttpHeaders().set('content-type','application/json');
-    return this.http.post(`${this.urlUser}`,user,{headers});
+    // const headers = new HttpHeaders().set('content-type','application/json');
+    return this.http.post(`${this.urlUser}`,user,{headers : this.headers});
   }
   putUser(user:User): Observable<User>{
-    const headers = new HttpHeaders().set('content-type','application/json');
-    return this.http.put(`${this.urlUser}${user._id}`,user,{headers})
+    // const headers = new HttpHeaders().set('content-type','application/json');
+    return this.http.put(`${this.urlUser}${user._id}`,user,{headers : this.headers})
   }
   deleteUser(id:string): Observable<User>{
-    const headers = new HttpHeaders().set('content-type','application/json');
-    return this.http.delete(`${this.urlUser}${id}`,{headers})
+    // const headers = new HttpHeaders().set('content-type','application/json');
+    return this.http.delete(`${this.urlUser}${id}`,{headers : this.headers})
   }
   //devrait renvoyer un Token, mais inutile pour le moment
   loginUser(user:User): Observable<User>{
     // const headers = new HttpHeaders().set('content-type','application/json');
-    const headers = new HttpHeaders({"content-type":"application/json","authorization":"bearer coucou"});
-    console.log(headers)
-    const token = this.http.post(`${this.urlUser}login`,user,{headers});
+    // const headers = new HttpHeaders({"content-type":"application/json"});
+    console.log(this.headers)
+    const token = this.http.post(`${this.urlUser}login`,user,{headers : this.headers});
     //not a token anymore
     return token;
     // can't use shareReplay() - do not seem to be a big issue
@@ -63,41 +80,42 @@ export class RestService {
     // console.log('ci dessous, un token ourseur')
     // console.log(localStorage);
     // const headers = new HttpHeaders().set('authorization' , bearerToken)
-    const headers = new HttpHeaders().set('content-type','application/json');
-    return this.http.get(this.urlProjects, {headers}).pipe(map (data => data as Project[]))
+    // const headers = new HttpHeaders().set('content-type','application/json');
+    console.log(this.headers)
+    return this.http.get(this.urlProjects, {headers : this.headers}).pipe(map (data => data as Project[]))
   }
   getProjectById(id:string): Observable<Project>{
     return this.http.get(`${this.urlProjects}${id}`).pipe(map(data => data as Project))
   }
   postProject(project:Project): Observable<Project>{
-    const headers = new HttpHeaders().set('content-type','application/json');
-    return this.http.post(`${this.urlProjects}`,project,{headers});
+    // const headers = new HttpHeaders().set('content-type','application/json');
+    return this.http.post(`${this.urlProjects}`,project,{headers : this.headers});
   }
   putProject(project:Project): Observable<Project>{
-    const headers = new HttpHeaders().set('content-type','application/json');
+    // const headers = new HttpHeaders().set('content-type','application/json');
     console.log(`${this.urlProjects}${project._id}`)
     console.log(project)
     console.log({...project})
-    return this.http.put(`${this.urlProjects}${project._id}`,project,{headers})
+    return this.http.put(`${this.urlProjects}${project._id}`,project,{headers : this.headers})
   }
   deleteProject(id:string): Observable<Project>{
-    const headers = new HttpHeaders().set('content-type','application/json');
-    return this.http.delete(`${this.urlProjects}${id}`,{headers})
+    // const headers = new HttpHeaders().set('content-type','application/json');
+    return this.http.delete(`${this.urlProjects}${id}`,{headers : this.headers})
   }
   
-  getTaskById(project_id:string, task_id:string): Observable<any>{
-    return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
-      return data['projects'].tasks.filter( task =>  (task._id === task_id))[0]
-    }))
-  }
-  getTasksByProject(project_id:string): Observable<any[]>{
-    return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
-      return data['projects'].tasks.map(task => task)
-    }))
-  }
-  getUsersByProject(project_id:string): Observable<any[]>{
-    return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
-      return data['projects'].users.map(user => user)
-    }))
-  }
+  // getTaskById(project_id:string, task_id:string): Observable<any>{
+  //   return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
+  //     return data['projects'].tasks.filter( task =>  (task._id === task_id))[0]
+  //   }))
+  // }
+  // getTasksByProject(project_id:string): Observable<any[]>{
+  //   return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
+  //     return data['projects'].tasks.map(task => task)
+  //   }))
+  // }
+  // getUsersByProject(project_id:string): Observable<any[]>{
+  //   return this.http.get(`${this.urlProjects}${project_id}`).pipe(map(data => {
+  //     return data['projects'].users.map(user => user)
+  //   }))
+  // }
 }

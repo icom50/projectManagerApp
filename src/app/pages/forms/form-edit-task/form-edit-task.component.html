@@ -46,7 +46,7 @@
             </section>
             <section>
                 <h3>Task Description</h3>
-                <textarea name="description" ngMaxlength="250" ngModel></textarea>
+                <textarea name="description" ngMaxlength="250" ngModel [value]="task?.description"></textarea>
             </section>
             <!-- <section>
                 <div *ngFor="let comment of task?.comments">

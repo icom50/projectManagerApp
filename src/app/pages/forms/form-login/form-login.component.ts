@@ -62,7 +62,7 @@ export class FormLoginComponent implements OnInit {
     this.user = this.form.value;
     this.auth.login(this.user).subscribe((data:any) => {
         console.log(data);
-        console.log('COUCOU FROM AUTH LOGIN')   
+        // console.log('COUCOU FROM AUTH LOGIN')   
         if(data.error === 403) {
           alert('This user does not exist. Please verify your email and password or create an account');
           this.loginRoute = "/login";
