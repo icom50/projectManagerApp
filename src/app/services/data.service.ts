@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Project } from '../models/projects.model';
+import { Project, Task } from '../models/projects.model';
 import { User } from '../models/users.model';
 import { AuthInterceptorService} from './auth-interceptor.service'
 import { RestService } from './rest.service'
@@ -63,6 +63,14 @@ export class DataService {
   deleteProject(id:string): Observable<Project>{
     return this.restService.deleteProject(id)
   }
+  // putTaskByProject(project_id:string, task:Task) { // work in progress
+  //   this.getProjectById(project_id).subscribe((data:Project) =>{
+  //     let project = data['projects'];
+
+  //     project.tasks.splice(project.tasks.findIndex(CurrentTask => CurrentTask['_id'] === task._id ),1,task)
+  //     this.putProject(project).subscribe()
+  //   })
+  // }
   
   getTaskById(project_id:string, task_id:string): Observable<any>{
     return this.restService.getProjectById(project_id).pipe(map(data => {
