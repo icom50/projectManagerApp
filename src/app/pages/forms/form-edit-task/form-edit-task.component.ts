@@ -15,8 +15,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 })
 
 export class FormEditTaskComponent implements OnInit {
-  user: User;
-  users: User[];
+
   project: Project;
   task : Task;
   editTask : FormGroup;
@@ -26,9 +25,9 @@ export class FormEditTaskComponent implements OnInit {
   // @Input("project_id") project_id;
   // @Input("task_id") task_id;
 
-  user_id = "5dada94a26a3f42e962c215a";
-  project_id = "5db6b138fc2046172f2b0c56";
-  task_id = "5dadaeea6bf9623416eb3fcb"
+  
+  id = "5da98631e2dcd109d6ab35db";
+  
   // // task = {assigned : [], checklist: [], comments: [], labels : [], attachments : [], _id : this.task_id, total_time: 0, progression : 0, estimated: 0, priority: "none", status: "", deadline: "", name : "", author_id : "", description : ""}
   // // task;
   constructor(private _dataService: DataService, public dialogRef: MatDialogRef<FormEditTaskComponent>,@Inject(MAT_DIALOG_DATA) public data: any) { 
@@ -115,14 +114,14 @@ export class FormEditTaskComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.data.project_id)
-    console.log(this.data.task_id)
-    // this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
-    //   this.project = data['projects'];
-    //   console.log(this.project)
-    // })
+    // console.log(this.data.project_id)
+    // console.log(this.data.task_id)
+    this._dataService.getProjectById(this.data.project_id).subscribe((data:Project) =>{
+      this.project = data['projects'];
+      console.log(this.project);
+    })
     this._dataService.getTaskById(this.data.project_id, this.data.task_id).subscribe((data:Task)=>{
-      console.log(data)
+      console.log(data);
       this.task = data;
       this.editTask.setValue(this.task)
     })

@@ -24,7 +24,9 @@
                 </div>
                 <div>
                     <mat-form-field>
-                        <input matInput placeholder="Deadline" name="deadline" formControlName="deadline">
+                        <input matInput [matDatepicker]="deadline" placeholder="Deadline" formControlName="deadline">
+                        <mat-datepicker-toggle matSuffix [for]="deadline"></mat-datepicker-toggle>
+                        <mat-datepicker #deadline></mat-datepicker>
                     </mat-form-field>
                 </div>
             </section>
