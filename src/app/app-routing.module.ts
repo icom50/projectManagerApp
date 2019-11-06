@@ -19,7 +19,7 @@ import { FormEditProjectComponent } from './pages/forms/form-edit-project/form-e
 import { FormEditTaskComponent } from './pages/forms/form-edit-task/form-edit-task.component';
 
 const routes: Routes = [
-  { path : "", component : FormLoginComponent },
+  { path : "", component : PageLandingComponent },
   { path : "home", component : PageHomeComponent },
   { path : "log", component : PageLogComponent },
   //besoin d'un /project pour arriver sur la page 'board' avec tout les projets
@@ -31,7 +31,7 @@ const routes: Routes = [
   { path : "project/details/:id", component : ProjectDetailsComponent},
   { path : "project/details/:id/edit", component : FormEditProjectComponent },
   { path : "create", component : FormCreateProjectComponent},
-  { path : "testgwen", component : FormEditTaskComponent},
+  { path : "task/:id", component : FormEditTaskComponent},
   { path : "reset-password", component : PasswordForgottenComponent },
   { path : "sign-up", component : FormSignUpComponent },
   { path : "**", component : PageNotFoundComponent }
