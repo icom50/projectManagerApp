@@ -1,27 +1,50 @@
-<div class="content">
-
-        
+<div class="content">       
     
 <h1>Boards</h1>
 
 
-<div class="wrapperProjects">
-    <div class="toggleContent" (click)="toggleDisplay()">
-        <div class="wrapper-toggleContent">
-            <!-- <fa-icon [icon]="isShow ? sortDown : sortUp"></fa-icon> -->
-            <h4><span class="arrow"><fa-icon [icon]="isShow ? sortDown : sortUp"></fa-icon></span>Projects Created</h4>
-        </div>
-    </div>
+<app-zippy title='Projects created'>
+        <div class="wrapperProject">
+                <div *ngFor="let project of projectsUser">
+                    <div *ngIf="project.status === 'created'">
+                        <app-project [project_id]="project?._id"></app-project>
+                    </div>
+                </div>
+            </div>         
+</app-zippy>
 
-<div class="wrapperProject" *ngIf="isShow">
-    <div *ngFor="let project of projectsUser">
-        <div *ngIf="project.status === 'created'">
-            <app-project [project_id]="project?._id"></app-project>
-        </div>
-    </div>
-</div>
-   
-</div>
+
+<app-zippy title='Projects started'>
+        <div class="wrapperProject">
+                <div *ngFor="let project of projectsUser">
+                    <div *ngIf="project.status === 'started'">
+                        <app-project [project_id]="project?._id"></app-project>
+                    </div>
+                </div>
+            </div>      
+</app-zippy>
+
+
+<app-zippy title='Projects finished'>
+        <div class="wrapperProject">
+                <div *ngFor="let project of projectsUser">
+                    <div *ngIf="project.status === 'finished'">
+                        <app-project [project_id]="project?._id"></app-project>
+                    </div>
+                </div>
+            </div>      
+</app-zippy>
+
+
+<app-zippy title='Projects abandoned'>
+        <div class="wrapperProject">
+                <div *ngFor="let project of projectsUser">
+                    <div *ngIf="project.status === 'abandoned'">
+                        <app-project [project_id]="project?._id"></app-project>
+                    </div>
+                </div>
+            </div>      
+</app-zippy>
 
 </div>
 

@@ -8,20 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ZippyComponent implements OnInit {
 
-
   
   constructor() { }
 
-  // Img
-  sortUp = '../../../../assets/img/icons/arrowUp.png';
-  sortDown = '../../../../assets/img/icons/arrowDown.png';
-  favSelect = '../../../../assets/img/icons/favorite-notSelected.svg';
-  favNotSelect = '../../../../assets/img/icons/favorite-selected.svg';
-
-
   
   isShow: boolean = true;
-  isSelected: boolean = false;
 
   @Input() title: string;
   @Input() projects;
@@ -29,11 +20,6 @@ export class ZippyComponent implements OnInit {
   
   toggleDisplay() {
     this.isShow = !this.isShow;
-  }
-
-  toggleFav() {
-    this.isSelected = !this.isSelected;
-
   }
 
   ngOnInit() {

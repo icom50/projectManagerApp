@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Project } from 'src/app/models/projects.model';
 import { NavbarService } from 'src/app/services/navbar.service';
-import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -13,8 +12,8 @@ import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 })
 export class PageProjectsComponent implements OnInit {
 
-  sortUp = faSortUp;
-  sortDown = faSortDown;
+ 
+  title;
 
   isShow: boolean = true;
   toggleDisplay() {
