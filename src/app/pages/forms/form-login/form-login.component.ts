@@ -3,6 +3,7 @@ import { User } from '../../../models/users.model';
 import { FormGroup, FormBuilder,FormControl, Validators, AbstractControl } from '@angular/forms';
 import { DataService } from '../../../services/data.service'; 
 import { NavbarService } from 'src/app/services/navbar.service';
+import { AuthentificatorService } from '../../../services/authentificator.service'
 
 @Component({
   selector: 'app-form-login',
@@ -17,7 +18,7 @@ export class FormLoginComponent implements OnInit {
   passwordControl: AbstractControl;
   loginRoute;
 
-  constructor(fb: FormBuilder, private dataService: DataService, private nav : NavbarService) { 
+  constructor(fb: FormBuilder, private dataService: DataService, private nav : NavbarService, private auth : AuthentificatorService) { 
     this.form = fb.group({
       'login': ['', Validators.compose([Validators.required, Validators.email])],
       'password': ['', Validators.required]
@@ -42,21 +43,37 @@ export class FormLoginComponent implements OnInit {
   login(value: any): void {
     // console.log(this.form);
     
+    // this.user = this.form.value;
+    // this.dataService.loginUser(this.user).subscribe((data:any) => {
+    //   // console.log(data.error);   
+    //   if(data.error === 403) {
+    //     alert('This user does not exist. Please verify your email and password or create an account');
+    //     this.loginRoute = "/login";
+    //   } else {
+    //     //if user found, go find his _id and add it to url
+    //     this.dataService.getUserByEmail(this.user.email).subscribe((data:any) => {
+    //       const userId = data.users._id;
+    //       this.loginRoute = `/user/`+userId;
+    //     })
+    //   }
+    // });
+
+    // ^- code avant la création de l'authentificator.service || v- code de l'authentificator service
     this.user = this.form.value;
-    this.dataService.loginUser(this.user).subscribe((data:any) => {
-      // console.log(data.error);   
-      if(data.error === 403) {
-        alert('This user does not exist. Please verify your email and password or create an account');
-        this.loginRoute = "/login";
-      } else {
-        //if user found, go find his _id and add it to url
-        this.dataService.getUserByEmail(this.user.email).subscribe((data:any) => {
-          const userId = data.users._id;
-          this.loginRoute = `/user/`+userId;
-        })
-      }
-    });
-    
+    this.auth.login(this.user).subscribe((data:any) => {
+        console.log(data);
+        // console.log('COUCOU FROM AUTH LOGIN')   
+        if(data.error === 403) {
+          alert('This user does not exist. Please verify your email and password or create an account');
+          this.loginRoute = "/login";
+        } else {
+          //if user found, go find his _id and add it to url
+          this.dataService.getUserByEmail(this.user.email).subscribe((data:any) => {
+            const userId = data.users._id;
+            this.loginRoute = `/user/`+userId;
+          })
+        }
+      });
     
   }
 

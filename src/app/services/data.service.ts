@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Project } from '../models/projects.model';
 import { User } from '../models/users.model';
+import { AuthInterceptorService} from './auth-interceptor.service'
 import { RestService } from './rest.service'
 
 @Injectable({
