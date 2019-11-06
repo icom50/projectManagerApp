@@ -21,33 +21,58 @@
 
     <div class="task--board">
 
-        <div class="task--col">
+        <div 
+            class="task--col"
+            cdkDropList
+            #todoList="cdkDropList"
+            [cdkDropListData]="todoArray"
+            [cdkDropListConnectedTo]="[doingList, doneList, pausedList]"
+            (cdkDropListDropped)="drop($event)">
             <h3>Todo</h3>
-            <div *ngFor="let task of todoArray">
-                <app-task-tile [task]="task"></app-task-tile>
-            </div>
+            <div *ngFor="let task of todoArray" cdkDrag> 
+                <app-task-tile class="example-box" [task]="task" ></app-task-tile>  
+            </div> 
         </div>
 
-        <div class="task--col">
+        <div 
+            class="task--col"
+            cdkDropList
+            #doingList="cdkDropList"
+            [cdkDropListData]="doingArray"
+            [cdkDropListConnectedTo]="[todoList, doneList, pausedList]"
+            (cdkDropListDropped)="drop($event)">
             <h3>Doing</h3>
-            <div *ngFor="let task of doingArray">
-                <app-task-tile [task]="task"></app-task-tile>
-            </div>
+            <div *ngFor="let task of doingArray" cdkDrag>  
+                <app-task-tile class="example-box" [task]="task" ></app-task-tile>
+            </div> 
         </div>
 
 
-        <div class="task--col">
+
+        <div 
+            class="task--col"
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="doneArray"
+            [cdkDropListConnectedTo]="[todoList, doingList, pausedList]"
+            (cdkDropListDropped)="drop($event)">
             <h3>Done</h3>
-            <div *ngFor="let task of doneArray">
-                <app-task-tile [task]="task"></app-task-tile>
+            <div *ngFor="let task of doneArray" cdkDrag>
+                <app-task-tile [task]="task" ></app-task-tile>
             </div>
         </div>
 
 
-        <div class="task--col">
+        <div 
+            class="task--col"
+            cdkDropList
+            #pausedList="cdkDropList"
+            [cdkDropListData]="pausedArray"
+            [cdkDropListConnectedTo]="[todoList, doingList, doneList]"
+            (cdkDropListDropped)="drop($event)">
             <h3>Paused</h3>
-            <div *ngFor="let task of pausedArray">
-                <app-task-tile [task]="task"></app-task-tile>
+            <div *ngFor="let task of pausedArray" cdkDrag>
+                <app-task-tile [task]="task" ></app-task-tile>
             </div>
         </div>
     </div>

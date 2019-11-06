@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { NavbarService } from 'src/app/services/navbar.service';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class PageProjectComponent implements OnInit {
   users;
   checkedList = 0;
   taskStatus;
+  
   todoArray: String[];
   doingArray: String[];
   doneArray: String[];
@@ -39,6 +41,19 @@ export class PageProjectComponent implements OnInit {
   //   this.task_id = id;
   //   // this.project_id = thiproject_id;
   // }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      console.log("changed column");
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      console.log("didn't changed column");
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
+  }
 
   ngOnInit() {
     this.nav.show();

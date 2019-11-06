@@ -48,7 +48,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatRadioModule } from '@angular/material/radio';
+import {MatRadioModule} from '@angular/material/radio';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 
 // FontAwesomeModule
@@ -60,8 +62,6 @@ import { MY_FORMAT } from './utils/formats/date.format';
 import localeFr from '@angular/common/locales/fr';
 import { AuthentificatorService } from './services/authentificator.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
-
-
 
 registerLocaleData(localeFr, 'fr');
 
@@ -114,7 +114,8 @@ registerLocaleData(localeFr, 'fr');
     MatDatepickerModule,
     MatNativeDateModule,
     FontAwesomeModule,
-    MatRadioModule
+    MatRadioModule,
+    DragDropModule
   
   ],
   providers: [
