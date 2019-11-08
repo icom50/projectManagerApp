@@ -63,11 +63,11 @@ export class DataService {
   deleteProject(id:string): Observable<Project>{
     return this.restService.deleteProject(id)
   }
-  putTaskByProject(project_id:string, task:Task) { // need to be tested
+  putTaskByProject(project_id:string, task?:Task) { // need to be tested
     this.getProjectById(project_id).subscribe((data:Project) =>{
       let project = data['projects'];
-      let index = project.tasks.findIndex(CurrentTask => CurrentTask['_id'] === task._id )
-      if (index === -1) {
+      if (task) let index = project.tasks.findIndex(CurrentTask => CurrentTask['_id'] === task._id )
+      if (index === -1 || !(task) ) {
         project.tasks.push(task)
       } else {
         project.tasks.splice(index,1,task)
