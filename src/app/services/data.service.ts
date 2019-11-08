@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Project, Task } from '../models/projects.model';
@@ -63,14 +63,18 @@ export class DataService {
   deleteProject(id:string): Observable<Project>{
     return this.restService.deleteProject(id)
   }
-  // putTaskByProject(project_id:string, task:Task) { // work in progress
-  //   this.getProjectById(project_id).subscribe((data:Project) =>{
-  //     let project = data['projects'];
-
-  //     project.tasks.splice(project.tasks.findIndex(CurrentTask => CurrentTask['_id'] === task._id ),1,task)
-  //     this.putProject(project).subscribe()
-  //   })
-  // }
+  putTaskByProject(project_id:string, task:Task) { // need to be tested
+    this.getProjectById(project_id).subscribe((data:Project) =>{
+      let project = data['projects'];
+      let index = project.tasks.findIndex(CurrentTask => CurrentTask['_id'] === task._id )
+      if (index === -1) {
+        project.tasks.push(task)
+      } else {
+        project.tasks.splice(index,1,task)
+      }
+      this.putProject(project).subscribe()
+    })
+  }
   
   getTaskById(project_id:string, task_id:string): Observable<any>{
     return this.restService.getProjectById(project_id).pipe(map(data => {
