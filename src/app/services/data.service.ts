@@ -65,8 +65,9 @@ export class DataService {
   }
   putTaskByProject(project_id:string, task?:Task) { // need to be tested
     this.getProjectById(project_id).subscribe((data:Project) =>{
+      let index;
       let project = data['projects'];
-      if (task) let index = project.tasks.findIndex(CurrentTask => CurrentTask['_id'] === task._id )
+      if (task) index = project.tasks.findIndex(CurrentTask => CurrentTask['_id'] === task._id )
       if (index === -1 || !(task) ) {
         project.tasks.push(task)
       } else {
