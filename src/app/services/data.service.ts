@@ -63,12 +63,10 @@ export class DataService {
   deleteProject(id:string): Observable<Project>{
     return this.restService.deleteProject(id)
   }
+  
   putTaskByProject(project_id:string, task:Task) { // need to be tested
     this.getProjectById(project_id).subscribe((data:Project) =>{
       let index;
-      console.log('-------------------------------------------------')
-      console.log(task)
-      console.log('-------------------------------------------------')
       let project = data['projects'];
       if (task._id) index = project.tasks.findIndex(CurrentTask => CurrentTask['_id'] === task._id )
       if (index === -1 || !(task._id) ) {
@@ -77,6 +75,20 @@ export class DataService {
         project.tasks.splice(index,1,task)
       }
       this.putProject(project).subscribe()
+    })
+  }
+  deleteTaskByProject(project_id:string, task_id:string){
+    this.getProjectById(project_id).subscribe((data:Project)=>{
+      let project = data['projects'];
+      let index;
+      if (task_id) index = project.tasks.findIndex(CurrentTask => CurrentTask['_id'] === task_id )
+      if (index === -1 || !(task_id) ) {
+        console.log('this task no longer exist or has never existed')
+      } else {
+        project.tasks.splice(index,1)
+      }
+      this.putProject(project).subscribe()
+      
     })
   }
   
