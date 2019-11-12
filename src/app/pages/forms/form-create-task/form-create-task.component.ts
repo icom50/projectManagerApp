@@ -29,11 +29,13 @@ export class FormCreateTaskComponent implements OnInit {
     f.value.assigned = this.newTask.assigned
     // Update the project before saving for not erasing new datas
     console.log(this.project.tasks)
-    this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
-      this.project = data['projects'];
-      this.project.tasks.push(f.value)
-      this._dataService.putProject(this.project).subscribe()
-    })
+    // this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
+    //   this.project = data['projects'];
+    //   this.project.tasks.push(f.value)
+    //   this._dataService.putProject(this.project).subscribe()
+    // })
+    console.log(this.newTask)
+    this._dataService.putTaskByProject(this.project_id, f.value)
     
 
   }
