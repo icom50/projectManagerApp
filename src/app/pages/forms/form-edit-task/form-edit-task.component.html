@@ -53,29 +53,20 @@
                 <h3>Members</h3>
 
                 <ul>
-                    <li *ngFor="let member of task?.assigned"><img src="{{member.avatar_url}}"
+                    <li *ngFor="let member of task?.assigned; let i = index"><img src="{{member.avatar_url}}"
                             alt="{{member.user_id}}"><button (click)="unnasignedUser(member.user_id)">Remove
                             user</button></li>
                     <li>
                         <mat-form-field>
                             <mat-label>Assign a member</mat-label>
                             <mat-select matNativeControl name="assigned" formControlName="assigned">
-                                <mat-option [value]="user" *ngFor="let user of project?.users">{{user._id}}</mat-option>
+                                <mat-option [value]="email" *ngFor="let email of emails; let i = index">{{email}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </li>
+                    <button (click)="addAssignedUser(editTask.get('assigned').value)">add member</button>
                 </ul>
             </section>
-
-            <!-- <section>
-                <div *ngFor="let comment of task?.comments">
-                    <h4>{{getMember(comment.author_id)}} - {{comment.date}}</h4>
-                    <span>{{comment.comment}}</span>
-                </div>
-                <span>{{logged.username || logged.firstname || logged.email || 'Your comment'}} :</span>
-                <textarea ngModel name="newComment" maxlength="250"></textarea>
-                <button (click)="sendComment(f.value.newComment)">Send your comment</button>
-            </section> -->
             <section>
                 <h3>To do list</h3>
                 <ul>
