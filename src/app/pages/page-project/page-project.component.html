@@ -72,7 +72,7 @@
             (cdkDropListDropped)="drop($event)">
             <h3>Paused</h3>
             <div *ngFor="let task of pausedArray" cdkDrag>
-                <app-task-tile [task]="task" ></app-task-tile>
+                <app-task-tile [task]="task" [id]="task._id" ></app-task-tile>
             </div>
         </div>
     </div>
