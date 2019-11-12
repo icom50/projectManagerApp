@@ -16,7 +16,6 @@
         </div>
         <h6>{{ task.name }}</h6>
     </mat-card-title>
-
     <mat-card-content>
         <div *ngIf="task.assigned?.length != 0"  class="task--collaborators">
             <div *ngFor="let user of task.assigned; let i=index" >
