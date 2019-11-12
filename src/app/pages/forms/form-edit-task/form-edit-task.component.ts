@@ -94,6 +94,9 @@ export class FormEditTaskComponent implements OnInit {
 
 
   deleteTask(){
+    event.preventDefault()
+    this._dataService.deleteTaskByProject(this.project._id,this.task._id)
+    // this.goBack()
     
   }
 
