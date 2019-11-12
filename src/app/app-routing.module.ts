@@ -32,6 +32,7 @@ const routes: Routes = [
   { path : "project/details/:id/edit", component : FormEditProjectComponent },
   { path : "create", component : FormCreateProjectComponent},
   { path : "task/:id", component : FormEditTaskComponent},
+  { path : "task", component : FormCreateTaskComponent},
   { path : "reset-password", component : PasswordForgottenComponent },
   { path : "sign-up", component : FormSignUpComponent },
   { path : "**", component : PageNotFoundComponent }

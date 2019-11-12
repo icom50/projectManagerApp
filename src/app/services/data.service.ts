@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵConsole } from '@angular/core';
 // import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -63,12 +63,15 @@ export class DataService {
   deleteProject(id:string): Observable<Project>{
     return this.restService.deleteProject(id)
   }
-  putTaskByProject(project_id:string, task?:Task) { // need to be tested
+  putTaskByProject(project_id:string, task:Task) { // need to be tested
     this.getProjectById(project_id).subscribe((data:Project) =>{
       let index;
+      console.log('-------------------------------------------------')
+      console.log(task)
+      console.log('-------------------------------------------------')
       let project = data['projects'];
-      if (task) index = project.tasks.findIndex(CurrentTask => CurrentTask['_id'] === task._id )
-      if (index === -1 || !(task) ) {
+      if (task._id) index = project.tasks.findIndex(CurrentTask => CurrentTask['_id'] === task._id )
+      if (index === -1 || !(task._id) ) {
         project.tasks.push(task)
       } else {
         project.tasks.splice(index,1,task)

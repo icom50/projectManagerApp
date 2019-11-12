@@ -45,12 +45,14 @@ export class FormEditTaskComponent implements OnInit {
     event.preventDefault();
     this.fillTask(f)
     console.log(this.task)
-    this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
-      this.project = data['projects'];
-      this.project.tasks.splice(this.project.tasks.findIndex(task => task['_id'] === this.task_id ),1,this.task)
-      this._dataService.putProject(this.project).subscribe()
-      this.goBack()
-    })
+    // this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
+    //   this.project = data['projects'];
+    //   this.project.tasks.splice(this.project.tasks.findIndex(task => task['_id'] === this.task_id ),1,this.task)
+    //   this._dataService.putProject(this.project).subscribe()
+    //   this.goBack()
+    // })
+    this._dataService.putTaskByProject(this.project_id, this.task)
+    this.goBack()
     // console.log(f.value)
   }
 

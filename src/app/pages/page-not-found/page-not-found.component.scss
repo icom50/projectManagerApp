@@ -1,9 +1,19 @@
-h2, h3 {
-    color: red;
-    text-align: center;
+$colorText : rgb(77, 77, 77);
+
+a{
+    // text-decoration: none;
+    color:$colorText;
+    font-weight: bolder;
 }
 
 img {
     display: block;
     margin:auto;
+}
+
+#global{
+    width: 900px;
+    margin:auto;
+    color:$colorText;
+    text-align: center;
 }
