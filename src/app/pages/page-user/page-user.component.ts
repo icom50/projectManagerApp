@@ -68,8 +68,8 @@ export class PageUserComponent implements OnInit {
     });
 
     const id = this.route.snapshot.params.id;
-    const current_user = localStorage.getItem('current_user').toString()
-    // const id = "5db6af162d24d6190d8855f6"
+    const current_user = localStorage.getItem('current_user').toString();
+    // const id = "5da987981a158f09eb249ceb"
 
 
     this
@@ -78,7 +78,7 @@ export class PageUserComponent implements OnInit {
     .subscribe((data: User) => {
       this.user = data['users'];
       this.form.setValue(this.user) // va remplir tout les champs correspondant
-      console.log(id+' --- '+ current_user)      
+      console.log(id + ' --- ' + current_user);
     })
   }
 }
