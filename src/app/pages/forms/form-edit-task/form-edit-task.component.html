@@ -58,10 +58,10 @@
                             user</button></li>
                     <li>
                         <mat-form-field>
-                            <select matNativeControl name="assigned" formControlName="assigned">
-                                <option [value]="assign" selected>Assign a member</option>
-                                <option [value]="user" *ngFor="let user of project?.users">{{user._id}}</option>
-                            </select>
+                            <mat-label>Assign a member</mat-label>
+                            <mat-select matNativeControl name="assigned" formControlName="assigned">
+                                <mat-option [value]="user" *ngFor="let user of project?.users">{{user._id}}</mat-option>
+                            </mat-select>
                         </mat-form-field>
                     </li>
                 </ul>
