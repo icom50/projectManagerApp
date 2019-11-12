@@ -87,8 +87,9 @@ export class FormEditTaskComponent implements OnInit {
     console.log(id)
   }
 
-  addToCheckList() {
-    console.log(this.task.checklist)
+  addToCheckList(item) {
+    console.log(item)
+    this.editTask.controls['addCheckList'].reset()
   }
 
   // removeFromChecklist(i){
@@ -140,7 +141,8 @@ export class FormEditTaskComponent implements OnInit {
       labels: new FormControl(),
       comments: new FormControl(),
       checklist: new FormControl(),
-      _id: new FormControl()
+      _id: new FormControl(),
+      //addCheckList: new FormControl([null])
 
     });
   }
