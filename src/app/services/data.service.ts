@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Project } from '../models/projects.model';
+import { Project, Task } from '../models/projects.model';
 import { User } from '../models/users.model';
+import { AuthInterceptorService} from './auth-interceptor.service'
 import { RestService } from './rest.service'
 
 @Injectable({
@@ -61,6 +62,19 @@ export class DataService {
   }
   deleteProject(id:string): Observable<Project>{
     return this.restService.deleteProject(id)
+  }
+  putTaskByProject(project_id:string, task?:Task) { // need to be tested
+    this.getProjectById(project_id).subscribe((data:Project) =>{
+      let index;
+      let project = data['projects'];
+      if (task) index = project.tasks.findIndex(CurrentTask => CurrentTask['_id'] === task._id )
+      if (index === -1 || !(task) ) {
+        project.tasks.push(task)
+      } else {
+        project.tasks.splice(index,1,task)
+      }
+      this.putProject(project).subscribe()
+    })
   }
   
   getTaskById(project_id:string, task_id:string): Observable<any>{

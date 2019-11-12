@@ -1,10 +1,8 @@
-<div class="wrapperProjects">
-        <div class="toggleContent" (click)="toggleDisplay()">
-            <div class="content">
-                <span><img [src]="isShow ? sortUp : sortDown" alt="Sort Up and Down"></span>
-                <h4>{{title}}</h4>
-            </div>
+<div class="zippy">
+        <div class="zippy__title" (click)="toggleDisplay()">                    
+            <span>{{isShow ? '&#x25BC;' : '&#x25B2;'}}</span><h4>{{title}}</h4>
         </div>
-        {{projects[0].name}}
-        <ng-content></ng-content>
+        <ng-content *ngIf="isShow"></ng-content>
+
 </div>
+

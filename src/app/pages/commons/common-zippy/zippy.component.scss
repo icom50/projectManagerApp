@@ -1,16 +1,14 @@
-.toggleContent{
- 
-    cursor: pointer;
-    fa-icon{
-        float: left;
-        padding-right: 10px;
-        vertical-align: center;
+.zippy{
+    .zippy__title{
+        display: flex;
+        cursor: pointer;
+        h4{
+            width: 600px;
+            padding-left: 10px;
+            border-bottom: 1px solid black;
+        }
     }
-    h4{
-        width: 600px;
-        border-bottom: 1px solid black;
-        background: red;
-    }
+    
 }
  
 
