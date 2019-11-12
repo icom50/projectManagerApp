@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { NavbarService } from 'src/app/services/navbar.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { Task } from 'src/app/models/projects.model';
 
 
 @Component({
@@ -21,6 +22,9 @@ export class PageProjectComponent implements OnInit {
   users;
   checkedList = 0;
   taskStatus;
+  targetId;
+  task: Task = {}
+  task_id;
   
   todoArray: String[];
   doingArray: String[];
@@ -39,19 +43,53 @@ export class PageProjectComponent implements OnInit {
   // exportId(id) {
   //   console.log('clicked');
   //   this.task_id = id;
-  //   // this.project_id = thiproject_id;
+  //   // this.project_id = this.project_id;
   // }
 
+  passId(id) {
+    console.log(id);
+  }
+
   drop(event: CdkDragDrop<string[]>) {
+    // this.task_id = 
+    console.log(event)
+    console.log(event)
     if (event.previousContainer === event.container) {
-      console.log("changed column");
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      console.log("didn't changed column");
       transferArrayItem(event.previousContainer.data,
                         event.container.data,
                         event.previousIndex,
                         event.currentIndex);
+
+      this.targetId = event.container._dropListRef.element;
+      console.log("target column : " + this.targetId.id);
+      // this.task_id = ;
+      switch(this.targetId.id) {
+        case 'cdk-drop-list-0' :
+          console.log("Go to TODO");
+          break;
+        case 'cdk-drop-list-1' :
+          console.log("Go to DOING");
+          break;
+        case 'cdk-drop-list-2' :
+          console.log("Go to DONE");
+          break;
+        case 'cdk-drop-list-3' :
+          console.log("Go to PAUSED");
+          break;
+        
+      }
+
+      // this.dataService.getTaskById(this.project_id, this.task_id).subscribe((data:Task)=>{
+      //   console.log(data)
+      //   this.task = data;
+      // })
+
+      // console.log("TodoArray : " + this.todoArray);
+      // console.log("doingArray : " + this.doingArray);
+      // console.log("doneArray : " + this.doneArray);
+      // console.log("pausedArray : " + this.pausedArray);
     }
   }
 
@@ -76,7 +114,6 @@ export class PageProjectComponent implements OnInit {
       .subscribe((data:any) => {
         // console.log(data);
         this.tasks = data;
-
   
         this.tasks.map(oneTask => {
           // console.log(oneTask)
