@@ -79,7 +79,7 @@ export class PageProjectComponent implements OnInit {
           console.log("Go to PAUSED");
           break;
         
-      }
+      } // if in the same list than before, don't update
 
       // this.dataService.getTaskById(this.project_id, this.task_id).subscribe((data:Task)=>{
       //   console.log(data)
