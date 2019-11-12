@@ -51,6 +51,7 @@ import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular
 import {MatRadioModule} from '@angular/material/radio';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 
@@ -118,7 +119,8 @@ registerLocaleData(localeFr, 'fr');
     MatDialogModule,
     FontAwesomeModule,
     MatRadioModule,
-    DragDropModule
+    DragDropModule,
+    MatCheckboxModule
   
   ],
   providers: [

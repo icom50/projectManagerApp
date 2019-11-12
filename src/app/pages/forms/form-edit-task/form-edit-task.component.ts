@@ -83,34 +83,19 @@ export class FormEditTaskComponent implements OnInit {
     console.log(id)
   }
 
-  // addToCheckList(i: NgForm){
-  //   event.preventDefault()
-  //   //TODO ajouter si '' ou existe déjà, ne pas
-  //   let name = i.value
-  //   console.log(i.value)
-  //   this.task.checklist.push({name, done: false})
-  //   // i.controls.value.reset
-  // }
+  addToCheckList(){
+    console.log(this.task.checklist)
+  }
 
   // removeFromChecklist(i){
   //   event.preventDefault()
   //   this.task.checklist.splice(i,1)
   // }
 
-  // goBack(){
-  //   event.preventDefault()
-  //   console.log('check function goBack() in form-edit-task.component.ts')
-  // }
 
-  // deleteTask(){
-  //   event.preventDefault()
-  //   this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
-  //     this.project = data['projects'];
-  //     this.project.tasks.splice(this.project.tasks.findIndex(task => task['_id'] === this.task_id ),1)
-  //     this._dataService.putProject(this.project).subscribe()
-  //     this.goBack()
-  //   })
-  // }
+  deleteTask(){
+    
+  }
 
   ngOnInit() {
 
@@ -118,7 +103,7 @@ export class FormEditTaskComponent implements OnInit {
     // console.log(this.data.task_id)
     this._dataService.getProjectById(this.data.project_id).subscribe((data:Project) =>{
       this.project = data['projects'];
-      console.log(this.project);
+      console.log(this.project.users);
     })
     this._dataService.getTaskById(this.data.project_id, this.data.task_id).subscribe((data:Task)=>{
       console.log(data);
