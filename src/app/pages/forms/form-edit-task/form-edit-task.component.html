@@ -1,53 +1,72 @@
-<div class="form-bg"><div class="form-content">
-        <span class="closer" (click)="goBack()">Back</span>
-        <h2>{{project?.name}}</h2>
-        <form  *ngIf="task?.name != 'not loaded yet'" #f="ngForm" (submit)="editTask(f)" ngNativeValidate>
+<div class="form-bg">
+    <div class="form-content">
+        <!-- <span class="closer" (click)="goBack()">Back</span> -->
+        <!-- <h2>{{data['tasks'].name}}</h2> -->
+        <form [formGroup]="editTask" submit="onSubmit()">
             <section>
 
                 <!-- <div>Barre d'évolution</div>  <span>{{task?.progression}}%</span>-->
                 <!-- <span>Mark complete</span> -->
             </section>
             <section>
-                <label for="name">Task's name </label> <br/><input name="name" ngModel #name="ngModel" [value]="task.name"required > <br/>
-                <label for="estimated">Estimated time </label> <br/><input name="estimated" ngModel #estimated="ngModel" [value]="task.estimated" > <br/>
-                <!-- <mat-form-field>
-                    <label for="name">Deadline </label> <br/>
-                    <input matInput [matDatePicker]="deadline" name="deadline" placeholder="Deadline" ngModel #deadline="ngModel" [value]="task.deadline">
-                    <mat-datepicker-toggle matSuffix [for]="deadline"></mat-datepicker-toggle>
-                    <mat-datepicker #deadline></mat-datepicker> <br/>
-                </mat-form-field> -->
-            <mat-form-field>
-                <label for="deadline">Deadline </label> <br/>
-                <input matInput [matDatepicker]="deadline" placeholder="Deadline" ngModel   #deadline="ngModel" [value]="task.deadline" name="deadline">
-                <mat-datepicker-toggle matSuffix [for]="deadline"></mat-datepicker-toggle>
-                <mat-datepicker #deadline></mat-datepicker>
-            </mat-form-field>
-                <div>Priority : </div>
-                <select name="priority" id="priority" ngModel>
-                    <option value="none" [selected]="task?.priority === 'none'">None</option>
-                    <option value="high" [selected]="task?.priority === 'high'" >High</option>
-                    <option value="middle" [selected]="task?.priority === 'middle'">Middle</option>
-                    <option value="low" [selected]="task?.priority === 'low'">Low</option>
-                </select> <br/>
-                <span>created by {{task?.author_id}}</span>
+                <div>
+                    <mat-form-field>
+
+                        <input matInput placeholder="Task's name" name="name" type="text" formControlName="name"
+                            required>
+                        <mat-error *ngIf="editTask.controls['name'].invalid">The name is required</mat-error>
+
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <textarea matInput placeholder="Description" name="description" ngMaxlength="250"
+                            formControlName="description"></textarea>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput placeholder="Time estimated" name="estimated" formControlName="estimated">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="deadline" placeholder="Deadline" formControlName="deadline">
+                        <mat-datepicker-toggle matSuffix [for]="deadline"></mat-datepicker-toggle>
+                        <mat-datepicker #deadline></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </section>
+            <section>
+                <mat-form-field>
+                    <div>Priority : </div>
+                    <select matNativeControl name="priority" id="priority" formControlName="priority">
+                        <option value="none">None</option>
+                        <option value="high">High</option>
+                        <option value="middle">Middle</option>
+                        <option value="low">Low</option>
+                    </select> <br />
+                </mat-form-field>
+                <div>created by {{task?.author_id}}</div>
             </section>
             <section>
                 <h3>Members</h3>
-    
+
                 <ul>
-                    <li *ngFor="let member of task?.assigned">{{member.user_id}} - {{member.email}} <button (click)="unnasignedUser(member.user_id)">Remove user</button></li>
+                    <li *ngFor="let member of task?.assigned"><img src="{{member.avatar_url}}"
+                            alt="{{member.user_id}}"><button (click)="unnasignedUser(member.user_id)">Remove
+                            user</button></li>
                     <li>
-                        <select name="assigned" id="assigned" ngModel #assignation="ngModel" (change)="addAssignedUser(assignation.value)">
-                            <option>Assign a member</option>
-                            <option *ngFor="let user of project?.users" [value]="user.user_id" >{{user.email}}</option>
-                        </select>
+                        <mat-form-field>
+                            <select matNativeControl name="assigned" formControlName="assigned">
+                                <option [value]="assign" selected>Assign a member</option>
+                                <option [value]="user" *ngFor="let user of project?.users">{{user._id}}</option>
+                            </select>
+                        </mat-form-field>
                     </li>
                 </ul>
             </section>
-            <section>
-                <h3>Task Description</h3>
-                <textarea name="description" ngMaxlength="250" ngModel [value]="task?.description"></textarea>
-            </section>
+
             <!-- <section>
                 <div *ngFor="let comment of task?.comments">
                     <h4>{{getMember(comment.author_id)}} - {{comment.date}}</h4>
@@ -61,12 +80,12 @@
                 <h3>To do list</h3>
                 <ul>
                     <li *ngFor="let c of task?.checklist; let i = index">
-                        <input type="checkbox" [name]="c.name" [id]="c.name" [checked]="c.done" (change)="c.done = $event.currentTarget.checked">
-                        <label [for]="c.name">{{c.name}}</label>
+                        <mat-checkbox>{{c.name}}</mat-checkbox>
                         <button (click)="removeFromChecklist(i)">Remove</button>
                     </li>
                     </ul>
-                    <input ngModel name="addingtochecklist" #checklistinput="ngModel" type="text" maxlength="20"> <button *ngIf="task?.name" (click)="addToCheckList(checklistinput)">Add item</button>
+                    <input name="addingtochecklist" type="text" maxlength="20"> 
+                    <button (click)="addToCheckList()">Add item</button>
             </section>
             <!-- <section>
                 <h3>Time spend</h3>
@@ -74,6 +93,10 @@
                 <span>Total time : {{ 'NEED TO UPDATE DB '}}</span> <br/>
                 <span *ngIf="task?.assigned">My time : {{time_total }}</span>
             </section> -->
-            <br/> <button *ngIf="task?.name"type="submit">Edit Task</button> <button (click)="goBack()">Back</button> <button *ngIf="task?.name" (click)="deleteTask()">Delete</button>
+            <div>
+                <button mat-stroked-button type="submit">Edit Task</button>
+                <button mat-stroked-button (click)="deleteTask()">Delete</button>
+            </div>
         </form>
-    </div></div>
+    </div>
+</div>

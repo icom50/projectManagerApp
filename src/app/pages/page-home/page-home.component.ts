@@ -3,6 +3,8 @@ import { NavbarService } from 'src/app/services/navbar.service';
 import { DataService } from 'src/app/services/data.service';
 import { User } from 'src/app/models/users.model';
 import { Task } from 'src/app/models/projects.model';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { FormEditTaskComponent } from '../forms/form-edit-task/form-edit-task.component';
 
 
 @Component({
@@ -14,7 +16,20 @@ export class PageHomeComponent implements OnInit {
   user : User;
   tasks : Task[];
 
-  constructor(private nav : NavbarService, private _dataService : DataService) { }
+  constructor(private nav : NavbarService, private _dataService : DataService, private dialog : MatDialog) { }
+
+  openPopup(){
+    const dialogRef = this.dialog.open(FormEditTaskComponent,{
+      width : '1000px',
+      data : {
+        task_id : this.tasks[0]._id,
+        project_id : this.tasks[0]['project_id']
+      }
+    });
+    dialogRef.afterClosed().subscribe(result =>{
+      console.log('popup closed');
+    })
+  }
 
   ngOnInit() {
     this.nav.show();
@@ -26,7 +41,8 @@ export class PageHomeComponent implements OnInit {
       this._dataService.getTasksByUser(id)
     .subscribe((data: Task[])=>{
       this.tasks = data;
-      //console.log(this.tasks);
+      console.log(this.tasks)
+      console.log(this.user);
     })
     })
   }
