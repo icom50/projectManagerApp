@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Project } from 'src/app/models/projects.model';
 import { DataService } from 'src/app/services/data.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavbarService } from 'src/app/services/navbar.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-project-details',
@@ -17,7 +18,7 @@ export class ProjectDetailsComponent implements OnInit {
   formComment : FormGroup;
   commentValue: string;
 
-  constructor(private _dataService : DataService, private fb : FormBuilder, private router : Router, private route : ActivatedRoute, private nav : NavbarService) {
+  constructor(private _dataService : DataService, private fb : FormBuilder, private router : Router, private route : ActivatedRoute, private nav : NavbarService,  public dialogRef: MatDialogRef<ProjectDetailsComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.formComment = this.fb.group({
       comment : new FormControl(null, [Validators.maxLength(400)])
     })
@@ -42,9 +43,8 @@ export class ProjectDetailsComponent implements OnInit {
    
 
   ngOnInit() {
-    this.nav.hide();
-    const id = this.route.snapshot.params.id;
-    this._dataService.getProjectById(id).subscribe((data : Project)=>{
+    //const id = this.route.snapshot.params.id;
+    this._dataService.getProjectById(this.data.project_id).subscribe((data : Project)=>{
       this.project = data['projects'];
       this.isPrivate = this.project.is_private  ? "the project is in private" : "The project is in public";
     })

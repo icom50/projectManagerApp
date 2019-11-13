@@ -1,21 +1,12 @@
 <div class="form-bg">
     <div class="form-content">
-        <!-- <span class="closer" (click)="goBack()">Back</span> -->
-        <!-- <h2>{{data['tasks'].name}}</h2> -->
         <form [formGroup]="editTask" submit="onSubmit()">
-            <section>
-
-                <!-- <div>Barre d'évolution</div>  <span>{{task?.progression}}%</span>-->
-                <!-- <span>Mark complete</span> -->
-            </section>
             <section>
                 <div>
                     <mat-form-field>
-
                         <input matInput placeholder="Task's name" name="name" type="text" formControlName="name"
                             required>
                         <mat-error *ngIf="editTask.controls['name'].invalid">The name is required</mat-error>
-
                     </mat-form-field>
                 </div>
                 <div>
@@ -60,7 +51,8 @@
                         <mat-form-field>
                             <mat-label>Assign a member</mat-label>
                             <mat-select matNativeControl name="assigned" formControlName="assigned">
-                                <mat-option [value]="email" *ngFor="let email of emails; let i = index">{{email}}</mat-option>
+                                <mat-option [value]="email" *ngFor="let email of emails; let i = index">{{email}}
+                                </mat-option>
                             </mat-select>
                         </mat-form-field>
                     </li>
@@ -74,16 +66,10 @@
                         <mat-checkbox>{{c.name}}</mat-checkbox>
                         <button (click)="removeFromChecklist(i)">Remove</button>
                     </li>
-                    </ul>
-                    <input name="addingtochecklist" type="text" maxlength="20" >
-                    <button (click)="addToCheckList(editTask.get('addCheckList').value)">Add item</button>
+                </ul>
+                <input name="addingtochecklist" type="text" maxlength="20">
+                <button (click)="addToCheckList(editTask.get('addCheckList').value)">Add item</button>
             </section>
-            <!-- <section>
-                <h3>Time spend</h3>
-                <input ngModel name="spend" type="text" maxlength="20"> <button (click)="addTime(f.value.spend)">Add my time</button> <br/>
-                <span>Total time : {{ 'NEED TO UPDATE DB '}}</span> <br/>
-                <span *ngIf="task?.assigned">My time : {{time_total }}</span>
-            </section> -->
             <div>
                 <button mat-stroked-button type="submit">Edit Task</button>
                 <button mat-stroked-button (click)="deleteTask()">Delete</button>

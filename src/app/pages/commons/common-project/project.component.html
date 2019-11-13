@@ -3,7 +3,7 @@
                 <div class="project" [ngStyle]="{'background': this.project?.color}">
                                 <div class="menu" *ngIf="true">
                                                 <ul>
-                                                        <li><a href="#">Voir/Edit</a></li>
+                                                        <li (click)="openPopup()">Voir/Edit</li>
                                                         <li><a href="#">Delete</a></li>
                                                 </ul>
                                         </div>

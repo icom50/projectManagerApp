@@ -16,7 +16,7 @@
         <div class="container">
             <ng-container *ngFor="let project of user?.projects | slice:0:5">
                 <app-project [project_id]="project?._id" *ngIf="project?.favorite === true"
-                    routerLink="/project/{{project._id}}"></app-project>
+                    ></app-project>
             </ng-container>
         </div>
     </section>

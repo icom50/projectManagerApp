@@ -19,24 +19,9 @@ export class FormEditTaskComponent implements OnInit {
   project: Project;
   task: Task;
   editTask: FormGroup;
-  @Input() task_id : any;
-  @Input() project_id : any;
-  //task: Task{};
+  emails = []
 
-  // @Input("user_id") user_id;
-  // @Input("project_id") project_id;
-  // @Input("task_id") task_id;
-
-
-  id = "5da98631e2dcd109d6ab35db";
-  emails =[]
-
-  // // task = {assigned : [], checklist: [], comments: [], labels : [], attachments : [], _id : this.task_id, total_time: 0, progression : 0, estimated: 0, priority: "none", status: "", deadline: "", name : "", author_id : "", description : ""}
-  // // task;
   constructor(private _dataService: DataService, public dialogRef: MatDialogRef<FormEditTaskComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
-    // @Input("user_id") user_id // <app-form-create-task [user_id]="id" [project_id]="project._id" [task_id]="project.tasks[]._id">
-    // @Input("project_id") project_id 
-    // @Input("task_id") task_id 
 
   }
 
@@ -103,14 +88,12 @@ export class FormEditTaskComponent implements OnInit {
   deleteTask() {
     event.preventDefault()
     this._dataService.deleteTaskByProject(this.project._id, this.task._id)
-    // this.goBack()
-
   }
 
   ngOnInit() {
+    //const id = localStorage.getItem('current_user');
     // console.log(this.data.project_id)
     // console.log(this.data.task_id)
-    // const emails = [];
     this._dataService.getProjectById(this.data.project_id).subscribe((data: Project) => {
       this.project = data['projects'];
       //console.log(this.project.users);
