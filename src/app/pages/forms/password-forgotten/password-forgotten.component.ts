@@ -20,11 +20,15 @@ export class PasswordForgottenComponent implements OnInit {
    }
 
   submitPass(){
-    this._dataService.postForgottenPassword(this.formPass.value.emailPass)
-    this.router.navigate(['/']);
-    setTimeout(()=>{
-      alert('Instructions send')
-    },1000)
+    event.preventDefault()
+    this._dataService
+      .postForgottenPassword(this.formPass.value.emailPass)
+      .subscribe(data=>{
+        alert(`An email has been sent to ${this.formPass.value.emailPass}`)
+        this.router.navigate(['/']);
+      }, err =>{
+        alert('Please, verify your email')
+      }) 
   }
 
   getErrorMessage(field:string):string {

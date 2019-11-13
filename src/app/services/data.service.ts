@@ -77,7 +77,7 @@ export class DataService {
         project.tasks.splice(index,1,task)
       }
       this.putProject(project).subscribe()
-    })
+    }, error => error)
   }
   deleteTaskByProject(project_id:string, task_id:string){
     this.getProjectById(project_id).subscribe((data:Project)=>{
@@ -91,7 +91,7 @@ export class DataService {
       }
       this.putProject(project).subscribe()
       
-    })
+    }, error => error)
   }
   
   getTaskById(project_id:string, task_id:string): Observable<any>{
