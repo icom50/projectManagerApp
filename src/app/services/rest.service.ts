@@ -75,7 +75,7 @@ export class RestService {
     // can't use shareReplay() - do not seem to be a big issue
   }
   postForgottenPassword(email){
-    return this.http.post(`${this.urlUser}forgottenpassword`,email,{headers: this.headers})
+    return this.http.post(`${this.urlUser}forgottenpassword`,{email : email},{headers: this.headers}).subscribe()
   }
 
   // /api/projects
