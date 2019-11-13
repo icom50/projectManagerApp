@@ -17,25 +17,27 @@ import { PasswordForgottenComponent } from './pages/forms/password-forgotten/pas
 import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
 import { FormEditProjectComponent } from './pages/forms/form-edit-project/form-edit-project.component';
 import { FormEditTaskComponent } from './pages/forms/form-edit-task/form-edit-task.component';
+import { AuthGuardsService } from './services/auth-guards.service';
 
 const routes: Routes = [
-  { path : "", component : PageLandingComponent },
-  { path : "home", component : PageHomeComponent },
-  { path : "log", component : PageLogComponent },
+  { path : '', component : PageLandingComponent },
+  { path : 'home', component : PageHomeComponent },
+  { path : 'log', component : PageLogComponent },
   //besoin d'un /project pour arriver sur la page 'board' avec tout les projets
-  { path : "project/:id", component : PageProjectComponent }, // page avec tout les tasks en tiles
-  { path : "projects", component : PageProjectsComponent },
-  { path : "user/:id", component : PageUserComponent },
-  { path : "user-edit/:id", component : PageUserEditComponent },
-  { path : "task-list/:id", component : PageTaskListComponent },
-  { path : "project/details/:id", component : ProjectDetailsComponent},
-  { path : "project/details/:id/edit", component : FormEditProjectComponent },
-  { path : "create", component : FormCreateProjectComponent},
-  { path : "task/:id", component : FormEditTaskComponent},
-  { path : "task", component : FormCreateTaskComponent},
-  { path : "reset-password", component : PasswordForgottenComponent },
-  { path : "sign-up", component : FormSignUpComponent },
-  { path : "**", component : PageNotFoundComponent }
+  { path : 'project/:id', component : PageProjectComponent }, // page avec tout les tasks en tiles
+  { path : 'projects', component : PageProjectsComponent },
+  { path : 'user/:id', component : PageUserComponent },
+  { path : 'user-edit/:id', component : PageUserEditComponent },
+  { path : 'task-list/:id', component : PageTaskListComponent },
+  { path : 'project/details/:id', component : ProjectDetailsComponent},
+  { path : 'project/details/:id/edit', component : FormEditProjectComponent },
+  { path : 'create', component : FormCreateProjectComponent},
+  { path : 'task/:id', component : FormEditTaskComponent},
+  { path : 'task', component : FormCreateTaskComponent},
+  { path : 'reset-password', component : PasswordForgottenComponent },
+  { path : 'sign-up', component : FormSignUpComponent },
+  { path: 'not-found', component: PageNotFoundComponent },
+  { path : '**', redirectTo : 'not-found' }
 ];
 
 @NgModule({

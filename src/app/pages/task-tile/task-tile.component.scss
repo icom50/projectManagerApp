@@ -9,6 +9,10 @@ mat-card {
     // max-width: 350px;
     // width: 300px;
     padding: 10px;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 mat-card-title {

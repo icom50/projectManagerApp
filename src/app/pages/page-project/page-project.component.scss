@@ -31,13 +31,28 @@ mat-card-title{
     &--filter {
         margin-bottom: 30px;
 
-        
-
         button {
-            
+            color: #6a6a6a;
+            background: #f5f5f5;
+            border: 1px solid white;
+            border-radius: 3px;
+            padding: 5px 10px;
+            transition: .3s;
+            outline: none;
+
             &:first-child {
                 margin-right: 10px;
             }
+
+            &:hover, &:active, &:focus {
+                color: #292929;
+                border: 1px solid #292929;
+            }
+        }
+
+        .active-btn{
+            color: #292929;
+            border: 1px solid #292929;
         }
     }
 
