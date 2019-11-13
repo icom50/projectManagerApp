@@ -64,6 +64,7 @@ import { MY_FORMAT } from './utils/formats/date.format';
 import localeFr from '@angular/common/locales/fr';
 import { AuthentificatorService } from './services/authentificator.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { AuthGuardsService } from './services/auth-guards.service';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -130,7 +131,8 @@ registerLocaleData(localeFr, 'fr');
     NavbarService,
     AuthentificatorService,
     AuthInterceptorService,
-    RestService
+    RestService,
+    AuthGuardsService
   ],
   bootstrap: [AppComponent]
 })

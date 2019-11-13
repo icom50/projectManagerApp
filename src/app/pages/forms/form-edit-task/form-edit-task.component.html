@@ -75,8 +75,8 @@
                         <button (click)="removeFromChecklist(i)">Remove</button>
                     </li>
                     </ul>
-                    <input name="addingtochecklist" type="text" maxlength="20"> 
-                    <button (click)="addToCheckList()">Add item</button>
+                    <input name="addingtochecklist" type="text" maxlength="20">
+                    <button (click)="addToCheckList(editTask.get('addCheckList').value)">Add item</button>
             </section>
             <!-- <section>
                 <h3>Time spend</h3>
