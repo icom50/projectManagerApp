@@ -87,7 +87,7 @@ export class PageProjectComponent implements OnInit {
             } 
           })
           break;
-          
+
         case 'cdk-drop-list-2' :
 
           this.targetData.map(tile => {
@@ -108,7 +108,7 @@ export class PageProjectComponent implements OnInit {
           })
           break;
         
-      } // if in the same list than before, don't update
+      }
     }
   }
 
