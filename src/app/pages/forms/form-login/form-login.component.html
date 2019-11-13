@@ -1,34 +1,37 @@
 <div class="background">
-  <mat-card>
+  <mat-card class="mat-elevation-z0">
     <mat-card-content>
-      <h2>Login bitch</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, harum?</p>
-      <form [formGroup]="form" (submit)="login()">
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="Email" type="email" formControlName="email" />
-            <mat-error *ngIf="form.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="Password" type="password" formControlName="password" />
-            <mat-error *ngIf="form.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
-          </mat-form-field>
-          <a routerLink="/reset-password">
-            <small>Forgot Password ?</small>
-          </a>
-        </div>
-
-        <div>
-          <button mat-stroked-button type="submit"
-            [disabled]="form.controls['email'].invalid || form.controls['password'].invalid">
-            Log in</button>
-          <p>No Account ? <button mat-stroked-button routerLink="/sign-up">Sign up</button></p>
-        </div>
-      </form>
+      <div class="login">
+        <h2>Sign In</h2>
+        <p>Si tu échoues, je te jèterais aux crocodiles!</p>
+        <form [formGroup]="form" (submit)="login()">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Email" type="email" formControlName="email" />
+              <mat-icon matSuffix>account_circle</mat-icon>
+              <mat-error *ngIf="form.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Password" type="password" formControlName="password" />
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-error *ngIf="form.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
+              <mat-hint><a routerLink="/reset-password">
+                  <small>Forgot Password ?</small>
+                </a></mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="signUp">
+            <button mat-stroked-button type="submit"
+              [disabled]="form.controls['email'].invalid || form.controls['password'].invalid">
+              Sign In</button>
+          </div>
+        </form>
+      </div>
     </mat-card-content>
   </mat-card>
+
   <div class="Imagebasgauche">
     <img src="../../../../assets/img/background/plantebasgauche.png" alt="plante bas gauche">
 
@@ -36,5 +39,8 @@
   <div class="Imagebasdroite">
     <img src="../../../../assets/img/background/plantebasdroite.png" alt="plante bas droite">
 
+  </div>
+  <div class="registerLink">
+    <p>Don't have an account? <a href="" routerLink="/sign-up">Sign up here</a></p>
   </div>
 </div>

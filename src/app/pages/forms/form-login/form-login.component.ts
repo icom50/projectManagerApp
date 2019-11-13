@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./form-login.component.scss']
 })
 export class FormLoginComponent implements OnInit {
+ 
 
   user: User;
   form: FormGroup;
