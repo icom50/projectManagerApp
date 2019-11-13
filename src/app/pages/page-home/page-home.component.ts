@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { DataService } from 'src/app/services/data.service';
 import { User } from 'src/app/models/users.model';
@@ -22,12 +22,12 @@ export class PageHomeComponent implements OnInit {
     private dialog : MatDialog
   ) { }
 
-  openPopup(){
+  openPopup(index){
     const dialogRef = this.dialog.open(FormEditTaskComponent,{
       width : '1000px',
       data : {
-        task_id : this.tasks[0]._id,
-        project_id : this.tasks[0]['project_id']
+        task_id : this.tasks[index]._id,
+        project_id : this.tasks[index]['project_id']
       }
     });
     dialogRef.afterClosed().subscribe(result =>{

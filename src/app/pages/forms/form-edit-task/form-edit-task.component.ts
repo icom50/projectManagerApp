@@ -4,7 +4,7 @@ import { NgForm, FormGroup, FormControl, Validators, AbstractControl } from '@an
 import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
-import { NavbarService } from 'src/app/services/navbar.service';
+//import { NavbarService } from 'src/app/services/navbar.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
@@ -19,6 +19,8 @@ export class FormEditTaskComponent implements OnInit {
   project: Project;
   task: Task;
   editTask: FormGroup;
+  @Input() task_id : any;
+  @Input() project_id : any;
   //task: Task{};
 
   // @Input("user_id") user_id;
@@ -125,6 +127,7 @@ export class FormEditTaskComponent implements OnInit {
       this.task = data;
       this.editTask.setValue(this.task)
     })
+    console.log(this.data.project_id);
 
     this.editTask = new FormGroup({
       name: new FormControl('', Validators.required),
