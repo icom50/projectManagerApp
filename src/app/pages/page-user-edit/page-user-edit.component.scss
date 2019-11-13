@@ -1,4 +1,6 @@
-$colorText : rgb(77, 77, 77);
+@import '../../../variables';
+@import '../../../mixins';
+
 h1{
     font-size: 2rem;
 }
@@ -59,4 +61,8 @@ h1{
 
 label{
     font-weight: bolder;
+}
+
+button{
+    @include button;
 }

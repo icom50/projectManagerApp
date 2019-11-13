@@ -1,3 +1,6 @@
+@import '../../../variables';
+@import '../../../mixins';
+
 #tasks{
     display: flex;
     flex-direction: column;

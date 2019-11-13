@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
-import { NavbarService } from 'src/app/services/navbar.service';
+//import { NavbarService } from 'src/app/services/navbar.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
@@ -19,22 +19,9 @@ export class FormEditTaskComponent implements OnInit {
   project: Project;
   task: Task;
   editTask: FormGroup;
-  //task: Task{};
+  emails = []
 
-  // @Input("user_id") user_id;
-  // @Input("project_id") project_id;
-  // @Input("task_id") task_id;
-
-
-  id = "5da98631e2dcd109d6ab35db";
-  emails =[]
-
-  // // task = {assigned : [], checklist: [], comments: [], labels : [], attachments : [], _id : this.task_id, total_time: 0, progression : 0, estimated: 0, priority: "none", status: "", deadline: "", name : "", author_id : "", description : ""}
-  // // task;
   constructor(private _dataService: DataService, public dialogRef: MatDialogRef<FormEditTaskComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
-    // @Input("user_id") user_id // <app-form-create-task [user_id]="id" [project_id]="project._id" [task_id]="project.tasks[]._id">
-    // @Input("project_id") project_id 
-    // @Input("task_id") task_id 
 
   }
 
@@ -84,11 +71,12 @@ export class FormEditTaskComponent implements OnInit {
     event.preventDefault();
     let index = this.task.assigned.indexOf({ user_id: id });
     this.task.assigned.splice(index, 1)
-    console.log(id)
+    //console.log(id)
   }
 
-  addToCheckList() {
-    console.log(this.task.checklist)
+  addToCheckList(item) {
+    console.log(item)
+    this.editTask.controls['addCheckList'].reset()
   }
 
   // removeFromChecklist(i){
@@ -100,14 +88,12 @@ export class FormEditTaskComponent implements OnInit {
   deleteTask() {
     event.preventDefault()
     this._dataService.deleteTaskByProject(this.project._id, this.task._id)
-    // this.goBack()
-
   }
 
   ngOnInit() {
+    //const id = localStorage.getItem('current_user');
     // console.log(this.data.project_id)
     // console.log(this.data.task_id)
-    // const emails = [];
     this._dataService.getProjectById(this.data.project_id).subscribe((data: Project) => {
       this.project = data['projects'];
       //console.log(this.project.users);
@@ -124,6 +110,7 @@ export class FormEditTaskComponent implements OnInit {
       this.task = data;
       this.editTask.setValue(this.task)
     })
+    console.log(this.data.project_id);
 
     this.editTask = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -140,6 +127,7 @@ export class FormEditTaskComponent implements OnInit {
       labels: new FormControl(),
       comments: new FormControl(),
       checklist: new FormControl(),
+      //addCheckList: new FormControl(null),
       _id: new FormControl()
 
     });

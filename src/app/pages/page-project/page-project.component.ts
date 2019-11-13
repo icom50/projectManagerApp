@@ -11,6 +11,7 @@ import { Task } from 'src/app/models/projects.model';
   templateUrl: './page-project.component.html',
   styleUrls: ['./page-project.component.scss']
 })
+
 export class PageProjectComponent implements OnInit {
 
   projects;
@@ -26,6 +27,7 @@ export class PageProjectComponent implements OnInit {
   task: Task = {}
   task_id;
   targetData;
+  tileStatus: String;
   
   todoArray: String[];
   doingArray: String[];
@@ -39,19 +41,14 @@ export class PageProjectComponent implements OnInit {
   isHidden = true;
 
 
-  constructor(private router: Router, private dataService: DataService, private nav : NavbarService) { }
+  constructor(
+    private router: Router, 
+    private dataService: DataService, 
+    private nav : NavbarService
+    ) { }
 
-  // exportId(id) {
-  //   console.log('clicked');
-  //   this.task_id = id;
-  //   // this.project_id = this.project_id;
-  // }
 
-  passId(id) {
-    console.log(id);
-  }
-
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<string[]>) { // do smth when tile is dropped
 
     console.log(event)
     if (event.previousContainer === event.container) {
@@ -69,46 +66,28 @@ export class PageProjectComponent implements OnInit {
       switch(this.targetId.id) {
 
         case 'cdk-drop-list-0' :
-
-          this.targetData.map(tile => {
-            if(tile.status != 'todo') {
-              tile.status = 'todo';
-              this.dataService.putTaskByProject(this.project_id, tile);
-            } 
-          })
+          this.tileStatus = 'todo';
           break;
 
         case 'cdk-drop-list-1' :
-
-          this.targetData.map(tile => {
-            if(tile.status != 'doing') {
-              tile.status = 'doing';
-              this.dataService.putTaskByProject(this.project_id, tile);
-            } 
-          })
+          this.tileStatus = 'doing';
           break;
 
         case 'cdk-drop-list-2' :
-
-          this.targetData.map(tile => {
-            if(tile.status != 'done') {
-              tile.status = 'done';
-              this.dataService.putTaskByProject(this.project_id, tile);
-            } 
-          })
+          this.tileStatus = 'done';
           break;
 
         case 'cdk-drop-list-3' :
-
-          this.targetData.map(tile => {
-            if(tile.status != 'paused') {
-              tile.status = 'paused';
-              this.dataService.putTaskByProject(this.project_id, tile);
-            } 
-          })
+          this.tileStatus = 'paused';
           break;
-        
       }
+
+      this.targetData.map(tile => { // modify db when a tile is moved
+        if(tile.status != this.tileStatus) {
+          tile.status = this.tileStatus;
+          this.dataService.putTaskByProject(this.project_id, tile);
+        } 
+      })
     }
   }
 
