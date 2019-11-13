@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
@@ -84,7 +84,7 @@ export class FormEditTaskComponent implements OnInit {
     event.preventDefault();
     let index = this.task.assigned.indexOf({ user_id: id });
     this.task.assigned.splice(index, 1)
-    console.log(id)
+    //console.log(id)
   }
 
   addToCheckList(item) {
@@ -141,8 +141,8 @@ export class FormEditTaskComponent implements OnInit {
       labels: new FormControl(),
       comments: new FormControl(),
       checklist: new FormControl(),
-      _id: new FormControl(),
-      //addCheckList: new FormControl([null])
+      //addCheckList: new FormControl(null),
+      _id: new FormControl()
 
     });
   }
