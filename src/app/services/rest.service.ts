@@ -64,7 +64,7 @@ export class RestService {
     // const headers = new HttpHeaders().set('content-type','application/json');
     return this.http.delete(`${this.urlUser}${id}`,{headers : this.headers})
   }
-  //devrait renvoyer un Token, mais inutile pour le moment
+
   loginUser(user:User): Observable<User>{
     // const headers = new HttpHeaders().set('content-type','application/json');
     // const headers = new HttpHeaders({"content-type":"application/json"});
@@ -73,6 +73,9 @@ export class RestService {
     //not a token anymore
     return token;
     // can't use shareReplay() - do not seem to be a big issue
+  }
+  postForgottenPassword(email){
+    return this.http.post(`${this.urlUser}forgottenpassword`,{email : email},{headers: this.headers}).subscribe()
   }
 
   // /api/projects
