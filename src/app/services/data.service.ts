@@ -42,9 +42,11 @@ export class DataService {
   deleteUser(id:string): Observable<User>{
     return this.restService.deleteUser(id)
   }
-  //devrait renvoyer un Token, mais inutile pour le moment
   loginUser(user:User): Observable<User>{
     return this.restService.loginUser(user)
+  }
+  postForgottenPassword(email:string){
+    return this.restService.postForgottenPassword(email)
   }
 
   // /api/projects
