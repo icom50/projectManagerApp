@@ -16,7 +16,11 @@ export class PageHomeComponent implements OnInit {
   user : User;
   tasks : Task[];
 
-  constructor(private nav : NavbarService, private _dataService : DataService, private dialog : MatDialog) { }
+  constructor(
+    private nav : NavbarService, 
+    private _dataService : DataService, 
+    private dialog : MatDialog
+  ) { }
 
   openPopup(){
     const dialogRef = this.dialog.open(FormEditTaskComponent,{

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder,FormControl, Validators, AbstractControl } from 
 import { DataService } from '../../../services/data.service'; 
 import { NavbarService } from 'src/app/services/navbar.service';
 import { AuthentificatorService } from '../../../services/authentificator.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-login',
@@ -18,7 +19,7 @@ export class FormLoginComponent implements OnInit {
   passwordControl: AbstractControl;
   loginRoute;
 
-  constructor(fb: FormBuilder, private dataService: DataService, private nav : NavbarService, private auth : AuthentificatorService) { 
+  constructor(fb: FormBuilder, private dataService: DataService, private nav : NavbarService, private auth : AuthentificatorService, private router : Router) { 
     this.form = fb.group({
       'login': ['', Validators.compose([Validators.required, Validators.email])],
       'password': ['', Validators.required]
@@ -41,6 +42,7 @@ export class FormLoginComponent implements OnInit {
   }
 
   login(value: any): void {
+    event.preventDefault()
     // console.log(this.form);
     
     // this.user = this.form.value;
@@ -65,12 +67,13 @@ export class FormLoginComponent implements OnInit {
         // console.log('COUCOU FROM AUTH LOGIN')   
         if(data.error === 403) {
           alert('This user does not exist. Please verify your email and password or create an account');
-          this.loginRoute = "/login";
+          // this.loginRoute = "/login";
         } else {
           //if user found, go find his _id and add it to url
           this.dataService.getUserByEmail(this.user.email).subscribe((data:any) => {
             const userId = data.users._id;
-            this.loginRoute = `/user/`+userId;
+            // this.loginRoute = `/user/`+userId;
+            this.router.navigate([`/user/${userId}`])
           })
         }
       });

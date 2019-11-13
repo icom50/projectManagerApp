@@ -11,6 +11,7 @@ import { Task } from 'src/app/models/projects.model';
   templateUrl: './page-project.component.html',
   styleUrls: ['./page-project.component.scss']
 })
+
 export class PageProjectComponent implements OnInit {
 
   projects;
@@ -39,17 +40,12 @@ export class PageProjectComponent implements OnInit {
   isHidden = true;
 
 
-  constructor(private router: Router, private dataService: DataService, private nav : NavbarService) { }
+  constructor(
+    private router: Router, 
+    private dataService: DataService, 
+    private nav : NavbarService
+    ) { }
 
-  // exportId(id) {
-  //   console.log('clicked');
-  //   this.task_id = id;
-  //   // this.project_id = this.project_id;
-  // }
-
-  passId(id) {
-    console.log(id);
-  }
 
   drop(event: CdkDragDrop<string[]>) {
 
@@ -87,7 +83,7 @@ export class PageProjectComponent implements OnInit {
             } 
           })
           break;
-          
+
         case 'cdk-drop-list-2' :
 
           this.targetData.map(tile => {
@@ -108,7 +104,7 @@ export class PageProjectComponent implements OnInit {
           })
           break;
         
-      } // if in the same list than before, don't update
+      }
     }
   }
 
