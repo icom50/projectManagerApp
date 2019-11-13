@@ -21,8 +21,8 @@ export class FormCreateProjectComponent implements OnInit {
     //console.log(this.formCreateProject.value)
     this.project = this.formCreateProject.value;
     this.dataService.postProject(this.project).subscribe((data:Project)=>{
-      this.project = data;
-      this.router.navigate(['/projects/:id']);
+      this.project = data["projects"];
+      this.router.navigate([`/project/${this.project._id}`]);
     })
   }
 
@@ -48,5 +48,4 @@ export class FormCreateProjectComponent implements OnInit {
       deadline : new FormControl(null,[])
     })
   }
-
 }
