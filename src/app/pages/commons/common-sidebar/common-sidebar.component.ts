@@ -22,7 +22,6 @@ export class CommonSidebarComponent implements OnInit {
   faSignOutAlt = faSignOutAlt;
   faClipboardCheck = faClipboardCheck;
 
-
   constructor(private nav :NavbarService, public auth : AuthentificatorService) { }
   toggle = false;
   status = 'Disable';

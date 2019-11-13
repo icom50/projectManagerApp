@@ -9,12 +9,12 @@
             </a>
         </li>
         <li>
-            <a routerLink="/projects/:id" [routerLinkActive]="['is-active']">
+            <a [routerLink]="'/projects/'+nav.current_user" [routerLinkActive]="['is-active']">
                 <fa-icon [icon]="faBorderAll" size="2x"></fa-icon>
             </a>
         </li>
         <li>
-            <a routerLink="/task-list/:id" [routerLinkActive]="['is-active']">
+            <a [routerLink]="'/task-list/'+nav.current_user" [routerLinkActive]="['is-active']">
                 <fa-icon [icon]="faTasks" size="2x"></fa-icon>
             </a>
         </li>

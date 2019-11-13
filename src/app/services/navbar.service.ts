@@ -7,12 +7,15 @@ import { fakeAsync } from '@angular/core/testing';
 export class NavbarService {
 
   visible : boolean
+  current_user:string
   constructor() {
-
     this.visible = false
+  }
 
-   }
-   hide() { this.visible = false; }
+  hide() { this.visible = false; }
 
-   show() { this.visible = true; }
+  show() { 
+    this.visible = true; 
+    this.current_user = localStorage.getItem('current_user'); 
+  }
 }
