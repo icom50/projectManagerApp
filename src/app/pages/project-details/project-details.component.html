@@ -16,20 +16,21 @@
         </h2>
         <p>Status : {{project?.status}}</p>
         <h4>Members</h4>
-        <div *ngFor="let user of project?.users">
-            <img src="{{user.avatar_url}}" alt="user : {{user.user_id}}" title="{{user.user_id}}"> <span>+</span>
-        </div>
+        <span *ngFor="let user of project?.users">
+            <img src="{{user.avatar_url}}" alt="user : {{user.user_id}}" title="{{user.user_id}}">
+        </span>
+        <span>+</span>
         <h4>Project's description</h4>
         <p>{{project?.description}}</p>
-        <div *ngFor="let comment of project?.comments">
+        <!-- <div *ngFor="let comment of project?.comments">
             <p>{{comment.author_id}}</p>
             <p>{{comment.comment}}</p>
-        </div>
-        <form [formGroup]="formComment">
+        </div> -->
+        <!-- <form [formGroup]="formComment">
             <mat-form-field>
                 <textarea matInput placeholder="Comment" formControlName="comment" (keyup.enter)="addComment()" ></textarea>
                 <mat-error *ngIf="formComment.controls['comment'].invalid">The content is too heavy</mat-error>
             </mat-form-field>
-        </form>
+        </form> -->
         <p>{{isPrivate}}</p>
     </div>
