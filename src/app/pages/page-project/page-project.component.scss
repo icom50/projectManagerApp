@@ -19,13 +19,26 @@ mat-card-title{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        margin-bottom: 50px;
+        margin-bottom: 15px;
     }
 
     &--title {
         display: flex;
         flex-direction: row;
         align-items: center;
+    }
+
+    &--filter {
+        margin-bottom: 30px;
+
+        
+
+        button {
+            
+            &:first-child {
+                margin-right: 10px;
+            }
+        }
     }
 
     &--color {

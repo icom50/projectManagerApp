@@ -121,7 +121,6 @@ registerLocaleData(localeFr, 'fr');
     MatRadioModule,
     DragDropModule,
     MatCheckboxModule
-  
   ],
   providers: [
     MatDatepickerModule,
