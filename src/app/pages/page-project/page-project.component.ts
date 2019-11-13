@@ -27,6 +27,7 @@ export class PageProjectComponent implements OnInit {
   task: Task = {}
   task_id;
   targetData;
+  tileStatus: String;
   
   todoArray: String[];
   doingArray: String[];
@@ -47,7 +48,7 @@ export class PageProjectComponent implements OnInit {
     ) { }
 
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<string[]>) { // do smth when tile is dropped
 
     console.log(event)
     if (event.previousContainer === event.container) {
@@ -65,46 +66,28 @@ export class PageProjectComponent implements OnInit {
       switch(this.targetId.id) {
 
         case 'cdk-drop-list-0' :
-
-          this.targetData.map(tile => {
-            if(tile.status != 'todo') {
-              tile.status = 'todo';
-              this.dataService.putTaskByProject(this.project_id, tile);
-            } 
-          })
+          this.tileStatus = 'todo';
           break;
 
         case 'cdk-drop-list-1' :
-
-          this.targetData.map(tile => {
-            if(tile.status != 'doing') {
-              tile.status = 'doing';
-              this.dataService.putTaskByProject(this.project_id, tile);
-            } 
-          })
+          this.tileStatus = 'doing';
           break;
 
         case 'cdk-drop-list-2' :
-
-          this.targetData.map(tile => {
-            if(tile.status != 'done') {
-              tile.status = 'done';
-              this.dataService.putTaskByProject(this.project_id, tile);
-            } 
-          })
+          this.tileStatus = 'done';
           break;
 
         case 'cdk-drop-list-3' :
-
-          this.targetData.map(tile => {
-            if(tile.status != 'paused') {
-              tile.status = 'paused';
-              this.dataService.putTaskByProject(this.project_id, tile);
-            } 
-          })
+          this.tileStatus = 'paused';
           break;
-        
       }
+
+      this.targetData.map(tile => { // modify db when a tile is moved
+        if(tile.status != this.tileStatus) {
+          tile.status = this.tileStatus;
+          this.dataService.putTaskByProject(this.project_id, tile);
+        } 
+      })
     }
   }
 

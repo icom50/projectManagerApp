@@ -1,6 +1,12 @@
 <div class="navbar" *ngIf="nav.visible">
   <ul>
     <li>
+      <a [routerLink]="'/user/urlachanger'">
+        create task
+        <div class="task"></div>
+      </a>
+    </li>
+    <li>
       <div class="backgroundIcon">
         <a routerLink="/create">
 
@@ -10,7 +16,7 @@
       </div>
     </li>
     <li>
-      <a routerLink="/user/:id">
+      <a [routerLink]="'/user/'+nav.current_user">
         <div class="avatar">
 
         </div>
