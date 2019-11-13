@@ -21,6 +21,7 @@ export class RestService {
           this.headers = new HttpHeaders({
             "authorization" : `Bearer ${this.token}`,
             "content-type" : "application/json"
+
           })
       } else {
         this.headers = new HttpHeaders({
