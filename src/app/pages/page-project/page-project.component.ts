@@ -25,6 +25,7 @@ export class PageProjectComponent implements OnInit {
   targetId;
   task: Task = {}
   task_id;
+  targetData;
   
   todoArray: String[];
   doingArray: String[];
@@ -51,8 +52,7 @@ export class PageProjectComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    // this.task_id = 
-    console.log(event)
+
     console.log(event)
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -63,33 +63,52 @@ export class PageProjectComponent implements OnInit {
                         event.currentIndex);
 
       this.targetId = event.container._dropListRef.element;
-      console.log("target column : " + this.targetId.id);
-      // this.task_id = ;
+      this.targetData = event.container.data;
+
+      // console.log("target column : " + this.targetId.id);
       switch(this.targetId.id) {
+
         case 'cdk-drop-list-0' :
-          console.log("Go to TODO");
+
+          this.targetData.map(tile => {
+            if(tile.status != 'todo') {
+              tile.status = 'todo';
+              this.dataService.putTaskByProject(this.project_id, tile);
+            } 
+          })
           break;
+
         case 'cdk-drop-list-1' :
-          console.log("Go to DOING");
+
+          this.targetData.map(tile => {
+            if(tile.status != 'doing') {
+              tile.status = 'doing';
+              this.dataService.putTaskByProject(this.project_id, tile);
+            } 
+          })
           break;
+          
         case 'cdk-drop-list-2' :
-          console.log("Go to DONE");
+
+          this.targetData.map(tile => {
+            if(tile.status != 'done') {
+              tile.status = 'done';
+              this.dataService.putTaskByProject(this.project_id, tile);
+            } 
+          })
           break;
+
         case 'cdk-drop-list-3' :
-          console.log("Go to PAUSED");
+
+          this.targetData.map(tile => {
+            if(tile.status != 'paused') {
+              tile.status = 'paused';
+              this.dataService.putTaskByProject(this.project_id, tile);
+            } 
+          })
           break;
         
       } // if in the same list than before, don't update
-
-      // this.dataService.getTaskById(this.project_id, this.task_id).subscribe((data:Task)=>{
-      //   console.log(data)
-      //   this.task = data;
-      // })
-
-      // console.log("TodoArray : " + this.todoArray);
-      // console.log("doingArray : " + this.doingArray);
-      // console.log("doneArray : " + this.doneArray);
-      // console.log("pausedArray : " + this.pausedArray);
     }
   }
 
