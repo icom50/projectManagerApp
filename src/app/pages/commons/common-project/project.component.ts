@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { Project } from 'src/app/models/projects.model';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ProjectDetailsComponent } from '../../project-details/project-details.component';
 
 
 @Component({
@@ -38,7 +40,22 @@ export class ProjectComponent implements OnInit {
     alert("Hello");
   }
 
-  constructor(private _dataService: DataService) { }
+  constructor(
+    private _dataService: DataService,
+    private dialog : MatDialog
+    ) { }
+
+  openPopup(){
+    const dialogRef = this.dialog.open(ProjectDetailsComponent,{
+      width : '1000px',
+      data : {
+        project_id : this.project_id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result =>{
+      console.log('popup closed');
+    })
+  }
 
   ngOnInit() {
     this._dataService
