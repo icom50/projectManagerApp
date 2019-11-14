@@ -92,12 +92,14 @@ mat-card-content {
         flex-direction: row;
 
         p {
-            background: rgb(230, 230, 230);
-            margin-right: 5px;
-            padding: 4px 6px;
-            border-radius: 2px;
-            line-height: 1;
-            color: rgb(106, 106, 106);
+            @include littleButton;
+            margin:0px 2px;
+            // background: rgb(230, 230, 230);
+            // margin-right: 5px;
+            // padding: 4px 6px;
+            // border-radius: 2px;
+            // line-height: 1;
+            // color: rgb(106, 106, 106);
 
             &:last-child {
                 margin-right: 0;

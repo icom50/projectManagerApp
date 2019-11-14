@@ -64,7 +64,7 @@
                                 </mat-select>
                             </mat-form-field>
                         </li>
-                        <button mat-button (click)="addAssignedUser(editTask.get('assigned').value)">add member</button>
+                        <button mat-raised-button (click)="addAssignedUser(editTask.get('assigned').value)">add member</button>
                     </ul>
 
                     <h4>To do list</h4>
@@ -80,8 +80,8 @@
             </div>
         </form>
         <div>
-            <button mat-stroked-button type="submit">Edit Task</button>
-            <button mat-button (click)="deleteTask()">Delete</button>
+            <button mat-raised-button type="submit">Edit Task</button>
+            <button mat-raised-button (click)="deleteTask()" class="deletebutton">Delete</button>
         </div>
     </div>
 </div>
