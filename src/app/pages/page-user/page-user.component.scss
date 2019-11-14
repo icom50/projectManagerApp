@@ -9,10 +9,16 @@ a{
 
 h1{
     font-size: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 button{
     @include button;
+}
+
+.deletebutton{
+    @include deleteButton;
+    margin-right: 5px;
 }
 
 #global{
