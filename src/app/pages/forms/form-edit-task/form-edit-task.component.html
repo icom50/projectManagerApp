@@ -1,7 +1,6 @@
 <div class="form-bg">
     <div class="form-content">
         <form [formGroup]="editTask" submit="onSubmit()">
-<<<<<<< HEAD
             <div class="edit--task"> <!-- can't stylize form as it's from material -->
                 <!-- <section>
 
@@ -10,10 +9,6 @@
                 </section> -->
                 <section>
                     
-=======
-            <section>
-                <div>
->>>>>>> 175f1d58021cba7d2a90fbe23c56c6e150691742
                     <mat-form-field>
                         <input matInput placeholder="Task's name" name="name" type="text" formControlName="name"
                             required>
@@ -59,24 +54,28 @@
                         <li *ngFor="let member of task?.assigned; let i = index" class="task--member">
                             <img src="{{member.avatar_url}}"
                                 alt="{{member.user_id}}">
-                            <a class="task--remove" (click)="unnasignedUser(member.user_id)">Remove</a>
+                            <p>{{ member.user_id }}</p>
+                            <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="unnasignedUser(member.user_id)"></fa-icon>
                         </li>
-                        <li>
-                            <mat-form-field>
-                                <mat-label>Assign a member</mat-label>
-                                <mat-select matNativeControl name="assigned" formControlName="assigned">
-                                    <mat-option [value]="email" *ngFor="let email of emails; let i = index">{{email}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </li>
-                        <button mat-button (click)="addAssignedUser(editTask.get('assigned').value)">add member</button>
                     </ul>
+
+                    <div class="task--assign">
+                        <mat-form-field>
+                            <mat-label>Assign a member</mat-label>
+                            <mat-select matNativeControl name="assigned" formControlName="assigned">
+                                <mat-option [value]="email" *ngFor="let email of emails; let i = index">{{email}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        
+                        <button mat-button (click)="addAssignedUser(editTask.get('assigned').value)">add member</button>
+                    </div>
 
                     <h4>To do list</h4>
                     <ul>
                         <li *ngFor="let c of task?.checklist; let i = index" class="task--checklist">
                             <mat-checkbox>{{c.name}}</mat-checkbox>
-                            <a class="task--remove" (click)="removeFromChecklist(i)">Remove</a>
+                            
+                            <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="removeFromChecklist(i)"></fa-icon>
                         </li>
                     </ul>
                     <input name="addingtochecklist" type="text" maxlength="20">
