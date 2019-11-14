@@ -1,7 +1,6 @@
 <div class="form-bg">
     <div class="form-content">
         <form [formGroup]="editTask" submit="onSubmit()">
-<<<<<<< HEAD
             <div class="edit--task"> <!-- can't stylize form as it's from material -->
                 <!-- <section>
 
@@ -10,10 +9,6 @@
                 </section> -->
                 <section>
                     
-=======
-            <section>
-                <div>
->>>>>>> 175f1d58021cba7d2a90fbe23c56c6e150691742
                     <mat-form-field>
                         <input matInput placeholder="Task's name" name="name" type="text" formControlName="name"
                             required>
@@ -79,15 +74,9 @@
                             <a class="task--remove" (click)="removeFromChecklist(i)">Remove</a>
                         </li>
                     </ul>
-                    <input name="addingtochecklist" type="text" maxlength="20">
-                    <button mat-button (click)="addToCheckList(editTask.get('addCheckList').value)">Add item</button>
+                    <input name="addingtochecklist" type="text" maxlength="20" [(ngModel)]="addCheckList" [ngModelOptions]="{standalone: true}" >
+                    <button mat-button (click)="addToCheckList()">Add item</button>
                 </section>
-                <!-- <section>
-                    <h3>Time spend</h3>
-                    <input ngModel name="spend" type="text" maxlength="20"> <button (click)="addTime(f.value.spend)">Add my time</button> <br/>
-                    <span>Total time : {{ 'NEED TO UPDATE DB '}}</span> <br/>
-                    <span *ngIf="task?.assigned">My time : {{time_total }}</span>
-                </section> -->
             </div>
         </form>
         <div>

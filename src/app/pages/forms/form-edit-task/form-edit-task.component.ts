@@ -19,7 +19,8 @@ export class FormEditTaskComponent implements OnInit {
   project: Project;
   task: Task;
   editTask: FormGroup;
-  emails = []
+  emails = [];
+  addCheckList: string;
 
   constructor(private _dataService: DataService, public dialogRef: MatDialogRef<FormEditTaskComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -74,15 +75,17 @@ export class FormEditTaskComponent implements OnInit {
     //console.log(id)
   }
 
-  addToCheckList(item) {
-    console.log(item)
-    this.editTask.controls['addCheckList'].reset()
+  addToCheckList() {
+    //console.log(this.addCheckList);
+    this.task.checklist.push({name : this.addCheckList, done : false});
+    //console.log(this.task.checklist);
+    this.addCheckList = '';
   }
 
-  // removeFromChecklist(i){
-  //   event.preventDefault()
-  //   this.task.checklist.splice(i,1)
-  // }
+  removeFromChecklist(i){
+    event.preventDefault()
+    this.task.checklist.splice(i,1)
+  }
 
 
   deleteTask() {
@@ -126,7 +129,7 @@ export class FormEditTaskComponent implements OnInit {
       attachments: new FormControl(),
       labels: new FormControl(),
       comments: new FormControl(),
-      checklist: new FormControl(),
+      checklist: new FormControl(null),
       //addCheckList: new FormControl(null),
       _id: new FormControl()
 

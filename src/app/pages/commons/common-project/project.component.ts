@@ -26,6 +26,7 @@ export class ProjectComponent implements OnInit {
   @Input() project_id: string;
 
   toggleIsSelected(){
+    event.stopPropagation();
     this.isSelected = !this.isSelected;
 
     this.user.projects.filter(project => {
