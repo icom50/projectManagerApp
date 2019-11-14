@@ -35,25 +35,6 @@ export class FormEditTaskComponent implements OnInit {
 
   }
 
-  // fillTask(f){
-  //   console.log(f)
-  //   for (let key in f.value) {
-  //     if (f.value[key] && (key != 'assigned') && (key != 'checklist')) this.task[key] = f.value[key]
-  //   }
-  // }
-
-  //editTask(f){
-  //event.preventDefault();
-  //this.fillTask(f)
-  //console.log(this.task)
-  //this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
-  //this.project = data['projects'];
-  //this.project.tasks.splice(this.project.tasks.findIndex(task => task['_id'] === this.task_id ),1,this.task)
-  //this._dataService.putProject(this.project).subscribe()
-  //this.goBack()
-  //})
-  // console.log(f.value)
-  ///}
   onSubmit(){
     console.log(this.project)
     this.task = this.editTask.value;
@@ -171,7 +152,6 @@ export class FormEditTaskComponent implements OnInit {
       labels: new FormControl(),
       comments: new FormControl(),
       checklist: new FormControl(null),
-      //addCheckList: new FormControl(null),
       _id: new FormControl()
 
     });
