@@ -45,9 +45,11 @@ export class FormEditTaskComponent implements OnInit {
   //})
   // console.log(f.value)
   ///}
-  onChangeMembers(item) {
-    this.project.users.push(item)
-  }
+  onSubmit(){
+    console.log(this.project)
+    this.task = this.editTask.value;
+    this._dataService.putTaskByProject(this.project._id, this.task);
+   }
 
   addAssignedUser(email) {
     //console.log(email)
