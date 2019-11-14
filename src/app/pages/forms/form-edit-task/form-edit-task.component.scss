@@ -96,3 +96,7 @@ button{
     @include deleteButton;
     margin: 0px 5px;
 }
+
+.middlebutton{
+    @include middleButton;
+}

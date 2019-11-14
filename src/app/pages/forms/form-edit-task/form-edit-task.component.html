@@ -55,8 +55,7 @@
                                 <mat-option [value]="email" *ngFor="let email of emails; let i = index">{{email}}</mat-option>
                             </mat-select>
                         </mat-form-field>
-                        
-                        <button mat-raised-button (click)="addAssignedUser(editTask.get('assigned').value)">add member</button>
+                        <button class="middlebutton" (click)="addAssignedUser(editTask.get('assigned').value)">add member</button>
                     </div>
 
                     <h4>To do list</h4>
@@ -69,7 +68,7 @@
                     </ul>
                     <input name="addingtochecklist" type="text" maxlength="20" [(ngModel)]="addCheckList"
                         [ngModelOptions]="{standalone: true}">
-                    <button mat-button (click)="addToCheckList()">Add item</button>
+                    <button class="middlebutton" (click)="addToCheckList()">Add item</button>
                 </section>
             </div>
 
