@@ -7,6 +7,8 @@ import { DataService } from '../../../services/data.service';
 //import { NavbarService } from 'src/app/services/navbar.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-form-edit-task',
@@ -20,8 +22,16 @@ export class FormEditTaskComponent implements OnInit {
   task: Task;
   editTask: FormGroup;
   emails = []
+  memberAssigned;
+  memberAssignedAll = [];
+  tempUser = [];
+  faTrash = faTrash;
+  addCheckList;
 
-  constructor(private _dataService: DataService, public dialogRef: MatDialogRef<FormEditTaskComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(
+    private _dataService: DataService, 
+    public dialogRef: MatDialogRef<FormEditTaskComponent>, 
+    @Inject(MAT_DIALOG_DATA) public data: any) {
 
   }
 
@@ -44,9 +54,11 @@ export class FormEditTaskComponent implements OnInit {
   //})
   // console.log(f.value)
   ///}
-  onChangeMembers(item) {
-    this.project.users.push(item)
-  }
+  onSubmit(){
+    console.log(this.project)
+    this.task = this.editTask.value;
+    this._dataService.putTaskByProject(this.project._id, this.task);
+   }
 
   addAssignedUser(email) {
     //console.log(email)
@@ -74,15 +86,17 @@ export class FormEditTaskComponent implements OnInit {
     //console.log(id)
   }
 
-  addToCheckList(item) {
-    console.log(item)
-    this.editTask.controls['addCheckList'].reset()
+  addToCheckList() {
+    //console.log(this.addCheckList);
+    this.task.checklist.push({name : this.addCheckList, done : false});
+    //console.log(this.task.checklist);
+    this.addCheckList = '';
   }
 
-  // removeFromChecklist(i){
-  //   event.preventDefault()
-  //   this.task.checklist.splice(i,1)
-  // }
+  removeFromChecklist(i){
+    event.preventDefault()
+    this.task.checklist.splice(i,1)
+  }
 
 
   deleteTask() {
@@ -99,18 +113,48 @@ export class FormEditTaskComponent implements OnInit {
       //console.log(this.project.users);
       for (let i = 0; i < this.project.users.length; i++) {
         this._dataService.getUserById(this.project.users[i]._id).subscribe((data: User) => {
-          //console.log(data);
+          // console.log(data);
           this.emails.push(data['users'].email);
+          console.log(this.emails);
         });
       }
       //console.log(this.emails);
     })
+
     this._dataService.getTaskById(this.data.project_id, this.data.task_id).subscribe((data: Task) => {
-      console.log(data);
+      // console.log(data);
       this.task = data;
       this.editTask.setValue(this.task)
+      // console.log(data.assigned.user_id);
+
+      for (let i = 0; i < this.task.assigned.length; i++) {
+        // console.log(this.task.assigned[i]);
+        this.tempUser.push(this.task.assigned[i]);
+        // console.log(this.tempUser)
+      }
+
+      console.log(this.tempUser)
+      // console.log(this.memberAssignedAll)
+
+      const coucou = this.tempUser.map(el => {
+        console.log(el);
+
+        this._dataService.getUserById(el.user_id).subscribe(data => {
+          console.log(data);
+
+          this.memberAssignedAll.push(data['users'].firstname);
+          
+        });
+        return this.memberAssignedAll;
+        // console.log(this.memberAssignedAll)
+      });
+
+      console.log(coucou);
+      
     })
-    console.log(this.data.project_id);
+    // console.log(this.data.project_id);
+
+    // this._dataService.getUserById(member.user_id)
 
     this.editTask = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -126,7 +170,7 @@ export class FormEditTaskComponent implements OnInit {
       attachments: new FormControl(),
       labels: new FormControl(),
       comments: new FormControl(),
-      checklist: new FormControl(),
+      checklist: new FormControl(null),
       //addCheckList: new FormControl(null),
       _id: new FormControl()
 

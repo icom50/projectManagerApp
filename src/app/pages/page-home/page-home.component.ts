@@ -5,6 +5,7 @@ import { User } from 'src/app/models/users.model';
 import { Task } from 'src/app/models/projects.model';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormEditTaskComponent } from '../forms/form-edit-task/form-edit-task.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class PageHomeComponent implements OnInit {
   constructor(
     private nav : NavbarService, 
     private _dataService : DataService, 
-    private dialog : MatDialog
+    private dialog : MatDialog,
+    private route : Router
   ) { }
 
   openPopup(index){
@@ -33,6 +35,11 @@ export class PageHomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result =>{
       console.log('popup closed');
     })
+  }
+  
+    router(id){
+      event.stopPropagation();
+      this.route.navigate(['/project/'+id])
   }
 
   ngOnInit() {
