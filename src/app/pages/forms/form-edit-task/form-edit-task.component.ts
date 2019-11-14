@@ -7,6 +7,8 @@ import { DataService } from '../../../services/data.service';
 //import { NavbarService } from 'src/app/services/navbar.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-form-edit-task',
@@ -19,10 +21,17 @@ export class FormEditTaskComponent implements OnInit {
   project: Project;
   task: Task;
   editTask: FormGroup;
-  emails = [];
-  addCheckList: string;
+  emails = []
+  memberAssigned;
+  memberAssignedAll = [];
+  tempUser = [];
+  faTrash = faTrash;
+  addCheckList;
 
-  constructor(private _dataService: DataService, public dialogRef: MatDialogRef<FormEditTaskComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(
+    private _dataService: DataService, 
+    public dialogRef: MatDialogRef<FormEditTaskComponent>, 
+    @Inject(MAT_DIALOG_DATA) public data: any) {
 
   }
 
@@ -104,18 +113,48 @@ export class FormEditTaskComponent implements OnInit {
       //console.log(this.project.users);
       for (let i = 0; i < this.project.users.length; i++) {
         this._dataService.getUserById(this.project.users[i]._id).subscribe((data: User) => {
-          //console.log(data);
+          // console.log(data);
           this.emails.push(data['users'].email);
+          console.log(this.emails);
         });
       }
       //console.log(this.emails);
     })
+
     this._dataService.getTaskById(this.data.project_id, this.data.task_id).subscribe((data: Task) => {
-      console.log(data);
+      // console.log(data);
       this.task = data;
       this.editTask.setValue(this.task)
+      // console.log(data.assigned.user_id);
+
+      for (let i = 0; i < this.task.assigned.length; i++) {
+        // console.log(this.task.assigned[i]);
+        this.tempUser.push(this.task.assigned[i]);
+        // console.log(this.tempUser)
+      }
+
+      console.log(this.tempUser)
+      // console.log(this.memberAssignedAll)
+
+      const coucou = this.tempUser.map(el => {
+        console.log(el);
+
+        this._dataService.getUserById(el.user_id).subscribe(data => {
+          console.log(data);
+
+          this.memberAssignedAll.push(data['users'].firstname);
+          
+        });
+        return this.memberAssignedAll;
+        // console.log(this.memberAssignedAll)
+      });
+
+      console.log(coucou);
+      
     })
-    console.log(this.data.project_id);
+    // console.log(this.data.project_id);
+
+    // this._dataService.getUserById(member.user_id)
 
     this.editTask = new FormGroup({
       name: new FormControl('', Validators.required),
