@@ -5,6 +5,7 @@ import { DataService } from '../../../services/data.service';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { AuthentificatorService } from '../../../services/authentificator.service'
 import { Router } from '@angular/router';
+import { RandomSentencesService } from 'src/app/services/random-sentences.service';
 
 @Component({
   selector: 'app-form-login',
@@ -19,8 +20,10 @@ export class FormLoginComponent implements OnInit {
   loginControl: AbstractControl;
   passwordControl: AbstractControl;
   loginRoute;
+  sentence = this.randomSentences.getRandomSentence()
+  sentenceSources = this.randomSentences.getSources()
 
-  constructor(fb: FormBuilder, private dataService: DataService, private nav : NavbarService, private auth : AuthentificatorService, private router : Router) { 
+  constructor(fb: FormBuilder, private dataService: DataService, private nav : NavbarService, private auth : AuthentificatorService, private router : Router, private randomSentences: RandomSentencesService) { 
     this.form = fb.group({
       'login': ['', Validators.compose([Validators.required, Validators.email])],
       'password': ['', Validators.required]

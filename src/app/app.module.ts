@@ -65,6 +65,7 @@ import localeFr from '@angular/common/locales/fr';
 import { AuthentificatorService } from './services/authentificator.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { AuthGuardsService } from './services/auth-guards.service';
+import { RandomSentencesService } from './services/random-sentences.service';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -132,7 +133,8 @@ registerLocaleData(localeFr, 'fr');
     AuthentificatorService,
     AuthInterceptorService,
     RestService,
-    AuthGuardsService
+    AuthGuardsService,
+    RandomSentencesService
   ],
   bootstrap: [AppComponent]
 })

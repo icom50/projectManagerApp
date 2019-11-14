@@ -162,3 +162,12 @@ mat-card-title{
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
+h3{
+    background-color: $colorNavBar;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    color:$colorTextButton;
+    text-indent: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
