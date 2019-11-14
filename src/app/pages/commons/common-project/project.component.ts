@@ -47,6 +47,7 @@ export class ProjectComponent implements OnInit {
     ) { }
 
   openPopup(){
+    event.stopPropagation();
     const dialogRef = this.dialog.open(ProjectDetailsComponent,{
       width : '1000px',
       data : {
