@@ -64,7 +64,7 @@
                                 </mat-select>
                             </mat-form-field>
                         </li>
-                        <button mat-button (click)="addAssignedUser(editTask.get('assigned').value)">add member</button>
+                        <button mat-raised-button (click)="addAssignedUser(editTask.get('assigned').value)">add member</button>
                     </ul>
 
                     <h4>To do list</h4>
@@ -75,7 +75,7 @@
                         </li>
                     </ul>
                     <input name="addingtochecklist" type="text" maxlength="20">
-                    <button mat-button (click)="addToCheckList(editTask.get('addCheckList').value)">Add item</button>
+                    <button mat-raised-button (click)="addToCheckList(editTask.get('addCheckList').value)">Add item</button>
                 </section>
                 <!-- <section>
                     <h3>Time spend</h3>

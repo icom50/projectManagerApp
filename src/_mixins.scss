@@ -33,16 +33,17 @@
 }
 
 @mixin deleteButton {
-    background-color: $colorBgButtonDelete;
+    background-color: rgba(255, 255, 255, 0);
     font-weight: bolder;
     color:$colorTextButtonDelete;
     padding:0rem 1rem;
     border-radius: 2rem;
     transition: .3s;
     outline: none;
-    border: 4px solid rgba(255, 255, 255, 0);
+    border: 4px solid $colorTextButtonDelete;
 
     &:hover, &:active, &:focus {
+        background-color: $colorBgButtonDelete;
         color: lighten($colorTextButtonDelete, 100%);
         border: 4px solid lighten($colorTextButtonDelete, 100%);
     }
