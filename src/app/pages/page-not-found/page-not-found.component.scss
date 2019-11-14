@@ -25,6 +25,10 @@ button{
     margin-top: 25px;
 }
 
+.testbutton{
+    @include middleButton;
+}
+
 .mascotte{
     margin-top: 25px;
 }

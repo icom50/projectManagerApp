@@ -40,7 +40,8 @@ export class PageUserEditComponent implements OnInit {
     const errors = {
       required:'This field is required',
       email:'This field must contains a valid email',
-      maxlength:'This field contains too many characters'
+      maxlength:'This field contains too many characters',
+      minlength:'This field contains too few characters'
     };
     let returnValue = '';
     Object.keys(this.form.controls[field].errors).map((key, index) => {
@@ -61,7 +62,7 @@ export class PageUserEditComponent implements OnInit {
       lastname: new FormControl(null, [Validators.maxLength(50)]),
       avatar_url: new FormControl(),
       email: new FormControl(null, [Validators.required, Validators.email, Validators.maxLength(50)]),
-      password: new FormControl(null, [Validators.required]),
+      password: new FormControl(null, [Validators.minLength(6)]),
       phone: new FormControl(null, [Validators.maxLength(20)]),
       company: new FormControl(null, [Validators.maxLength(50)]),
       links: new FormGroup({

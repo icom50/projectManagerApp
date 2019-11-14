@@ -88,17 +88,37 @@
 
                     <div class="inputinfo">
                         <fa-icon [icon]="faLinkedin" size="2x"></fa-icon>
-                        <span>{{user.links.linkedin}}</span>
+                        <span>
+                            <a 
+                            href={{user.links.linkedin}}
+                            target="_blank"
+                            >
+                                {{user.links.linkedin}}
+                            </a>
+                        </span>
                     </div>
 
                     <div class="inputinfo">
                         <fa-icon [icon]="faBlogger" size="2x"></fa-icon>
-                        <span>{{user.links.blog}}</span>
+                        <span>
+                            <a 
+                            href={{user.links.blog}}
+                            target="_blank"
+                            >
+                                {{user.links.blog}}
+                            </a>
+                        </span>
                     </div>
 
                     <div class="inputinfo">
                         <fa-icon [icon]="faGlobe" size="2x"></fa-icon>
-                        <span>{{user.links.website}}</span>
+                        <span>                            
+                            <a 
+                            href={{user.links.website}}
+                            target="_blank"
+                            >
+                                {{user.links.website}}
+                            </a></span>
                     </div>
                 </div>
             </div>

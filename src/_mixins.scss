@@ -16,6 +16,28 @@
     }
 }
 
+@mixin middleButton {
+    background-color: $colorBgButton;
+    font-weight: bolder;
+    color:$colorTextButton;
+    padding:0rem 1.3rem;
+    border-radius: 2rem;
+    transition: .3s;
+    outline: none;
+    border: 4px solid rgba(255, 255, 255, 0);
+
+
+    -webkit-box-shadow: -1px 10px 17px -6px rgba(0,0,0,0.37);
+    -moz-box-shadow: -1px 10px 17px -6px rgba(0,0,0,0.37);
+    box-shadow: -1px 10px 17px -6px rgba(0,0,0,0.37);
+
+
+    &:hover, &:active, &:focus {
+        color: lighten($colorTextButton, 20%);
+        border: 4px solid lighten($colorTextButton, 20%);
+    }
+}
+
 @mixin littleButton {
     background-color: $colorBgButton;
     font-weight: bolder;
