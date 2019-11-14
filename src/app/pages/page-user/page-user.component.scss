@@ -1,4 +1,6 @@
-$colorText : rgb(77, 77, 77);
+@import '../../../variables';
+@import '../../../mixins';
+
 
 a{
     color:$colorText;
@@ -7,6 +9,10 @@ a{
 
 h1{
     font-size: 2rem;
+}
+
+button{
+    @include button;
 }
 
 #global{

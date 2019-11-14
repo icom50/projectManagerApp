@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'mixins';
+@import 'variables';
 
 html,
 body {
@@ -10,7 +12,7 @@ body {
   margin: 0;
   font-family: 'Raleway', "Helvetica Neue", sans-serif;
   font-size: 1rem;
-  color: #292929; //pas la bonne valeur
+  color:$colorText; //pas la bonne valeur
 }
 
 html {
