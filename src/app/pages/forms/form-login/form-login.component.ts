@@ -68,7 +68,7 @@ export class FormLoginComponent implements OnInit {
     this.user = this.form.value;
     this.auth.login(this.user).subscribe((data:any) => {
         if(data.error === 403) { // could be removed
-          alert('This user does not exist. Please verify your email and password or create an account');
+          alert('Your email and/or password are incorrect. Please check your email and password or create an account');
           // this.loginRoute = "/login";
         } else {
           //if user found, go find his _id and add it to url
@@ -79,7 +79,7 @@ export class FormLoginComponent implements OnInit {
           })
         }
       }, err => {
-        if (err) alert('This user does not exist. Please verify your email and password or create an account');
+        if (err) alert('Your email and/or password are incorrect. Please check your email and password or create an account');
       });
     
   }
