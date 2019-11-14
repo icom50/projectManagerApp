@@ -67,9 +67,7 @@ export class FormLoginComponent implements OnInit {
     // ^- code avant la création de l'authentificator.service || v- code de l'authentificator service
     this.user = this.form.value;
     this.auth.login(this.user).subscribe((data:any) => {
-        console.log(data);
-        // console.log('COUCOU FROM AUTH LOGIN')   
-        if(data.error === 403) {
+        if(data.error === 403) { // could be removed
           alert('This user does not exist. Please verify your email and password or create an account');
           // this.loginRoute = "/login";
         } else {
@@ -80,6 +78,8 @@ export class FormLoginComponent implements OnInit {
             this.router.navigate([`/user/${userId}`])
           })
         }
+      }, err => {
+        if (err) alert('This user does not exist. Please verify your email and password or create an account');
       });
     
   }
