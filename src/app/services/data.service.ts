@@ -42,9 +42,11 @@ export class DataService {
   deleteUser(id:string): Observable<User>{
     return this.restService.deleteUser(id)
   }
-  //devrait renvoyer un Token, mais inutile pour le moment
   loginUser(user:User): Observable<User>{
     return this.restService.loginUser(user)
+  }
+  postForgottenPassword(email:string){
+    return this.restService.postForgottenPassword(email)
   }
 
   // /api/projects
@@ -75,7 +77,7 @@ export class DataService {
         project.tasks.splice(index,1,task)
       }
       this.putProject(project).subscribe()
-    })
+    }, error => error)
   }
   deleteTaskByProject(project_id:string, task_id:string){
     this.getProjectById(project_id).subscribe((data:Project)=>{
@@ -89,7 +91,7 @@ export class DataService {
       }
       this.putProject(project).subscribe()
       
-    })
+    }, error => error)
   }
   
   getTaskById(project_id:string, task_id:string): Observable<any>{

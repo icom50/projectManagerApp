@@ -1,6 +1,6 @@
 <nav class="sidebar" *ngIf="nav.visible">
     <div class="logo">
-        <a routerLink="/home"><img class="logocroco" routerLink="/home" src="../../../../assets/img/logo/logo-petit.png" alt="Logo Akroko" /></a>
+        <a routerLink="/home"><img class="logocroco" routerLink="/home" src="../../../../assets/img/logo/logo-2.svg" alt="Logo Akroko" /></a>
     </div>
     <ul class="menu">
         <li>
@@ -9,12 +9,12 @@
             </a>
         </li>
         <li>
-            <a routerLink="/projects/:id" [routerLinkActive]="['is-active']">
+            <a [routerLink]="'/projects/'+nav.current_user" [routerLinkActive]="['is-active']">
                 <fa-icon [icon]="faBorderAll" size="2x"></fa-icon>
             </a>
         </li>
         <li>
-            <a routerLink="/task-list/:id" [routerLinkActive]="['is-active']">
+            <a [routerLink]="'/task-list/'+nav.current_user" [routerLinkActive]="['is-active']">
                 <fa-icon [icon]="faTasks" size="2x"></fa-icon>
             </a>
         </li>

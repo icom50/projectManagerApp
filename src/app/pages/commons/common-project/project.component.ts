@@ -3,6 +3,8 @@ import { DataService } from '../../../services/data.service';
 import { Project } from 'src/app/models/projects.model';
 import { TestBed } from '@angular/core/testing';
 import { ProjectsDataService } from 'src/app/services/projects-data.service';
+import { ProjectDetailsComponent } from '../../project-details/project-details.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -31,6 +33,7 @@ export class ProjectComponent implements OnInit {
   @Input() project_id: string;
 
   toggleIsSelected(){
+    event.stopPropagation();
     this.isSelected = !this.isSelected;
 
     this.user.projects.filter(project => {
@@ -46,7 +49,24 @@ export class ProjectComponent implements OnInit {
       this._dataService.deleteProject(this.project_id).subscribe(data => this.projectsData.refreshProject(this.project_id));
   }
 
-  constructor(private _dataService: DataService, public projectsData: ProjectsDataService) { }
+  constructor(
+    private _dataService: DataService,
+    private dialog : MatDialog,
+    public projectsData: ProjectsDataService
+    ) { }
+
+  openPopup(){
+    event.stopPropagation();
+    const dialogRef = this.dialog.open(ProjectDetailsComponent,{
+      width : '1000px',
+      data : {
+        project_id : this.project_id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result =>{
+      console.log('popup closed');
+    })
+  }
 
   ngOnInit() {
     this._dataService

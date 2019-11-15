@@ -1,9 +1,12 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
 .sidebar {
   padding: 0;
   margin: 0;
   width: 100px;
   height: 100vh;
-  background-color: #0A3D62;
+  background-color: $colorNavBar;
   position: fixed;
   top: 0;
   left: 0;
@@ -40,11 +43,11 @@
       margin-top: 35px;
 
       .is-active {
-        border-left: 3px solid #52DE97;
-        border-color: #52DE97;
+        border-left: 3px solid $colorNavBarIconHover;
+        border-color: $colorNavBarIconHover;
 
         fa-icon {
-          color: #52DE97;
+          color: $colorNavBarIconHover;
         }
       }
 
@@ -58,13 +61,13 @@
         fa-icon {
           width: 37px;
           height: 100%;
-          color: #3C698A;
+          color: $colorNavBarIcon;
           display: flex;
           justify-content: center;
           transition: color .8s cubic-bezier(0.075, 0.82, 0.165, 1);
 
           &:hover {
-            color: #52DE97;
+            color: $colorNavBarIconHover;
           }
         }
 
@@ -87,10 +90,10 @@
 
 
     fa-icon {
-      color: #3C698A;
+      color: $colorNavBarIcon;
 
       &:hover {
-        color: #C0FFB3;
+        color: $colorNavBarIconHover;
         transition: color .8s cubic-bezier(0.075, 0.82, 0.165, 1);
       }
 

@@ -4,6 +4,8 @@ import { DataService } from 'src/app/services/data.service';
 import { faCommentDots, faClock } from '@fortawesome/free-regular-svg-icons';
 import { faTasks } from '@fortawesome/free-solid-svg-icons';
 import { NavbarService } from 'src/app/services/navbar.service';
+import { MatDialog } from '@angular/material/dialog';
+import { FormEditTaskComponent } from '../forms/form-edit-task/form-edit-task.component';
 
 @Component({
   selector: 'app-task-tile',
@@ -28,16 +30,31 @@ export class TaskTileComponent implements OnInit {
   faTasks = faTasks;
   faClock = faClock;
 
-  constructor(private router: Router, private dataService: DataService, private nav : NavbarService) { }
+  constructor(  
+    private router: Router, 
+    private dataService: DataService, 
+    private nav : NavbarService, 
+    private dialog : MatDialog
+  ) { }
 
-  exportId(id) {
-    console.log('clicked');
+  openPopup(id){
     this.task_id = id;
-    // this.project_id = thiproject_id;
+    // console.log(this.task_id);
+    // console.log('popup opened');
+    const dialogRef = this.dialog.open(FormEditTaskComponent,{
+      width : '1000px',
+      data : {
+        task_id : this.task_id,
+        project_id : this.project_id
+      }
+    });
+    // dialogRef.afterClosed().subscribe(result =>{
+    //   console.log('popup closed');
+    // })
   }
 
   ngOnInit() {
-    this.nav.show();
+    // this.nav.show(); pas besoin wlh
     this.projectUrl = this.router.url;
     this.project_id = this.projectUrl.split('/').pop(); // get last element of splited array => id from url
 

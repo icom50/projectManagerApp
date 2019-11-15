@@ -5,8 +5,8 @@
             <span class="task-list"><a routerLink="/task-list/:id">See complete list</a></span>
         </h2>
         <div class="container">
-            <ng-container *ngFor="let task of tasks | slice:0:5">
-                <app-common-task [task_id]="task._id" [project_id]="task.project_id" (click)="openPopup()">
+            <ng-container *ngFor="let task of tasks | slice:0:5; let i = index">
+                <app-common-task [task_id]="task._id" [project_id]="task.project_id" (click)="openPopup(i)">
                 </app-common-task>
             </ng-container>
         </div>
@@ -15,8 +15,8 @@
         <h2 class="projects">Favorites Projects</h2>
         <div class="container">
             <ng-container *ngFor="let project of user?.projects | slice:0:5">
-                <app-project [project_id]="project?._id" *ngIf="project?.favorite === true"
-                    routerLink="/project/{{project._id}}"></app-project>
+                <app-project [project_id]="project?._id" (click)="router(project._id)" *ngIf="project?.favorite === true"
+                    ></app-project>
             </ng-container>
         </div>
     </section>

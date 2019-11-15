@@ -1,11 +1,13 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
-import { NavbarService } from 'src/app/services/navbar.service';
+//import { NavbarService } from 'src/app/services/navbar.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -19,47 +21,25 @@ export class FormEditTaskComponent implements OnInit {
   project: Project;
   task: Task;
   editTask: FormGroup;
-  //task: Task{};
+  emails = []
+  memberAssigned;
+  memberAssignedAll = [];
+  tempUser = [];
+  faTrash = faTrash;
+  addCheckList;
 
-  // @Input("user_id") user_id;
-  // @Input("project_id") project_id;
-  // @Input("task_id") task_id;
-
-
-  id = "5da98631e2dcd109d6ab35db";
-  emails =[]
-
-  // // task = {assigned : [], checklist: [], comments: [], labels : [], attachments : [], _id : this.task_id, total_time: 0, progression : 0, estimated: 0, priority: "none", status: "", deadline: "", name : "", author_id : "", description : ""}
-  // // task;
-  constructor(private _dataService: DataService, public dialogRef: MatDialogRef<FormEditTaskComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
-    // @Input("user_id") user_id // <app-form-create-task [user_id]="id" [project_id]="project._id" [task_id]="project.tasks[]._id">
-    // @Input("project_id") project_id 
-    // @Input("task_id") task_id 
+  constructor(
+    private _dataService: DataService, 
+    public dialogRef: MatDialogRef<FormEditTaskComponent>, 
+    @Inject(MAT_DIALOG_DATA) public data: any) {
 
   }
 
-  // fillTask(f){
-  //   console.log(f)
-  //   for (let key in f.value) {
-  //     if (f.value[key] && (key != 'assigned') && (key != 'checklist')) this.task[key] = f.value[key]
-  //   }
-  // }
-
-  //editTask(f){
-  //event.preventDefault();
-  //this.fillTask(f)
-  //console.log(this.task)
-  //this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
-  //this.project = data['projects'];
-  //this.project.tasks.splice(this.project.tasks.findIndex(task => task['_id'] === this.task_id ),1,this.task)
-  //this._dataService.putProject(this.project).subscribe()
-  //this.goBack()
-  //})
-  // console.log(f.value)
-  ///}
-  onChangeMembers(item) {
-    this.project.users.push(item)
-  }
+  onSubmit(){
+    console.log(this.project)
+    this.task = this.editTask.value;
+    this._dataService.putTaskByProject(this.project._id, this.task);
+   }
 
   addAssignedUser(email) {
     //console.log(email)
@@ -84,46 +64,78 @@ export class FormEditTaskComponent implements OnInit {
     event.preventDefault();
     let index = this.task.assigned.indexOf({ user_id: id });
     this.task.assigned.splice(index, 1)
-    console.log(id)
+    //console.log(id)
   }
 
   addToCheckList() {
-    console.log(this.task.checklist)
+    //console.log(this.addCheckList);
+    this.task.checklist.push({name : this.addCheckList, done : false});
+    //console.log(this.task.checklist);
+    this.addCheckList = '';
   }
 
-  // removeFromChecklist(i){
-  //   event.preventDefault()
-  //   this.task.checklist.splice(i,1)
-  // }
+  removeFromChecklist(i){
+    event.preventDefault()
+    this.task.checklist.splice(i,1)
+  }
 
 
   deleteTask() {
     event.preventDefault()
     this._dataService.deleteTaskByProject(this.project._id, this.task._id)
-    // this.goBack()
-
   }
 
   ngOnInit() {
+    //const id = localStorage.getItem('current_user');
     // console.log(this.data.project_id)
     // console.log(this.data.task_id)
-    // const emails = [];
     this._dataService.getProjectById(this.data.project_id).subscribe((data: Project) => {
       this.project = data['projects'];
       //console.log(this.project.users);
       for (let i = 0; i < this.project.users.length; i++) {
         this._dataService.getUserById(this.project.users[i]._id).subscribe((data: User) => {
-          //console.log(data);
+          // console.log(data);
           this.emails.push(data['users'].email);
+          console.log(this.emails);
         });
       }
       //console.log(this.emails);
     })
+
     this._dataService.getTaskById(this.data.project_id, this.data.task_id).subscribe((data: Task) => {
-      console.log(data);
+      // console.log(data);
       this.task = data;
       this.editTask.setValue(this.task)
+      // console.log(data.assigned.user_id);
+
+      for (let i = 0; i < this.task.assigned.length; i++) {
+        // console.log(this.task.assigned[i]);
+        this.tempUser.push(this.task.assigned[i]);
+        // console.log(this.tempUser)
+      }
+
+      console.log(this.tempUser)
+      // console.log(this.memberAssignedAll)
+
+      const coucou = this.tempUser.map(el => {
+        console.log(el);
+
+        this._dataService.getUserById(el.user_id).subscribe(data => {
+          console.log(data);
+
+          this.memberAssignedAll.push(data['users'].firstname);
+          
+        });
+        return this.memberAssignedAll;
+        // console.log(this.memberAssignedAll)
+      });
+
+      console.log(coucou);
+      
     })
+    // console.log(this.data.project_id);
+
+    // this._dataService.getUserById(member.user_id)
 
     this.editTask = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -139,7 +151,7 @@ export class FormEditTaskComponent implements OnInit {
       attachments: new FormControl(),
       labels: new FormControl(),
       comments: new FormControl(),
-      checklist: new FormControl(),
+      checklist: new FormControl(null),
       _id: new FormControl()
 
     });

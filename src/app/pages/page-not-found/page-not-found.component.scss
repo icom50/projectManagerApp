@@ -1,4 +1,6 @@
-$colorText : rgb(77, 77, 77);
+@import '../../../variables';
+@import '../../../mixins';
+
 
 a{
     // text-decoration: none;
@@ -16,4 +18,17 @@ img {
     margin:auto;
     color:$colorText;
     text-align: center;
+}
+
+button{
+    @include button;
+    margin-top: 25px;
+}
+
+.testbutton{
+    @include middleButton;
+}
+
+.mascotte{
+    margin-top: 25px;
 }

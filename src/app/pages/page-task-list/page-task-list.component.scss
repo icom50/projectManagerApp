@@ -1,3 +1,6 @@
+@import '../../../variables';
+@import '../../../mixins';
+
 #tasks{
     display: flex;
     flex-direction: column;
@@ -47,4 +50,8 @@ table{
             }
         }
     }
+}
+
+.priority{
+    text-transform: capitalize;
 }

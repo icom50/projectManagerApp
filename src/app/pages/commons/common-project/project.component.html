@@ -13,8 +13,7 @@
                                 </svg></div>
                         <mat-menu #menu="matMenu">
                                 <ul>
-                                        <li mat-menu-item><a routerLink='/project/details'>Voir</a></li>
-                                        <li mat-menu-item><a routerLink='/create'>Edit</a></li>
+                                        <li mat-menu-item (click)="openPopup()">Voir</li>
                                         <li mat-menu-item (click)="deleteProject()">Delete</li>
                                 </ul>
                         </mat-menu>

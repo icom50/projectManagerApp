@@ -1,6 +1,9 @@
-$colorText : rgb(77, 77, 77);
+@import '../../../variables';
+@import '../../../mixins';
+
 h1{
     font-size: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 #global{
@@ -43,8 +46,8 @@ h1{
         border-radius: 50%;
     }
     #description{
-        border: 1px solid darkgray;
-        background-color: lightgrey;
+        border: 2px solid $colorNavBar;
+        background-color: rgba(255, 255, 255, 0);
         padding: 15px;
         border-radius: 5px;
         width: 100%;
@@ -59,4 +62,8 @@ h1{
 
 label{
     font-weight: bolder;
+}
+
+button{
+    @include button;
 }
