@@ -1,6 +1,9 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { Project } from 'src/app/models/projects.model';
+import { TestBed } from '@angular/core/testing';
+import { ProjectsDataService } from 'src/app/services/projects-data.service';
+
 
 
 @Component({
@@ -10,7 +13,10 @@ import { Project } from 'src/app/models/projects.model';
 })
 export class ProjectComponent implements OnInit {
 
+
+
   isSelected: boolean = false;
+  isVisible: boolean = false;
 
   favNotSelected = '../../../../assets/img/icons/favorite-notSelected.svg';
   favSelected = '../../../../assets/img/icons/favorite-selected.svg';
@@ -20,6 +26,7 @@ export class ProjectComponent implements OnInit {
   status: string;
   user_id = "5da98631e2dcd109d6ab35db";
   user;
+  //project_id: Project;
 
   @Input() project_id: string;
 
@@ -34,11 +41,12 @@ export class ProjectComponent implements OnInit {
 
   }
 
-  hello(){
-    alert("Hello");
+  deleteProject(){
+    
+      this._dataService.deleteProject(this.project_id).subscribe(data => this.projectsData.refreshProject(this.project_id));
   }
 
-  constructor(private _dataService: DataService) { }
+  constructor(private _dataService: DataService, public projectsData: ProjectsDataService) { }
 
   ngOnInit() {
     this._dataService

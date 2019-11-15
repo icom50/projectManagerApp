@@ -5,7 +5,7 @@
 
 <app-zippy title='Projects created'>
         <div class="wrapperProject">
-                <div *ngFor="let project of projectsUser">
+                <div *ngFor="let project of projectsData?.projectsUser">
                     <div *ngIf="project.status === 'created'">
                         <app-project [project_id]="project?._id"></app-project>
                     </div>
@@ -16,7 +16,7 @@
 
 <app-zippy title='Projects started'>
         <div class="wrapperProject">
-                <div *ngFor="let project of projectsUser">
+                <div *ngFor="let project of projectsData?.projectsUser">
                     <div *ngIf="project.status === 'started'">
                         <app-project [project_id]="project?._id"></app-project>
                     </div>
@@ -27,7 +27,7 @@
 
 <app-zippy title='Projects finished'>
         <div class="wrapperProject">
-                <div *ngFor="let project of projectsUser">
+                <div *ngFor="let project of projectsData?.projectsUser">
                     <div *ngIf="project.status === 'finished'">
                         <app-project [project_id]="project?._id"></app-project>
                     </div>
@@ -38,7 +38,7 @@
 
 <app-zippy title='Projects abandoned'>
         <div class="wrapperProject">
-                <div *ngFor="let project of projectsUser">
+                <div *ngFor="let project of projectsData?.projectsUser">
                     <div *ngIf="project.status === 'abandoned'">
                         <app-project [project_id]="project?._id"></app-project>
                     </div>

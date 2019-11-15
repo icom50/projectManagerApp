@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './services/data.service';
 import { NavbarService } from './services/navbar.service';
 import { RestService } from './services/rest.service';
+import { ProjectsDataService } from './services/projects-data.service';
 
 /* Components */
 import { CommonNavbarComponent } from './pages/commons/common-navbar/common-navbar.component';
@@ -52,6 +53,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -64,6 +66,7 @@ import { MY_FORMAT } from './utils/formats/date.format';
 import localeFr from '@angular/common/locales/fr';
 import { AuthentificatorService } from './services/authentificator.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+
 
 
 registerLocaleData(localeFr, 'fr');
@@ -120,7 +123,8 @@ registerLocaleData(localeFr, 'fr');
     FontAwesomeModule,
     MatRadioModule,
     DragDropModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatMenuModule
   
   ],
   providers: [
@@ -131,7 +135,8 @@ registerLocaleData(localeFr, 'fr');
     NavbarService,
     AuthentificatorService,
     AuthInterceptorService,
-    RestService
+    RestService,
+    ProjectsDataService
   ],
   bootstrap: [AppComponent]
 })
