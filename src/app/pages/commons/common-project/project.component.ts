@@ -46,7 +46,7 @@ export class ProjectComponent implements OnInit {
 
   deleteProject(){
     
-      this._dataService.deleteProject(this.project_id).subscribe(data => this.projectsData.refreshProject(this.project_id));
+      this._dataService.deleteProject(this.project_id).subscribe(data => this.projectsData.removeProject(this.project_id));
   }
 
   constructor(

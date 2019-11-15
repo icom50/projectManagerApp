@@ -25,7 +25,7 @@ export class ProjectsDataService {
         //console.log(this.projectsUser)
     })
   }
-  refreshProject(project_id:string){
+  removeProject(project_id:string){
     // return this.dataService
     //   .getProjectsByUser(this.current_user)
     //   .subscribe(data =>{
