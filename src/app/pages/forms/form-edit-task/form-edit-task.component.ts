@@ -27,6 +27,7 @@ export class FormEditTaskComponent implements OnInit {
   tempUser = [];
   faTrash = faTrash;
   addCheckList;
+  otherTemp;
 
   constructor(
     private _dataService: DataService, 
@@ -102,6 +103,8 @@ export class FormEditTaskComponent implements OnInit {
       //console.log(this.emails);
     })
 
+
+
     this._dataService.getTaskById(this.data.project_id, this.data.task_id).subscribe((data: Task) => {
       // console.log(data);
       this.task = data;
@@ -114,24 +117,24 @@ export class FormEditTaskComponent implements OnInit {
         // console.log(this.tempUser)
       }
 
-      console.log(this.tempUser)
+      // console.log(this.tempUser)
       // console.log(this.memberAssignedAll)
 
       const coucou = this.tempUser.map(el => {
-        console.log(el);
+        // console.log(el);
 
         this._dataService.getUserById(el.user_id).subscribe(data => {
-          console.log(data);
+          // console.log(data);
 
-          this.memberAssignedAll.push(data['users'].firstname);
+          this.memberAssignedAll.push(`${data['users'].firstname} ${data['users'].lastname}`);
           
         });
         return this.memberAssignedAll;
         // console.log(this.memberAssignedAll)
       });
 
-      console.log(coucou);
-      
+      this.otherTemp = coucou[0]; //otherTemp is used to get value outside dataservice
+      console.log(this.otherTemp);
     })
     // console.log(this.data.project_id);
 

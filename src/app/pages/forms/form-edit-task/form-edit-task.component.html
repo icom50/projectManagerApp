@@ -37,13 +37,14 @@
                     </mat-form-field>
                     <p>created by {{task?.author_id}}</p>
                 </section>
+
                 <section>
                     <h4>Members</h4>
                     <ul>
                         <li *ngFor="let member of task?.assigned; let i = index" class="task--member">
                             <img src="{{member.avatar_url}}"
                                 alt="{{member.user_id}}">
-                            <p>{{ member.user_id }}</p>
+                            <p>{{ otherTemp[i] }}</p>
                             <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="unnasignedUser(member.user_id)"></fa-icon>
                         </li>
                     </ul>
