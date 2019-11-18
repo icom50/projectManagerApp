@@ -27,6 +27,7 @@ export class FormEditTaskComponent implements OnInit {
   tempUser = [];
   faTrash = faTrash;
   addCheckList;
+  user: User;
 
   constructor(
     private _dataService: DataService, 
@@ -52,6 +53,18 @@ export class FormEditTaskComponent implements OnInit {
         //console.log(this.task.assigned)
       })
     }
+  }
+
+  getCreator(){
+    this._dataService.getUserById(this.task.author_id).subscribe((data: User)=>{
+      this.user = data['users']
+      if(this.user.username){
+        return this.user.username;
+      }
+      else{
+        return this.user.email;
+      }
+    })
   }
 
   checkAssigned(email) {
