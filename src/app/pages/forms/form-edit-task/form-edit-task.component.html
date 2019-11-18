@@ -35,7 +35,7 @@
                             <option value="low">Low</option>
                         </select> <br />
                     </mat-form-field>
-                    <p>created by {{task?.author_id}}</p>
+                    <p>created by {{creator}}</p>
                 </section>
 
                 <section>
@@ -63,7 +63,8 @@
                     <h4>To do list</h4>
                     <ul class="ul-from-edit">
                         <li *ngFor="let c of task?.checklist; let i = index" class="task--checklist">
-                            <mat-checkbox>{{c.name}}</mat-checkbox>
+                            <input type="checkbox" /><label for="checklist">{{c.name}}</label>
+                            
                             <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="removeFromChecklist(i)"></fa-icon>
                         </li>
                     </ul>

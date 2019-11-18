@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
 //import { NavbarService } from 'src/app/services/navbar.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -27,6 +27,8 @@ export class FormEditTaskComponent implements OnInit {
   tempUser = [];
   faTrash = faTrash;
   addCheckList;
+  user: User;
+  creator: string;
   otherTemp;
 
   constructor(
@@ -130,8 +132,18 @@ export class FormEditTaskComponent implements OnInit {
         return this.memberAssignedAll;
       });
 
-      //otherTemp is used to get value outside dataservice
-      this.otherTemp = names[0]; 
+       //otherTemp is used to get value outside dataservice
+       this.otherTemp = names[0]; 
+
+      //console.log(coucou);
+      this._dataService.getUserById(this.task.author_id).subscribe((data:User)=>{
+        if(data['users'].username){
+          this.creator = data['users'].username;
+        }
+        else{
+          this.creator = data['users'].email;
+        }
+      })
     })
 
     this.editTask = new FormGroup({
