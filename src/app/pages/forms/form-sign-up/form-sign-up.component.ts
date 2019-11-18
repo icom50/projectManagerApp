@@ -7,16 +7,35 @@ import { Router } from '@angular/router';
 import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
-  selector: 'app-form-sign-up',
-  templateUrl: './form-sign-up.component.html',
-  styleUrls: ['./form-sign-up.component.scss']
+    selector: 'app-form-sign-up',
+    templateUrl: './form-sign-up.component.html',
+    styleUrls: ['./form-sign-up.component.scss']
 })
 export class FormSignUpComponent implements OnInit {
 
-    user : User;
+    user: User;
     registerForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder, private _dataService : DataService, private router : Router, private nav: NavbarService) { }
+    constructor(private formBuilder: FormBuilder, private _dataService: DataService, private router: Router, private nav: NavbarService) { }
+
+    get f() { return this.registerForm.controls; }
+
+    onSubmit(e) {
+        if (this.registerForm.invalid) {
+            e.preventDefault();
+        }
+        else {
+            this.user = this.registerForm.value;
+            this._dataService.postUser(this.user).subscribe((data: User) => {
+                this.user = data;
+                this.router.navigate(['/']);
+            })
+            setTimeout(() => {
+                alert('the user was created')
+            }, 1000)
+
+        }
+    }
 
     ngOnInit() {
         this.nav.hide();
@@ -29,22 +48,5 @@ export class FormSignUpComponent implements OnInit {
         });
     }
 
-    get f() { return this.registerForm.controls; }
 
-    onSubmit(e) {
-        if (this.registerForm.invalid) {
-            e.preventDefault();
-        }
-        else{
-            this.user = this.registerForm.value;
-            this._dataService.postUser(this.user).subscribe((data : User)=>{
-                this.user = data;
-                this.router.navigate(['/']);
-            })
-            setTimeout(()=>{
-                alert('the user was created')
-            },1000)
-            
-        }
-    }
 }

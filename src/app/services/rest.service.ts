@@ -97,9 +97,9 @@ export class RestService {
   }
   putProject(project:Project): Observable<Project>{
     // const headers = new HttpHeaders().set('content-type','application/json');
-    console.log(`${this.urlProjects}${project._id}`)
-    console.log(project)
-    console.log({...project})
+    //console.log(`${this.urlProjects}${project._id}`)
+    //console.log(project)
+    //console.log({...project})
     return this.http.put(`${this.urlProjects}${project._id}`,project,{headers : this.headers})
   }
   deleteProject(id:string): Observable<Project>{
