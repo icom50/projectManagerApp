@@ -28,6 +28,7 @@ export class FormEditTaskComponent implements OnInit {
   faTrash = faTrash;
   addCheckList;
   user: User;
+  creator: string;
 
   constructor(
     private _dataService: DataService, 
@@ -144,6 +145,14 @@ export class FormEditTaskComponent implements OnInit {
       });
 
       console.log(coucou);
+      this._dataService.getUserById(this.task.author_id).subscribe((data:User)=>{
+        if(data['users'].username){
+          this.creator = data['users'].username;
+        }
+        else{
+          this.creator = data['users'].email;
+        }
+      })
       
     })
     // console.log(this.data.project_id);
