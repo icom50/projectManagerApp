@@ -3,6 +3,7 @@ import { DataService } from '../../services/data.service';
 import { Project } from 'src/app/models/projects.model';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { ProjectsDataService } from 'src/app/services/projects-data.service';
+import { Router } from '@angular/router';
 
 
 
@@ -25,12 +26,15 @@ export class PageProjectsComponent implements OnInit {
   //projects: Project[];
   //project: Project
   projectsUser;
-  constructor(private _dataService: DataService, private nav: NavbarService, public projectsData: ProjectsDataService) { 
+  constructor(private _dataService: DataService, private nav: NavbarService, public projectsData: ProjectsDataService, private route : Router) { 
     this.current_user = "5da98631e2dcd109d6ab35db";
     // this.current_user = localStorage.getItem('current_user')
   }
 
-
+  router(id){
+    event.stopPropagation();
+    this.route.navigate(['/project/'+id])
+}
 
   ngOnInit() {
     this.nav.show();

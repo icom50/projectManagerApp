@@ -32,38 +32,38 @@ export class ProjectComponent implements OnInit {
 
   @Input() project_id: string;
 
-  toggleIsSelected(){
+  toggleIsSelected() {
     event.stopPropagation();
     this.isSelected = !this.isSelected;
 
     this.user.projects.filter(project => {
       if (project._id === this.project._id) project.favorite = this.isSelected
     })
-    this._dataService.putUser(this.user).subscribe(data=>data)
+    this._dataService.putUser(this.user).subscribe(data => data)
     //console.log(this.user)
 
   }
 
-  deleteProject(){
-    
-      this._dataService.deleteProject(this.project_id).subscribe(data => this.projectsData.removeProject(this.project_id));
+  deleteProject() {
+    event.stopPropagation();
+    this._dataService.deleteProject(this.project_id).subscribe(data => this.projectsData.removeProject(this.project_id));
   }
 
   constructor(
     private _dataService: DataService,
-    private dialog : MatDialog,
+    private dialog: MatDialog,
     public projectsData: ProjectsDataService
-    ) { }
+  ) { }
 
-  openPopup(){
+  openPopup() {
     event.stopPropagation();
-    const dialogRef = this.dialog.open(ProjectDetailsComponent,{
-      width : '1000px',
-      data : {
-        project_id : this.project_id
+    const dialogRef = this.dialog.open(ProjectDetailsComponent, {
+      width: '1000px',
+      data: {
+        project_id: this.project_id
       }
     });
-    dialogRef.afterClosed().subscribe(result =>{
+    dialogRef.afterClosed().subscribe(result => {
       console.log('popup closed');
     })
   }
@@ -81,7 +81,7 @@ export class ProjectComponent implements OnInit {
           })
         })
       })
-    
+
   }
 
 }
