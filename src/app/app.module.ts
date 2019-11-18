@@ -68,6 +68,7 @@ import { AuthentificatorService } from './services/authentificator.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { AuthGuardsService } from './services/auth-guards.service';
 import { RandomSentencesService } from './services/random-sentences.service';
+import { SendInformationComponent } from './pages/forms/send-information/send-information.component';
 
 
 
@@ -104,6 +105,7 @@ registerLocaleData(localeFr, 'fr');
     ZippyComponent,
     ProjectComponent,
     CommonTaskComponent,
+    SendInformationComponent,
   ],
   imports: [
     BrowserModule,

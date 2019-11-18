@@ -100,6 +100,12 @@ export class FormEditTaskComponent implements OnInit {
     
   }
 
+  isClicked(index){
+    // console.log(this.task.checklist[index]['done']);
+    this.task.checklist[index]['done'] = !this.task.checklist[index]['done'];
+    // console.log(this.task.checklist[index]['done']);
+  }
+
 
   ngOnInit() {
     //const id = localStorage.getItem('current_user');
@@ -107,10 +113,10 @@ export class FormEditTaskComponent implements OnInit {
     // console.log(this.data.task_id)
     this._dataService.getProjectById(this.data.project_id).subscribe((data: Project) => {
       this.project = data['projects'];
-      console.log(this.project.tasks);
+      // console.log(this.project.tasks);
       for (let i = 0; i < this.project.users.length; i++) {
         this._dataService.getUserById(this.project.users[i]._id).subscribe((data: User) => {
-          console.log(data);
+          // console.log(data);
           this.emails.push(data['users'].email);
           //console.log(this.emails);
         });
@@ -122,7 +128,7 @@ export class FormEditTaskComponent implements OnInit {
 
     this._dataService.getTaskById(this.data.project_id, this.data.task_id).subscribe((data: Task) => {
       this.task = data;
-      console.log(this.task.checklist)
+      // console.log(this.task.checklist)
       this.editTask.setValue(this.task)
 
       //list all members assigned to the task and stock it in temp table

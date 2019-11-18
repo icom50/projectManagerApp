@@ -14,7 +14,6 @@ export class AuthentificatorService {
   constructor(private _dataservice: DataService) { }
 
   login(user:User ) {
-    console.log('COUCOU FROM AUTHENTIFICATOR.LOGIN')
     return this._dataservice
         .loginUser(user)
         .pipe(tap((res => this.setSession(res)))) 
@@ -23,7 +22,6 @@ export class AuthentificatorService {
 }
       
 private setSession(authResult) {
-    console.log('COUCOU FROM SETSESSION')
     console.log(authResult)
     const expiresAt = moment().add(authResult.expiresIn,'second');
 

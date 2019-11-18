@@ -24,8 +24,8 @@ export class PasswordForgottenComponent implements OnInit {
     this._dataService
       .postForgottenPassword(this.formPass.value.emailPass)
       .subscribe(data=>{
-        alert(`An email has been sent to ${this.formPass.value.emailPass}`)
-        this.router.navigate(['/']);
+        // alert(`An email has been sent to ${this.formPass.value.emailPass}`)
+        this.router.navigate([`/reset-password/${this.formPass.value.emailPass}`]);
       }, err =>{
         alert('Please, verify your email')
       }) 
