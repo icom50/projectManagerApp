@@ -4,10 +4,8 @@ import { faBorderAll } from '@fortawesome/free-solid-svg-icons';
 import { faTasks } from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
-import { ClassGetter } from '@angular/compiler/src/output/output_ast';
-import { NavbarService } from 'src/app/services/navbar.service';
-import { from } from 'rxjs';
 import { AuthentificatorService } from '../../../services/authentificator.service';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 
 @Component({
@@ -22,7 +20,7 @@ export class CommonSidebarComponent implements OnInit {
   faSignOutAlt = faSignOutAlt;
   faClipboardCheck = faClipboardCheck;
 
-  constructor(private nav :NavbarService, public auth : AuthentificatorService) { }
+  constructor(public auth : AuthentificatorService, private nav : NavbarService) { }
   toggle = false;
   status = 'Disable';
 

@@ -1,12 +1,9 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
-//import { NavbarService } from 'src/app/services/navbar.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
