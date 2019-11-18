@@ -1,17 +1,27 @@
 <div class="content__project">
         <div class="wrapper__project">
                 <div class="project" [ngStyle]="{'background': this.project?.color}">
-                                <div class="menu" *ngIf="true">
-                                                <ul>
-                                                        <li (click)="openPopup()">Voir/Edit</li>
-                                                        <li><a href="#">Delete</a></li>
-                                                </ul>
-                                        </div>
-                                <svg class="svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="ellipsis-h" class="svg-inline--fa fa-ellipsis-h fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z"></path></svg>
-                               
-                        <div class="favorite"><img (click)="toggleIsSelected()" [src]="isSelected ? favSelected : favNotSelected" alt="" width="20px"></div>
+
+
+                        <div (click)="$event.stopPropagation()" mat-button [matMenuTriggerFor]="menu">
+                                <svg class="svg" aria-hidden="true" focusable="false" data-prefix="fas"
+                                        data-icon="ellipsis-h" class="svg-inline--fa fa-ellipsis-h fa-w-16" role="img"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path
+                                                d="M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z">
+                                        </path>
+                                </svg></div>
+                        <mat-menu #menu="matMenu">
+                                <ul>
+                                        <li mat-menu-item (click)="openPopup()">Voir</li>
+                                        <li mat-menu-item (click)="deleteProject()">Delete</li>
+                                </ul>
+                        </mat-menu>
+
+                        <div class="favorite"><img (click)="toggleIsSelected()"
+                                        [src]="isSelected ? favSelected : favNotSelected" alt="" width="20px"></div>
                 </div>
-        <span class="name">{{(project?.name.length>8)? (project?.name | slice:0:8)+'...':(project?.name)}}</span>                
+                <span
+                        class="name">{{(project?.name.length>8)? (project?.name | slice:0:8)+'...':(project?.name)}}</span>
         </div>
 </div>
-  

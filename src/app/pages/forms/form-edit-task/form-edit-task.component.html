@@ -51,7 +51,7 @@
                     <div class="task--assign">
                         <mat-form-field>
                             <mat-label>Assign a member</mat-label>
-                            <mat-select matNativeControl name="assigned" formControlName="assigned">
+                            <mat-select matNativeControl name="assigned" formControlName="assigned" >
                                 <mat-option [value]="email" *ngFor="let email of emails; let i = index">{{email}}</mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -67,8 +67,7 @@
                         </li>
                     </ul>
                     <input name="addingtochecklist" type="text" maxlength="20" [(ngModel)]="addCheckList"
-                        [ngModelOptions]="{standalone: true}">
-                    <button class="middlebutton" (click)="addToCheckList()">Add item</button>
+                        [ngModelOptions]="{standalone: true}" (keyup.enter)="addToCheckList()">
                 </section>
             </div>
 

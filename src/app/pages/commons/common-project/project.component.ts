@@ -1,8 +1,11 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { Project } from 'src/app/models/projects.model';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { TestBed } from '@angular/core/testing';
+import { ProjectsDataService } from 'src/app/services/projects-data.service';
 import { ProjectDetailsComponent } from '../../project-details/project-details.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 
 @Component({
@@ -12,7 +15,10 @@ import { ProjectDetailsComponent } from '../../project-details/project-details.c
 })
 export class ProjectComponent implements OnInit {
 
+
+
   isSelected: boolean = false;
+  isVisible: boolean = false;
 
   favNotSelected = '../../../../assets/img/icons/favorite-notSelected.svg';
   favSelected = '../../../../assets/img/icons/favorite-selected.svg';
@@ -22,39 +28,42 @@ export class ProjectComponent implements OnInit {
   status: string;
   user_id = "5da98631e2dcd109d6ab35db";
   user;
+  //project_id: Project;
 
   @Input() project_id: string;
 
-  toggleIsSelected(){
+  toggleIsSelected() {
     event.stopPropagation();
     this.isSelected = !this.isSelected;
 
     this.user.projects.filter(project => {
       if (project._id === this.project._id) project.favorite = this.isSelected
     })
-    this._dataService.putUser(this.user).subscribe(data=>data)
+    this._dataService.putUser(this.user).subscribe(data => data)
     //console.log(this.user)
 
   }
 
-  hello(){
-    alert("Hello");
+  deleteProject() {
+    event.stopPropagation();
+    this._dataService.deleteProject(this.project_id).subscribe(data => this.projectsData.removeProject(this.project_id));
   }
 
   constructor(
     private _dataService: DataService,
-    private dialog : MatDialog
-    ) { }
+    private dialog: MatDialog,
+    public projectsData: ProjectsDataService
+  ) { }
 
-  openPopup(){
+  openPopup() {
     event.stopPropagation();
-    const dialogRef = this.dialog.open(ProjectDetailsComponent,{
-      width : '1000px',
-      data : {
-        project_id : this.project_id
+    const dialogRef = this.dialog.open(ProjectDetailsComponent, {
+      width: '1000px',
+      data: {
+        project_id: this.project_id
       }
     });
-    dialogRef.afterClosed().subscribe(result =>{
+    dialogRef.afterClosed().subscribe(result => {
       console.log('popup closed');
     })
   }
@@ -72,7 +81,7 @@ export class ProjectComponent implements OnInit {
           })
         })
       })
-    
+
   }
 
 }

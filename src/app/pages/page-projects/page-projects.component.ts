@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Project } from 'src/app/models/projects.model';
 import { NavbarService } from 'src/app/services/navbar.service';
+import { ProjectsDataService } from 'src/app/services/projects-data.service';
+import { Router } from '@angular/router';
 
 
 
@@ -11,7 +13,8 @@ import { NavbarService } from 'src/app/services/navbar.service';
   styleUrls: ['./page-projects.component.scss']
 })
 export class PageProjectsComponent implements OnInit {
-
+  current_user = "5da98631e2dcd109d6ab35db";
+  // current_user = localStorage.getItem('current_user')
  
   title;
 
@@ -22,18 +25,24 @@ export class PageProjectsComponent implements OnInit {
 
   //projects: Project[];
   //project: Project
-  projectsUser: Project[];
-  constructor(private _dataService: DataService, private nav: NavbarService) { }
+  projectsUser;
+  constructor(private _dataService: DataService, private nav: NavbarService, public projectsData: ProjectsDataService, private route : Router) { 
+    this.current_user = "5da98631e2dcd109d6ab35db";
+    // this.current_user = localStorage.getItem('current_user')
+  }
 
-
+  router(id){
+    event.stopPropagation();
+    this.route.navigate(['/project/'+id])
+}
 
   ngOnInit() {
     this.nav.show();
     const id = "5da98631e2dcd109d6ab35db";
-    this._dataService.getProjectsByUser(id).subscribe(data =>{
-      this.projectsUser = data;
-      //console.log(this.projectsUser)
-    })
+    // this._dataService.getProjectsByUser(id).subscribe(data =>{
+    //   this.projectsUser = data;
+    //   //console.log(this.projectsUser)
+    // })
   }
 }
 
