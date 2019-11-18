@@ -8,16 +8,15 @@
             <ul>
                 <li>
                     <button 
-                    mat-raised-button
+                    class="middlebuttondelete"
                     (click)="deleteUser($event, user._id)"
-                    class="deletebutton"
                     >
                     Delete
                     </button>
                 </li>
                 <li>
                     <button
-                    mat-raised-button
+                    class="middlebutton"
                     routerLink="/user-edit/{{user._id}}"
                     >
                     Edit
