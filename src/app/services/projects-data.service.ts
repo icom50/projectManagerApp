@@ -9,8 +9,8 @@ export class ProjectsDataService {
 
   projectsUser: Project[] = []
 
-  current_user = "5da98631e2dcd109d6ab35db";
-  // current_user = localStorage.getItem('current_user')
+  // current_user = "5da98631e2dcd109d6ab35db";
+  current_user = localStorage.getItem('current_user')
 
   constructor(public dataService?: DataService) {
     this.loadProject() 
@@ -25,6 +25,18 @@ export class ProjectsDataService {
         //console.log(this.projectsUser)
     })
   }
+
+  editProject(updatedProject:Project){
+    let index = this.projectsUser.findIndex(project => project['_id'] === updatedProject._id )
+    this.projectsUser.splice(index,1,updatedProject)
+    return this.projectsUser;
+  }
+
+  createProject(project:Project){
+    this.projectsUser.push(project)
+    return this.projectsUser;
+  }
+
   removeProject(project_id:string){
     // return this.dataService
     //   .getProjectsByUser(this.current_user)

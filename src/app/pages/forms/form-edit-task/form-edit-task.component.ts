@@ -103,7 +103,7 @@ export class FormEditTaskComponent implements OnInit {
       console.log(this.project.tasks);
       for (let i = 0; i < this.project.users.length; i++) {
         this._dataService.getUserById(this.project.users[i]._id).subscribe((data: User) => {
-          // console.log(data);
+          console.log(data);
           this.emails.push(data['users'].email);
           //console.log(this.emails);
         });
@@ -129,12 +129,18 @@ export class FormEditTaskComponent implements OnInit {
         //get his data by id
         this._dataService.getUserById(el.user_id).subscribe(data => {
 
-          //push the data in other temp table
-          this.memberAssignedAll.push(`${data['users'].firstname} ${data['users'].lastname}`);
-
+          if(data['users'].firstname != '' || data['users'].lastname != '') {
+            //push the data in other temp table
+            this.memberAssignedAll.push(`${data['users'].firstname} ${data['users'].lastname}`);
+          } else {
+            this.memberAssignedAll.push(data['users'].email.split('@')[0]);
+          }
         });
         return this.memberAssignedAll;
       });
+
+       //otherTemp is used to get value outside dataservice
+       this.otherTemp = names[0]; 
 
       //console.log(coucou);
       this._dataService.getUserById(this.task.author_id).subscribe((data: User) => {
