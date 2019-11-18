@@ -9,8 +9,8 @@ export class ProjectsDataService {
 
   projectsUser: Project[] = []
 
-  current_user = "5da98631e2dcd109d6ab35db";
-  // current_user = localStorage.getItem('current_user')
+  // current_user = "5da98631e2dcd109d6ab35db";
+  current_user = localStorage.getItem('current_user')
 
   constructor(public dataService?: DataService) {
     this.loadProject() 
