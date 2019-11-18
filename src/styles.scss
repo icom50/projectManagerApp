@@ -69,5 +69,18 @@ label{
 }
 
 
+.bigbutton{
+  @include button;
+}
 
+.deletebutton{
+  @include deleteButton;
+}
 
+.middlebutton{
+  @include middleButton;
+}
+
+.middlebuttondelete{
+  @include middleButtonDelete;
+}

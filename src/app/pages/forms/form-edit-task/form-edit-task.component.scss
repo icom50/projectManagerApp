@@ -88,15 +88,8 @@
     top: 15px;
 }
 
-button{
-    @include button;
-}
+
 
 .deletebutton{
-    @include deleteButton;
     margin: 0px 5px;
-}
-
-.middlebutton{
-    @include middleButton;
 }
