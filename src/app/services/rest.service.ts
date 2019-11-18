@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Project } from '../models/projects.model';
 import { User } from '../models/users.model';
-import { AuthInterceptorService} from './auth-interceptor.service'
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,7 @@ export class RestService {
   current_user;
   token;
   headers;
-  constructor(private http: HttpClient, auth: AuthInterceptorService) { 
+  constructor(private http: HttpClient) { 
         //headers
         this.current_user = localStorage.getItem('current_user') || null
         this.token = localStorage.getItem("id_token") || null

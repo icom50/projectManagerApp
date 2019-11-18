@@ -25,6 +25,18 @@ export class ProjectsDataService {
         //console.log(this.projectsUser)
     })
   }
+
+  editProject(updatedProject:Project){
+    let index = this.projectsUser.findIndex(project => project['_id'] === updatedProject._id )
+    this.projectsUser.splice(index,1,updatedProject)
+    return this.projectsUser;
+  }
+
+  createProject(project:Project){
+    this.projectsUser.push(project)
+    return this.projectsUser;
+  }
+
   removeProject(project_id:string){
     // return this.dataService
     //   .getProjectsByUser(this.current_user)
