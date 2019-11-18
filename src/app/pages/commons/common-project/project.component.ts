@@ -5,6 +5,7 @@ import { TestBed } from '@angular/core/testing';
 import { ProjectsDataService } from 'src/app/services/projects-data.service';
 import { ProjectDetailsComponent } from '../../project-details/project-details.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FormEditProjectComponent } from '../../forms/form-edit-project/form-edit-project.component';
 
 
 
@@ -55,9 +56,22 @@ export class ProjectComponent implements OnInit {
     public projectsData: ProjectsDataService
   ) { }
 
-  openPopup() {
+  openPopupDetails() {
     event.stopPropagation();
     const dialogRef = this.dialog.open(ProjectDetailsComponent, {
+      width: '1000px',
+      data: {
+        project_id: this.project_id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('popup closed');
+    })
+  }
+
+  openPopupEdit() {
+    event.stopPropagation();
+    const dialogRef = this.dialog.open(FormEditProjectComponent, {
       width: '1000px',
       data: {
         project_id: this.project_id

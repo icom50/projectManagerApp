@@ -13,10 +13,10 @@ import { RestService } from './rest.service'
 export class DataService {
   constructor(private restService: RestService) {}
   // change API's url HERE
-  url:string = 'http://localhost:8001/';
-  urlUsers:string = `${this.url}api/users/`;
-  urlUser:string = `${this.url}api/user/`;
-  urlProjects:string = `${this.url}api/projects/`;
+  users: User[];
+  user: User;
+  projects: Project[];
+  project: Project;
 
   // /api/users
   getUsers():Observable<User[]>{

@@ -43,11 +43,17 @@
                 width: 100%;
             }
 
+            .ul-from-edit {
+                width: 100%;
+            }
+
             .task{
 
                 &--member {
                     margin-bottom: 10px;
                     text-align: left;
+                    display: flex;
+                    align-items: center;
 
                     img {
                         border-radius: 50%;
@@ -55,16 +61,39 @@
                         width: 30px; 
                         height: 30px;
                     }
+                    fa-icon {
+                        margin-left: auto;
+                    }
 
                     &:last-child {
                         margin-bottom: 0;
                     }
                 }
 
-                &--assign {
+                &--assign, &--checklist-add {
                     display: flex;
                     flex-direction: row;
-                    justify-content: space-between;
+                    justify-content: flex-start;
+                    width: 100%;
+
+                    button {
+                        margin-left: 15px;
+                    }
+                }
+
+                &--assign {
+                    position: relative;
+
+                    mat-form-field {
+                        width: 50%;
+                    }
+
+                    button {
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
                 }
 
                 &--remove {
@@ -77,9 +106,31 @@
 
                 &--checklist {
                     text-align: left;
+                    display: flex;
+                    align-items: center;
+
+                    fa-icon {
+                        margin-left: auto;
+                    }
+
+                    label {
+                        margin: 0 0 0 5px;
+                    }
+
+                    &-add {
+
+                        input {
+                            width: 50%;
+                        }
+                    }
                 }
             }
         }
+    }
+    .task--cta {
+        margin-top: 15px;
+        display: flex;
+        justify-content: flex-end;
     }
 }
 .closer{
@@ -88,15 +139,15 @@
     top: 15px;
 }
 
-button{
-    @include button;
-}
-
 .deletebutton{
-    @include deleteButton;
     margin: 0px 5px;
 }
 
 .middlebutton{
     @include middleButton;
 }
+
+  
+input[type=checkbox]:checked + label {
+    text-decoration: line-through;
+  } 

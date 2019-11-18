@@ -19,19 +19,7 @@ export class FormSignUpComponent implements OnInit {
     sentence = this.randomSentences.getRandomSentence()
     sentenceSources = this.randomSentences.getSources()
 
-
     constructor(private formBuilder: FormBuilder, private _dataService: DataService, private router: Router, private nav: NavbarService, private randomSentences: RandomSentencesService) { }
-
-    ngOnInit() {
-        this.nav.hide();
-        this.registerForm = this.formBuilder.group({
-            email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
-            password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-            confirmPassword: ['', Validators.required],
-        }, {
-            validator: MustMatch('password', 'confirmPassword')
-        });
-    }
 
     get f() { return this.registerForm.controls; }
 
@@ -51,4 +39,17 @@ export class FormSignUpComponent implements OnInit {
 
         }
     }
+
+    ngOnInit() {
+        this.nav.hide();
+        this.registerForm = this.formBuilder.group({
+            email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
+            password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+            confirmPassword: ['', Validators.required],
+        }, {
+            validator: MustMatch('password', 'confirmPassword')
+        });
+    }
+
+
 }

@@ -18,13 +18,13 @@
                             {{getErrorMessage('description')}}</mat-error>
                     </mat-form-field>
                 </div>
-                <div>
+                <!-- <div>
                     <mat-form-field>
                         <input matInput placeholder="Author" formControlName="author_id" type="text" />
                         <mat-error *ngIf="formCreateProject.controls['author_id'].invalid">
                             {{getErrorMessage('author_id')}}</mat-error>
                     </mat-form-field>
-                </div>
+                </div> -->
                 <div>
                     <mat-form-field>
                         <input matInput [matDatepicker]="start_date" placeholder="Start date"

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/models/projects.model';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NavbarService } from 'src/app/services/navbar.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ProjectDetailsComponent } from '../../project-details/project-details.component';
 
 @Component({
   selector: 'app-form-edit-project',
@@ -16,7 +16,9 @@ export class FormEditProjectComponent implements OnInit {
   editProject : FormGroup;
   date = Date.now();
 
-  constructor(private _dataService : DataService, private router : Router, private fb : FormBuilder, private route : ActivatedRoute, private nav : NavbarService) {
+  constructor(private _dataService : DataService, 
+    public dialogRef: MatDialogRef<ProjectDetailsComponent>, 
+    @Inject(MAT_DIALOG_DATA) public data: any) {
 
    }
 
@@ -39,7 +41,6 @@ export class FormEditProjectComponent implements OnInit {
     
     this._dataService.putProject(this.project).subscribe((data : Project) => {
       this.project = data;
-      this.router.navigate([`project/details/${this.project['projects']._id}`]);
     })
    }
    ProjectFinished(){
@@ -49,10 +50,9 @@ export class FormEditProjectComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.nav.hide();
     
 
-    const id = this.route.snapshot.params.id;
+    const id = this.data.project_id;
     this._dataService.getProjectById(id).subscribe((data : Project)=>{
       this.project = data['projects'];
       this.editProject.setValue(this.project)
