@@ -37,13 +37,14 @@
                     </mat-form-field>
                     <p>created by {{creator}}</p>
                 </section>
+
                 <section>
                     <h4>Members</h4>
-                    <ul>
+                    <ul class="ul-from-edit">
                         <li *ngFor="let member of task?.assigned; let i = index" class="task--member">
                             <img src="{{member.avatar_url}}"
                                 alt="{{member.user_id}}">
-                            <p>{{ member.user_id }}</p>
+                            <p>{{ otherTemp[i] }}</p>
                             <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="unnasignedUser(member.user_id)"></fa-icon>
                         </li>
                     </ul>
@@ -52,14 +53,15 @@
                         <mat-form-field>
                             <mat-label>Assign a member</mat-label>
                             <mat-select matNativeControl name="assigned" formControlName="assigned" >
-                                <mat-option [value]="email" *ngFor="let email of emails; let i = index">{{email}}</mat-option>
+                                <mat-option [value]="email" *ngFor="let email of emails; let i = index" (click)="addAssignedUser(editTask.get('assigned').value)">{{email}}</mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <button class="middlebutton" (click)="addAssignedUser(editTask.get('assigned').value)">add member</button>
+
+                        <!-- <button class="middlebutton" >Add member</button> -->
                     </div>
 
                     <h4>To do list</h4>
-                    <ul>
+                    <ul class="ul-from-edit">
                         <li *ngFor="let c of task?.checklist; let i = index" class="task--checklist">
                             <input type="checkbox" /><label for="checklist">{{c.name}}</label>
                             
@@ -72,8 +74,8 @@
             </div>
 
             <div>
-                <button mat-raised-button type="submit" (click)="onSubmit()">Edit Task</button>
-                <button mat-raised-button (click)="deleteTask()" class="deletebutton">Delete</button>
+                <button type="submit" (click)="onSubmit()" class="bigbutton">Edit Task</button>
+                <button (click)="deleteTask()" class="deletebutton">Delete</button>
             </div>
         </form>
     </div>

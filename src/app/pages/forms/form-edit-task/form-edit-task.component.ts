@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
 //import { NavbarService } from 'src/app/services/navbar.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -29,6 +29,7 @@ export class FormEditTaskComponent implements OnInit {
   addCheckList;
   user: User;
   creator: string;
+  otherTemp;
 
   constructor(
     private _dataService: DataService, 
@@ -116,35 +117,31 @@ export class FormEditTaskComponent implements OnInit {
       //console.log(this.emails);
     })
 
+
+
     this._dataService.getTaskById(this.data.project_id, this.data.task_id).subscribe((data: Task) => {
-      // console.log(data);
       this.task = data;
       this.editTask.setValue(this.task)
-      // console.log(data.assigned.user_id);
 
+      //list all members assigned to the task and stock it in temp table
       for (let i = 0; i < this.task.assigned.length; i++) {
-        // console.log(this.task.assigned[i]);
         this.tempUser.push(this.task.assigned[i]);
-        // console.log(this.tempUser)
       }
 
-      console.log(this.tempUser)
-      // console.log(this.memberAssignedAll)
+      // loop on each member
+      const names = this.tempUser.map(el => {
 
-      const coucou = this.tempUser.map(el => {
-        console.log(el);
-
+        //get his data by id
         this._dataService.getUserById(el.user_id).subscribe(data => {
-          console.log(data);
 
-          this.memberAssignedAll.push(data['users'].firstname);
+          //push the data in other temp table
+          this.memberAssignedAll.push(`${data['users'].firstname} ${data['users'].lastname}`);
           
         });
         return this.memberAssignedAll;
-        // console.log(this.memberAssignedAll)
       });
 
-      console.log(coucou);
+      //console.log(coucou);
       this._dataService.getUserById(this.task.author_id).subscribe((data:User)=>{
         if(data['users'].username){
           this.creator = data['users'].username;
@@ -154,10 +151,9 @@ export class FormEditTaskComponent implements OnInit {
         }
       })
       
+      //otherTemp is used to get value outside dataservice
+      this.otherTemp = names[0]; 
     })
-    // console.log(this.data.project_id);
-
-    // this._dataService.getUserById(member.user_id)
 
     this.editTask = new FormGroup({
       name: new FormControl('', Validators.required),

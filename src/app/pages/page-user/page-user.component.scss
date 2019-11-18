@@ -12,14 +12,9 @@ h1{
     margin-bottom: 1.5rem;
 }
 
-button{
-    @include button;
-}
-
-.deletebutton{
-    @include deleteButton;
+.middlebuttondelete{
     margin-right: 5px;
-}
+  }
 
 #global{
     width: 900px;

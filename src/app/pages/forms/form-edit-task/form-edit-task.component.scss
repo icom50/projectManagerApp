@@ -43,17 +43,26 @@
                 width: 100%;
             }
 
+            .ul-from-edit {
+                width: 100%;
+            }
+
             .task{
 
                 &--member {
                     margin-bottom: 10px;
                     text-align: left;
+                    display: flex;
+                    align-items: center;
 
                     img {
                         border-radius: 50%;
                         margin-right: 5px;
                         width: 30px; 
                         height: 30px;
+                    }
+                    fa-icon {
+                        margin-left: auto;
                     }
 
                     &:last-child {
@@ -77,6 +86,12 @@
 
                 &--checklist {
                     text-align: left;
+                    display: flex;
+                    align-items: center;
+
+                    fa-icon {
+                        margin-left: auto;
+                    }
                 }
             }
         }
@@ -88,12 +103,9 @@
     top: 15px;
 }
 
-button{
-    @include button;
-}
+
 
 .deletebutton{
-    @include deleteButton;
     margin: 0px 5px;
 }
 
