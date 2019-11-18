@@ -90,7 +90,14 @@ export class FormEditTaskComponent implements OnInit {
 
   deleteTask() {
     event.preventDefault()
-    this._dataService.deleteTaskByProject(this.project._id, this.task._id)
+    if (confirm("Are you sur to delete this project")) {
+      console.log('project deleted')
+      this._dataService.deleteTaskByProject(this.project._id, this.task._id)
+    }
+    else {
+      console.log('project not deleted')
+    }
+    
   }
 
 

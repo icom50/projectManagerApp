@@ -47,7 +47,15 @@ export class ProjectComponent implements OnInit {
 
   deleteProject() {
     event.stopPropagation();
-    this._dataService.deleteProject(this.project_id).subscribe(data => this.projectsData.removeProject(this.project_id));
+    if (confirm("Are you sur to delete this project")) {
+      console.log('project deleted')
+      this._dataService.deleteProject(this.project_id).subscribe(data => this.projectsData.removeProject(this.project_id));
+    }
+    else {
+      console.log('project not deleted')
+    }
+
+
   }
 
   constructor(
