@@ -40,10 +40,11 @@ export class FormCreateProjectComponent implements OnInit {
 
   ngOnInit() {
     this.nav.show()
+    const id = localStorage.getItem('current_user');
     this.formCreateProject = new FormGroup({
       name: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
       description : new FormControl(null,[Validators.maxLength(500)]),
-      author_id : new FormControl(null, [Validators.required]),
+      author_id : new FormControl(id, []),
       start_date : new FormControl(null,[]),
       deadline : new FormControl(null,[])
     })
