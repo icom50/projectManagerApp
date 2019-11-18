@@ -106,39 +106,30 @@ export class FormEditTaskComponent implements OnInit {
 
 
     this._dataService.getTaskById(this.data.project_id, this.data.task_id).subscribe((data: Task) => {
-      // console.log(data);
       this.task = data;
       this.editTask.setValue(this.task)
-      // console.log(data.assigned.user_id);
 
+      //list all members assigned to the task and stock it in temp table
       for (let i = 0; i < this.task.assigned.length; i++) {
-        // console.log(this.task.assigned[i]);
         this.tempUser.push(this.task.assigned[i]);
-        // console.log(this.tempUser)
       }
 
-      // console.log(this.tempUser)
-      // console.log(this.memberAssignedAll)
+      // loop on each member
+      const names = this.tempUser.map(el => {
 
-      const coucou = this.tempUser.map(el => {
-        // console.log(el);
-
+        //get his data by id
         this._dataService.getUserById(el.user_id).subscribe(data => {
-          // console.log(data);
 
+          //push the data in other temp table
           this.memberAssignedAll.push(`${data['users'].firstname} ${data['users'].lastname}`);
           
         });
         return this.memberAssignedAll;
-        // console.log(this.memberAssignedAll)
       });
-
-      this.otherTemp = coucou[0]; //otherTemp is used to get value outside dataservice
-      console.log(this.otherTemp);
+      
+      //otherTemp is used to get value outside dataservice
+      this.otherTemp = names[0]; 
     })
-    // console.log(this.data.project_id);
-
-    // this._dataService.getUserById(member.user_id)
 
     this.editTask = new FormGroup({
       name: new FormControl('', Validators.required),

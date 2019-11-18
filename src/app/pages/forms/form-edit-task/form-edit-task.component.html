@@ -40,7 +40,7 @@
 
                 <section>
                     <h4>Members</h4>
-                    <ul>
+                    <ul class="ul-from-edit">
                         <li *ngFor="let member of task?.assigned; let i = index" class="task--member">
                             <img src="{{member.avatar_url}}"
                                 alt="{{member.user_id}}">
@@ -53,17 +53,17 @@
                         <mat-form-field>
                             <mat-label>Assign a member</mat-label>
                             <mat-select matNativeControl name="assigned" formControlName="assigned" >
-                                <mat-option [value]="email" *ngFor="let email of emails; let i = index">{{email}}</mat-option>
+                                <mat-option [value]="email" *ngFor="let email of emails; let i = index" (click)="addAssignedUser(editTask.get('assigned').value)">{{email}}</mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <button class="middlebutton" (click)="addAssignedUser(editTask.get('assigned').value)">add member</button>
+
+                        <!-- <button class="middlebutton" >Add member</button> -->
                     </div>
 
                     <h4>To do list</h4>
-                    <ul>
+                    <ul class="ul-from-edit">
                         <li *ngFor="let c of task?.checklist; let i = index" class="task--checklist">
                             <mat-checkbox>{{c.name}}</mat-checkbox>
-                            
                             <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="removeFromChecklist(i)"></fa-icon>
                         </li>
                     </ul>
