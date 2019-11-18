@@ -20,15 +20,6 @@ img {
     text-align: center;
 }
 
-button{
-    @include button;
-    margin-top: 25px;
-}
-
-.testbutton{
-    @include middleButton;
-}
-
 .mascotte{
     margin-top: 25px;
 }
