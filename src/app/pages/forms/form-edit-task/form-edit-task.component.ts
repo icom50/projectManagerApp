@@ -57,18 +57,6 @@ export class FormEditTaskComponent implements OnInit {
     }
   }
 
-  getCreator(){
-    this._dataService.getUserById(this.task.author_id).subscribe((data: User)=>{
-      this.user = data['users']
-      if(this.user.username){
-        return this.user.username;
-      }
-      else{
-        return this.user.email;
-      }
-    })
-  }
-
   checkAssigned(email) {
     return this.task.assigned.some((el) => {
       return el['email'] === email;

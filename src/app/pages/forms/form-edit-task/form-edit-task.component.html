@@ -53,11 +53,11 @@
                         <mat-form-field>
                             <mat-label>Assign a member</mat-label>
                             <mat-select matNativeControl name="assigned" formControlName="assigned" >
-                                <mat-option [value]="email" *ngFor="let email of emails; let i = index" (click)="addAssignedUser(editTask.get('assigned').value)">{{email}}</mat-option>
+                                <mat-option [value]="email" *ngFor="let email of emails; let i = index" >{{email}}</mat-option>
                             </mat-select>
                         </mat-form-field>
 
-                        <!-- <button class="middlebutton" >Add member</button> -->
+                        <button class="middlebutton" (click)="addAssignedUser(editTask.get('assigned').value)" >Add member</button>
                     </div>
 
                     <h4>To do list</h4>
