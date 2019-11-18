@@ -18,6 +18,7 @@ import { ProjectDetailsComponent } from './pages/project-details/project-details
 import { FormEditProjectComponent } from './pages/forms/form-edit-project/form-edit-project.component';
 import { FormEditTaskComponent } from './pages/forms/form-edit-task/form-edit-task.component';
 import { AuthGuardsService } from './services/auth-guards.service';
+import { SendInformationComponent } from './pages/forms/send-information/send-information.component';
 
 const routes: Routes = [
   { path : '', component : PageLandingComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path : 'task/:id', component : FormEditTaskComponent},
   { path : 'task', component : FormCreateTaskComponent},
   { path : 'reset-password', component : PasswordForgottenComponent },
+  { path : 'reset-password/:email', component : SendInformationComponent },
   { path : 'sign-up', component : FormSignUpComponent },
   { path: 'not-found', component: PageNotFoundComponent },
   { path : '**', redirectTo : 'not-found' }

@@ -5,18 +5,22 @@ import { MustMatch } from 'src/app/utils/validators/form.validators.password';
 import { DataService } from '../../../services/data.service'
 import { Router } from '@angular/router';
 import { NavbarService } from 'src/app/services/navbar.service';
+import { RandomSentencesService } from 'src/app/services/random-sentences.service';
 
 @Component({
-  selector: 'app-form-sign-up',
-  templateUrl: './form-sign-up.component.html',
-  styleUrls: ['./form-sign-up.component.scss']
+    selector: 'app-form-sign-up',
+    templateUrl: './form-sign-up.component.html',
+    styleUrls: ['./form-sign-up.component.scss']
 })
 export class FormSignUpComponent implements OnInit {
 
-    user : User;
+    user: User;
     registerForm: FormGroup;
+    sentence = this.randomSentences.getRandomSentence()
+    sentenceSources = this.randomSentences.getSources()
 
-    constructor(private formBuilder: FormBuilder, private _dataService : DataService, private router : Router, private nav: NavbarService) { }
+
+    constructor(private formBuilder: FormBuilder, private _dataService: DataService, private router: Router, private nav: NavbarService, private randomSentences: RandomSentencesService) { }
 
     ngOnInit() {
         this.nav.hide();
@@ -35,16 +39,16 @@ export class FormSignUpComponent implements OnInit {
         if (this.registerForm.invalid) {
             e.preventDefault();
         }
-        else{
+        else {
             this.user = this.registerForm.value;
-            this._dataService.postUser(this.user).subscribe((data : User)=>{
+            this._dataService.postUser(this.user).subscribe((data: User) => {
                 this.user = data;
                 this.router.navigate(['/']);
             })
-            setTimeout(()=>{
+            setTimeout(() => {
                 alert('the user was created')
-            },1000)
-            
+            }, 1000)
+
         }
     }
 }

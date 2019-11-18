@@ -1,10 +1,6 @@
 @import '../../../../variables';
 @import '../../../../mixins';
-h2{
-    margin-bottom: 20px;
-    font-size: 3em;
-    font-weight: inherit;
-}
+
 .background{
     position: relative;
     display: flex;
@@ -16,30 +12,16 @@ h2{
     background-image: url("../../../../assets/img/background/tache.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;  
-}
-mat-card{
-    background: none;
-    margin: auto;
-    text-align: center;
+    background-size: cover;    
 }
 
-mat-form-field{
-    width: 300px;
-    margin-top: 25px;
-    mat-icon{
-        color: $colorNavBar;
-    }
+h2{
+    margin-bottom: 20px;
+    font-size: 3em;
+    font-weight: inherit;
 }
-button {
-    width: 200px;
-    margin-top: 25px;
-    border-radius: 20px;
-    background-color: #0A3D62;
-    color: #C0FFB3;
-    justify-content: center;
-    align-items: center;
-    text-align: center;   
+strong{
+    font-size: 1.5em;
 }
 .Imagebasgauche{
     display: flex;
