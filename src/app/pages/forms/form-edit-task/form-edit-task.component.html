@@ -61,7 +61,7 @@
                     <h4>To do list</h4>
                     <ul>
                         <li *ngFor="let c of task?.checklist; let i = index" class="task--checklist">
-                            <mat-checkbox>{{c.name}}</mat-checkbox>
+                            <input type="checkbox" /><label for="checklist">{{c.name}}</label>
                             
                             <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="removeFromChecklist(i)"></fa-icon>
                         </li>
