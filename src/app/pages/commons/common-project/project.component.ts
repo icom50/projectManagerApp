@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { Project } from 'src/app/models/projects.model';
 import { TestBed } from '@angular/core/testing';
@@ -47,7 +47,15 @@ export class ProjectComponent implements OnInit {
 
   deleteProject() {
     event.stopPropagation();
-    this._dataService.deleteProject(this.project_id).subscribe(data => this.projectsData.removeProject(this.project_id));
+    if (confirm("Are you sur to delete this project")) {
+      console.log('project deleted')
+      this._dataService.deleteProject(this.project_id).subscribe(data => this.projectsData.removeProject(this.project_id));
+    }
+    else {
+      console.log('project not deleted')
+    }
+
+
   }
 
   constructor(

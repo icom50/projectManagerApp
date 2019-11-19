@@ -5,6 +5,7 @@ import { MustMatch } from 'src/app/utils/validators/form.validators.password';
 import { DataService } from '../../../services/data.service'
 import { Router } from '@angular/router';
 import { NavbarService } from 'src/app/services/navbar.service';
+import { RandomSentencesService } from 'src/app/services/random-sentences.service';
 
 @Component({
     selector: 'app-form-sign-up',
@@ -15,8 +16,10 @@ export class FormSignUpComponent implements OnInit {
 
     user: User;
     registerForm: FormGroup;
+    sentence = this.randomSentences.getRandomSentence()
+    sentenceSources = this.randomSentences.getSources()
 
-    constructor(private formBuilder: FormBuilder, private _dataService: DataService, private router: Router, private nav: NavbarService) { }
+    constructor(private formBuilder: FormBuilder, private _dataService: DataService, private router: Router, private nav: NavbarService, private randomSentences: RandomSentencesService) { }
 
     get f() { return this.registerForm.controls; }
 

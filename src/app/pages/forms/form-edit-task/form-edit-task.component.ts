@@ -1,13 +1,14 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
-//import { NavbarService } from 'src/app/services/navbar.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+<<<<<<< HEAD
 import { PageProjectComponent } from '../../page-project/page-project.component';
 
+=======
+>>>>>>> 76c86736717ab91baa8e574d8d2e13484b6137e0
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -97,7 +98,14 @@ export class FormEditTaskComponent implements OnInit {
 
   deleteTask() {
     event.preventDefault()
-    this._dataService.deleteTaskByProject(this.project._id, this.task._id)
+    if (confirm("Are you sur to delete this project")) {
+      console.log('project deleted')
+      this._dataService.deleteTaskByProject(this.project._id, this.task._id)
+    }
+    else {
+      console.log('project not deleted')
+    }
+    
   }
 
   isClicked(index){
