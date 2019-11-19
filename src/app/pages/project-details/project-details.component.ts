@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-project-details',
@@ -17,6 +18,7 @@ export class ProjectDetailsComponent implements OnInit {
   isPrivate: String;
   formComment : FormGroup;
   commentValue: string;
+  faPlus = faPlus;
 
   constructor(private _dataService : DataService, private fb : FormBuilder, private router : Router, private route : ActivatedRoute, private nav : NavbarService,  public dialogRef: MatDialogRef<ProjectDetailsComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.formComment = this.fb.group({
@@ -40,13 +42,15 @@ export class ProjectDetailsComponent implements OnInit {
      
   //  }
 
-   
+  addMembers(){
+    console.log("Coucou");
+  }
 
   ngOnInit() {
     //const id = this.route.snapshot.params.id;
     this._dataService.getProjectById(this.data.project_id).subscribe((data : Project)=>{
       this.project = data['projects'];
-      console.log(this.project)
+      //console.log(this.project)
       this.isPrivate = this.project.is_private  ? "the project is in private" : "The project is in public";
     })
   }

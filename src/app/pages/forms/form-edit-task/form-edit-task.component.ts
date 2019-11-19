@@ -4,11 +4,7 @@ import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-<<<<<<< HEAD
 import { PageProjectComponent } from '../../page-project/page-project.component';
-
-=======
->>>>>>> 76c86736717ab91baa8e574d8d2e13484b6137e0
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
