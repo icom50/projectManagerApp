@@ -6,6 +6,7 @@ import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
 //import { NavbarService } from 'src/app/services/navbar.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PageProjectComponent } from '../../page-project/page-project.component';
 
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -33,9 +34,9 @@ export class FormEditTaskComponent implements OnInit {
 
   constructor(
     private _dataService: DataService,
+    public _projectComponent: PageProjectComponent,
     public dialogRef: MatDialogRef<FormEditTaskComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-
   }
 
   onSubmit(e) {
@@ -46,6 +47,12 @@ export class FormEditTaskComponent implements OnInit {
     else {
       this.task = this.editTask.value;
       this._dataService.putTaskByProject(this.project._id, this.task);
+
+      this.project.tasks.filter((task, i) => {
+        if (task._id === this.task._id) {
+          this._projectComponent.projects.task[i] = this.task; 
+        } 
+      });
     }
   }
 
@@ -123,7 +130,6 @@ export class FormEditTaskComponent implements OnInit {
       this.task = data;
       // console.log(this.task.checklist)
       this.editTask.setValue(this.task)
-
       //list all members assigned to the task and stock it in temp table
       for (let i = 0; i < this.task.assigned.length; i++) {
         this.tempUser.push(this.task.assigned[i]);
