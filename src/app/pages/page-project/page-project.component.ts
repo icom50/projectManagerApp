@@ -4,6 +4,8 @@ import { DataService } from 'src/app/services/data.service';
 import { NavbarService } from 'src/app/services/navbar.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Task } from 'src/app/models/projects.model';
+import { MatDialog } from '@angular/material/dialog';
+import { FormCreateTaskComponent } from '../forms/form-create-task/form-create-task.component';
 
 
 @Component({
@@ -44,7 +46,8 @@ export class PageProjectComponent implements OnInit {
   constructor(
     private router: Router, 
     private dataService: DataService, 
-    private nav : NavbarService
+    private nav : NavbarService,
+    private dialog : MatDialog,
     ) { }
 
 
@@ -91,7 +94,17 @@ export class PageProjectComponent implements OnInit {
     }
   }
 
-  
+  openPopup(){
+    const dialogRef = this.dialog.open(FormCreateTaskComponent,{
+      width : '1000px',
+      data : {
+       project_id : this.project_id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result =>{
+      console.log('popup closed');
+    })
+  }
 
   ngOnInit() {
     this.nav.show();
