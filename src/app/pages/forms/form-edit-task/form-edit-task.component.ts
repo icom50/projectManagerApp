@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
 // import { PageProjectComponent } from '../../page-project/page-project.component';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -28,6 +28,8 @@ export class FormEditTaskComponent implements OnInit {
   user: User;
   creator: string;
   otherTemp;
+  avatarTemp = [];
+  exportTab = [];
 
   constructor(
     private _dataService: DataService,
@@ -151,14 +153,17 @@ export class FormEditTaskComponent implements OnInit {
           } else {
             this.memberAssignedAll.push(data['users'].email.split('@')[0]);
           }
+
+          this.avatarTemp.push(data['users'].avatar_url);
         });
-        return this.memberAssignedAll;
+
+        this.exportTab = [this.memberAssignedAll, this.avatarTemp];
+        return this.exportTab;
       });
 
-       //otherTemp is used to get value outside dataservice
-       this.otherTemp = names[0]; 
+      //otherTemp is used to get value outside dataservice
+      this.otherTemp = names[0]; 
 
-      //console.log(coucou);
       this._dataService.getUserById(this.task.author_id).subscribe((data: User) => {
         if (data['users'].username) {
           this.creator = data['users'].username;
@@ -167,9 +172,6 @@ export class FormEditTaskComponent implements OnInit {
           this.creator = data['users'].email;
         }
       })
-
-      //otherTemp is used to get value outside dataservice
-      this.otherTemp = names[0];
     })
 
     this.editTask = new FormGroup({
