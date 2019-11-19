@@ -1,20 +1,32 @@
 @import '../../../../variables';
 @import '../../../../mixins';
-
+   
 .background{
     position: relative;
     display: flex;
     text-align: center;
     justify-content: center;
-    align-items: center;
     height: 100vh;
     width: 100vw;
     background-image: url("../../../../assets/img/background/tache.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;    
+    background-size: cover;
+    .logo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-top: 30px;
+        height: 50px;
+        cursor: pointer;
+    
+        .logocroco {
+          margin: 10px;
+          outline: none;
+          width: 80px;
+        }
+      }  
 }
-
 h2{
     margin-bottom: 20px;
     font-size: 3em;
@@ -25,7 +37,7 @@ h2{
     color:$colorText;
 }
 .signUp{
-    width: 320px;
+    width: 720px;
     height: 500px;
     margin: 0 auto;
     position: relative;
@@ -33,34 +45,36 @@ h2{
     flex-direction: column;
 }
 .field{
-    width: 320px;
+    width: 720px;
     height: 100px;
 }
-
 mat-card{
     background: none;
     margin: auto;
     text-align: center;
 }
-
 mat-form-field{
-    width: 250px;
-    margin-top: 50px;
+    width: 450px;
+    margin-top: 20px;
+    @media only screen and (max-width:1200px) {
+        width: 350px;
+    }
+
+    @media only screen and (max-width:800px) {
+        width: 300px;
+    }
     mat-icon{
         color: $colorNavBar;
     }
 }
-
 .buttons{
-    position: absolute;
-    width: 320px;
+    position: relative;
+    width: 720px;
     height: 150px; 
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center;    
 }
-
 button {
     width: 80px;
     margin-top: 75px;
@@ -82,4 +96,13 @@ button {
     position: absolute;
     right: 0px;
     bottom: 0px;
+}
+#mascotte{
+    width: 600px;
+    @media only screen and (max-width:1200px) {
+        width: 400px;
+    }
+    @media only screen and (max-width:800px) {
+        width: 300px;
+    }
 }

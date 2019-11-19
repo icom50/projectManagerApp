@@ -54,8 +54,6 @@ export class ProjectComponent implements OnInit {
     else {
       console.log('project not deleted')
     }
-
-
   }
 
   constructor(

@@ -2,10 +2,11 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Project } from 'src/app/models/projects.model';
 import { DataService } from 'src/app/services/data.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
 import { NavbarService } from 'src/app/services/navbar.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ProjectsDataService } from 'src/app/services/projects-data.service';
+
 
 @Component({
   selector: 'app-project-details',
@@ -20,20 +21,29 @@ export class ProjectDetailsComponent implements OnInit {
   commentValue: string;
   faPlus = faPlus;
 
-  constructor(private _dataService : DataService, private fb : FormBuilder, private router : Router, private route : ActivatedRoute, private nav : NavbarService,  public dialogRef: MatDialogRef<ProjectDetailsComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private _dataService : DataService, 
+    private fb : FormBuilder, 
+    private nav : NavbarService,  
+    public dialogRef: MatDialogRef<ProjectDetailsComponent>, 
+    @Inject(MAT_DIALOG_DATA) 
+    public data: any,
+    public _projectData : ProjectsDataService
+    ) {
     this.formComment = this.fb.group({
       comment : new FormControl(null, [Validators.maxLength(400)])
     })
    }
 
-  deleteProject(id)  {
-     this._dataService.deleteProject(id).subscribe((data:Project)=>{
-       this.project = data;
-       this.router.navigate(['/home'])
-     });
-     setTimeout(()=>{
-      alert('Project deleted');
-     },1000)
+  deleteProject()  {
+    {
+      if (confirm("Are you sur to delete this project")) {
+        console.log('project deleted')
+        this._dataService.deleteProject(this.data.project_id).subscribe();
+      }
+      else {
+        console.log('project not deleted')
+      }
+    }
       
    }
 

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 
 /* Service */
@@ -12,6 +13,11 @@ import { DataService } from './services/data.service';
 import { NavbarService } from './services/navbar.service';
 import { RestService } from './services/rest.service';
 import { ProjectsDataService } from './services/projects-data.service';
+import { AuthentificatorService } from './services/authentificator.service';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { AuthGuardsService } from './services/auth-guards.service';
+import { RandomSentencesService } from './services/random-sentences.service';
+
 
 /* Components */
 import { CommonNavbarComponent } from './pages/commons/common-navbar/common-navbar.component';
@@ -38,6 +44,7 @@ import { ProjectDetailsComponent } from './pages/project-details/project-details
 import { ZippyComponent } from './pages/commons/common-zippy/zippy.component';
 import { ProjectComponent } from './pages/commons/common-project/project.component';
 import { CommonTaskComponent } from './pages/commons/common-task/common-task.component';
+import { SendInformationComponent } from './pages/forms/send-information/send-information.component';
 
 /* Material Modules */
 import { MatListModule } from '@angular/material/list';
@@ -64,11 +71,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { registerLocaleData } from '@angular/common';
 import { MY_FORMAT } from './utils/formats/date.format';
 import localeFr from '@angular/common/locales/fr';
-import { AuthentificatorService } from './services/authentificator.service';
-import { AuthInterceptorService } from './services/auth-interceptor.service';
-import { AuthGuardsService } from './services/auth-guards.service';
-import { RandomSentencesService } from './services/random-sentences.service';
-import { SendInformationComponent } from './pages/forms/send-information/send-information.component';
+
 
 
 
@@ -128,7 +131,8 @@ registerLocaleData(localeFr, 'fr');
     MatRadioModule,
     DragDropModule,
     MatCheckboxModule,
-    MatMenuModule
+    MatMenuModule,
+    ColorPickerModule
   
   ],
   providers: [

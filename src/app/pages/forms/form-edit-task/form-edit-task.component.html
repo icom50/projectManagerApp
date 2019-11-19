@@ -42,9 +42,9 @@
                     <h4>Members</h4>
                     <ul class="ul-from-edit">
                         <li *ngFor="let member of task?.assigned; let i = index" class="task--member">
-                            <img src="{{member.avatar_url}}"
+                            <img src="{{otherTemp[1][i]}}"
                                 alt="{{member.user_id}}">
-                            <p>{{ otherTemp[i] }}</p>
+                            <p>{{ otherTemp[0][i] }}</p>
                             <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="unnasignedUser(member.user_id)"></fa-icon>
                         </li>
                     </ul>

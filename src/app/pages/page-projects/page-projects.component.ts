@@ -34,7 +34,7 @@ export class PageProjectsComponent implements OnInit {
   router(id){
     event.stopPropagation();
     this.route.navigate(['/project/'+id])
-}
+  }
 
   ngOnInit() {
     this.nav.show();
