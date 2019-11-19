@@ -1,25 +1,36 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 30px;
+    height: 50px;
+    cursor: pointer;
 
+    .logocroco {
+      margin: 10px;
+      outline: none;
+      width: 80px;
+    }
+  }   
 .background{
     position: relative;
     display: flex;
     flex-direction: column;
     text-align: center;
-    justify-content: center;
-    align-items: center;
+    justify-content: center;    
     height: 100vh;
     width: 100vw;
     background-image: url("../../../../assets/img/background/tache.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;    
+    background-size: cover;
 }
+
 .login{
-    width: 320px;
-    height: 500px;
+    width: 720px;
     margin: 0 auto;  
-    position: relative;
     box-sizing: border-box;
     flex-direction: column;
 }
@@ -34,29 +45,26 @@ mat-card{
     text-align: center;
 }
 mat-form-field{
-    width: 250px;
+    width: 450px;
     margin-top: 20px;
+
+    @media only screen and (max-width:1200px) {
+        width: 350px;
+    }
+
+    @media only screen and (max-width:800px) {
+        width: 300px;
+    }
+
     mat-icon{
         color: #0A3D62;
     }
 }
 button {
-    width: 80px;
-    margin-top: 75px;
-    border-radius: 20px;
-    background-color: #0A3D62;
-    color: #C0FFB3;
-    justify-content: center;
-    align-items: center;
-    text-align: center;        
+    margin-top: 40px;
+    @include button;
 }
-.signUp{
-    position: absolute;  
-    width: 320px;
-    height: 150px;    
-    flex-direction: column;
-    justify-content: space-between;
-}
+
 .Imagebasgauche{
     display: flex;
     position: absolute;
@@ -70,10 +78,9 @@ button {
     bottom: 0px;
 }
 .registerLink{
-    position: absolute;
-    bottom: 40px;
-    left: auto;
-    a{
+    margin-bottom: 50px;
+    a{  
+        font-weight: bold;
         color: #52DE97;
     }
 }
@@ -82,7 +89,16 @@ button {
     color:$colorText;
 }
 
-#mascotte {
-    margin-top: 20px;
-    width: 500px;
+#mascotte{
+    // margin-top: 50px;
+    width: 600px;
+
+    @media only screen and (max-width:1200px) {
+        width: 400px;
+    }
+
+    @media only screen and (max-width:800px) {
+        width: 300px;
+    }
+
 }

@@ -1,8 +1,13 @@
 <div class="background">
-    <img src="../../../../assets/img/mascotte/mascotte-accueil.svg" id="mascotte" alt="Mascotte Akroko">
+  <div class="logo">
+    <a routerLink="/"><img class="logocroco" routerLink="/home" src="../../../../assets/img/logo/logo-bleu(1).svg"
+        alt="Logo Akroko" /></a>
+  </div>
+
   <mat-card class="mat-elevation-z0">
     <mat-card-content>
       <div class="login">
+          <img src="../../../../assets/img/mascotte/mascotte-accueil.svg" id="mascotte" alt="Mascotte Akroko">
         <h2>Sign In</h2>
         <p><i><a [href]="sentenceSources" class="sources" target="_blank" rel="author">{{sentence}}</a></i></p>
         <form [formGroup]="form" (submit)="login()">
@@ -39,8 +44,8 @@
   </div>
   <div class="Imagebasdroite">
     <img src="../../../../assets/img/background/plantebasdroite.png" alt="plante bas droite">
-
   </div>
+
   <div class="registerLink">
     <p>Don't have an account? <a href="" routerLink="/sign-up">Sign up here</a></p>
   </div>
