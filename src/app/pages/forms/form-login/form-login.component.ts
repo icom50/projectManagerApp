@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/users.model';
-import { FormGroup, FormBuilder,FormControl, Validators, AbstractControl } from '@angular/forms';
-import { DataService } from '../../../services/data.service'; 
+import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { DataService } from '../../../services/data.service';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { AuthentificatorService } from '../../../services/authentificator.service'
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { RandomSentencesService } from 'src/app/services/random-sentences.servic
   styleUrls: ['./form-login.component.scss']
 })
 export class FormLoginComponent implements OnInit {
- 
+
 
   user: User;
   form: FormGroup;
@@ -23,7 +23,7 @@ export class FormLoginComponent implements OnInit {
   sentence = this.randomSentences.getRandomSentence()
   sentenceSources = this.randomSentences.getSources()
 
-  constructor(fb: FormBuilder, private dataService: DataService, private nav : NavbarService, private auth : AuthentificatorService, private router : Router, private randomSentences: RandomSentencesService) { 
+  constructor(fb: FormBuilder, private dataService: DataService, private nav: NavbarService, private auth: AuthentificatorService, private router: Router, private randomSentences: RandomSentencesService) {
     this.form = fb.group({
       'login': ['', Validators.compose([Validators.required, Validators.email])],
       'password': ['', Validators.required]
@@ -33,22 +33,25 @@ export class FormLoginComponent implements OnInit {
     this.passwordControl = this.form.get('password');
   }
 
-  getErrorMessage(field:string):string {
+  getErrorMessage(field: string): string {
     const error = {
-      required : "This field is required",
+      required: "This field is required",
       email: "This field must contains a valid email"
     };
     let returnValue = '';
-    Object.keys(this.form.controls[field].errors).map((key, index)=>{
+    Object.keys(this.form.controls[field].errors).map((key, index) => {
       returnValue += `${error[key]}`;
     })
     return returnValue;
   }
 
   login(value: any): void {
-    event.preventDefault()
+    if (this.form.invalid) {
+      event.preventDefault()
+    }
+
     // console.log(this.form);
-    
+
     // this.user = this.form.value;
     // this.dataService.loginUser(this.user).subscribe((data:any) => {
     //   // console.log(data.error);   
@@ -63,16 +66,16 @@ export class FormLoginComponent implements OnInit {
     //     })
     //   }
     // });
-
     // ^- code avant la création de l'authentificator.service || v- code de l'authentificator service
-    this.user = this.form.value;
-    this.auth.login(this.user).subscribe((data:any) => {
-        if(data.error === 403) { // could be removed
+    else {
+      this.user = this.form.value;
+      this.auth.login(this.user).subscribe((data: any) => {
+        if (data.error === 403) { // could be removed
           alert('Your email and/or password are incorrect. Please check your email and password or create an account');
           // this.loginRoute = "/login";
         } else {
           //if user found, go find his _id and add it to url
-          this.dataService.getUserByEmail(this.user.email).subscribe((data:any) => {
+          this.dataService.getUserByEmail(this.user.email).subscribe((data: any) => {
             const userId = data.users._id;
             // this.loginRoute = `/user/`+userId;
             this.router.navigate([`/user/${userId}`])
@@ -81,7 +84,7 @@ export class FormLoginComponent implements OnInit {
       }, err => {
         if (err) alert('Your email and/or password are incorrect. Please check your email and password or create an account');
       });
-    
+    }
   }
 
   ngOnInit() {
