@@ -4,6 +4,7 @@
 .background{
     position: relative;
     display: flex;
+    flex-direction: column;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -34,7 +35,7 @@ mat-card{
 }
 mat-form-field{
     width: 250px;
-    margin-top: 75px;
+    margin-top: 20px;
     mat-icon{
         color: #0A3D62;
     }
@@ -79,4 +80,9 @@ button {
 .sources {
     text-decoration: none;
     color:$colorText;
+}
+
+#mascotte {
+    margin-top: 20px;
+    width: 500px;
 }
