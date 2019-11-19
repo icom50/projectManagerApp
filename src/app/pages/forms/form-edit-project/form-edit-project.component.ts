@@ -15,6 +15,7 @@ export class FormEditProjectComponent implements OnInit {
   project : Project;
   editProject : FormGroup;
   date = Date.now();
+  addColor;
 
   constructor(private _dataService : DataService, 
     public dialogRef: MatDialogRef<ProjectDetailsComponent>, 
@@ -36,11 +37,18 @@ export class FormEditProjectComponent implements OnInit {
     return returnValue;
    }
 
+   updateColor(value){
+    this.editProject.controls['color'].patchValue(value);
+   }
+
    onSubmit(){
+    
     this.project = this.editProject.value;
     
     this._dataService.putProject(this.project).subscribe((data : Project) => {
       this.project = data;
+      console.log(this.project)
+      
     })
    }
    ProjectFinished(){
@@ -55,11 +63,11 @@ export class FormEditProjectComponent implements OnInit {
     const id = this.data.project_id;
     this._dataService.getProjectById(id).subscribe((data : Project)=>{
       this.project = data['projects'];
-      this.editProject.setValue(this.project)
+      this.editProject.patchValue(this.project)
     })
     this.editProject = new FormGroup({
       name: new FormControl('',Validators.required),
-      description: new FormControl('', Validators.maxLength(54)),
+      description: new FormControl('', Validators.maxLength(500)),
       git: new FormControl(),
       color: new FormControl(),
       author_id: new FormControl(),
