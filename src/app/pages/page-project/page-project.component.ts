@@ -91,6 +91,8 @@ export class PageProjectComponent implements OnInit {
     }
   }
 
+  
+
   ngOnInit() {
     this.nav.show();
     this.projectUrl = this.router.url;

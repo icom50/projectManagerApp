@@ -142,11 +142,6 @@
 .deletebutton{
     margin: 0px 5px;
 }
-
-.middlebutton{
-    @include middleButton;
-}
-
   
 input[type=checkbox]:checked + label {
     text-decoration: line-through;
