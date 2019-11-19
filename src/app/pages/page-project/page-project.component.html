@@ -14,9 +14,8 @@
     </header>
 
     <div class="project--filter">
-        <button class="active-btn">
-        All tasks</button>
-        <button>My tasks</button>
+        <button (click)="allTasks()" class="active-btn">All tasks</button>
+        <button (click)="onlyMyTasks()">My tasks</button>
         <button>Create Task</button>
     </div>
 
