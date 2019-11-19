@@ -27,7 +27,6 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 .login{
     width: 720px;
     margin: 0 auto;  
@@ -51,11 +50,9 @@ mat-form-field{
     @media only screen and (max-width:1200px) {
         width: 350px;
     }
-
     @media only screen and (max-width:800px) {
         width: 300px;
     }
-
     mat-icon{
         color: #0A3D62;
     }
@@ -64,7 +61,6 @@ button {
     margin-top: 40px;
     @include button;
 }
-
 .Imagebasgauche{
     display: flex;
     position: absolute;
@@ -88,17 +84,12 @@ button {
     text-decoration: none;
     color:$colorText;
 }
-
 #mascotte{
-    // margin-top: 50px;
     width: 600px;
-
     @media only screen and (max-width:1200px) {
         width: 400px;
     }
-
     @media only screen and (max-width:800px) {
         width: 300px;
     }
-
 }
