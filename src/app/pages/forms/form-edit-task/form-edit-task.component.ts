@@ -1,12 +1,10 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
-//import { NavbarService } from 'src/app/services/navbar.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import { MatDialogRef, MAT_DIALOG_DATA, throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
+// import { PageProjectComponent } from '../../page-project/page-project.component';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -30,12 +28,14 @@ export class FormEditTaskComponent implements OnInit {
   user: User;
   creator: string;
   otherTemp;
+  avatarTemp = [];
+  exportTab = [];
 
   constructor(
     private _dataService: DataService,
+    // public _projectComponent: PageProjectComponent,
     public dialogRef: MatDialogRef<FormEditTaskComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-
   }
 
   onSubmit(e) {
@@ -46,6 +46,12 @@ export class FormEditTaskComponent implements OnInit {
     else {
       this.task = this.editTask.value;
       this._dataService.putTaskByProject(this.project._id, this.task);
+
+      // this.project.tasks.filter((task, i) => {
+      //   if (task._id === this.task._id) {
+      //     this._projectComponent.projects.task[i] = this.task; 
+      //   } 
+      // });
     }
   }
 
@@ -130,7 +136,6 @@ export class FormEditTaskComponent implements OnInit {
       this.task = data;
       // console.log(this.task.checklist)
       this.editTask.setValue(this.task)
-
       //list all members assigned to the task and stock it in temp table
       for (let i = 0; i < this.task.assigned.length; i++) {
         this.tempUser.push(this.task.assigned[i]);
@@ -148,14 +153,17 @@ export class FormEditTaskComponent implements OnInit {
           } else {
             this.memberAssignedAll.push(data['users'].email.split('@')[0]);
           }
+
+          this.avatarTemp.push(data['users'].avatar_url);
         });
-        return this.memberAssignedAll;
+
+        this.exportTab = [this.memberAssignedAll, this.avatarTemp];
+        return this.exportTab;
       });
 
-       //otherTemp is used to get value outside dataservice
-       this.otherTemp = names[0]; 
+      //otherTemp is used to get value outside dataservice
+      this.otherTemp = names[0]; 
 
-      //console.log(coucou);
       this._dataService.getUserById(this.task.author_id).subscribe((data: User) => {
         if (data['users'].username) {
           this.creator = data['users'].username;
@@ -164,9 +172,6 @@ export class FormEditTaskComponent implements OnInit {
           this.creator = data['users'].email;
         }
       })
-
-      //otherTemp is used to get value outside dataservice
-      this.otherTemp = names[0];
     })
 
     this.editTask = new FormGroup({

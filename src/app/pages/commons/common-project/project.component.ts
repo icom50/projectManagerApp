@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { Project } from 'src/app/models/projects.model';
 import { TestBed } from '@angular/core/testing';

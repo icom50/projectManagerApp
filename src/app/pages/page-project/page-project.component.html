@@ -6,28 +6,18 @@
             <h2> {{ projects?.name }}</h2>
         </div>
 
-
-        <!-- <p>My Tasks</p>
-    <p>All Tasks</p> -->
-
         <div class="project--collaborators">
             <div *ngFor="let user of users">
                 <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
-                <!-- <p>{{user._id}}</p> -->
             </div>
         </div>
     </header>
 
     <div class="project--filter">
-        <button 
-        mat-raised-button
-        class="active-btn"
-        >
+        <button class="active-btn">
         All tasks</button>
-        <button
-        mat-raised-button
-        >
-        My tasks</button>
+        <button>My tasks</button>
+        <button>Create Task</button>
     </div>
 
     <section class="task--board">
