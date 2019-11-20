@@ -14,8 +14,8 @@
     </header>
 
     <div class="project--filter">
-        <button (click)="allTasks()" class="active-btn">All tasks</button>
-        <button (click)="onlyMyTasks()">My tasks</button>
+        <button (click)="allTasks()" [ngClass]="myTasks ? '' : 'active-btn'">All tasks</button>
+        <button (click)="onlyMyTasks()" [ngClass]="myTasks ? 'active-btn' : ''">My tasks</button>
         <button>Create Task</button>
     </div>
 

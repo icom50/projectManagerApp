@@ -3,7 +3,6 @@ import { DataService } from 'src/app/services/data.service';
 import { Project } from 'src/app/models/projects.model';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ProjectDetailsComponent } from '../../project-details/project-details.component';
 
 @Component({
   selector: 'app-form-edit-project',
@@ -18,7 +17,7 @@ export class FormEditProjectComponent implements OnInit {
   addColor;
 
   constructor(private _dataService : DataService, 
-    public dialogRef: MatDialogRef<ProjectDetailsComponent>, 
+    public dialogRef: MatDialogRef<FormEditProjectComponent>, 
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
    }
