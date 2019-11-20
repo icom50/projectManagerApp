@@ -1,5 +1,8 @@
 <!-- main app container -->
 <div class="background">
+  <div class="logo">
+    <img class="logocroco" routerLink="/" src="../../../../assets/img/logo/logo-bleu(1).svg" alt="Logo Akroko" />
+  </div>
   <mat-card class="mat-elevation-z0">
     <mat-card-content>
       <div class="signUp">
@@ -34,7 +37,7 @@
           </div>
           <div class="field">
             <mat-form-field>
-              <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword"/>
+              <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" />
               <mat-icon matSuffix>lock</mat-icon>
               <mat-error *ngIf="f.confirmPassword.touched && f.confirmPassword.errors">
                 <mat-error *ngIf="f.confirmPassword.touched && f.confirmPassword.errors.required">Confirm Password is
@@ -45,8 +48,7 @@
             </mat-form-field>
           </div>
           <div class="buttons">
-            <button mat-stroked-button
-              [disabled]="f.confirmPassword.invalid && f.password.invalid && f.email.invalid">Sign Up</button>
+            <button class="bigbutton" type="submit">Sign Up</button>
           </div>
 
         </form>

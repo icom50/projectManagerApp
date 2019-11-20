@@ -46,6 +46,19 @@
         </mat-form-field>
     </div>
     <div>
+        <label for="addColor">Color's project : </label><br>
+        <input 
+        id="addColor"
+        [style.background]="color"
+        [(colorPicker)]="color"
+        [value]="color"
+        [cpAlphaChannel]="'disabled'"
+        (colorPickerChange)="updateColor($event)"
+        [(ngModel)]="addColor"
+        [ngModelOptions]="{standalone: true}"
+        />
+    </div>
+    <div>
         <button mat-stroked-button type="submit">Edit</button>
     </div>
 </form>

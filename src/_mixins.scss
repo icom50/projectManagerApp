@@ -8,7 +8,7 @@
     border-radius: 2rem;
     transition: .3s;
     outline: none;
-    border: 4px solid rgba(255, 255, 255, 0);
+    border: 4px solid rgba(209, 177, 177, 0);
 
     -webkit-box-shadow: -1px 10px 17px -6px rgba(0,0,0,0.20);
     -moz-box-shadow: -1px 10px 17px -6px rgba(0,0,0,0.20);
@@ -88,4 +88,36 @@
         color: lighten($colorTextButtonDelete, 100%);
         border: 4px solid lighten($colorTextButtonDelete, 100%);
     }
+}
+
+// Btn for add task or member
+
+ @mixin btnAdd {
+    
+        display: block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30px;
+        background: #0a3d62;
+        cursor: pointer;
+        fa-icon{
+            color: #C0FFB3;
+          }
+ }
+
+ @mixin btnAddNavBar {
+    
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    background: #0a3d62;
+    cursor: pointer;
+    fa-icon{
+        color: #C0FFB3;
+      }
 }

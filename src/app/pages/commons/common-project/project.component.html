@@ -1,4 +1,4 @@
-<div class="content__project">
+<div class="content__project" title="{{project?.name}}">
         <div class="wrapper__project">
                 <div class="project" [ngStyle]="{'background': this.project?.color}">
 
@@ -13,7 +13,7 @@
                                 </svg></div>
                         <mat-menu #menu="matMenu">
                                 <ul>
-                                        <li mat-menu-item (click)="openPopupDetails()">Voir</li>
+                                        <li mat-menu-item (click)="openPopupDetails()">View</li>
                                         <li mat-menu-item (click)="openPopupEdit()">Edit</li>
                                         <li mat-menu-item (click)="deleteProject()">Delete</li>
                                 </ul>

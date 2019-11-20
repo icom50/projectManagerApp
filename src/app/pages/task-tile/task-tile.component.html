@@ -17,9 +17,9 @@
         <h6>{{ task.name }}</h6>
     </mat-card-title>
     <mat-card-content>
-        <div *ngIf="task.assigned?.length != 0"  class="task--collaborators">
-            <div *ngFor="let user of task.assigned; let i=index" >
-                <img class="task--assigned" [src]="user.avatar_url" [alt]="user.email" [title]="user.email" *ngIf="i<4">
+        <div *ngIf="tempAvatar != 0"  class="task--collaborators">
+            <div *ngFor="let user of tempAvatar; let i=index" >
+                <img class="task--assigned" [src]="user" *ngIf="i<4">
             </div>
         </div>
 
