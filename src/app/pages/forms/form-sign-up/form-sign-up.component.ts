@@ -23,6 +23,8 @@ export class FormSignUpComponent implements OnInit {
 
     get f() { return this.registerForm.controls; }
 
+    
+
     onSubmit(e) {
         if (this.registerForm.invalid) {
             e.preventDefault();
