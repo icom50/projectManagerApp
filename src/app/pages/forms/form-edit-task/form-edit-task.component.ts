@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
-import { MatDialogRef, MAT_DIALOG_DATA, throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 // import { PageProjectComponent } from '../../page-project/page-project.component';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -127,7 +127,7 @@ export class FormEditTaskComponent implements OnInit {
           //console.log(this.emails);
         });
       }
-      //console.log(this.emails);
+
     })
 
 

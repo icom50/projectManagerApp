@@ -42,8 +42,6 @@ export class TaskTileComponent implements OnInit {
 
   openPopup(id){
     this.task_id = id;
-    // console.log(this.task_id);
-    // console.log('popup opened');
     const dialogRef = this.dialog.open(FormEditTaskComponent,{
       width : '1000px',
       data : {
@@ -51,13 +49,9 @@ export class TaskTileComponent implements OnInit {
         project_id : this.project_id
       }
     });
-    // dialogRef.afterClosed().subscribe(result =>{
-    //   console.log('popup closed');
-    // })
   }
 
   ngOnInit() {
-    // this.nav.show(); pas besoin wlh
 
     this.projectUrl = this.router.url;
     this.project_id = this.projectUrl.split('/').pop(); // get last element of splited array => id from url
@@ -77,31 +71,22 @@ export class TaskTileComponent implements OnInit {
 
     });
 
-
     this.dataService
     .getTaskById(this.project_id, this.id)
     .subscribe((data:any) => {
-      // console.log(data);
 
-      const coucou = data.assigned.map(personOnProject => {
-        // console.log(personOnProject.user_id)
+      data.assigned.map(personOnProject => {
 
-        let lol = personOnProject.user_id;
+        let taskId = personOnProject.user_id;
         
         this.dataService
-        .getUserById(lol)
+        .getUserById(taskId)
         .subscribe(user => {
           //errors because some users don't exists in the database
-          // console.log(user);
           this.tempAvatar.push(user['users'].avatar_url);
           return this.tempAvatar;
-          // console.log(this.tempAvatar);
         });
-        // this.tempUser = this.tempAvatar;
-        // console.log(this.tempUser)
       });
     });
-
-
   }
 }

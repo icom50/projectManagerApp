@@ -27,7 +27,6 @@
         }
       }  
 }
-
 h2{
     margin-bottom: 20px;
     font-size: 3em;
@@ -49,40 +48,35 @@ h2{
     width: 720px;
     height: 100px;
 }
-
 mat-card{
     background: none;
     margin: auto;
     text-align: center;
 }
-
 mat-form-field{
-    width: 250px;
-    margin-top: 50px;
+    width: 450px;
+    margin-top: 20px;
+    @media only screen and (max-width:1200px) {
+        width: 350px;
+    }
+
+    @media only screen and (max-width:800px) {
+        width: 300px;
+    }
     mat-icon{
         color: $colorNavBar;
     }
 }
-
 .buttons{
     position: relative;
     width: 720px;
     height: 150px; 
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center;    
 }
-
 button {
-    width: 80px;
-    margin-top: 75px;
-    border-radius: 20px;
-    background-color: #0A3D62;
-    color: #C0FFB3;
-    justify-content: center;
-    align-items: center;
-    text-align: center;   
+    margin-top: 75px;   
 }
 .Imagebasgauche{
     display: flex;
@@ -95,4 +89,13 @@ button {
     position: absolute;
     right: 0px;
     bottom: 0px;
+}
+#mascotte{
+    width: 600px;
+    @media only screen and (max-width:1200px) {
+        width: 400px;
+    }
+    @media only screen and (max-width:800px) {
+        width: 300px;
+    }
 }

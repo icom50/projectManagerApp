@@ -9,7 +9,6 @@ import { NavbarService } from 'src/app/services/navbar.service';
 })
 export class CommonNavbarComponent implements OnInit {
   faPlus = faPlus;
- 
 
   constructor(private nav: NavbarService) { }
 

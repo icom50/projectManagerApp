@@ -30,6 +30,7 @@ export class PageProjectComponent implements OnInit {
   task_id;
   targetData;
   tileStatus: String;
+  myTasks = false;
   
   todoArray: String[];
   doingArray: String[];
@@ -104,6 +105,55 @@ export class PageProjectComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result =>{
       console.log('popup closed');
     })
+  onlyMyTasks() {
+    this.myTasks = true;
+  }
+
+  allTasks() {
+    this.myTasks = false;
+  }
+
+  filterTasks() {
+    this.dataService
+    .getTasksByProject(this.project_id)
+    .subscribe((data:any) => {
+      // console.log(data);
+      this.tasks = data;
+
+      this.tasks.map(oneTask => {
+        // console.log(oneTask)
+        oneTask.checklist.map(el => { //for checklist
+          el.done === true ? this.checkedList += 1 : this.checkedList += 0;
+        });
+
+        //filter by status of task
+        this.taskStatus = oneTask.status;
+
+        //convert to array
+        this.todoArray = this.todoArray || [];
+        this.doingArray = this.doingArray || [];
+        this.doneArray = this.doneArray || [];
+        this.pausedArray = this.pausedArray || [];
+
+        //modifier les  éléments qui sont mis dans les listes afin qu'elles concordent avec l'id du user connecté. 
+        // checker si le bouton est cliqué, si true, appliquer le filtre, si pas, afficher ainsi
+
+        switch(this.taskStatus) {
+          case 'todo' :
+            this.todoArray.push(oneTask);
+            break;
+          case 'doing' :
+            this.doingArray.push(oneTask);
+            break;
+          case 'done' :
+            this.doneArray.push(oneTask);
+            break;
+          case 'paused' :
+            this.pausedArray.push(oneTask);
+            break;
+        }
+      });
+    });
   }
 
   ngOnInit() {
@@ -122,43 +172,8 @@ export class PageProjectComponent implements OnInit {
         // console.log(this.users)
     });
 
-    this.dataService
-      .getTasksByProject(this.project_id)
-      .subscribe((data:any) => {
-        // console.log(data);
-        this.tasks = data;
-  
-        this.tasks.map(oneTask => {
-          // console.log(oneTask)
-          oneTask.checklist.map(el => { //for checklist
-            el.done === true ? this.checkedList += 1 : this.checkedList += 0;
-          });
+    this.filterTasks();
 
-          //filter by status of task
-          // console.log(oneTask.status);
-          this.taskStatus = oneTask.status;
-
-          //convert to array
-          this.todoArray = this.todoArray || [];
-          this.doingArray = this.doingArray || [];
-          this.doneArray = this.doneArray || [];
-          this.pausedArray = this.pausedArray || [];
-
-          switch(this.taskStatus) {
-            case 'todo' :
-              this.todoArray.push(oneTask);
-              break;
-            case 'doing' :
-              this.doingArray.push(oneTask);
-              break;
-            case 'done' :
-              this.doneArray.push(oneTask);
-              break;
-            case 'paused' :
-              this.pausedArray.push(oneTask);
-              break;
-          }
-        });
-      });
+    // this.myTasks ? console.log('All my personnal tasks') : console.log('All the projects tasks');
   }
 }
