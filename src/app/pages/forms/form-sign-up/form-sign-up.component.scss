@@ -91,11 +91,11 @@ button {
     bottom: 0px;
 }
 #mascotte{
-    width: 600px;
+    width: 250px;
     @media only screen and (max-width:1200px) {
-        width: 400px;
+        width: 200px;
     }
     @media only screen and (max-width:800px) {
-        width: 300px;
+        width: 150px;
     }
 }
