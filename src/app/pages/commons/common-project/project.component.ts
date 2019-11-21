@@ -27,7 +27,8 @@ export class ProjectComponent implements OnInit {
   projects: Project[];
   project: Project;
   status: string;
-  user_id = "5dd3b3277576670bf8387f43";
+  // user_id = "5dd3b3277576670bf8387f43";
+  user_id = localStorage.getItem('current_user');
   user;
   //project_id: Project;
 
@@ -36,11 +37,15 @@ export class ProjectComponent implements OnInit {
   toggleIsSelected() {
     event.stopPropagation();
     this.isSelected = !this.isSelected;
+    this._dataService.getUserById(this.user_id).subscribe(data => {
+      this.user = data['users']
+      this.user.projects.filter(project => {
+        if (project.project_id === this.project._id) project.favorite = this.isSelected
+      })
+      this._dataService.putUser(this.user).subscribe()
 
-    this.user.projects.filter(project => {
-      if (project._id === this.project._id) project.favorite = this.isSelected
     })
-    this._dataService.putUser(this.user).subscribe(data => data)
+
     //console.log(this.user)
 
   }
@@ -97,7 +102,7 @@ export class ProjectComponent implements OnInit {
         this._dataService.getUserById(this.user_id).subscribe(data => {
           this.user = data['users']
           this.user.projects.filter(project => {
-            if (project._id === this.project._id) this.isSelected = project.favorite || false
+            if (project.project_id === this.project._id) this.isSelected = project.favorite || false
           })
         })
       })

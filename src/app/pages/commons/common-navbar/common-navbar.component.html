@@ -12,7 +12,7 @@
     </li>
     <li>
    
-        <div [routerLink]="'/user/'+nav.current_user" class="avatar"></div>
+        <div [routerLink]="'/user/'+nav.current_user" class="avatar"><img [src]="user?.avatar_url" [alt]="user?.email"></div>
      
     </li>
   </ul>

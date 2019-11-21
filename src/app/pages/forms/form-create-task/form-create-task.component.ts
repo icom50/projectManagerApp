@@ -16,7 +16,7 @@ export class FormCreateTaskComponent implements OnInit {
   users: User[];
   project: Project;
   formCreateTask: FormGroup;
-  task : Task;
+  task: Task;
   //newTask = { assigned: [], checklist: [] }
   user_id = "5da98631e2dcd109d6ab35db";
   project_id = this.data.project_id;
@@ -30,10 +30,14 @@ export class FormCreateTaskComponent implements OnInit {
   }
 
   createTask() {
-    event.preventDefault()
-    this.task = this.formCreateTask.value;
-    this._dataService.putTaskByProject(this.project_id, this.task);
-    console.log(this.task)
+    if (this.formCreateTask.invalid) {
+      event.preventDefault()
+    }
+    else {
+      this.task = this.formCreateTask.value;
+      this._dataService.putTaskByProject(this.project_id, this.task);
+      console.log(this.task)
+    }
   }
 
   getErrorMessage(field: string): string {
@@ -90,11 +94,11 @@ export class FormCreateTaskComponent implements OnInit {
       deadline: [''],
       priority: [this.selected],
       labels: [[]],
-      assigned : [[]],
-      checklist : [[]],
-      progression : [''],
+      assigned: [[]],
+      checklist: [[]],
+      progression: [''],
       attachments: [[]],
-      comments : [[]]
+      comments: [[]]
     }, {});
 
   }

@@ -41,11 +41,11 @@ export class FormEditProjectComponent implements OnInit {
    }
 
    onSubmit(){
-    
+    event.preventDefault()
     this.project = this.editProject.value;
     
     this._dataService.putProject(this.project).subscribe((data : Project) => {
-      this.project = data;
+      this.project = data['projects'];
       console.log(this.project)
       
     })
