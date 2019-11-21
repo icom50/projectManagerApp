@@ -2,12 +2,6 @@
     <div class="form-content">
         <form [formGroup]="editTask" (ngSubmit)="onSubmit($event)">
             <div class="edit--task">
-                <!-- can't stylize form as it's from material -->
-                <!-- <section>
-
-                    <div>Barre d'évolution</div>  <span>{{task?.progression}}%</span>
-                    <span>Mark complete</span>
-                </section> -->
                 <section>
                     <mat-form-field>
                         <input matInput placeholder="Task's name" name="name" type="text" formControlName="name"

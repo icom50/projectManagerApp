@@ -17,7 +17,6 @@ export class FormCreateTaskComponent implements OnInit {
   project: Project;
   formCreateTask: FormGroup;
   task: Task;
-  //newTask = { assigned: [], checklist: [] }
   user_id = "5da98631e2dcd109d6ab35db";
   project_id = this.data.project_id;
   selected = 'none';
@@ -52,30 +51,8 @@ export class FormCreateTaskComponent implements OnInit {
     return returnValue;
   }
 
-  // addAssignedUser(id) {
-  //   event.preventDefault()
-  //   if (id != "Assign a member" && !(this.checkAssigned(id))) {
-  //     this._dataService.getUserById(id).subscribe((data: User) => {
-  //       this.newTask.assigned.push({ ...data['users'], user_id: data['users']._id })
-  //       console.log(this.newTask)
-  //     })
-  //   }
-  // }
-  // checkAssigned(id) {
-  //   return this.newTask.assigned.some((el) => {
-  //     return el.user_id === id;
-  //   });
-  // }
-  // addToCheckList(i: NgForm) {
-  //   event.preventDefault()
-  //   let name = i.value
-  //   console.log(i.value)
-  //   this.newTask.checklist.push({ name, done: false })
-  //   // i.controls.value.reset
-  // }
   ngOnInit() {
     const id = localStorage.getItem('current_user');
-    //const id = this.user_id;
     this._dataService.getProjectById(this.project_id).subscribe((data: Project) => {
       this.project = data['projects'];
       console.log(this.project)

@@ -41,7 +41,6 @@ export class ProjectComponent implements OnInit {
       if (project._id === this.project._id) project.favorite = this.isSelected
     })
     this._dataService.putUser(this.user).subscribe(data => data)
-    //console.log(this.user)
 
   }
 
@@ -93,7 +92,6 @@ export class ProjectComponent implements OnInit {
       .getProjectById(this.project_id)
       .subscribe((data: Project) => {
         this.project = data['projects'];
-        //console.log(this.project.color);
         this._dataService.getUserById(this.user_id).subscribe(data => {
           this.user = data['users']
           this.user.projects.filter(project => {

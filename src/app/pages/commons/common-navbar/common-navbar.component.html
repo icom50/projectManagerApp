@@ -1,19 +1,15 @@
 <div class="navbar" *ngIf="nav.visible">
   <ul>
     <li>
-      <!-- <div class="backgroundIcon">
-        <a routerLink="/create">
-
-          <fa-icon [icon]="faPlus" size="2x"></fa-icon>
-
-        </a>
-      </div> -->
-      <a routerLink="/create"><fa-icon [icon]="faPlus" size="1x"></fa-icon></a>
+      <a routerLink="/create">
+        <fa-icon [icon]="faPlus" size="1x"></fa-icon>
+      </a>
     </li>
     <li>
-   
-        <div [routerLink]="'/user/'+nav.current_user" class="avatar"><img [src]="user.avatar_url" [alt]="user.email"></div>
-     
+
+      <div [routerLink]="'/user/'+nav.current_user" class="avatar"><img [src]="user.avatar_url" [alt]="user.email">
+      </div>
+
     </li>
   </ul>
 </div>

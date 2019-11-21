@@ -8,9 +8,6 @@ mat-card {
 
     box-shadow: none!important;  
     min-height: 120px;
-    // min-width: 250px;
-    // max-width: 350px;
-    // width: 300px;
     padding: 10px;
 
     &:hover {
@@ -94,12 +91,6 @@ mat-card-content {
         p {
             @include littleButton;
             margin:0px 2px;
-            // background: rgb(230, 230, 230);
-            // margin-right: 5px;
-            // padding: 4px 6px;
-            // border-radius: 2px;
-            // line-height: 1;
-            // color: rgb(106, 106, 106);
 
             &:last-child {
                 margin-right: 0;

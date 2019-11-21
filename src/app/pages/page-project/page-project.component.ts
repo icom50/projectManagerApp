@@ -18,7 +18,6 @@ export class PageProjectComponent implements OnInit {
 
   projects;
   projectUrl;
-  // project_id;
   comments;
   priority;
   tasks;
@@ -40,8 +39,6 @@ export class PageProjectComponent implements OnInit {
   current_user = localStorage.getItem('current_user');
 
   project_id;
-  // task_id;
-  // user_id = "5da98b33867e3d0a5e31c9d9";
 
   isHidden = true;
 
@@ -67,8 +64,6 @@ export class PageProjectComponent implements OnInit {
 
       this.targetId = event.container._dropListRef.element;
       this.targetData = event.container.data;
-
-      // console.log("target column : " + this.targetId.id);
       switch (this.targetId.id) {
 
         case 'cdk-drop-list-0':
@@ -125,8 +120,6 @@ export class PageProjectComponent implements OnInit {
     this.pausedArray = [];
 
     if(this.myTasks) {
-      // console.log("my tasks")
-
       this.dataService
       .getTasksByUser(this.current_user)
       .subscribe((data:any) => {
@@ -135,7 +128,6 @@ export class PageProjectComponent implements OnInit {
         this.tasks = data;
 
         this.tasks.map(oneTask => {
-          // console.log(oneTask)
           oneTask.checklist.map(el => { //for checklist
             el.done === true ? this.checkedList += 1 : this.checkedList += 0;
           });
@@ -161,16 +153,13 @@ export class PageProjectComponent implements OnInit {
       });
 
     } else {
-      // console.log("all tasks")
 
       this.dataService
       .getTasksByProject(this.project_id)
       .subscribe((data:any) => {
-        // console.log(data);
         this.tasks = data;
 
         this.tasks.map(oneTask => {
-          // console.log(oneTask)
           oneTask.checklist.map(el => { //for checklist
             el.done === true ? this.checkedList += 1 : this.checkedList += 0;
           });
