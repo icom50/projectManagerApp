@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 })
 export class PageProjectsComponent implements OnInit {
   current_user = "5dd3b3277576670bf8387f43";
-  // current_user = localStorage.getItem('current_user')
  
   title;
 
@@ -23,12 +22,9 @@ export class PageProjectsComponent implements OnInit {
     this.isShow = !this.isShow;
   }
 
-  //projects: Project[];
-  //project: Project
   projectsUser;
   constructor(private _dataService: DataService, private nav: NavbarService, public projectsData: ProjectsDataService, private route : Router) { 
     this.current_user = "5dd3b3277576670bf8387f43";
-    // this.current_user = localStorage.getItem('current_user')
   }
 
   router(id){
@@ -39,10 +35,6 @@ export class PageProjectsComponent implements OnInit {
   ngOnInit() {
     this.nav.show();
     const id = "5dd3b3277576670bf8387f43";
-    // this._dataService.getProjectsByUser(id).subscribe(data =>{
-    //   this.projectsUser = data;
-    //   //console.log(this.projectsUser)
-    // })
   }
 }
 

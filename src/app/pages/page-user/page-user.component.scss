@@ -45,20 +45,34 @@ h1{
 #avatardescription{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
-    img{
-        margin-right: 10px;
-        border-radius: 50%;
-    }
+
     #description{
-        // background-color: lightgrey;
         border: 2px solid $colorNavBar;
         padding: 15px;
         border-radius: 5px;
+        width:80%;
     }
 }
 
+.userimage{
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    overflow: hidden;
+    position: relative;
+
+    * {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        height: 100%;
+
+    }
+}
 
 #infomembre{
     width: 100%;
@@ -76,7 +90,6 @@ h1{
     display: flex;
     justify-content: space-between;
     border: 2px solid $colorNavBar;
-    // background-color: lightgrey;
     padding:10px;
     margin : 20px 0px;
     width:100%;
@@ -87,4 +100,8 @@ h1{
     span{
         margin-left: 10px;
     }
+}
+
+label{
+    margin:0;
 }

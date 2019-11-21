@@ -44,12 +44,10 @@ export class PageHomeComponent implements OnInit {
 
   ngOnInit() {
     this.nav.show();
-    //const id = localStorage.getItem('current_user');
-    const id = "5da98631e2dcd109d6ab35db";
+    const id = localStorage.getItem('current_user');
 
     this._dataService.getUserById(id).subscribe((data:User)=>{
       this.user = data['users'];
-      //console.log(this.user['projects'][0].favorite)
       this._dataService.getTasksByUser(id)
     .subscribe((data: Task[])=>{
       this.tasks = data;

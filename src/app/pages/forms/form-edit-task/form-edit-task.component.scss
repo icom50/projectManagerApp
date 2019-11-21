@@ -1,20 +1,6 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
-// .form-bg{
-    // width: 100%;
-    // min-height: 100vh;
-    // background-color: rgba($color: #000000, $alpha: 0.5);
-    // position: absolute;
-    // left: 0px;
-    // top: 0px;
-    // display: flex;
-    // justify-content: center;
-    // margin: 0;
-    // padding: 0;
-    // z-index: 15;
-// }
-
 
 .form-content{
     align-items: flex-start;
@@ -87,7 +73,6 @@
                     mat-form-field {
                         width: 50%;
                     }
-
                     button {
                         position: absolute;
                         left: 50%;

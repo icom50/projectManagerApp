@@ -49,35 +49,15 @@ export class FormLoginComponent implements OnInit {
     if (this.form.invalid) {
       event.preventDefault()
     }
-
-    // console.log(this.form);
-
-    // this.user = this.form.value;
-    // this.dataService.loginUser(this.user).subscribe((data:any) => {
-    //   // console.log(data.error);   
-    //   if(data.error === 403) {
-    //     alert('This user does not exist. Please verify your email and password or create an account');
-    //     this.loginRoute = "/login";
-    //   } else {
-    //     //if user found, go find his _id and add it to url
-    //     this.dataService.getUserByEmail(this.user.email).subscribe((data:any) => {
-    //       const userId = data.users._id;
-    //       this.loginRoute = `/user/`+userId;
-    //     })
-    //   }
-    // });
-    // ^- code avant la création de l'authentificator.service || v- code de l'authentificator service
     else {
       this.user = this.form.value;
       this.auth.login(this.user).subscribe((data: any) => {
         if (data.error === 403) { // could be removed
           alert('Your email and/or password are incorrect. Please check your email and password or create an account');
-          // this.loginRoute = "/login";
         } else {
           //if user found, go find his _id and add it to url
           this.dataService.getUserByEmail(this.user.email).subscribe((data: any) => {
             const userId = data.users._id;
-            // this.loginRoute = `/user/`+userId;
             this.router.navigate([`/user/${userId}`])
           })
         }

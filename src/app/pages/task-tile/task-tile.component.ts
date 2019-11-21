@@ -59,7 +59,6 @@ export class TaskTileComponent implements OnInit {
     this.dataService
     .getTasksByProject(this.project_id)
     .subscribe((data:any) => {
-      // console.log(data);
       this.tasks = data; // get the object task
 
       this.tasks.map(oneTask => { //loop on each task
