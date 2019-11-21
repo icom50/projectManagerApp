@@ -60,13 +60,13 @@ export class DataService {
     })
   }
   private addTaskToUser(project_id, task, user_id){ // se fait automatiquement au PUT & POST --- A TESTER
+    console.log("add task to user, bisou")
     this.getUserById(user_id).subscribe(data => {
       let dontExist = true;
+      let index;
       data['users'].projects.map(project => {
-        project.tasks.filter(t => {
-          if (t === task._id) return dontExist = false
-        })
-        if (dontExist) data['users'].projects.filter(project =>{
+        index = project.tasks.findIndex(t => (t === task._id))
+        if (index === -1) data['users'].projects.filter(project =>{
           if (project.project_id === project_id) return project.tasks.push(task._id)
         })
       })
@@ -127,16 +127,20 @@ export class DataService {
   }
   
   putTaskByProject(project_id:string, task:Task) { // TODO ajouter les users assignés dans users.projects ***
+    console.log(project_id)
+    console.log(task)
     this.getProjectById(project_id).subscribe((data:Project) =>{
       let index;
       let project = data['projects'];
       if (task._id) index = project.tasks.findIndex(CurrentTask => CurrentTask['_id'] === task._id )
+      console.log(index)
       if (index === -1 || !(task._id) ) {
         project.tasks.push(task)
       } else {
         project.tasks.splice(index,1,task)
+        if (task.assigned) task.assigned.map(ass => this.addTaskToUser(project_id, task, ass['user_id']))
       }
-      if (task.assigned) task.assigned.map(ass => this.addTaskToUser(project_id, task, ass['user_id']))
+      // if (task.assigned) task.assigned.map(ass => this.addTaskToUser(project_id, task, ass['user_id']))
       this.putProject(project).subscribe()
     }, error => console.log(error))
   }
