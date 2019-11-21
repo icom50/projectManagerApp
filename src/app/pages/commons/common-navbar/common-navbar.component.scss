@@ -18,10 +18,12 @@
     width: 100%;
     display: flex;    
     justify-content: flex-end;
+   
     //background-color: blue;
     li {
       display: flex;
       justify-content: space-between;
+      margin-right: 45px;
       &:first-child {
           margin-right: 35px;
       }
@@ -57,16 +59,9 @@
    
     }
 
-    .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 100%;
-      background-color: green;
-      margin-right: 45px;
-      cursor: pointer;
-    }
+  
     a{
-      @include btnAddNavBar;
+      @include btnAddNavBar;  
     }
 
   }
