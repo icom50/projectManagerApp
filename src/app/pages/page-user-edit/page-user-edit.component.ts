@@ -23,12 +23,7 @@ export class PageUserEditComponent implements OnInit {
 
   submitForm(){
     this.user = this.form.value;
-<<<<<<< HEAD
-    this._dataService.putUser(this.user).subscribe((data: User) => {
-      // console.log(data._id)
-=======
     this._dataService.putUser(this.user).subscribe((data : User) => {
->>>>>>> 5d9099346ddf4f9a60599f8f87dc06dcd1905d10
       this.user = data;
       const userId: string = this.user._id;
       console.log(this.user);
