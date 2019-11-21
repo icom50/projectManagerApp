@@ -14,14 +14,13 @@
     </header>
 
     <div class="project--filter">
-        <button (click)="allTasks()" class="active-btn">All tasks</button>
-        <button (click)="onlyMyTasks()">My tasks</button>
-        <button>Create Task</button>
+        <button (click)="allTasks()" [ngClass]="myTasks ? '' : 'active-btn'">All tasks</button>
+        <button (click)="onlyMyTasks()" [ngClass]="myTasks ? 'active-btn' : ''">My tasks</button>
+        <button (click)="openPopup()">Create Task</button>
     </div>
 
     <section class="task--board">
 
-        
         <div 
             class="task--col"
             cdkDropList
@@ -47,8 +46,6 @@
                 <app-task-tile class="moving-tile" [task]="task" [id]="task._id"></app-task-tile>
             </div> 
         </div>
-
-
 
         <div 
             class="task--col"

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { NavbarService } from 'src/app/services/navbar.service';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Task } from 'src/app/models/projects.model';
+import { MatDialog } from '@angular/material/dialog';
+import { FormCreateTaskComponent } from '../forms/form-create-task/form-create-task.component';
 
 
 @Component({
@@ -16,7 +18,6 @@ export class PageProjectComponent implements OnInit {
 
   projects;
   projectUrl;
-  // project_id;
   comments;
   priority;
   tasks;
@@ -29,24 +30,25 @@ export class PageProjectComponent implements OnInit {
   targetData;
   tileStatus: String;
   myTasks = false;
-  
+
   todoArray: String[];
   doingArray: String[];
   doneArray: String[];
   pausedArray: String[];
 
+  current_user = localStorage.getItem('current_user');
+
   project_id;
-  // task_id;
-  // user_id = "5da98b33867e3d0a5e31c9d9";
 
   isHidden = true;
 
 
   constructor(
-    private router: Router, 
-    private dataService: DataService, 
-    private nav : NavbarService
-    ) { }
+    private router: Router,
+    private dataService: DataService,
+    private nav: NavbarService,
+    private dialog: MatDialog,
+  ) { }
 
 
   drop(event: CdkDragDrop<string[]>) { // do smth when tile is dropped
@@ -56,91 +58,132 @@ export class PageProjectComponent implements OnInit {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
 
       this.targetId = event.container._dropListRef.element;
       this.targetData = event.container.data;
+      switch (this.targetId.id) {
 
-      // console.log("target column : " + this.targetId.id);
-      switch(this.targetId.id) {
-
-        case 'cdk-drop-list-0' :
+        case 'cdk-drop-list-0':
           this.tileStatus = 'todo';
           break;
 
-        case 'cdk-drop-list-1' :
+        case 'cdk-drop-list-1':
           this.tileStatus = 'doing';
           break;
 
-        case 'cdk-drop-list-2' :
+        case 'cdk-drop-list-2':
           this.tileStatus = 'done';
           break;
 
-        case 'cdk-drop-list-3' :
+        case 'cdk-drop-list-3':
           this.tileStatus = 'paused';
           break;
       }
 
       this.targetData.map(tile => { // modify db when a tile is moved
-        if(tile.status != this.tileStatus) {
+        if (tile.status != this.tileStatus) {
           tile.status = this.tileStatus;
           this.dataService.putTaskByProject(this.project_id, tile);
-        } 
+        }
       })
     }
   }
 
+  openPopup() {
+    const dialogRef = this.dialog.open(FormCreateTaskComponent, {
+      width: '1000px',
+      data: {
+        project_id: this.project_id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('popup closed');
+    })
+  }
   onlyMyTasks() {
     this.myTasks = true;
+    this.filter();
   }
 
   allTasks() {
     this.myTasks = false;
+    this.filter();
   }
 
-  filterTasks() {
-    this.dataService
-    .getTasksByProject(this.project_id)
-    .subscribe((data:any) => {
-      // console.log(data);
-      this.tasks = data;
+  filter() {
+    this.todoArray = [];
+    this.doingArray = [];
+    this.doneArray = [];
+    this.pausedArray = [];
 
-      this.tasks.map(oneTask => {
-        // console.log(oneTask)
-        oneTask.checklist.map(el => { //for checklist
-          el.done === true ? this.checkedList += 1 : this.checkedList += 0;
+    if(this.myTasks) {
+      this.dataService
+      .getTasksByUser(this.current_user)
+      .subscribe((data:any) => {
+        console.log(data);
+
+        this.tasks = data;
+
+        this.tasks.map(oneTask => {
+          oneTask.checklist.map(el => { //for checklist
+            el.done === true ? this.checkedList += 1 : this.checkedList += 0;
+          });
+
+          //filter by status of task
+          this.taskStatus = oneTask.status;
+
+          switch(this.taskStatus) {
+            case 'todo' :
+              this.todoArray.push(oneTask);
+              break;
+            case 'doing' :
+              this.doingArray.push(oneTask);
+              break;
+            case 'done' :
+              this.doneArray.push(oneTask);
+              break;
+            case 'paused' :
+              this.pausedArray.push(oneTask);
+              break;
+          }
         });
-
-        //filter by status of task
-        this.taskStatus = oneTask.status;
-
-        //convert to array
-        this.todoArray = this.todoArray || [];
-        this.doingArray = this.doingArray || [];
-        this.doneArray = this.doneArray || [];
-        this.pausedArray = this.pausedArray || [];
-
-        //modifier les  éléments qui sont mis dans les listes afin qu'elles concordent avec l'id du user connecté. 
-        // checker si le bouton est cliqué, si true, appliquer le filtre, si pas, afficher ainsi
-
-        switch(this.taskStatus) {
-          case 'todo' :
-            this.todoArray.push(oneTask);
-            break;
-          case 'doing' :
-            this.doingArray.push(oneTask);
-            break;
-          case 'done' :
-            this.doneArray.push(oneTask);
-            break;
-          case 'paused' :
-            this.pausedArray.push(oneTask);
-            break;
-        }
       });
-    });
+
+    } else {
+
+      this.dataService
+      .getTasksByProject(this.project_id)
+      .subscribe((data:any) => {
+        this.tasks = data;
+
+        this.tasks.map(oneTask => {
+          oneTask.checklist.map(el => { //for checklist
+            el.done === true ? this.checkedList += 1 : this.checkedList += 0;
+          });
+
+          //filter by status of task
+          this.taskStatus = oneTask.status;
+
+          switch(this.taskStatus) {
+            case 'todo' :
+              this.todoArray.push(oneTask);
+              break;
+            case 'doing' :
+              this.doingArray.push(oneTask);
+              break;
+            case 'done' :
+              this.doneArray.push(oneTask);
+              break;
+            case 'paused' :
+              this.pausedArray.push(oneTask);
+              break;
+          }
+        });
+      });
+    }
   }
 
   ngOnInit() {
@@ -151,16 +194,14 @@ export class PageProjectComponent implements OnInit {
     //get name of the project
     this.dataService
       .getProjectById(this.project_id)
-      .subscribe((data:any) => {
+      .subscribe((data: any) => {
         this.projects = data.projects;
         // console.log(this.projects);
 
         this.users = this.projects.users;
         // console.log(this.users)
-    });
+      });
 
-    this.filterTasks();
-
-    // this.myTasks ? console.log('All my personnal tasks') : console.log('All the projects tasks');
+    this.filter();
   }
 }

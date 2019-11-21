@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
-
+import { Component, OnInit, Inject } from '@angular/core';
+import { NgForm, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../../../models/users.model';
-import { Project } from '../../../models/projects.model';
+import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
 import { NavbarService } from 'src/app/services/navbar.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-form-create-task',
@@ -15,59 +15,68 @@ export class FormCreateTaskComponent implements OnInit {
   user: User;
   users: User[];
   project: Project;
-  newTask = {assigned : [], checklist: []}
-  user_id = "5dada94a26a3f42e962c215a";
-  project_id = "5db6b138fc2046172f2b0c56";
-  constructor(private _dataService: DataService, private nav : NavbarService ) { 
-    // @Input("user_id") user_id // <app-form-create-task [user_id]="id" [project_id]="project._id">
-    // @Input("project_id") project_id 
+  formCreateTask: FormGroup;
+  task: Task;
+  user_id = "5da98631e2dcd109d6ab35db";
+  project_id = this.data.project_id;
+  selected = 'none';
+  constructor(
+    private _dataService: DataService,
+    private nav: NavbarService,
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<FormCreateTaskComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
-   createTask(f){
-    event.preventDefault()
-    f.value.checklist = this.newTask.checklist
-    f.value.assigned = this.newTask.assigned
-    // Update the project before saving for not erasing new datas
-    console.log(this.project.tasks)
-    // this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
-    //   this.project = data['projects'];
-    //   this.project.tasks.push(f.value)
-    //   this._dataService.putProject(this.project).subscribe()
-    // })
-    console.log(this.newTask)
-    this._dataService.putTaskByProject(this.project_id, f.value)
-    
+  createTask() {
+    if (this.formCreateTask.invalid) {
+      event.preventDefault()
+    }
+    else {
+      this.task = this.formCreateTask.value;
+      this._dataService.putTaskByProject(this.project_id, this.task);
+      console.log(this.task)
+    }
+  }
 
+  getErrorMessage(field: string): string {
+    const error = {
+      required: "This field is required",
+      maxlength: "This field is too small for this content"
+    };
+    let returnValue = '';
+    Object.keys(this.formCreateTask.controls[field].errors).map((key, index) => {
+      returnValue += `${error[key]}`;
+    })
+    return returnValue;
   }
-  addAssignedUser(id){
-    event.preventDefault()
-    if (id != "Assign a member" && !(this.checkAssigned(id))){
-    this._dataService.getUserById(id).subscribe((data:User)=> {
-      this.newTask.assigned.push({...data['users'], user_id: data['users']._id})
-      console.log(this.newTask)
-    })}
-  }
-  checkAssigned(id){
-    return this.newTask.assigned.some((el) => {
-      return el.user_id === id;
-    }); 
-  }
-  addToCheckList(i: NgForm){
-    event.preventDefault()
-    let name = i.value
-    console.log(i.value)
-    this.newTask.checklist.push({name, done: false})
-    // i.controls.value.reset
-  }
+
   ngOnInit() {
-    this.nav.hide();
-    this._dataService.getProjectById(this.project_id).subscribe((data:Project) =>{
+    const id = localStorage.getItem('current_user');
+    this._dataService.getProjectById(this.project_id).subscribe((data: Project) => {
       this.project = data['projects'];
       console.log(this.project)
     })
-    this._dataService.getUsersByProject(this.project_id).subscribe((data:User[]) =>{
+    this._dataService.getUsersByProject(this.project_id).subscribe((data: User[]) => {
       this.users = data;
       console.log(this.users)
     })
+
+
+    this.formCreateTask = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      description: ['', [Validators.maxLength(250)]],
+      author_id: [id],
+      estimated: [''],
+      deadline: [''],
+      priority: [this.selected],
+      labels: [[]],
+      assigned: [[]],
+      checklist: [[]],
+      progression: [''],
+      attachments: [[]],
+      comments: [[]]
+    }, {});
+
   }
 }

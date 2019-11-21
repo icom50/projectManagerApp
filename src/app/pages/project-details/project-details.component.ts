@@ -96,10 +96,8 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    //const id = this.route.snapshot.params.id;
     this._dataService.getProjectById(this.data.project_id).subscribe((data : Project)=>{
       this.project = data['projects'];
-      console.log(this.project)
       this.isPrivate = this.project.is_private  ? "the project is in private" : "The project is in public";
     })
   }

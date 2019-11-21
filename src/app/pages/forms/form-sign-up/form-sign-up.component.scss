@@ -38,7 +38,6 @@ h2{
 }
 .signUp{
     width: 720px;
-    height: 500px;
     margin: 0 auto;
     position: relative;
     box-sizing: border-box;
@@ -91,11 +90,12 @@ button {
     bottom: 0px;
 }
 #mascotte{
-    width: 600px;
+    width: 400px;
+    margin-bottom: 50px;
     @media only screen and (max-width:1200px) {
-        width: 400px;
+        width: 200px;
     }
     @media only screen and (max-width:800px) {
-        width: 300px;
+        width: 150px;
     }
 }

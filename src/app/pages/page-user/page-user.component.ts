@@ -42,7 +42,6 @@ export class PageUserComponent implements OnInit {
       console.log("user supprimé")
     }
 
-  // task: any;
   ngOnInit() {
     this.nav.show();
     this.form = new FormGroup({
@@ -69,8 +68,6 @@ export class PageUserComponent implements OnInit {
 
     const id = this.route.snapshot.params.id;
     const current_user = localStorage.getItem('current_user').toString();
-    // const id = "5da987981a158f09eb249ceb"
-
 
     this
     ._dataService
