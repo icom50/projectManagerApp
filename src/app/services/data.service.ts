@@ -55,24 +55,23 @@ export class DataService {
           if (project._id === pro.project_id) return index = i
         })
         if (index === -1) data['users'].projects.push({project_id : project._id, accepted : false, invitedBy : project.author_id, tasks : []})
-        else project.tasks.map(task => this.addTaskToUser(project._id,task,user.user_id))
+        // else project.tasks.map(task => this.addTaskToUser(project._id,task,user.user_id))
         this.postUser(data['users']).subscribe()
     })
   }
-  private addTaskToUser(project_id, task, user_id){ // se fait automatiquement au PUT & POST --- A TESTER
-    console.log("add task to user, bisou")
-    this.getUserById(user_id).subscribe(data => {
-      let dontExist = true;
-      let index;
-      data['users'].projects.map(project => {
-        index = project.tasks.findIndex(t => (t === task._id))
-        if (index === -1) data['users'].projects.filter(project =>{
-          if (project.project_id === project_id) return project.tasks.push(task._id)
-        })
-      })
-      this.postUser(data['users']).subscribe()
-    })
-  }
+  // private addTaskToUser(project_id, task, user_id){ // se fait automatiquement au PUT & POST --- A TESTER
+  //   console.log("add task to user, bisou")
+  //   this.getUserById(user_id).subscribe(data => {
+  //     let index;
+  //     data['users'].projects.map(project => {
+  //       index = project.tasks.findIndex(t => (t === task._id))
+  //       if (index === -1) data['users'].projects.filter(project =>{
+  //         if (project.project_id === project_id) return project.tasks.push(task._id)
+  //       })
+  //     })
+  //     this.postUser(data['users']).subscribe()
+  //   })
+  // }
   private removeTaskToUser(project_id, task_id, user_id){
     this.restService.getUserById(user_id).subscribe(user => { // se fait automatiquement au PUT & POST --- A TESTER
       let index = user['users'].projects.findIndex(project => project['project_id'] === project_id );
@@ -138,7 +137,7 @@ export class DataService {
         project.tasks.push(task)
       } else {
         project.tasks.splice(index,1,task)
-        if (task.assigned) task.assigned.map(ass => this.addTaskToUser(project_id, task, ass['user_id']))
+        // if (task.assigned) task.assigned.map(ass => this.addTaskToUser(project_id, task, ass['user_id']))
       }
       // if (task.assigned) task.assigned.map(ass => this.addTaskToUser(project_id, task, ass['user_id']))
       this.putProject(project).subscribe()
