@@ -8,7 +8,9 @@
 
         <div class="project--collaborators">
             <div *ngFor="let user of users">
-                <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
+                <div class="image--avatar-resize">
+                    <img [src]="user.avatar_url" [alt]="user.email" [title]="user.email">
+                </div>
             </div>
         </div>
     </header>
@@ -77,10 +79,3 @@
         </div>
     </section>
 </div>
-
-<!-- <app-form-edit-task 
-    [hidden]="isHidden"
-    [task_id]="task_id" 
-    [project_id]="project_id" 
-    [user_id]="user_id" >
-</app-form-edit-task> -->

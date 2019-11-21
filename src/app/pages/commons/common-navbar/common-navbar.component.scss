@@ -37,6 +37,8 @@
       border-radius: 100%;
       overflow: hidden;
       position: relative;
+      cursor: pointer;
+      outline: none;
   
       * {
           position: absolute;
@@ -50,5 +52,7 @@
     a{
       @include btnAddNavBar;
     }
-
   }
+
+
+  
