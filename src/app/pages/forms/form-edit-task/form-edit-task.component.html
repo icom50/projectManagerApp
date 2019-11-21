@@ -36,14 +36,23 @@
                             <option value="low">Low</option>
                         </select>
                     </mat-form-field>
-                    <div class="task--comments">
-                        <h4>Comments</h4>
-                        <ul>
-                            <li class="task--a-comment" *ngFor="let comment of task.comments; let i = index">
-                                <p>{{comment.comment}}</p>
-                                <small>{{comment.date | date: 'mediumDate'}} • {{showUsersComm[i]}}</small>
-                            </li>
-                        </ul>
+                    <div class="task--mainComm">
+                        <div class="task--comments" *ngIf="task.comments != 0">
+                            <h4>Comments</h4>
+                            <ul>
+                                <li class="task--a-comment" *ngFor="let comment of task.comments; let i = index">
+                                    <p>{{comment.comment}}</p>
+                                    <small>{{comment.date | date: 'mediumDate'}} • {{showUsersComm[i]}}</small>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <textarea matInput placeholder="Add a comments" name="comments" ngMaxlength="250"
+                                    formControlName="comments"></textarea>
+                            </mat-form-field>
+                            <button class="middlebutton" (click)="addComment()">Add comment</button>
+                        </div>
                     </div>
                     
                     <p>created by {{creator}}</p>
@@ -53,8 +62,11 @@
                     <h4>Members</h4>
                     <ul class="ul-from-edit">
                         <li *ngFor="let member of newAssigned; let i = index" class="task--member">
-                            <img src="{{otherTemp[1][i]}}"
-                                alt="{{member.user_id}}">
+                            <div class="image--avatar-resize">
+                                <img src="{{otherTemp[1][i]}}"
+                                    alt="{{member.user_id}}">
+                            </div>
+                            
                             <p>{{ otherTemp[0][i] }}</p>
                             <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="unnasignedUser(member.user_id)"></fa-icon>
                         </li>
@@ -92,6 +104,7 @@
 
             <div class="task--cta">
                 <button type="submit" (click)="onSubmit()" class="bigbutton">Edit Task</button>
+                <button type="submit" (click)="closePopup()" class="bigbutton">Cancel</button>
                 <button (click)="deleteTask()" class="deletebutton">Delete</button>
             </div>
         </form>

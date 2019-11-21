@@ -55,12 +55,10 @@
                     display: flex;
                     align-items: center;
 
-                    img {
-                        border-radius: 50%;
-                        margin-right: 5px;
-                        width: 30px; 
-                        height: 30px;
+                    p {
+                        margin-left: 5px;
                     }
+                    
                     fa-icon {
                         margin-left: auto;
                     }
@@ -123,6 +121,11 @@
                             width: 50%;
                         }
                     }
+                }
+
+                &--mainComm {
+                    height: 150px;
+                    overflow: auto;
                 }
 
                 &--comments {
