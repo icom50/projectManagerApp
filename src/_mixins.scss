@@ -93,7 +93,7 @@
 // Btn for add task or member
 
  @mixin btnAdd {
-    
+        outline: none;
         display: block;
         width: 30px;
         height: 30px;
@@ -108,7 +108,7 @@
  }
 
  @mixin btnAddNavBar {
-    
+    outline: none;
     display: block;
     width: 40px;
     height: 40px;
