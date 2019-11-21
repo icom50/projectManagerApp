@@ -64,6 +64,9 @@ ul {
   list-style: none;
 }
 
+button:focus{
+  outline:none;
+}
 
 // .cdk-overlay-container .cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
 //   position: absolute !important;

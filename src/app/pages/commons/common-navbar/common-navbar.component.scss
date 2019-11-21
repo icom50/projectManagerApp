@@ -57,14 +57,32 @@
    
     }
 
-    .avatar img {
-      width: 40px;
+    // .avatar img {
+    //   width: 40px;
+    //   height: 40px;
+    //   border-radius: 100%;
+    //   //background-color: green;
+    //   margin-right: 45px;
+    //   cursor: pointer;
+    // }
+
+
+    .avatar{
       height: 40px;
+      width: 40px;
       border-radius: 100%;
-      //background-color: green;
-      margin-right: 45px;
-      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+  
+      * {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          width: auto;
+          height: 100%;
+      }
     }
+
     a{
       @include btnAddNavBar;
     }
@@ -72,4 +90,4 @@
   }
 
 
-
+  
