@@ -98,7 +98,6 @@ export class ProjectComponent implements OnInit {
       .getProjectById(this.project_id)
       .subscribe((data: Project) => {
         this.project = data['projects'];
-        //console.log(this.project.color);
         this._dataService.getUserById(this.user_id).subscribe(data => {
           this.user = data['users']
           this.user.projects.filter(project => {

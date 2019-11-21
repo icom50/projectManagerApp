@@ -23,14 +23,16 @@ export class PageUserEditComponent implements OnInit {
 
   submitForm(){
     this.user = this.form.value;
+<<<<<<< HEAD
     this._dataService.putUser(this.user).subscribe((data: User) => {
       // console.log(data._id)
+=======
+    this._dataService.putUser(this.user).subscribe((data : User) => {
+>>>>>>> 5d9099346ddf4f9a60599f8f87dc06dcd1905d10
       this.user = data;
       const userId: string = this.user._id;
-      // console.log(this.user._id);
       console.log(this.user);
       console.log(this.user['users']._id);
-      // console.log(userId);
       // this.router.navigate(['user/'+this.user._id]); /** la navigation retourne a 'users' */
       this.router.navigate([`user/${this.user['users']._id}`]);
       console.log(this.user)
@@ -51,10 +53,7 @@ export class PageUserEditComponent implements OnInit {
     return returnValue;
   }
 
-
-  // task: any;
   ngOnInit() {
-    // this.dataService.getUserSecure()
     this.nav.show();
 
     this.form = new FormGroup({
@@ -80,7 +79,6 @@ export class PageUserEditComponent implements OnInit {
     });
 
     const id = this.route.snapshot.params.id;
-    // const id = "5db2b0cfde25681058101ead"
 
     this
     ._dataService
