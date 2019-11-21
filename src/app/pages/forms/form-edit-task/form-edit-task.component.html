@@ -9,6 +9,7 @@
                     <span>Mark complete</span>
                 </section> -->
                 <section>
+                    <h4>Task information</h4>
                     <mat-form-field>
                         <input matInput placeholder="Task's name" name="name" type="text" formControlName="name"
                             required>
@@ -35,13 +36,23 @@
                             <option value="low">Low</option>
                         </select>
                     </mat-form-field>
+                    <div class="task--comments">
+                        <h4>Comments</h4>
+                        <ul>
+                            <li class="task--a-comment" *ngFor="let comment of task.comments; let i = index">
+                                <p>{{comment.comment}}</p>
+                                <small>{{comment.date | date: 'mediumDate'}} • {{showUsersComm[i]}}</small>
+                            </li>
+                        </ul>
+                    </div>
+                    
                     <p>created by {{creator}}</p>
                 </section>
 
                 <section>
                     <h4>Members</h4>
                     <ul class="ul-from-edit">
-                        <li *ngFor="let member of task?.assigned; let i = index" class="task--member">
+                        <li *ngFor="let member of newAssigned; let i = index" class="task--member">
                             <img src="{{otherTemp[1][i]}}"
                                 alt="{{member.user_id}}">
                             <p>{{ otherTemp[0][i] }}</p>
@@ -53,7 +64,7 @@
                         <mat-form-field>
                             <mat-label>Assign a member</mat-label>
                             <mat-select matNativeControl name="assigned" formControlName="assigned" >
-                                <mat-option [value]="email" *ngFor="let email of emails; let i = index">{{email}}</mat-option>
+                                <mat-option [value]="user" *ngFor="let user of project.users; let i = index">{{user.email}}</mat-option>
                             </mat-select>
                         </mat-form-field>
 

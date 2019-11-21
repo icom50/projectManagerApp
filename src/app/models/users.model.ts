@@ -25,6 +25,7 @@ export class User {
                 accepted: boolean,
                 invitedBy: string,
                 favorite: boolean,
+                project_id:string,
                 _id: string
             }
         ],

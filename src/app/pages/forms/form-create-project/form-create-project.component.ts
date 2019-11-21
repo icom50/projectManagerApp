@@ -22,6 +22,11 @@ export class FormCreateProjectComponent implements OnInit {
     this.project = this.formCreateProject.value;
     this.dataService.postProject(this.project).subscribe((data:Project)=>{
       this.project = data["projects"];
+      this.dataService.getUserById(this.project.author_id).subscribe(user => {
+        user['users'].projects.push({project_id : this.project._id, accepted : true, invitedBy : user['users']._id, tasks : []})
+        this.dataService.putUser(user['users']).subscribe()
+      })
+      if (this.project.users) this.project.users.map(data => this.dataService.addProjectToUser(this.project, data))
       this.router.navigate([`/project/${this.project._id}`]);
     })
   }
