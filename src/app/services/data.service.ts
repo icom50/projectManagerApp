@@ -50,11 +50,12 @@ export class DataService {
   }
   addProjectToUser(project, user){ // se fait automatiquement au PUT & POST  --- A TESTER
       this.getUserById(user.user_id).subscribe(data => {
-        let dontExist = true;
-        data['users'].projects.filter(pro => {
-          if (project._id === pro.project_id) return dontExist = false
+        let index;
+        data['users'].projects.filter((pro, i) => {
+          if (project._id === pro.project_id) return index = i
         })
-        if (dontExist) data['users'].projects.push({project_id : project._id, accepted : false, invitedBy : project.author_id, tasks : []})
+        if (index === -1) data['users'].projects.push({project_id : project._id, accepted : false, invitedBy : project.author_id, tasks : []})
+        else project.tasks.map(task => this.addTaskToUser(project._id,task,user.user_id))
         this.postUser(data['users']).subscribe()
     })
   }
@@ -130,7 +131,7 @@ export class DataService {
       }
       if (task.assigned) task.assigned.map(ass => this.addTaskToUser(project_id, task, ass['user_id']))
       this.putProject(project).subscribe()
-    }, error => error)
+    }, error => console.log(error))
   }
   deleteTaskByProject(project_id:string, task_id:string){ // DELETER CHEZ L USER --- A TESTER
     this.getProjectById(project_id).subscribe((data:Project)=>{
@@ -163,18 +164,31 @@ export class DataService {
       return data['projects'].users.map(user => user)
     }))
   }
-  getTasksByUser(user_id:string) : Observable<any[]>{ // MODIFIER POUR ALLER CHERCHER DANS L'USER ET NON DANS TOUS LESPROJETS
-    let output = []
-    return this.restService.getProjects().pipe(map((data) => {
-      data['projects'].map(task => {
-        return task.tasks.map(projectTask => {
-          return projectTask.assigned.map((oneAssigned) => {
-            if (oneAssigned.user_id === user_id || oneAssigned._id === user_id) return output.push({...projectTask, project_id: task._id})
-          })
+  getTasksByUser(user_id:string) : Observable<any[]>{ // MODIFIER POUR ALLER CHERCHER DANS L'USER ET NON DANS TOUS LESPROJETS --- A TESTER
+    // let output = []
+    // return this.restService.getProjects().pipe(map((data) => {
+    //   data['projects'].map(task => {
+    //     return task.tasks.map(projectTask => {
+    //       return projectTask.assigned.map((oneAssigned) => {
+    //         if (oneAssigned.user_id === user_id || oneAssigned._id === user_id) return output.push({...projectTask, project_id: task._id})
+    //       })
+    //     })
+    //   })
+    //   return output
+    // }))
+    let output = [];
+    return this.restService.getUserById(user_id).pipe(map(user => {
+      user['users'].projects.map(project => {
+        project.tasks.map(task => {
+          output.push(this.getTaskById(project.project_id,task))
         })
       })
       return output
-    }))    
+    }))
+    // return this.restService.getUserById(user_id).subscribe(user =>{
+    //   user['users'].projects.map(project => output.push(...project.tasks))
+    //   return output
+    // })    
   }
   getProjectsByUser(user_id:string): Observable<any[]>{ // MODIFIER POUR ALLER CHERCHER DANS L'USER ET NON DANS TOUS LESPROJETS -- A TESTER
     // let output = []
