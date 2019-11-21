@@ -110,6 +110,28 @@
                         }
                     }
                 }
+
+                &--comments {
+                    h4 {
+                        text-align: left;
+                    }
+                }
+
+                &--a-comment {
+                    padding-bottom: 15px;
+                    margin-bottom: 15px;
+                    border-bottom: 1px solid rgb(143, 143, 143);
+
+                    * {
+                        text-align: left;
+                        display: flex;
+                    }
+
+                    &:last-child {
+                        border-bottom: none;
+                        padding-bottom: 0;
+                    }
+                }
             }
         }
     }

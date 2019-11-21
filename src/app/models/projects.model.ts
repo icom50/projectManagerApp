@@ -12,18 +12,18 @@ export class Project {
             {
                 role: string,
                 avatar_url: string,
-                _id: string,
                 email: string,
                 user_id: string,
-                job: string
+                job: string,
+                _id?: string
             }
         ],
         public comments?: [
             {
                 comment: string,
                 date: string,
-                _id: string,
-                author_id: string
+                author_id: string,
+                _id?: string
             }
         ],
         public tasks?: Task[],

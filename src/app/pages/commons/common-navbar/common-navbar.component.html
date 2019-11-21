@@ -6,10 +6,9 @@
       </a>
     </li>
     <li>
-
-      <div [routerLink]="'/user/'+nav.current_user" class="avatar"><img [src]="user.avatar_url" [alt]="user.email">
-      </div>
-
+   
+        <div [routerLink]="'/user/'+nav.current_user" class="avatar"><img [src]="user?.avatar_url" [alt]="user?.email"></div>
+     
     </li>
   </ul>
 </div>
