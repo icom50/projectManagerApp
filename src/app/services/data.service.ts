@@ -81,11 +81,11 @@ export class DataService {
       this.restService.putUser(user['users']).subscribe()
     })
   }
-  private removeProjectToUser(project_id,user_id){
+  removeProjectToUser(project_id,user_id){
     this.restService.getUserById(user_id).subscribe(user => { // se fait automatiquement au PUT & POST --- A TESTER
-      let index = user['users'].projects.findIndex(project => project['project_id'] === project_id )
+      let index = user['users'].projects.findIndex(project => project.project_id === project_id )
       user['users'].projects.splice(index,1)
-      this.restService.putUser(user['users'])
+      this.restService.putUser(user['users']).subscribe()
     })
   }
 
@@ -102,7 +102,14 @@ export class DataService {
     //   this.putUser(user['users']).subscribe()
     // })
     // if (project.users) project.users.map(data => this.addProjectToUser(project, data))
+    // this.restService.getUserById(project.author_id).subscribe(async (data) => {
+    //   await project.users.push({
+    //     user_id : project.author_id, role : "administrator", avatar_url : data['users'].avatar_url, email : data['users'].email, job : data['users'].job  
+    //   })
+    //   return project
+    // })
     return this.restService.postProject(project)
+    
   }
   putProject(project:Project): Observable<Project>{ // TODO ajouter les users assignés dans users.projects --- A TESTER
     console.log(project.users)
@@ -113,7 +120,7 @@ export class DataService {
     this.restService.getProjectById(id).subscribe(project => {
       this.removeProjectToUser(id, project['projects'].author_id)
       project['projects'].users.map(user => {
-        this.removeProjectToUser(id,user.user_id)
+        if(project['projects'].author_id != user.user_id) this.removeProjectToUser(id,user.user_id)
       })
     })
     return this.restService.deleteProject(id)

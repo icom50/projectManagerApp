@@ -37,11 +37,15 @@ export class ProjectComponent implements OnInit {
   toggleIsSelected() {
     event.stopPropagation();
     this.isSelected = !this.isSelected;
+    this._dataService.getUserById(this.user_id).subscribe(data => {
+      this.user = data['users']
+      this.user.projects.filter(project => {
+        if (project.project_id === this.project._id) project.favorite = this.isSelected
+      })
+      this._dataService.putUser(this.user).subscribe()
 
-    this.user.projects.filter(project => {
-      if (project.project_id === this.project._id) project.favorite = this.isSelected
     })
-    this._dataService.putUser(this.user).subscribe()
+
     //console.log(this.user)
 
   }
