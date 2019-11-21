@@ -40,14 +40,14 @@
 
 @mixin middleButtonDelete {
     @include middleButton;
-    background-color: $colorBgButtonDelete;
-    color: lighten($colorTextButtonDelete, 100%);
+    background-color: lighten($colorTextButtonDelete, 100%);
+    color: $colorTextButtonDelete;
     border: 2px solid $colorBgButtonDelete;
 
     &:hover, &:active, &:focus {
-        background-color: white;
-        color: $colorTextButtonDelete;
-        border: 2px solid $colorBgButtonDelete;
+        background-color: $colorTextButtonDelete;
+        color: lighten($colorTextButtonDelete, 100%);
+        border: 2px solid lighten($colorTextButtonDelete, 100%);
 
     }
 }

@@ -24,7 +24,7 @@
         <form [formGroup]="form" (submit)="submitForm()">
             <div id="avatardescription">
                 <div>
-                    <div>
+                    <div class="userimage">
                         <img 
                         src={{user?.avatar_url}} 
                         alt="Photo de profil de {{user.username}}"
@@ -47,19 +47,20 @@
                     </div>
                 </div>
                 <div>
-                        <label for="description">Description</label>
-                        <textarea 
-                        name="description" 
-                        id="description" 
-                        formControlName="description" 
-                        wrap="off"
-                        cols="50"
-                        rows="5">
-                </textarea>
-                        <mat-error *ngIf="form.controls['description'].invalid">
-                            {{getErrorMessage('description')}}
-                        </mat-error>
-                    <br />
+                            <label for="description">Description</label>
+                            <br />
+                            <textarea 
+                            name="description" 
+                            id="description" 
+                            formControlName="description" 
+                            wrap="on"
+                            cols="60"
+                            rows="5">
+                            </textarea>
+                            <mat-error *ngIf="form.controls['description'].invalid">
+                                {{getErrorMessage('description')}}
+                            </mat-error>
+                        <br />
                 </div>
             </div>
 
@@ -172,7 +173,7 @@
     
                     </div>
     
-                    <button mat-raised-button>Submit</button>
+                    <button class="bigbutton">Submit</button>
                     
                 </div>
 

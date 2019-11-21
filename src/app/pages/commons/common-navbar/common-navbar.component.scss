@@ -28,9 +28,45 @@
       }
     }
 
+<<<<<<< HEAD
+    .avatar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      //background-color: green;
+      margin-right: 45px;
+      cursor: pointer;
+    }
+
+
+    // .avatar{
+    //   height: 40px;
+    //   width: 40px;
+    //   border-radius: 100%;
+    //   overflow: hidden;
+    //   position: relative;
   
+    //   * {
+    //       position: absolute;
+    //       left: 50%;
+    //       transform: translateX(-50%);
+    //       width: auto;
+    //       height: 100%;
+    //   }
+    // }
+
+=======
+  
+>>>>>>> 5d9099346ddf4f9a60599f8f87dc06dcd1905d10
     a{
       @include btnAddNavBar;  
     }
   }
+<<<<<<< HEAD
+
+
+
+  
+=======
 }
+>>>>>>> 5d9099346ddf4f9a60599f8f87dc06dcd1905d10

@@ -17,12 +17,18 @@ export class PageUserEditComponent implements OnInit {
   constructor(private _dataService: DataService,
     private router: Router,
     private route: ActivatedRoute,
-    private nav: NavbarService) { }
+    private nav: NavbarService,
+    ) { }
 
 
   submitForm(){
     this.user = this.form.value;
+<<<<<<< HEAD
+    this._dataService.putUser(this.user).subscribe((data: User) => {
+      // console.log(data._id)
+=======
     this._dataService.putUser(this.user).subscribe((data : User) => {
+>>>>>>> 5d9099346ddf4f9a60599f8f87dc06dcd1905d10
       this.user = data;
       const userId: string = this.user._id;
       console.log(this.user);
@@ -71,7 +77,6 @@ export class PageUserEditComponent implements OnInit {
       projects: new FormControl(),
       description: new FormControl(null, [Validators.maxLength(500)]),
     });
-
 
     const id = this.route.snapshot.params.id;
 
