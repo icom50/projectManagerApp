@@ -38,7 +38,6 @@ export class FormEditTaskComponent implements OnInit {
 
   constructor(
     private _dataService: DataService,
-    // public _projectComponent: PageProjectComponent,
     public dialogRef: MatDialogRef<FormEditTaskComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
@@ -52,12 +51,6 @@ export class FormEditTaskComponent implements OnInit {
       this.task = this.editTask.value;
       this.task.assigned = this.newAssigned;
       this._dataService.putTaskByProject(this.project._id, this.task);
-
-      // this.project.tasks.filter((task, i) => {
-      //   if (task._id === this.task._id) {
-      //     this._projectComponent.projects.task[i] = this.task; 
-      //   } 
-      // });
     }
   }
 
@@ -110,9 +103,7 @@ export class FormEditTaskComponent implements OnInit {
   }
 
   addToCheckList() {
-    //console.log(this.addCheckList);
     this.task.checklist.push({ name: this.addCheckList, done: false });
-    //console.log(this.task.checklist);
     this.addCheckList = '';
   }
 
@@ -138,9 +129,7 @@ export class FormEditTaskComponent implements OnInit {
   }
 
   isClicked(index){
-    // console.log(this.task.checklist[index]['done']);
     this.task.checklist[index]['done'] = !this.task.checklist[index]['done'];
-    // console.log(this.task.checklist[index]['done']);
   }
 
   closePopup() {
@@ -148,18 +137,11 @@ export class FormEditTaskComponent implements OnInit {
   }
 
   ngOnInit() {
-    //const id = localStorage.getItem('current_user');
-    // console.log(this.data.project_id)
-    // console.log(this.data.task_id)
     this._dataService.getProjectById(this.data.project_id).subscribe((data: Project) => {
       this.project = data['projects'];
-      // console.log(this.project.tasks);
-      // console.log(this.project.users);
       for (let i = 0; i < this.project.users.length; i++) {
         this._dataService.getUserById(this.project.users[i]._id).subscribe((data: User) => {
-          // console.log(data);
           this.emails.push(data['users'].email);
-          //console.log(this.emails);
         });
       }
 

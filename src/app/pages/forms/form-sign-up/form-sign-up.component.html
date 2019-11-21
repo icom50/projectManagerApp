@@ -1,4 +1,3 @@
-<!-- main app container -->
 <div class="background">
   <div class="logo">
     <img class="logocroco" routerLink="/" src="../../../../assets/img/logo/logo-bleu(1).svg" alt="Logo Akroko" />
@@ -6,6 +5,7 @@
   <mat-card class="mat-elevation-z0">
     <mat-card-content>
       <div class="signUp">
+          <img src="../../../../assets/img/mascotte/mascotte-accueil.svg" id="mascotte" alt="Mascotte Akroko">
         <h2 class="text-center">Sign Up</h2>
         <p><i><a [href]="sentenceSources" class="sources" target="_blank" rel="author">{{sentence}}</a></i></p>
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit($event)">
