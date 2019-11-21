@@ -9,28 +9,50 @@
   height: 45px;
   justify-content: flex-end;
 
-  :last-child {
+  &:last-child{
     margin-right: 0;
   }
+  
 
   ul {
     width: 100%;
-    display: flex;
+    display: flex;    
     justify-content: flex-end;
-   
-    //background-color: blue;
+    margin-right: 35px;
     li {
       display: flex;
       justify-content: space-between;
-      margin-right: 45px;
+
       &:first-child {
-        margin-right: 35px;
+          margin-right: 35px;
+      }
+
+    }
+   
+    }
+
+    .avatar{
+      height: 40px;
+      width: 40px;
+      border-radius: 100%;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+  
+      * {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          width: auto;
+          height: 100%;
       }
     }
 
-  
     a{
-      @include btnAddNavBar;  
+      @include btnAddNavBar;
     }
   }
-}
+
+
+  
