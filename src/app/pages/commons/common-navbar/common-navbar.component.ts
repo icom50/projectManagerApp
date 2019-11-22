@@ -11,15 +11,16 @@ import { User } from 'src/app/models/users.model';
 })
 export class CommonNavbarComponent implements OnInit {
   faPlus = faPlus;
-  user : User;
+  user: User;
 
   constructor(private nav: NavbarService, private _dataService: DataService) { }
 
   ngOnInit() {
-    const id = localStorage.getItem('current_user');
-    this._dataService.getUserById(id).subscribe((data : User)=>{
-      this.user = data['users'];
-    })
+    if (localStorage.getItem('current_user')) {
+      const id = localStorage.getItem('current_user');
+      this._dataService.getUserById(id).subscribe((data: User) => {
+        this.user = data['users'];
+      })
+    }
   }
-
 }

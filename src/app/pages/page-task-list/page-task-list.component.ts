@@ -17,7 +17,8 @@ export class PageTaskListComponent implements OnInit {
 
   ngOnInit() {
     this.nav.show();
-    const id = '5da987981a158f09eb249ceb';
+    //const id = '5da987981a158f09eb249ceb';
+    const id = localStorage.getItem('current_user');
 
 
     this._dataService.getUserById(id).subscribe((data:User)=>{
