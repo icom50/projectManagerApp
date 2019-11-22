@@ -17,7 +17,7 @@ export class FormCreateTaskComponent implements OnInit {
   project: Project;
   formCreateTask: FormGroup;
   task: Task;
-  user_id = "5da98631e2dcd109d6ab35db";
+  //user_id = "5da98631e2dcd109d6ab35db";
   project_id = this.data.project_id;
   selected = 'none';
   constructor(

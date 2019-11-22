@@ -34,7 +34,7 @@ export class PageProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.nav.show();
-    const id = "5dd3b3277576670bf8387f43";
+    //const id = "5dd3b3277576670bf8387f43";
   }
 }
 

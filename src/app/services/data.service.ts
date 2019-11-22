@@ -188,8 +188,11 @@ export class DataService {
     // }))
     let output = [];
     return this.restService.getUserById(user_id).pipe(map(user => {
+      console.log(user);
       user['users'].projects.map(project => {
         project.tasks.map(task => {
+          console.log(task)
+          console.log(project.project_id)
           output.push(this.getTaskById(project.project_id,task))
         })
       })
