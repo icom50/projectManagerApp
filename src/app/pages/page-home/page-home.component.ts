@@ -45,7 +45,7 @@ export class PageHomeComponent implements OnInit {
   ngOnInit() {
     this.nav.show();
     const id = localStorage.getItem('current_user');
-    console.log(id)
+    //console.log(id)
 
     this._dataService.getUserById(id).subscribe((data: User) => {
       this.user = data['users'];

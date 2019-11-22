@@ -21,6 +21,7 @@ export class CommonTaskComponent implements OnInit {
     this._dataService.getTaskById( this.project_id, this.task_id)
     .subscribe((data: Task)=>{
       this.task = data;
+      console.log(this.task)
     })
   }
 

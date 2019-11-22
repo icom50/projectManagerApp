@@ -94,7 +94,7 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.project_id)
+    //console.log(this.project_id)
     this._dataService
       .getProjectById(this.project_id)
       .subscribe((data: Project) => {
