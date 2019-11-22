@@ -94,7 +94,7 @@ export class PageProjectComponent implements OnInit {
 
   openPopup() {
     const dialogRef = this.dialog.open(FormCreateTaskComponent, {
-      width: '1000px',
+      width: '300px',
       data: {
         project_id: this.project_id
       }
