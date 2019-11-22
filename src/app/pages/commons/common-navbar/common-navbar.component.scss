@@ -9,7 +9,7 @@
   height: 45px;
   justify-content: flex-end;
 
-  :last-child {
+  &:last-child {
     margin-right: 0;
   }
 
@@ -28,7 +28,6 @@
       }
     }
 
-<<<<<<< HEAD
     .avatar img {
       width: 40px;
       height: 40px;
@@ -55,18 +54,12 @@
     //   }
     // }
 
-=======
-  
->>>>>>> 5d9099346ddf4f9a60599f8f87dc06dcd1905d10
     a{
       @include btnAddNavBar;  
     }
   }
-<<<<<<< HEAD
 
 
 
   
-=======
 }
->>>>>>> 5d9099346ddf4f9a60599f8f87dc06dcd1905d10
