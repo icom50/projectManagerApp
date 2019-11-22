@@ -5,6 +5,7 @@ import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class FormEditTaskComponent implements OnInit {
 
   constructor(
     private _dataService: DataService,
+    private route : Router,
     public dialogRef: MatDialogRef<FormEditTaskComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
@@ -140,6 +142,8 @@ export class FormEditTaskComponent implements OnInit {
     if (confirm("Are you sur to delete this project")) {
       // console.log('project deleted')
       this._dataService.deleteTaskByProject(this.project._id, this.task._id)
+      this.closePopup();
+
     }
     else {
       // console.log('project not deleted')

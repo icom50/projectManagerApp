@@ -30,8 +30,8 @@ export class PageUserComponent implements OnInit {
     private nav: NavbarService) { }
 
 
-    deleteUser(e, id){
-      e.preventDefault();
+    deleteUser(id){
+      event.preventDefault();
       const confirmation = confirm("Etes vous sur de vouloir surpprimer votre compte ?");
       if(confirmation){
         this._dataService.deleteUser(id).subscribe(res => res);
@@ -44,6 +44,19 @@ export class PageUserComponent implements OnInit {
 
   ngOnInit() {
     this.nav.show();
+    const id = this.route.snapshot.params.id;
+    const current_user = localStorage.getItem('current_user').toString();
+    this
+    ._dataService
+    .getUserSecure(id)
+    .subscribe((data: User) => {
+      this.user = data['users'];
+      this.form.setValue(this.user) // va remplir tout les champs correspondant
+      console.log(id + ' --- ' + current_user);
+      console.log(this.user)
+      console.log(this.user._id)
+    })
+
     this.form = new FormGroup({
       username: new FormControl(),
       firstname: new FormControl(),
@@ -60,22 +73,14 @@ export class PageUserComponent implements OnInit {
         website: new FormControl(),
       }),
       tasks: new FormControl(),
-      _id: new FormControl(),
+      _id: new FormControl(current_user),
       job: new FormControl(),
       projects: new FormControl(),
       description: new FormControl(),
     });
 
-    const id = this.route.snapshot.params.id;
-    const current_user = localStorage.getItem('current_user').toString();
+   
 
-    this
-    ._dataService
-    .getUserSecure(id)
-    .subscribe((data: User) => {
-      this.user = data['users'];
-      this.form.setValue(this.user) // va remplir tout les champs correspondant
-      console.log(id + ' --- ' + current_user);
-    })
+    
   }
 }

@@ -160,6 +160,8 @@ export class DataService {
   }
   
   getTaskById(project_id:string, task_id:string): Observable<any>{
+    console.log(project_id);
+    console.log(task_id)
     return this.restService.getProjectById(project_id).pipe(map(data => {
       return data['projects'].tasks.filter( task =>  (task._id === task_id))[0]
     }))
@@ -188,8 +190,11 @@ export class DataService {
     // }))
     let output = [];
     return this.restService.getUserById(user_id).pipe(map(user => {
+      console.log(user);
       user['users'].projects.map(project => {
         project.tasks.map(task => {
+          console.log(task)
+          console.log(project.project_id)
           output.push(this.getTaskById(project.project_id,task))
         })
       })

@@ -71,6 +71,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { registerLocaleData } from '@angular/common';
 import { MY_FORMAT } from './utils/formats/date.format';
 import localeFr from '@angular/common/locales/fr';
+import { CommentComponent } from './pages/commons/comment/comment.component';
 
 
 
@@ -109,6 +110,7 @@ registerLocaleData(localeFr, 'fr');
     ProjectComponent,
     CommonTaskComponent,
     SendInformationComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

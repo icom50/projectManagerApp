@@ -34,7 +34,7 @@ export class PageUserEditComponent implements OnInit {
     })
   }
 
-  getErrorMessage(field:string): string { // gestion des erreurs
+  getErrorMessage(field: string): string { // gestion des erreurs
     const errors = {
       required:'This field is required',
       email:'This field must contains a valid email',
