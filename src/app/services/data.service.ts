@@ -126,8 +126,8 @@ export class DataService {
   }
   
   putTaskByProject(project_id:string, task:Task) { // TODO ajouter les users assignés dans users.projects ***
-    console.log(project_id)
-    console.log(task)
+    // console.log(project_id)
+    // console.log(task)
     this.getProjectById(project_id).subscribe((data:Project) =>{
       let index;
       let project = data['projects'];

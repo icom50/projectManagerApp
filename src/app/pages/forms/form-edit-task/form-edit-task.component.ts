@@ -35,6 +35,10 @@ export class FormEditTaskComponent implements OnInit {
   tempComm = [];
   showUsersComm = [];
   task_id;
+  current_user: String;
+  resetFieldComment;
+
+  
 
   constructor(
     private _dataService: DataService,
@@ -88,17 +92,17 @@ export class FormEditTaskComponent implements OnInit {
 
   unnasignedUser(id) {
     event.preventDefault();
-    console.log(id)
-    console.log(this.newAssigned)
+    // console.log(id)
+    // console.log(this.newAssigned)
 
     let index = this.newAssigned.findIndex( ass => ass.user_id === id);
 
-    console.log(index);
-    console.log(this.newAssigned)
+    // console.log(index);
+    // console.log(this.newAssigned)
 
     if(index != -1) {
       this.newAssigned.splice(index, 1);
-      console.log('deleted')
+      // console.log('deleted')
     }
   }
 
@@ -112,18 +116,33 @@ export class FormEditTaskComponent implements OnInit {
     this.task.checklist.splice(i, 1)
   }
 
-  addComment() {
-    console.log('Comment added')
+  addComment(currentComment) {
+    console.log('Comment added');
+    console.log(currentComment)
+    this.task.comments.push({comment: currentComment, author_id: this.current_user});
+    console.log('----task----')
+    console.log(this.task)
+    console.log('----project----')
+    console.log(this.project)
+    console.log(this.resetFieldComment)
+
+    this.resetFieldComment = '';
+    // this._dataService.putTaskByProject(this.project._id, this.task);
+    // dataservice pas forcément utile
+  }
+
+  removeComment(index) {
+    this.task.comments.splice(index, 1);
   }
 
   deleteTask() {
     event.preventDefault()
     if (confirm("Are you sur to delete this project")) {
-      console.log('project deleted')
+      // console.log('project deleted')
       this._dataService.deleteTaskByProject(this.project._id, this.task._id)
     }
     else {
-      console.log('project not deleted')
+      // console.log('project not deleted')
     }
     
   }
@@ -137,6 +156,8 @@ export class FormEditTaskComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.current_user = localStorage.getItem('current_user');
+
     this._dataService.getProjectById(this.data.project_id).subscribe((data: Project) => {
       this.project = data['projects'];
       for (let i = 0; i < this.project.users.length; i++) {
@@ -156,7 +177,7 @@ export class FormEditTaskComponent implements OnInit {
 
       // console.log(this.task.checklist)
 
-      console.log(this.task)
+      // console.log(this.task)
       this.editTask.setValue(this.task)
       // console.log(this.newAssigned)
       //list all members assigned to the task and stock it in temp table
@@ -184,8 +205,6 @@ export class FormEditTaskComponent implements OnInit {
 
           this.avatarTemp.push(data['users'].avatar_url);
 
-
-
         });
 
         this.exportTab = [this.memberAssignedAll, this.avatarTemp];
@@ -200,7 +219,7 @@ export class FormEditTaskComponent implements OnInit {
         this._dataService
         .getUserById(person.author_id)
         .subscribe(data => {
-          console.log(data);
+          // console.log(data);
           if(data['users'].firstname != '' || data['users'].lastname != '') {
             //push the data in other temp table
             this.showUsersComm.push(`${data['users'].firstname} ${data['users'].lastname}`);

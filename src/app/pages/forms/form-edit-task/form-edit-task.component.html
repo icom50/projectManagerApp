@@ -35,17 +35,22 @@
                             <h4>Comments</h4>
                             <ul>
                                 <li class="task--a-comment" *ngFor="let comment of task.comments; let i = index">
-                                    <p>{{comment.comment}}</p>
-                                    <small>{{comment.date | date: 'mediumDate'}} • {{showUsersComm[i]}}</small>
+                                    <div>
+                                        <p>{{comment.comment}}</p>
+                                        <small>{{comment.date | date: 'mediumDate'}} • {{showUsersComm[i]}}</small>
+                                    </div>
+                                    
+                                    <div *ngIf="comment.author_id == current_user">
+                                        <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="removeComment(i)"></fa-icon>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
                         <div>
                             <mat-form-field>
-                                <textarea matInput placeholder="Add a comments" name="comments" ngMaxlength="250"
-                                    formControlName="comments"></textarea>
+                                <textarea matInput placeholder="Add a comments" name="comments" ngMaxlength="250" #comment (keyup.enter)="addComment(comment.value)" [(ngModel)] ="resetFieldComment" [ngModelOptions]="{standalone: true}"></textarea> 
                             </mat-form-field>
-                            <button class="middlebutton" (click)="addComment()">Add comment</button>
+                            <button class="middlebutton" (click)="addComment(comment.value)">Add comment</button>
                         </div>
                     </div>
                     
