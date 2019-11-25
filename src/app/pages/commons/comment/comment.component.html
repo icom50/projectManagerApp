@@ -1,10 +1,8 @@
-<p>Espace comment</p>
-
 <form action="">
     <textarea placeholder="Write a comment…" dir="auto" #comment></textarea>
 </form>
 
-<div><button (click)="addComment(comment.value)" type="submit" value="save">SAVE</button></div>
+<div><button (click)="addComment(comment)" type="submit" value="save">SAVE</button></div>
 
 <div class="comments" *ngFor="let comment of project.comments ; let index = index">
     <div class="comment"><span>{{comment.comment}}</span><button (click)="deleteComment(index)" type="submit">X</button></div>
