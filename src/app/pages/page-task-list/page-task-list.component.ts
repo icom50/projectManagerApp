@@ -26,6 +26,7 @@ export class PageTaskListComponent implements OnInit {
       this._dataService.getTasksByUser(id)
     .subscribe((data: Task[]) => {
       this.tasks = data;
+      console.log(this.tasks)
     });
     });
   }
