@@ -3,11 +3,11 @@
 
 .navbar {
   display: flex;
-  margin-top: 30px;
   padding: 0;
   width: 100%;
-  height: 45px;
+  // height: 45px;
   justify-content: flex-end;
+  padding-top: 15px;
 
   &:last-child{
     margin-right: 0;
@@ -18,7 +18,8 @@
     width: 100%;
     display: flex;    
     justify-content: flex-end;
-    margin-right: 35px;
+    margin-right: 15px;
+
     li {
       display: flex;
       justify-content: space-between;
