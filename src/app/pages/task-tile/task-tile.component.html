@@ -19,7 +19,10 @@
     <mat-card-content>
         <div *ngIf="tempAvatar != 0; else noAvatar"  class="task--collaborators">
             <div *ngFor="let user of tempAvatar | slice:0:3; let i=index" >
-                <img class="task--assigned" [src]="user">
+                <div class="image--avatar-resize">
+                    <img class="task--assigned" [src]="user">
+                </div>
+                
             </div>
         </div>
         <!-- empty p used only to push info to right because of flexbox -->

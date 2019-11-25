@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../../models/users.model';
 import { Project, Task } from '../../../models/projects.model';
 import { DataService } from '../../../services/data.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -18,6 +18,9 @@ export class FormEditTaskComponent implements OnInit {
   project: Project;
   task: Task;
   editTask: FormGroup;
+  user: User;
+  creator: string;
+
   emails = []
   memberAssigned;
   memberAssignedAll = [];
@@ -25,14 +28,13 @@ export class FormEditTaskComponent implements OnInit {
   tempUser = [];
   faTrash = faTrash;
   addCheckList;
-  user: User;
-  creator: string;
   otherTemp;
   avatarTemp = [];
   exportTab = [];
   newComments= [];
   tempComm = [];
   showUsersComm = [];
+  task_id;
 
   constructor(
     private _dataService: DataService,
@@ -110,6 +112,10 @@ export class FormEditTaskComponent implements OnInit {
     this.task.checklist.splice(i, 1)
   }
 
+  addComment() {
+    console.log('Comment added')
+  }
+
   deleteTask() {
     event.preventDefault()
     if (confirm("Are you sur to delete this project")) {
@@ -124,6 +130,10 @@ export class FormEditTaskComponent implements OnInit {
 
   isClicked(index){
     this.task.checklist[index]['done'] = !this.task.checklist[index]['done'];
+  }
+
+  closePopup() {
+    this.dialogRef.close(FormEditTaskComponent);
   }
 
   ngOnInit() {
@@ -227,7 +237,6 @@ export class FormEditTaskComponent implements OnInit {
       comments: new FormControl(),
       checklist: new FormControl(null),
       _id: new FormControl()
-
     });
   }
 }
