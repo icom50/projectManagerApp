@@ -22,7 +22,7 @@ mat-card-title{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        margin-bottom: 15px;
+        margin-bottom: 30px;
     }
 
     &--title {
@@ -33,6 +33,8 @@ mat-card-title{
 
     &--filter {
         margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
 
         button {
             @include button;
@@ -40,7 +42,6 @@ mat-card-title{
             &:first-child {
                 margin-right: 10px;
             }
-
         }
 
         .active-btn{
@@ -78,7 +79,7 @@ mat-card-title{
         -webkit-box-direction: normal;
         flex-direction: row;
         overflow-x: auto;
-        height: 70%; 
+        height: calc(100vh - 219px); // 204 = height of éléments above, so no scroll 
         width: calc(100vw - 130px);
         padding: 0 5px;
     }
