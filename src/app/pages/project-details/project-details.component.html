@@ -39,5 +39,6 @@
                 <mat-error *ngIf="formComment.controls['comment'].invalid">The content is too heavy</mat-error>
             </mat-form-field>
         </form> -->
+        <app-comment [project]="project"></app-comment>
         <p>{{isPrivate}}</p>
     </div>

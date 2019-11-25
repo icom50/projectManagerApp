@@ -55,6 +55,9 @@ export class FormEditProjectComponent implements OnInit {
        return this.date;
      }
    }
+   closePopup() {
+    this.dialogRef.close(FormEditProjectComponent);
+  }
 
   ngOnInit() {
     

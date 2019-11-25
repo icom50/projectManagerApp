@@ -16,7 +16,7 @@ import { User } from 'src/app/models/users.model';
 })
 export class ProjectDetailsComponent implements OnInit {
 
-  project 
+  project : Project; 
   isPrivate: String;
   formComment : FormGroup;
   commentValue: string;
@@ -93,6 +93,10 @@ export class ProjectDetailsComponent implements OnInit {
     
     });
     
+  }
+
+  closePopup() {
+    this.dialogRef.close(ProjectDetailsComponent);
   }
 
   ngOnInit() {
