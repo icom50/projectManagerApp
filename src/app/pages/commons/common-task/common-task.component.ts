@@ -15,13 +15,21 @@ export class CommonTaskComponent implements OnInit {
   @Input() project_id : string;
   @Input() task_id : string;
 
-  constructor(private _dataService : DataService) { }
+  constructor(private _dataService : DataService) { console.log('common task component')}
 
   ngOnInit() {
-    this._dataService.getTaskById( this.project_id, this.task_id)
+    console.log('project_id')
+    console.log(this.project_id)
+    console.log('----------')
+    console.log('task_id')
+    console.log(this.task_id)
+    console.log('----------')
+    this._dataService.getTaskById(this.project_id, this.task_id)
     .subscribe((data: Task)=>{
       this.task = data;
+      console.log('---- CONSOLE LOG POUR ROMAIN ----')
       console.log(this.task)
+      console.log('---- CONSOLE LOG POUR ROMAIN ----')
     })
   }
 

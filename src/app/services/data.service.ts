@@ -195,7 +195,7 @@ export class DataService {
         project.tasks.map(task => {
           console.log(task)
           console.log(project.project_id)
-          this.getTaskById(project.project_id,task).subscribe(task => output.push(task))
+          this.getTaskById(project.project_id,task).subscribe(task => output.push({...task, project_id : project.project_id}))
         })
       })
       return output
