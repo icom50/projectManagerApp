@@ -7,25 +7,16 @@
         <div>
             <ul>
                 <li>
-                    <button 
-                    class="middlebuttondelete"
-                    (click)="deleteUser($event, user._id)"
-                    >
-                    Delete
+                    <button class="middlebuttondelete" (click)="deleteUser(user?._id)">
+                        Delete
                     </button>
                 </li>
                 <li>
-                    <button
-                    class="middlebutton"
-                    routerLink="/user-edit/{{user._id}}"
-                    >
-                    Edit
+                    <button class="middlebutton" routerLink="/user-edit/{{user?._id}}">
+                        Edit
                     </button>
                 </li>
             </ul>
-            <!-- <button mat-raised-button (click)="deleteUser(user._id)">
-                Delete
-            </button> -->
         </div>
     </div>
 
@@ -33,11 +24,11 @@
         <form [formGroup]="form">
             <div id="avatardescription">
                 <div class="userimage">
-                    <img src={{user.avatar_url}} alt="Photo de profil de {{user.username}}"
-                        title="Photo de profil de {{user.username}}">
+                    <img src={{user?.avatar_url}} alt="Photo de profil de {{user?.username}}"
+                        title="Photo de profil de {{user?.username}}">
                 </div>
                 <div id="description">
-                    <p>{{user.description}}</p>
+                    <p>{{user?.description}}</p>
                 </div>
             </div>
 
@@ -45,54 +36,48 @@
                 <div>
                     <div class="inputinfo">
                         <label for="username">Username</label>
-                        <span>{{user.username}}</span>
+                        <span>{{user?.username}}</span>
                     </div>
 
                     <div class="inputinfo">
                         <label for="firstname">Firstname</label>
-                        <span>{{user.firstname}}</span>
+                        <span>{{user?.firstname}}</span>
                     </div>
 
                     <div class="inputinfo">
                         <label for="lastname">Name</label>
-                        <span>{{user.lastname}}</span>
+                        <span>{{user?.lastname}}</span>
                     </div>
 
                     <div class="inputinfo">
                         <label for="email">Email</label>
-                        <span>{{user.email}}</span>
+                        <span>{{user?.email}}</span>
                     </div>
 
                     <div class="inputinfo">
                         <label for="phone">Telephone</label>
-                        <span>{{user.phone}}</span>
+                        <span>{{user?.phone}}</span>
                     </div>
                 </div>
 
                 <div>
                     <div class="inputinfo">
                         <label for="company">Company</label>
-                        <span>{{user.company}}</span>
+                        <span>{{user?.company}}</span>
                     </div>
 
                     <div class="inputinfo">
                         <fa-icon [icon]="faGithub" size="2x"></fa-icon>
-                        <span><a 
-                            href={{user.links.github}} 
-                            target="_blank"
-                            >
-                            {{user.links.github}}
-                        </a></span>
+                        <span><a href={{user?.links.github}} target="_blank">
+                                {{user?.links.github}}
+                            </a></span>
                     </div>
 
                     <div class="inputinfo">
                         <fa-icon [icon]="faLinkedin" size="2x"></fa-icon>
                         <span>
-                            <a 
-                            href={{user.links.linkedin}}
-                            target="_blank"
-                            >
-                                {{user.links.linkedin}}
+                            <a href={{user?.links.linkedin}} target="_blank">
+                                {{user?.links.linkedin}}
                             </a>
                         </span>
                     </div>
@@ -100,28 +85,21 @@
                     <div class="inputinfo">
                         <fa-icon [icon]="faBlogger" size="2x"></fa-icon>
                         <span>
-                            <a 
-                            href={{user.links.blog}}
-                            target="_blank"
-                            >
-                                {{user.links.blog}}
+                            <a href={{user?.links.blog}} target="_blank">
+                                {{user?.links.blog}}
                             </a>
                         </span>
                     </div>
 
                     <div class="inputinfo">
                         <fa-icon [icon]="faGlobe" size="2x"></fa-icon>
-                        <span>                            
-                            <a 
-                            href={{user.links.website}}
-                            target="_blank"
-                            >
-                                {{user.links.website}}
+                        <span>
+                            <a href={{user?.links.website}} target="_blank">
+                                {{user?.links.website}}
                             </a></span>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-
 </div>

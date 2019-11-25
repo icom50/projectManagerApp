@@ -107,6 +107,10 @@ export class ProjectDetailsComponent implements OnInit {
     
   }
 
+  closePopup() {
+    this.dialogRef.close(ProjectDetailsComponent);
+  }
+
   ngOnInit() {
     this._dataService.getProjectById(this.data.project_id).subscribe((data : Project)=>{
       this.project = data['projects'];console.log(this.project.users)
