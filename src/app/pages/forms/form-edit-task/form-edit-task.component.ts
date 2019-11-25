@@ -176,8 +176,8 @@ export class FormEditTaskComponent implements OnInit {
 
     this._dataService.getTaskById(this.data.project_id, this.data.task_id).subscribe((data: Task) => {
       this.task = data;
-      this.newAssigned = data.assigned;
-      this.newComments = data.comments;
+      this.newAssigned = data.assigned || [];
+      this.newComments = data.comments || [];
 
       // console.log(this.task.checklist)
 
