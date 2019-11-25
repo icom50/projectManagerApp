@@ -10,6 +10,8 @@
       margin-top: 30px;
       margin-right: 20px;
       position: relative;
+      text-align: center;
+      line-height: 150px;
 
       .svg-inline--fa,
       .fa-ellipsis-h,
@@ -25,6 +27,18 @@
           fill: white;
         }
       }
+      fa-icon{
+        font-size: 4rem;
+        color: white;
+        
+      }
+      img{
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+      }
     }
 
     span {
@@ -33,13 +47,15 @@
       text-align: center;
     }
 
-    .favorite {
-      height: 20px;
-      width: 20px;
-      position: absolute;
-      right: 20px;
-      bottom: 20px;
-    }
+    // .favorite {
+    //   height: 20px;
+    //   width: 20px;
+    //   position: absolute;
+    //   right: 20px;
+    //   bottom: 20px;
+    //   background: blue;
+    // }
+   
   }
 }
 

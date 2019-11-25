@@ -16,13 +16,16 @@
     </header>
 
     <div class="project--filter">
-        <button (click)="allTasks()" [ngClass]="myTasks ? '' : 'active-btn'">All tasks</button>
-        <button (click)="onlyMyTasks()" [ngClass]="myTasks ? 'active-btn' : ''">My tasks</button>
+        <div>
+            <button (click)="allTasks()" [ngClass]="myTasks ? '' : 'active-btn'">All tasks</button>
+            <button (click)="onlyMyTasks()" [ngClass]="myTasks ? 'active-btn' : ''">My tasks</button>
+        </div>
         <button (click)="openPopup()">Create Task</button>
     </div>
 
     <section class="task--board">
 
+        
         <div 
             class="task--col"
             cdkDropList
@@ -78,4 +81,5 @@
             </div>
         </div>
     </section>
+
 </div>
