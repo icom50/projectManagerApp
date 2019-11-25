@@ -25,6 +25,7 @@
         <tr *ngFor="let task of tasks">
             <td>{{task.name}}</td>
             <td>
+                    <!-- | orderBy: 'task.deadline'  -->
                 <span *ngFor="let label of task?.labels">
                     <span [style.background-color]=label.color class="labelcolor">
                         {{(label?.name.length > 8) ? (label.name | slice:0:8) + "..." : label.name }}

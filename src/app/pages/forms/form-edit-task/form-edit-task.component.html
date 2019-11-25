@@ -22,7 +22,7 @@
                         <mat-datepicker #deadline></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field>
-                        <p>Priority : </p>
+                        <small class="task--priority">Priority</small>
                         <select matNativeControl name="priority" id="priority" formControlName="priority">
                             <option value="none">None</option>
                             <option value="high">High</option>
@@ -30,9 +30,12 @@
                             <option value="low">Low</option>
                         </select>
                     </mat-form-field>
+
+                    <small class="task--creator">Project created by {{creator}}</small>
+
                     <div class="task--mainComm">
+                        <h4>Comments</h4>
                         <div class="task--comments" *ngIf="task.comments != 0">
-                            <h4>Comments</h4>
                             <ul>
                                 <li class="task--a-comment" *ngFor="let comment of task.comments; let i = index">
                                     <div>
@@ -46,15 +49,13 @@
                                 </li>
                             </ul>
                         </div>
-                        <div>
+                        <div class="task--mainComm-textarea-btn">
                             <mat-form-field>
                                 <textarea matInput placeholder="Add a comments" name="comments" ngMaxlength="250" #comment (keyup.enter)="addComment(comment.value)" [(ngModel)] ="resetFieldComment" [ngModelOptions]="{standalone: true}"></textarea> 
                             </mat-form-field>
                             <button class="middlebutton" (click)="addComment(comment.value)">Add comment</button>
                         </div>
                     </div>
-                    
-                    <p>created by {{creator}}</p>
                 </section>
 
                 <section>
@@ -102,9 +103,10 @@
             </div>
 
             <div class="task--cta">
-                <button type="submit" (click)="onSubmit()" class="bigbutton">Edit Task</button>
-                <button type="submit" (click)="closePopup()" class="bigbutton">Cancel</button>
                 <button (click)="deleteTask()" class="deletebutton">Delete</button>
+                <button type="submit" (click)="closePopup()" class="bigbutton">Cancel</button>
+                <button type="submit" (click)="onSubmit()" class="bigbutton">Edit Task</button>
+                
             </div>
         </form>
     </div>

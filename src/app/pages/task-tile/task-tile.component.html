@@ -43,11 +43,10 @@
                 {{ checkedList || '0' }}/{{ task.checklist?.length }}
             </p> 
 
-            <p>
+            <p *ngIf="task.deadline?.length != null">
                 <fa-icon [icon]="faClock" size="1x"></fa-icon>
                 {{ task.deadline | date:"dd/MM/yy" }}
             </p>
         </div>
     </mat-card-content>
-    <!-- <button >show me ur task</button> -->
 </mat-card>

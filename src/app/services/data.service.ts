@@ -48,17 +48,17 @@ export class DataService {
   postForgottenPassword(email:string){
     return this.restService.postForgottenPassword(email)
   }
-  addProjectToUser(project, user){ // se fait automatiquement au PUT & POST  --- A TESTER
-      this.getUserById(user.user_id).subscribe(data => {
-        let index;
-        data['users'].projects.filter((pro, i) => {
-          if (project._id === pro.project_id) return index = i
-        })
-        if (index === -1) data['users'].projects.push({project_id : project._id, accepted : false, invitedBy : project.author_id, tasks : []})
-        // else project.tasks.map(task => this.addTaskToUser(project._id,task,user.user_id))
-        this.postUser(data['users']).subscribe()
-    })
-  }
+  // addProjectToUser(project, user){ // se fait automatiquement au PUT & POST  --- A TESTER
+  //     this.getUserById(user.user_id).subscribe(data => {
+  //       let index;
+  //       data['users'].projects.filter((pro, i) => {
+  //         if (project._id === pro.project_id) return index = i
+  //       })
+  //       if (index === -1) data['users'].projects.push({project_id : project._id, accepted : false, invitedBy : project.author_id, tasks : []})
+  //       // else project.tasks.map(task => this.addTaskToUser(project._id,task,user.user_id))
+  //       this.postUser(data['users']).subscribe()
+  //   })
+  // }
   // private addTaskToUser(project_id, task, user_id){ // se fait automatiquement au PUT & POST --- A TESTER
   //   console.log("add task to user, bisou")
   //   this.getUserById(user_id).subscribe(data => {
@@ -72,21 +72,21 @@ export class DataService {
   //     this.postUser(data['users']).subscribe()
   //   })
   // }
-  private removeTaskToUser(project_id, task_id, user_id){
-    this.restService.getUserById(user_id).subscribe(user => { // se fait automatiquement au PUT & POST --- A TESTER
-      let index = user['users'].projects.findIndex(project => project['project_id'] === project_id );
-      let yndex = user['users'].projects[index].tasks.findIndex(task => task === task_id );
-      user['users'].projects[index].tasks.splice(yndex,1);
-      this.restService.putUser(user['users']).subscribe()
-    })
-  }
-  removeProjectToUser(project_id,user_id){
-    this.restService.getUserById(user_id).subscribe(user => { // se fait automatiquement au PUT & POST --- A TESTER
-      let index = user['users'].projects.findIndex(project => project.project_id === project_id )
-      user['users'].projects.splice(index,1)
-      this.restService.putUser(user['users']).subscribe()
-    })
-  }
+  // private removeTaskToUser(project_id, task_id, user_id){
+  //   this.restService.getUserById(user_id).subscribe(user => { // se fait automatiquement au PUT & POST --- A TESTER
+  //     let index = user['users'].projects.findIndex(project => project['project_id'] === project_id );
+  //     let yndex = user['users'].projects[index].tasks.findIndex(task => task === task_id );
+  //     user['users'].projects[index].tasks.splice(yndex,1);
+  //     this.restService.putUser(user['users']).subscribe()
+  //   })
+  // }
+  // removeProjectToUser(project_id,user_id){
+  //   this.restService.getUserById(user_id).subscribe(user => { // se fait automatiquement au PUT & POST --- A TESTER
+  //     let index = user['users'].projects.findIndex(project => project.project_id === project_id )
+  //     user['users'].projects.splice(index,1)
+  //     this.restService.putUser(user['users']).subscribe()
+  //   })
+  // }
 
   // /api/projects
   getProjects():Observable<Project[]>{
@@ -112,16 +112,16 @@ export class DataService {
   }
   putProject(project:Project): Observable<Project>{ // TODO ajouter les users assignés dans users.projects --- A TESTER
     console.log(project.users)
-    if (project.users.length > 0) project.users.map(data => this.addProjectToUser(project, data))
+    // if (project.users.length > 0) project.users.map(data => this.addProjectToUser(project, data))
     return this.restService.putProject(project)
   }
   deleteProject(id:string): Observable<Project>{ // TODO DELETER CHEZ L USER --- A TESTER
-    this.restService.getProjectById(id).subscribe(project => {
-      this.removeProjectToUser(id, project['projects'].author_id)
-      project['projects'].users.map(user => {
-        if(project['projects'].author_id != user.user_id) this.removeProjectToUser(id,user.user_id)
-      })
-    })
+    // this.restService.getProjectById(id).subscribe(project => {
+    //   // this.removeProjectToUser(id, project['projects'].author_id)
+    //   project['projects'].users.map(user => {
+    //     if(project['projects'].author_id != user.user_id) this.removeProjectToUser(id,user.user_id)
+    //   })
+    // })
     return this.restService.deleteProject(id)
   }
   
@@ -151,7 +151,7 @@ export class DataService {
       if (index === -1 || !(task_id) ) {
         console.log('this task no longer exist or has never existed')
       } else {
-        project.tasks[index].assigned.map(ass => this.removeTaskToUser(project_id,task_id, ass['user_id']))
+        // project.tasks[index].assigned.map(ass => this.removeTaskToUser(project_id,task_id, ass['user_id']))
         project.tasks.splice(index,1)
       }
       this.putProject(project).subscribe()
@@ -195,7 +195,7 @@ export class DataService {
         project.tasks.map(task => {
           console.log(task)
           console.log(project.project_id)
-          output.push(this.getTaskById(project.project_id,task))
+          this.getTaskById(project.project_id,task).subscribe(task => output.push({...task, project_id : project.project_id}))
         })
       })
       return output

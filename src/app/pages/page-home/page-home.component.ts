@@ -52,8 +52,9 @@ export class PageHomeComponent implements OnInit {
       this._dataService.getTasksByUser(id)
         .subscribe((data: Task[]) => {
           this.tasks = data;
+          console.log('-------task -----')
           console.log(this.tasks);
-          console.log(this.user);
+          // console.log(this.user);
         })
     })
   }
