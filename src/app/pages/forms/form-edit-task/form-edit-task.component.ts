@@ -274,7 +274,8 @@ export class FormEditTaskComponent implements OnInit {
       labels: new FormControl(),
       comments: new FormControl(),
       checklist: new FormControl(null),
-      _id: new FormControl()
+      _id: new FormControl(),
+      color: new FormControl()
     });
   }
 }
