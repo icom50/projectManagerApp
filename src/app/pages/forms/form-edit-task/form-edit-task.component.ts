@@ -7,7 +7,7 @@ import { DataService } from '../../../services/data.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
-import { PageProjectComponent } from '../../page-project/page-project.component';
+// import { PageProjectComponent } from '../../page-project/page-project.component';
 
 
 
@@ -48,12 +48,11 @@ export class FormEditTaskComponent implements OnInit {
     private _dataService: DataService,
     private route : Router,
     public dialogRef: MatDialogRef<FormEditTaskComponent>,
-    public pageProject: PageProjectComponent,
+    // public pageProject: PageProjectComponent,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   async onSubmit(e) {
-    // console.log(this.project)
     if (this.editTask.invalid) {
       e.preventDefault()
     }
@@ -62,40 +61,25 @@ export class FormEditTaskComponent implements OnInit {
       this.task.assigned = this.newAssigned;
       await this._dataService.putTaskByProject(this.project._id, this.task);
       await this._dataService.setProject(this.project);
-      // await this.exitProject();
-      // this.pageProject.filter();
-      await this.pageProject.filter();
+      // await this.pageProject.filter();
       await this.dialogRef.close(FormEditTaskComponent);
     }
   }
 
-  // exitProject() {
-  //   console.log('pd');
-    
-  // }
-
   addAssignedUser(user) {
-    // console.log(user.email)
     let mail = user.email;
 
     if (!(this.checkAssigned(mail))) {
-      // console.log(this.task.assigned)
 
       this._dataService.getUserByEmail(mail).subscribe((data: User) => {
 
-        // console.log(data);
-
         let index = this.newAssigned.findIndex(ass => {
-          // console.log(ass);
           return ass.user_id === data['users']._id;
         });
-
-        // console.log(index);
 
         if(index === -1) {
           this.newAssigned.push({avatar_url: data['users'].avatar_url, user_id: data['users']._id});
         }
-
       })
     }
   }
@@ -108,17 +92,11 @@ export class FormEditTaskComponent implements OnInit {
 
   unnasignedUser(id) {
     event.preventDefault();
-    // console.log(id)
-    // console.log(this.newAssigned)
 
     let index = this.newAssigned.findIndex( ass => ass.user_id === id);
 
-    // console.log(index);
-    // console.log(this.newAssigned)
-
     if(index != -1) {
       this.newAssigned.splice(index, 1);
-      // console.log('deleted')
     }
   }
 
@@ -133,15 +111,7 @@ export class FormEditTaskComponent implements OnInit {
   }
 
   addComment(currentComment) {
-    console.log('Comment added');
-    console.log(currentComment)
     this.task.comments.push({comment: currentComment, author_id: this.current_user});
-    console.log('----task----')
-    console.log(this.task)
-    console.log('----project----')
-    console.log(this.project)
-    console.log(this.resetFieldComment)
-
     this.resetFieldComment = '';
     // this._dataService.putTaskByProject(this.project._id, this.task);
     // dataservice pas forcément utile
@@ -154,10 +124,8 @@ export class FormEditTaskComponent implements OnInit {
   deleteTask() {
     event.preventDefault()
     if (confirm("Are you sur to delete this project")) {
-      // console.log('project deleted')
       this._dataService.deleteTaskByProject(this.project._id, this.task._id)
       // this.closePopup();
-
     }
     else {
       // console.log('project not deleted')
@@ -194,11 +162,8 @@ export class FormEditTaskComponent implements OnInit {
       this.newAssigned = data.assigned || [];
       this.newComments = data.comments || [];
 
-      // console.log(this.task.checklist)
-
-      // console.log(this.task)
       this.editTask.setValue(this.task)
-      // console.log(this.newAssigned)
+
       //list all members assigned to the task and stock it in temp table
       for (let i = 0; i < this.newAssigned.length; i++) {
         this.tempUser.push(this.newAssigned[i]);
@@ -238,7 +203,7 @@ export class FormEditTaskComponent implements OnInit {
         this._dataService
         .getUserById(person.author_id)
         .subscribe(data => {
-          // console.log(data);
+
           if(data['users'].firstname != '' || data['users'].lastname != '') {
             //push the data in other temp table
             this.showUsersComm.push(`${data['users'].firstname} ${data['users'].lastname}`);
