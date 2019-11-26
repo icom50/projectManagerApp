@@ -47,9 +47,11 @@
           <div class="addColor">
             <label for="addColor">Choose your project color : </label>
             <input id="addColor" [style.background]="color" [(colorPicker)]="color" 
-              [cpAlphaChannel]="'disabled'" (colorPickerChange)="updateColor($event)" [(ngModel)]="addColor"
-              [ngModelOptions]="{standalone: true}" />   
+              [cpAlphaChannel]="'disabled'" (colorPickerChange)="updateColor($event)" [cpToggle]="project?.color" [(ngModel)]="addColor"
+              [ngModelOptions]="{standalone: true}" />
+            <mat-error *ngIf="error">This Color is invalid</mat-error>   
           </div>
+          <mat-error *ngIf="error">This Color is invalid</mat-error>
         </section>
       </div>
       <div class="project--cta">
