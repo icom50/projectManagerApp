@@ -1,3 +1,4 @@
+// import { PageProjectComponent } from './../../../../../../task-manager/src/app/pages/page-project/page-project.component';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../../models/users.model';
@@ -6,6 +7,8 @@ import { DataService } from '../../../services/data.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { PageProjectComponent } from '../../page-project/page-project.component';
+
 
 
 @Component({
@@ -45,10 +48,11 @@ export class FormEditTaskComponent implements OnInit {
     private _dataService: DataService,
     private route : Router,
     public dialogRef: MatDialogRef<FormEditTaskComponent>,
+    public pageProject: PageProjectComponent,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
-  onSubmit(e) {
+  async onSubmit(e) {
     // console.log(this.project)
     if (this.editTask.invalid) {
       e.preventDefault()
@@ -56,9 +60,19 @@ export class FormEditTaskComponent implements OnInit {
     else {
       this.task = this.editTask.value;
       this.task.assigned = this.newAssigned;
-      this._dataService.putTaskByProject(this.project._id, this.task);
+      await this._dataService.putTaskByProject(this.project._id, this.task);
+      await this._dataService.setProject(this.project);
+      // await this.exitProject();
+      // this.pageProject.filter();
+      await this.pageProject.filter();
+      await this.dialogRef.close(FormEditTaskComponent);
     }
   }
+
+  // exitProject() {
+  //   console.log('pd');
+    
+  // }
 
   addAssignedUser(user) {
     // console.log(user.email)
@@ -142,7 +156,7 @@ export class FormEditTaskComponent implements OnInit {
     if (confirm("Are you sur to delete this project")) {
       // console.log('project deleted')
       this._dataService.deleteTaskByProject(this.project._id, this.task._id)
-      this.closePopup();
+      // this.closePopup();
 
     }
     else {
@@ -155,11 +169,12 @@ export class FormEditTaskComponent implements OnInit {
     this.task.checklist[index]['done'] = !this.task.checklist[index]['done'];
   }
 
-  closePopup() {
-    this.dialogRef.close(FormEditTaskComponent);
-  }
+  // closePopup() {
+  //   this.dialogRef.close(FormEditTaskComponent);
+  // }
 
   ngOnInit() {
+
     this.current_user = localStorage.getItem('current_user');
 
     this._dataService.getProjectById(this.data.project_id).subscribe((data: Project) => {
@@ -259,7 +274,8 @@ export class FormEditTaskComponent implements OnInit {
       labels: new FormControl(),
       comments: new FormControl(),
       checklist: new FormControl(null),
-      _id: new FormControl()
+      _id: new FormControl(),
+      color: new FormControl()
     });
   }
 }

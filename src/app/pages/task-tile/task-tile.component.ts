@@ -6,6 +6,7 @@ import { faTasks } from '@fortawesome/free-solid-svg-icons';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormEditTaskComponent } from '../forms/form-edit-task/form-edit-task.component';
+import { PageProjectComponent } from '../page-project/page-project.component';
 
 @Component({
   selector: 'app-task-tile',
@@ -37,7 +38,8 @@ export class TaskTileComponent implements OnInit {
     private router: Router, 
     private dataService: DataService, 
     private nav : NavbarService, 
-    private dialog : MatDialog
+    private dialog : MatDialog,
+    public project: PageProjectComponent
   ) {}
 
   openPopup(id){
@@ -49,6 +51,11 @@ export class TaskTileComponent implements OnInit {
         project_id : this.project_id
       }
     });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('popup closed');
+      this.project.filter();
+    })
   }
 
   ngOnInit() {

@@ -196,6 +196,10 @@ input[type=checkbox]:checked + label {
     text-decoration: line-through;
 } 
 
+.closeYouBitch {
+    display: none;
+}
+
 
 @media screen and (max-height: 700px) {
     .task--comments {

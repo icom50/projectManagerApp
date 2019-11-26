@@ -24,18 +24,9 @@ export class CommonTaskComponent implements OnInit {
   constructor(private _dataService : DataService) { console.log('common task component')}
 
   ngOnInit() {
-    console.log('project_id')
-    console.log(this.project_id)
-    console.log('----------')
-    console.log('task_id')
-    console.log(this.task_id)
-    console.log('----------')
     this._dataService.getTaskById(this.project_id, this.task_id)
     .subscribe((data: Task)=>{
       this.task = data;
-      console.log('---- CONSOLE LOG POUR ROMAIN ----')
-      console.log(this.task)
-      console.log('---- CONSOLE LOG POUR ROMAIN ----')
     })
   }
 

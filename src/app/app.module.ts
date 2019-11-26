@@ -73,14 +73,7 @@ import { MY_FORMAT } from './utils/formats/date.format';
 import localeFr from '@angular/common/locales/fr';
 import { CommentComponent } from './pages/commons/comment/comment.component';
 
-
-
-
 registerLocaleData(localeFr, 'fr');
-
-
-
-
 
 
 @NgModule({
@@ -148,7 +141,8 @@ registerLocaleData(localeFr, 'fr');
     RestService,
     ProjectsDataService,
     AuthGuardsService,
-    RandomSentencesService
+    RandomSentencesService,
+    PageProjectComponent
   ],
   bootstrap: [AppComponent]
 })
