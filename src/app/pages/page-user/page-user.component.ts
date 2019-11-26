@@ -52,9 +52,7 @@ export class PageUserComponent implements OnInit {
     .subscribe((data: User) => {
       this.user = data['users'];
       this.form.setValue(this.user) // va remplir tout les champs correspondant
-      console.log(id + ' --- ' + current_user);
-      console.log(this.user)
-      console.log(this.user._id)
+      //console.log(id + ' --- ' + current_user);
     })
 
     this.form = new FormGroup({
@@ -78,9 +76,5 @@ export class PageUserComponent implements OnInit {
       projects: new FormControl(),
       description: new FormControl(),
     });
-
-   
-
-    
   }
 }

@@ -18,15 +18,15 @@
               <mat-error *ngIf="form.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
             </mat-form-field>
           </div>
-          <div>
+          <div class="password">
             <mat-form-field>
               <input matInput placeholder="Password" type="password" formControlName="password" />
               <mat-icon matSuffix>lock</mat-icon>
               <mat-error *ngIf="form.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
-              <mat-hint><a routerLink="/reset-password">
-                  <small>Forgot Password ?</small>
-                </a></mat-hint>
             </mat-form-field>
+            <mat-hint><a routerLink="/reset-password">
+              <small>Forgot Password ?</small>
+            </a></mat-hint>
           </div>
           <div class="signUp">
             <button type="submit">

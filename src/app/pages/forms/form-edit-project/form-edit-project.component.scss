@@ -20,9 +20,11 @@
       max-width: 300px;
       align-items: flex-start;
 
-      h4{
+      h2{
         margin-bottom: 10px;
-      }
+        font-size: 3em;
+        font-weight: inherit;
+    }
 
       mat-form-field{
         width: 100%;

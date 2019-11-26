@@ -21,7 +21,7 @@ export class CommonTaskComponent implements OnInit {
   @Input() project_id : string;
   @Input() task_id : string;
 
-  constructor(private _dataService : DataService) { console.log('common task component')}
+  constructor(private _dataService : DataService) { }
 
   ngOnInit() {
     this._dataService.getTaskById(this.project_id, this.task_id)

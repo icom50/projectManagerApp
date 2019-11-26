@@ -5,6 +5,9 @@
     display: flex;
     flex-direction: column;
 }
+h1{
+    font-weight: inherit;
+}
 
 .task{
     display: flex;

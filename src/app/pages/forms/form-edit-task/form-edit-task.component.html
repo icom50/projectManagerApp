@@ -3,7 +3,7 @@
         <form [formGroup]="editTask" (ngSubmit)="onSubmit($event)">
             <div class="edit--task">
                 <section>
-                    <h4>Task information</h4>
+                    <h2>Task information</h2>
                     <mat-form-field>
                         <input matInput placeholder="Task's name" name="name" type="text" formControlName="name"
                             required>
@@ -35,9 +35,9 @@
 
                     <div class="task--mainComm">
                         <h4>Comments</h4>
-                        <div class="task--comments" *ngIf="task.comments != 0">
+                        <div class="task--comments" *ngIf="task?.comments != 0">
                             <ul>
-                                <li class="task--a-comment" *ngFor="let comment of task.comments; let i = index">
+                                <li class="task--a-comment" *ngFor="let comment of task?.comments; let i = index">
                                     <div>
                                         <p>{{comment.comment}}</p>
                                         <small>{{comment.date | date: 'mediumDate'}} • {{showUsersComm[i]}}</small>
@@ -76,7 +76,7 @@
                         <mat-form-field>
                             <mat-label>Assign a member</mat-label>
                             <mat-select matNativeControl name="assigned" formControlName="assigned" >
-                                <mat-option [value]="user" *ngFor="let user of project.users; let i = index">{{user.email}}</mat-option>
+                                <mat-option [value]="user" *ngFor="let user of project?.users; let i = index">{{user.email}}</mat-option>
                             </mat-select>
                         </mat-form-field>
 

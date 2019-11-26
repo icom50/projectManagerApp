@@ -22,22 +22,23 @@ import { SendInformationComponent } from './pages/forms/send-information/send-in
 
 const routes: Routes = [
   { path : '', component : PageLandingComponent },
-  { path : 'home', component : PageHomeComponent },
-  { path : 'log', component : PageLogComponent },
-  //besoin d'un /project pour arriver sur la page 'board' avec tout les projets
-  { path : 'project/:id', component : PageProjectComponent }, // page avec tout les tasks en tiles
-  { path : 'projects', component : PageProjectsComponent },
-  { path : 'user/:id', component : PageUserComponent },
-  { path : 'user-edit/:id', component : PageUserEditComponent },
-  { path : 'task-list/:id', component : PageTaskListComponent },
-  { path : 'project/details/:id', component : ProjectDetailsComponent},
-  { path : 'project/details/:id/edit', component : FormEditProjectComponent },
-  { path : 'create', component : FormCreateProjectComponent},
-  { path : 'task/:id', component : FormEditTaskComponent},
-  { path : 'task', component : FormCreateTaskComponent},
+  { path : 'sign-up', component : FormSignUpComponent },
   { path : 'reset-password', component : PasswordForgottenComponent },
   { path : 'reset-password/:email', component : SendInformationComponent },
-  { path : 'sign-up', component : FormSignUpComponent },
+  { path : 'home', component : PageHomeComponent, canActivate : [AuthGuardsService] },
+  { path : 'log', component : PageLogComponent, canActivate : [AuthGuardsService] },
+  //besoin d'un /project pour arriver sur la page 'board' avec tout les projets
+  { path : 'project/:id', component : PageProjectComponent, canActivate : [AuthGuardsService] }, // page avec tout les tasks en tiles
+  { path : 'projects', component : PageProjectsComponent, canActivate : [AuthGuardsService] },
+  { path : 'user/:id', component : PageUserComponent, canActivate : [AuthGuardsService] },
+  { path : 'user-edit/:id', component : PageUserEditComponent, canActivate : [AuthGuardsService] },
+  { path : 'task-list/:id', component : PageTaskListComponent, canActivate : [AuthGuardsService] },
+  { path : 'project/details/:id', component : ProjectDetailsComponent, canActivate : [AuthGuardsService]},
+  { path : 'project/details/:id/edit', component : FormEditProjectComponent, canActivate : [AuthGuardsService]  },
+  { path : 'create', component : FormCreateProjectComponent, canActivate : [AuthGuardsService]},
+  { path : 'task/:id', component : FormEditTaskComponent, canActivate : [AuthGuardsService]},
+  { path : 'task', component : FormCreateTaskComponent, canActivate : [AuthGuardsService]},
+  
   { path: 'not-found', component: PageNotFoundComponent },
   { path : '**', redirectTo : 'not-found' }
 ];

@@ -18,15 +18,21 @@
 section{
     margin-top: 20px;
 }
+h1{
+    font-size: 3em;
+    font-weight: inherit;
+}
 
 .tasks{
     border-bottom: solid 1px black;
     width: 75%;
     position: relative;
+    font-weight: inherit;
 }
 .projects{
     border-bottom: solid 1px black;
     width: 75%;
+    font-weight: inherit;
 }
 
 app-project{

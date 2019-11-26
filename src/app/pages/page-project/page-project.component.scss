@@ -15,6 +15,10 @@ mat-card-title{
         display: block;
     }
 }
+h2{
+    font-size: 2em;
+    font-weight: inherit;
+}
 
 .project {
 
@@ -41,6 +45,12 @@ mat-card-title{
 
             &:first-child {
                 margin-right: 10px;
+            }
+
+            &:last-child {
+                fa-icon {
+                    margin-right: 10px;
+                }
             }
         }
 
@@ -96,6 +106,7 @@ mat-card-title{
 
         h3 {
             margin: 0 15px 15px 5px;
+            font-weight: inherit;
         }
 
         div {
@@ -149,4 +160,10 @@ h3{
     text-indent: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+@media screen and (min-width: 1400px) {
+    .task--col {
+        width: 350px;
+    }
 }
