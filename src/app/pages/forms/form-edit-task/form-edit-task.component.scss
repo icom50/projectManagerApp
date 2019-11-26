@@ -13,6 +13,11 @@
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
+        h2{
+            margin-bottom: 20px;
+            font-size: 3em;
+            font-weight: inherit;
+        }
 
         section {
             display: flex;
@@ -190,6 +195,10 @@
 input[type=checkbox]:checked + label {
     text-decoration: line-through;
 } 
+
+.closeYouBitch {
+    display: none;
+}
 
 
 @media screen and (max-height: 700px) {

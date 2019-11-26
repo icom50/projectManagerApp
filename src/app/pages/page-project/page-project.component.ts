@@ -4,8 +4,10 @@ import { DataService } from 'src/app/services/data.service';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Task } from 'src/app/models/projects.model';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { FormCreateTaskComponent } from '../forms/form-create-task/form-create-task.component';
+import { FormEditTaskComponent } from '../forms/form-edit-task/form-edit-task.component';
 
 
 @Component({
@@ -18,6 +20,7 @@ export class PageProjectComponent implements OnInit {
 
   projects;
   projectUrl;
+  project_id;
   comments;
   priority;
   tasks;
@@ -37,11 +40,7 @@ export class PageProjectComponent implements OnInit {
   pausedArray: String[];
 
   current_user = localStorage.getItem('current_user');
-
-  project_id;
-
-  isHidden = true;
-
+  faPlus = faPlus;
 
   constructor(
     private router: Router,
@@ -100,9 +99,24 @@ export class PageProjectComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('popup closed');
+      this.filter();
     })
   }
+
+  openPopupup(id){
+    this.task_id = id;
+    const dialogRef = this.dialog.open(FormEditTaskComponent,{
+      width : '1000px',
+      data : {
+        task_id : this.task_id,
+        project_id : this.project_id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.filter();
+    })
+  }
+
   onlyMyTasks() {
     this.myTasks = true;
     this.filter();
@@ -114,6 +128,9 @@ export class PageProjectComponent implements OnInit {
   }
 
   filter() {
+
+    console.log('filter')
+
     this.todoArray = [];
     this.doingArray = [];
     this.doneArray = [];
@@ -123,7 +140,7 @@ export class PageProjectComponent implements OnInit {
       this.dataService
       .getTasksByUser(this.current_user)
       .subscribe((data:any) => {
-        console.log(data);
+        // console.log(data);
 
         this.tasks = data;
 
@@ -196,10 +213,9 @@ export class PageProjectComponent implements OnInit {
       .getProjectById(this.project_id)
       .subscribe((data: any) => {
         this.projects = data.projects;
-        // console.log(this.projects);
-
         this.users = this.projects.users;
-        // console.log(this.users)
+
+        this.dataService.setProject(this.projects);
       });
 
     this.filter();
