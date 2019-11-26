@@ -2,7 +2,7 @@
         <div class="wrapper__project">
                 <div class="project" [ngStyle]="{'background': project?.color}">
 
-
+                        <fa-icon [icon]="poll"></fa-icon>
                         <div (click)="$event.stopPropagation()" mat-button [matMenuTriggerFor]="menu">
                                 <svg class="svg" aria-hidden="true" focusable="false" data-prefix="fas"
                                         data-icon="ellipsis-h" class="svg-inline--fa fa-ellipsis-h fa-w-16" role="img"
@@ -19,10 +19,8 @@
                                 </ul>
                         </mat-menu>
 
-                        <div class="favorite"><img (click)="toggleIsSelected()"
-                                        [src]="isSelected ? favSelected : favNotSelected" alt="" width="20px"></div>
+                        <img (click)="toggleIsSelected()" [src]="isSelected ? favSelected : favNotSelected" alt="" width="20px">
                 </div>
-                <span
-                        class="name">{{(project?.name.length>8)? (project?.name | slice:0:8)+'...':(project?.name)}}</span>
+                <span class="name" [ngStyle]="{'color': project?.color}">{{(project?.name.length>8)? (project?.name | slice:0:8)+'...':(project?.name)}}</span>
         </div>
 </div>

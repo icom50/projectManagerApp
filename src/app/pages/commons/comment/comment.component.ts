@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgModule } from '@angular/core';
 import { Project } from 'src/app/models/projects.model';
 import { DataService } from 'src/app/services/data.service';
 import { stringify } from 'querystring';
@@ -19,10 +19,11 @@ export class CommentComponent implements OnInit {
 
   addComment(comment){
     //console.log(comment);
-    this.project.comments.push({comment: comment, author_id: this.current_user});
+    this.project.comments.push({comment: comment.value, author_id: this.current_user});
     //console.log(this.project.comments)
     //console.log(this.project);
     this._dataService.putProject(this.project).subscribe();
+    comment.value = "";
   }
 
   deleteComment(index){
@@ -30,6 +31,7 @@ export class CommentComponent implements OnInit {
     this.project.comments.splice(index,1);
     console.log(this.project.comments);
     this._dataService.putProject(this.project).subscribe();
+
     
   
   }

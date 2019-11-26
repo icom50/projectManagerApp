@@ -6,6 +6,7 @@ import { ProjectsDataService } from 'src/app/services/projects-data.service';
 import { ProjectDetailsComponent } from '../../project-details/project-details.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FormEditProjectComponent } from '../../forms/form-edit-project/form-edit-project.component';
+import { faPoll } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -31,6 +32,7 @@ export class ProjectComponent implements OnInit {
   user_id = localStorage.getItem('current_user');
   user;
   //project_id: Project;
+  poll = faPoll;
 
   @Input() project_id: string;
 
