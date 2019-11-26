@@ -57,6 +57,22 @@ mat-form-field{
         color: #0A3D62;
     }
 }
+
+.password{
+    position: relative;
+}
+
+mat-hint{
+    position: absolute;
+    bottom: -20px;
+    left: 135px;
+    @media only screen and (max-width:1200px) {
+        left: 260px;
+    }
+    @media only screen and (max-width:800px) {
+        left: 285px;
+    }
+}
 button {
     margin-top: 40px;
     @include button;
