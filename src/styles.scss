@@ -1,1 +1,114 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'mixins';
+@import 'variables';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color:$colorText; //pas la bonne valeur
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+.page{
+    min-width: 100vh;
+    display:flex;
+    flex-direction: row;
+}
+
+.content{
+    flex-grow: 1;
+    margin-left: 100px;
+    padding: 15px;
+    height: calc(100vh - 55px); //55 = width of navbar
+    width: calc(100vw - 100px);
+}
+
+p {
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 600;
+}
+
+h1, h2{
+  color: $colorNavBar;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button:focus{
+  outline:none;
+}
+
+// .cdk-overlay-container .cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
+//   position: absolute !important;
+//   right: -120px !important;
+// }
+
+.image--avatar-resize {
+  width: 30px;
+  height: 30px;
+  overflow: auto;
+  position: relative;
+  border-radius: 15px;
+
+  * {
+      position: absolute;
+      height: 100%;
+      width: auto;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+}
+
+
+
+label{
+  color: $colorNavBar;
+}
+
+
+.bigbutton{
+  @include button;
+}
+
+.deletebutton{
+  @include deleteButton;
+}
+
+.middlebutton{
+  @include middleButton;
+}
+
+.middlebuttondelete{
+  @include middleButtonDelete;
+}
+

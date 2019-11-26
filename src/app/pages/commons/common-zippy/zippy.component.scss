@@ -1,0 +1,23 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.zippy{
+    .zippy__title{
+        display: flex;
+        cursor: pointer;
+        
+        span {
+            margin-top: 8px;
+        }
+
+        h3 {
+            width: 75%;
+            padding: 0 0 5px 10px;
+            border-bottom: 1px solid black;
+        }
+    }
+    
+}
+ 
+
+ 

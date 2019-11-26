@@ -1,1 +1,61 @@
-<p>form-edit-project works!</p>
+<div class="form-bg">
+  <div class="form-content">
+    <form [formGroup]="editProject" (submit)=onSubmit()>
+      <div class="edit--project">
+        <section class="leftColumn">
+            <h2>{{project?.name}}</h2>
+            <mat-form-field>
+              <input matInput placeholder="Name" type="text" name="name" formControlName="name">
+              <mat-error *ngIf="f['name'].invalid">{{getErrorMessage('name')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <textarea matInput placeholder="Description" type="text" formControlName="description"></textarea>
+              <mat-error *ngIf="f['description'].invalid">{{getErrorMessage('description')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>status</mat-label>
+              <select matNativeControl formControlName="status">
+                <option value="created">Created</option>
+                <option value="started">Started</option>
+                <option value="finished">Finished</option>
+                <option value="abandoned">Abandonned</option>
+              </select>
+              <mat-error *ngIf="f['status'].invalid">{{getErrorMessage('status')}}</mat-error>
+            </mat-form-field>
+            <label id="example-radio-group-label">Select the type of project :</label>
+            <mat-radio-group class="radio-button" formControlName="is_private" value="{{project?.is_private}}">
+              <mat-radio-button value="true">Private</mat-radio-button>
+              <mat-radio-button value="false">Public</mat-radio-button>
+            </mat-radio-group>
+        </section>
+
+        <section class="rightColumn">
+          <div>
+            <mat-form-field>
+              <input matInput [matDatepicker]="start_date" placeholder="Start date" formControlName="start_date">
+              <mat-datepicker-toggle matSuffix [for]="start_date"></mat-datepicker-toggle>
+              <mat-datepicker #start_date></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput [matDatepicker]="deadline" placeholder="Deadline" formControlName="deadline">
+              <mat-datepicker-toggle matSuffix [for]="deadline"></mat-datepicker-toggle>
+              <mat-datepicker #deadline></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="addColor">
+            <label for="addColor">Choose your project color : </label>
+            <input id="addColor" [style.background]="color" [(colorPicker)]="color" 
+              [cpAlphaChannel]="'disabled'" (colorPickerChange)="updateColor($event)" [(ngModel)]="addColor"
+              [ngModelOptions]="{standalone: true}" /> 
+          </div>
+          <mat-error *ngIf="error">This Color is invalid</mat-error>
+        </section>
+      </div>
+      <div class="project--cta">
+        <button type="submit" class="bigbutton">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

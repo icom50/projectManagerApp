@@ -1,1 +1,105 @@
-<p>page-user works!</p>
+<div id="global">
+
+    <div id="title">
+        <div>
+            <h1>My Profil settings</h1>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <button class="middlebuttondelete" (click)="deleteUser(user?._id)">
+                        Delete
+                    </button>
+                </li>
+                <li>
+                    <button class="middlebutton" routerLink="/user-edit/{{user?._id}}">
+                        Edit
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <form [formGroup]="form">
+            <div id="avatardescription">
+                <div class="userimage">
+                    <img src={{user?.avatar_url}} alt="Photo de profil de {{user?.username}}"
+                        title="Photo de profil de {{user?.username}}">
+                </div>
+                <div id="description">
+                    <p>{{user?.description}}</p>
+                </div>
+            </div>
+
+            <div id="infomembre">
+                <div>
+                    <div class="inputinfo">
+                        <label for="username">Username</label>
+                        <span>{{user?.username}}</span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <label for="firstname">Firstname</label>
+                        <span>{{user?.firstname}}</span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <label for="lastname">Name</label>
+                        <span>{{user?.lastname}}</span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <label for="email">Email</label>
+                        <span>{{user?.email}}</span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <label for="phone">Telephone</label>
+                        <span>{{user?.phone}}</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="inputinfo">
+                        <label for="company">Company</label>
+                        <span>{{user?.company}}</span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <fa-icon [icon]="faGithub" size="2x"></fa-icon>
+                        <span><a href={{user?.links.github}} target="_blank">
+                                {{user?.links.github}}
+                            </a></span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <fa-icon [icon]="faLinkedin" size="2x"></fa-icon>
+                        <span>
+                            <a href={{user?.links.linkedin}} target="_blank">
+                                {{user?.links.linkedin}}
+                            </a>
+                        </span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <fa-icon [icon]="faBlogger" size="2x"></fa-icon>
+                        <span>
+                            <a href={{user?.links.blog}} target="_blank">
+                                {{user?.links.blog}}
+                            </a>
+                        </span>
+                    </div>
+
+                    <div class="inputinfo">
+                        <fa-icon [icon]="faGlobe" size="2x"></fa-icon>
+                        <span>
+                            <a href={{user?.links.website}} target="_blank">
+                                {{user?.links.website}}
+                            </a></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

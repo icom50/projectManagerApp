@@ -1,1 +1,65 @@
-<p>form-sign-up works!</p>
+<div class="background">
+  <div class="logo">
+    <img class="logocroco" routerLink="/" src="../../../../assets/img/logo/logo-bleu(1).svg" alt="Logo Akroko" />
+  </div>
+  <mat-card class="mat-elevation-z0">
+    <mat-card-content>
+      <div class="signUp">
+          <img src="../../../../assets/img/mascotte/mascotte-accueil.svg" id="mascotte" alt="Mascotte Akroko">
+        <h2 class="text-center">Sign Up</h2>
+        <p><i><a [href]="sentenceSources" class="sources" target="_blank" rel="author">{{sentence}}</a></i></p>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit($event)">
+          <div class="field">
+            <mat-form-field>
+              <input matInput type="email" placeholder="Email" formControlName="email" required />
+              <mat-icon matSuffix>account_circle</mat-icon>
+              <mat-error *ngIf=" f.email.errors">
+                <mat-error *ngIf="f.email.invalid && f.email.errors.required">Email is required</mat-error>
+                <mat-error *ngIf="f.email.invalid && f.email.errors.email">Email must be a valid email address
+                </mat-error>
+                <mat-error *ngIf="f.email.invalid && f.email.errors.maxlength">email must be at below 50 characters
+                  </mat-error>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="field">
+            <mat-form-field>
+              <input matInput type="password" placeholder="Password" formControlName="password" required>
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-error *ngIf=" f.password.errors">
+                <mat-error *ngIf="f.password.invalid && f.password.errors.required">Password is required</mat-error>
+                <mat-error *ngIf="f.password.invalid && f.password.errors.minlength">Password must be at least 6
+                  characters</mat-error>
+                <mat-error *ngIf="f.password.invalid && f.password.errors.maxlength">Password must be at below 50
+                  characters</mat-error>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="field">
+            <mat-form-field>
+              <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required />
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-error *ngIf="f.confirmPassword.invalid && f.confirmPassword.errors">
+                <mat-error *ngIf="f.confirmPassword.invalid && f.confirmPassword.errors.required">Confirm Password is
+                  required</mat-error>
+                <mat-error *ngIf="f.confirmPassword.invalid && f.confirmPassword.errors.mustMatch">Passwords must match
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="buttons">
+            <button class="bigbutton" type="submit">Sign Up</button>
+          </div>
+
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <div class="Imagebasgauche">
+    <img src="../../../../assets/img/background/plantebasgauche.png" alt="plante bas gauche">
+
+  </div>
+  <div class="Imagebasdroite">
+    <img src="../../../../assets/img/background/plantebasdroite.png" alt="plante bas droite">
+  </div>
+</div>

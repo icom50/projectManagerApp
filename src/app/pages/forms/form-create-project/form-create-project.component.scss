@@ -1,0 +1,22 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.content{
+    justify-content: center;
+    align-items: flex-start;
+}
+mat-card{
+    width: 50%;
+}
+mat-form-field{
+    width: 100%;
+    margin-top: 20px;
+}
+button{
+    margin-top: 40px;
+}
+h2{
+    margin-bottom: 20px;
+    font-size: 3em;
+    font-weight: inherit;
+}

@@ -1,0 +1,112 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 30px;
+    height: 50px;
+    cursor: pointer;
+
+    .logocroco {
+      margin: 10px;
+      outline: none;
+      width: 80px;
+    }
+  }   
+.background{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;    
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../../../../assets/img/background/tache.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.login{
+    width: 720px;
+    margin: 0 auto;  
+    box-sizing: border-box;
+    flex-direction: column;
+}
+h2{
+    margin-bottom: 20px;
+    font-size: 3em;
+    font-weight: inherit;
+}
+mat-card{
+    background: none;
+    margin: auto;
+    text-align: center;
+}
+mat-form-field{
+    width: 450px;
+    margin-top: 20px;
+
+    @media only screen and (max-width:1200px) {
+        width: 200px;
+    }
+    @media only screen and (max-width:800px) {
+        width: 150px;
+    }
+    mat-icon{
+        color: #0A3D62;
+    }
+}
+
+.password{
+    position: relative;
+}
+
+mat-hint{
+    position: absolute;
+    bottom: -20px;
+    left: 135px;
+    @media only screen and (max-width:1200px) {
+        left: 260px;
+    }
+    @media only screen and (max-width:800px) {
+        left: 285px;
+    }
+}
+button {
+    margin-top: 40px;
+    @include button;
+}
+.Imagebasgauche{
+    display: flex;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+.Imagebasdroite{
+    display: flex;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+.registerLink{
+    margin-bottom: 50px;
+    a{  
+        font-weight: bold;
+        color: #52DE97;
+    }
+}
+.sources {
+    text-decoration: none;
+    color:$colorText;
+}
+#mascotte{
+    width: 400px;
+    margin-bottom: 50px;
+    @media only screen and (max-width:1200px) {
+        width: 200px;
+    }
+    @media only screen and (max-width:800px) {
+        width: 150px;
+    }
+}

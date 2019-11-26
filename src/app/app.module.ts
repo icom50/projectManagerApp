@@ -3,6 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ColorPickerModule } from 'ngx-color-picker';
+
+
+/* Service */
+import { DataService } from './services/data.service';
+import { NavbarService } from './services/navbar.service';
+import { RestService } from './services/rest.service';
+import { ProjectsDataService } from './services/projects-data.service';
+import { AuthentificatorService } from './services/authentificator.service';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { AuthGuardsService } from './services/auth-guards.service';
+import { RandomSentencesService } from './services/random-sentences.service';
 
 
 /* Components */
@@ -21,7 +35,46 @@ import { PageProjectsComponent } from './pages/page-projects/page-projects.compo
 import { PageUserComponent } from './pages/page-user/page-user.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { PageTaskListComponent } from './pages/page-task-list/page-task-list.component';
-import { PageProjectManagementComponent } from './pages/page-project-management/page-project-management.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TaskTileComponent } from './pages/task-tile/task-tile.component';
+import { CommonSidebarComponent } from './pages/commons/common-sidebar/common-sidebar.component';
+import { PasswordForgottenComponent } from './pages/forms/password-forgotten/password-forgotten.component';
+import { PageUserEditComponent } from './pages/page-user-edit/page-user-edit.component';
+import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
+import { ZippyComponent } from './pages/commons/common-zippy/zippy.component';
+import { ProjectComponent } from './pages/commons/common-project/project.component';
+import { CommonTaskComponent } from './pages/commons/common-task/common-task.component';
+import { SendInformationComponent } from './pages/forms/send-information/send-information.component';
+
+/* Material Modules */
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatMenuModule} from '@angular/material/menu';
+
+
+
+// FontAwesomeModule
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+// pipe
+import { registerLocaleData } from '@angular/common';
+import { MY_FORMAT } from './utils/formats/date.format';
+import localeFr from '@angular/common/locales/fr';
+import { CommentComponent } from './pages/commons/comment/comment.component';
+
+registerLocaleData(localeFr, 'fr');
+
 
 @NgModule({
   declarations: [
@@ -41,13 +94,55 @@ import { PageProjectManagementComponent } from './pages/page-project-management/
     PageUserComponent,
     PageNotFoundComponent,
     PageTaskListComponent,
-    PageProjectManagementComponent
+    TaskTileComponent,
+    CommonSidebarComponent,
+    PageUserEditComponent,
+    PasswordForgottenComponent,
+    ProjectDetailsComponent,
+    ZippyComponent,
+    ProjectComponent,
+    CommonTaskComponent,
+    SendInformationComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NoopAnimationsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatListModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule,
+    FontAwesomeModule,
+    MatRadioModule,
+    DragDropModule,
+    MatCheckboxModule,
+    MatMenuModule,
+    ColorPickerModule
+  
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule,
+    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMAT },
+    DataService,
+    NavbarService,
+    AuthentificatorService,
+    AuthInterceptorService,
+    RestService,
+    ProjectsDataService,
+    AuthGuardsService,
+    RandomSentencesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

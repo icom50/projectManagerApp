@@ -1,0 +1,169 @@
+<div id="global">
+
+
+    <div id="title">
+        <div>
+            <h1>My Profil settings</h1>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <button class="middlebutton" routerLink="/user/{{user?._id}}">
+                        Profil
+                    </button>
+                    <!-- <a routerLink="/user/{{user._id}}">Profil</a> -->
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <form [formGroup]="form" (submit)="submitForm()">
+            <div id="avatardescription">
+                <div>
+                    <div class="userimage">
+                        <img src={{user?.avatar_url}} alt="Photo de profil de {{user?.username}}"
+                            title="Photo de profil de {{user?.username}}">
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <label for="avatar_url">Url de l'avatar</label>
+                            <input matInput type="text" name="avatar_url" id="avatar_url" formControlName="avatar_url">
+                            <mat-error *ngIf="form.controls['avatar_url'].invalid">
+                                {{getErrorMessage('avatar_url')}}
+                            </mat-error>
+                        </mat-form-field>
+                        <br />
+                    </div>
+                </div>
+                <div>
+                    <label for="description">Description</label>
+                    <br />
+                    <textarea name="description" id="description" formControlName="description" wrap="on" cols="60"
+                        rows="5">
+                            </textarea>
+                    <mat-error *ngIf="form.controls['description'].invalid">
+                        {{getErrorMessage('description')}}
+                    </mat-error>
+                    <br />
+                </div>
+            </div>
+
+            <div id="infomembre">
+                <div>
+                    <mat-form-field>
+                        <label for="username">Username</label>
+                        <input matInput type="text" name="username" id="username" formControlName="username">
+                        <mat-error *ngIf="form.controls['username'].invalid">
+                            {{getErrorMessage('username')}}
+                        </mat-error>
+                    </mat-form-field>
+                    <br />
+
+                    <mat-form-field>
+                        <label for="firstname">Firstname</label>
+                        <input matInput type="text" name="firstname" id="firstname" formControlName="firstname">
+                        <mat-error *ngIf="form.controls['firstname'].invalid">
+                            {{getErrorMessage('firstname')}}
+                        </mat-error>
+                    </mat-form-field>
+                    <br />
+
+                    <mat-form-field>
+                        <label for="lastname">Name</label>
+                        <input matInput type="text" name="lastname" id="lastname" formControlName="lastname">
+                        <mat-error *ngIf="form.controls['lastname'].invalid">
+                            {{getErrorMessage('lastname')}}
+                        </mat-error>
+                    </mat-form-field>
+                    <br />
+
+                    <mat-form-field>
+                        <label for="email">Email</label>
+                        <input matInput type="text" name="email" id="email" formControlName="email">
+                        <mat-error *ngIf="form.controls['email'].invalid">
+                            {{getErrorMessage('email')}}
+                        </mat-error>
+                    </mat-form-field>
+                    <br />
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <label for="password">Password</label>
+                        <input matInput type="password" name="password" id="password" formControlName="password"
+                            defaultValue="">
+                        <mat-error *ngIf="form.controls['password'].invalid">
+                            {{getErrorMessage('password')}}
+                        </mat-error>
+                    </mat-form-field>
+                    <br />
+
+                    <mat-form-field>
+                        <label for="phone">Telephone</label>
+                        <input matInput type="text" name="phone" id="phone" formControlName="phone">
+                        <mat-error *ngIf="form.controls['phone'].invalid">
+                            {{getErrorMessage('phone')}}
+                        </mat-error>
+                    </mat-form-field>
+                    <br />
+
+                    <mat-form-field>
+                        <label for="company">Company</label>
+                        <input matInput type="text" name="company" id="company" formControlName="company">
+                        <mat-error *ngIf="form.controls['company'].invalid">
+                            {{getErrorMessage('company')}}
+                        </mat-error>
+                    </mat-form-field>
+                    <br />
+                </div>
+
+                <div>
+                    <h3>Links</h3>
+                    <div [formGroup]="form.controls.links">
+                        <mat-form-field>
+                            <label for="github">Github</label>
+                            <input matInput type="text" name="github" id="github" formControlName="github">
+                            <mat-error *ngIf="form.controls['links'].invalid">
+                                {{getErrorMessage('links')}}
+                            </mat-error>
+                        </mat-form-field>
+                        <br />
+
+                        <mat-form-field>
+                            <label for="linkedin">Linkedin</label>
+                            <input matInput type="text" name="linkedin" id="linkedin" formControlName="linkedin">
+                            <mat-error *ngIf="form.controls['links'].invalid">
+                                {{getErrorMessage('links')}}
+                            </mat-error>
+                        </mat-form-field>
+                        <br />
+
+                        <mat-form-field>
+                            <label for="blog">blog</label>
+                            <input matInput type="text" name="blog" id="blog" formControlName="blog">
+                            <mat-error *ngIf="form.controls['links'].invalid">
+                                {{getErrorMessage('links')}}
+                            </mat-error>
+                        </mat-form-field>
+                        <br />
+
+                        <mat-form-field>
+                            <label for="website">website</label>
+                            <input matInput type="text" name="website" id="website" formControlName="website">
+                            <mat-error *ngIf="form.controls['links'].invalid">
+                                {{getErrorMessage('links')}}
+                            </mat-error>
+                        </mat-form-field>
+                        <br />
+
+                    </div>
+
+                    <button class="bigbutton">Submit</button>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

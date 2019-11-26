@@ -1,0 +1,124 @@
+@import 'variables';
+
+@mixin button {
+    background-color: $colorBgButton;
+    font-weight: bolder;
+    color:$colorTextButton;
+    padding:0.6rem 1.3rem;
+    border-radius: 2rem;
+    transition: .3s;
+    outline: none;
+    border: 4px solid rgba(209, 177, 177, 0);
+
+    -webkit-box-shadow: -1px 10px 17px -6px rgba(0,0,0,0.20);
+    -moz-box-shadow: -1px 10px 17px -6px rgba(0,0,0,0.20);
+    box-shadow: -1px 10px 17px -6px rgba(0,0,0,0.20);
+
+    &:hover, &:active, &:focus {
+        color: lighten($colorTextButton, 20%);
+        border: 4px solid lighten($colorTextButton, 20%);
+    }
+}
+
+@mixin middleButton {
+    background-color: $backgroundColor;
+    font-weight: bolder;
+    color: $colorTextMiddleButton;
+    padding: 0 1.3rem;
+    border-radius: 2rem;
+    transition: .3s;
+    outline: none;
+    // border: 2px solid rgba(255, 255, 255, 0);
+    border: 2px solid $colorTextMiddleButton;
+    white-space: nowrap;
+
+    &:hover, &:active, &:focus {
+        color: lighten($colorTextButton, 20%);
+        border: 2px solid lighten($colorTextButton, 20%);
+    }
+}
+
+@mixin middleButtonDelete {
+    @include middleButton;
+    background-color: lighten($colorTextButtonDelete, 100%);
+    color: $colorTextButtonDelete;
+    border: 2px solid $colorBgButtonDelete;
+
+    &:hover, &:active, &:focus {
+        background-color: $colorTextButtonDelete;
+        color: lighten($colorTextButtonDelete, 100%);
+        border: 2px solid lighten($colorTextButtonDelete, 100%);
+
+    }
+}
+
+@mixin littleButton {
+    background-color: $colorBgButton;
+    font-weight: bolder;
+    color:$colorTextButton;
+    padding:0.2rem;
+    border-radius: 5px;
+    transition: .3s;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0);
+
+    // &:hover, &:active, &:focus {
+    //     color: lighten($colorTextButton, 20%);
+    //     border: 2px solid lighten($colorTextButton, 20%);
+    // }
+}
+
+@mixin deleteButton {
+    background-color: rgba(255, 255, 255, 0);
+    font-weight: bolder;
+    color:$colorTextButtonDelete;
+    padding:0.6rem 1rem;
+    border-radius: 2rem;
+    transition: .3s;
+    outline: none;
+    border: 4px solid $colorTextButtonDelete;
+
+
+    -webkit-box-shadow: -1px 10px 17px -6px rgba(0,0,0,0.20);
+    -moz-box-shadow: -1px 10px 17px -6px rgba(0,0,0,0.20);
+    box-shadow: -1px 10px 17px -6px rgba(0,0,0,0.20);
+
+    &:hover, &:active, &:focus {
+        background-color: $colorBgButtonDelete;
+        color: lighten($colorTextButtonDelete, 100%);
+        border: 4px solid lighten($colorTextButtonDelete, 100%);
+    }
+}
+
+// Btn for add task or member
+
+ @mixin btnAdd {
+        outline: none;
+        display: block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30px;
+        background: #0a3d62;
+        cursor: pointer;
+        fa-icon{
+            color: #C0FFB3;
+          }
+ }
+
+ @mixin btnAddNavBar {
+    outline: none;
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    background: #0a3d62;
+    cursor: pointer;
+    outline: none;
+    fa-icon{
+        color: #C0FFB3;
+      } 
+}

@@ -1,0 +1,38 @@
+.task-list{
+    font-size: 50%;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-weight: normal;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    margin: 30px;
+}
+.display{
+    display: none;
+}
+
+section{
+    margin-top: 20px;
+}
+
+h1{
+    font-size: 3em;
+    font-weight: inherit;
+}
+
+.tasks{
+    border-bottom: solid 1px black;
+    width: 75%;
+    position: relative;
+    font-weight: inherit;
+    padding-bottom: 5px;
+}
+
+.hidden {
+    display: none;
+}

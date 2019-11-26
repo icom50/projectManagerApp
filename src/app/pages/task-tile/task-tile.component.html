@@ -1,0 +1,52 @@
+<mat-card (click)="project.openPopupup(task._id)">
+    <mat-card-title>
+        <div [ngSwitch]="task.priority">
+            <div *ngSwitchCase="'high'">
+                <span style="background-color: red;" title="High Priority"></span>
+            </div>
+            <div *ngSwitchCase="'middle'">
+                <span style="background-color: orange;" title="Middle Priority"></span>
+            </div>
+            <div *ngSwitchCase="'low'">
+                <span style="background-color: green;" title="Low Priority"></span>
+            </div>
+            <div *ngSwitchDefault>
+                <span style="background-color: grey;" title="No Priority"></span>
+            </div>
+        </div>
+        <h6>{{ task.name }}</h6>
+    </mat-card-title>
+    <mat-card-content>
+        <div *ngIf="tempAvatar != 0; else noAvatar"  class="task--collaborators">
+            <div *ngFor="let user of tempAvatar | slice:0:3; let i=index" >
+                <div class="image--avatar-resize">
+                    <img class="task--assigned" [src]="user">
+                </div>
+                
+            </div>
+        </div>
+        <!-- empty p used only to push info to right because of flexbox -->
+        <ng-template #noAvatar>
+            <p> </p>
+        </ng-template>
+        
+
+        <div class="task--info">
+            <p *ngIf="task.comments?.length != 0">
+                <fa-icon [icon]="faCommentDots" size="1x"></fa-icon>
+                {{ task.comments?.length || '0' }} 
+            </p>
+            
+    
+            <p *ngIf="task.checklist?.length != 0">
+                <fa-icon [icon]="faTasks" size="1x"></fa-icon>
+                {{ checkedList || '0' }}/{{ task.checklist?.length }}
+            </p> 
+
+            <p *ngIf="task.deadline?.length != null">
+                <fa-icon [icon]="faClock" size="1x"></fa-icon>
+                {{ task.deadline | date:"dd/MM/yy" }}
+            </p>
+        </div>
+    </mat-card-content>
+</mat-card>

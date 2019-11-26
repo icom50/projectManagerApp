@@ -1,0 +1,10 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.container{    
+    height: 100vh;
+    background-color: red;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

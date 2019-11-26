@@ -1,0 +1,169 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.container {
+    &--overflow {
+        overflow: hidden;
+    }
+}
+
+mat-card-title{
+    span {
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        display: block;
+    }
+}
+h2{
+    font-size: 2em;
+    font-weight: inherit;
+}
+
+.project {
+
+    &--header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+
+    &--title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &--filter {
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            @include button;
+
+            &:first-child {
+                margin-right: 10px;
+            }
+
+            &:last-child {
+                fa-icon {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .active-btn{
+            color: lighten($colorTextButton, 20%);
+            border: 4px solid lighten($colorTextButton, 20%);
+        }
+    }
+
+    &--color {
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        display: block; 
+        margin-right: 10px;
+    }
+
+    &--collaborators {
+        display: flex;
+        flex-direction: row;
+
+        div {
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.task {
+    &--board{
+        display: -webkit-box;    
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        flex-direction: row;
+        overflow-x: auto;
+        height: calc(100vh - 219px); // 204 = height of éléments above, so no scroll 
+        width: calc(100vw - 130px);
+        padding: 0 5px;
+    }
+
+    &--col {
+        width: 300px;
+        overflow-y: auto;
+        height: 100%;
+
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        h3 {
+            margin: 0 15px 15px 5px;
+            font-weight: inherit;
+        }
+
+        div {
+            margin: 0 15px 15px 5px;
+            -webkit-box-shadow: 0px 2px 5px 0px rgba(41,41,41,0.3);
+            -moz-box-shadow: 0px 2px 5px 0px rgba(41,41,41,0.3);
+            box-shadow: 0px 2px 5px 0px rgba(41,41,41,0.3);
+
+            &:last-child {
+                margin-bottom: 5;
+            }
+        }
+    }
+}
+
+[hidden] {
+    display: none;
+}
+
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    transform: rotate(15deg);
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.moving-tile:last-child {
+    border: none;
+}
+
+.task--col.cdk-drop-list-dragging .moving-tile:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+h3{
+    background-color: $colorNavBar;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    color:$colorTextButton;
+    text-indent: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+@media screen and (min-width: 1400px) {
+    .task--col {
+        width: 350px;
+    }
+}

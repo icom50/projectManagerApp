@@ -1,0 +1,104 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+mat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow: none!important;  
+    min-height: 120px;
+    padding: 10px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+mat-card-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    span {
+        width: 10px;
+        height: 10px;
+        display: block;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    h6 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+    }
+}
+
+mat-card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.todo {
+    background: #bada55;
+}
+
+.doing {
+    background: bisque;
+}
+
+.done {
+    background: rebeccapurple;
+}
+
+.paused {
+    background: pink;
+}
+
+.task {
+
+    &--collaborators {
+        display: flex;
+        flex-direction: row;
+
+        div {
+            margin-left: -10px;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+
+    &--assigned { // only image of collaborator
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        -webkit-box-shadow: 0px 2px 5px 0px rgba(41,41,41,0.3);
+        -moz-box-shadow: 0px 2px 5px 0px rgba(41,41,41,0.3);
+        box-shadow: 0px 2px 5px 0px rgba(41,41,41,0.3);
+    }
+
+    &--info {
+        display: flex;
+        flex-direction: row;
+
+        p {
+            @include littleButton;
+            margin:0px 2px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            fa-icon {
+                margin-right: 2px;
+            }
+        }
+    }
+}

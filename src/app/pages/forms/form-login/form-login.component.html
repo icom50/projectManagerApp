@@ -1,1 +1,51 @@
-<p>form-login works!</p>
+<div class="background">
+  <div class="logo">
+    <img class="logocroco" routerLink="/" src="../../../../assets/img/logo/logo-bleu(1).svg"
+        alt="Logo Akroko" />
+  </div>
+
+  <mat-card class="mat-elevation-z0">
+    <mat-card-content>
+      <div class="login">
+          <img src="../../../../assets/img/mascotte/mascotte-accueil.svg" id="mascotte" alt="Mascotte Akroko">
+        <h2>Sign In</h2>
+        <p><i><a [href]="sentenceSources" class="sources" target="_blank" rel="author">{{sentence}}</a></i></p>
+        <form [formGroup]="form" (submit)="login()">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Email" type="email" formControlName="email" />
+              <mat-icon matSuffix>account_circle</mat-icon>
+              <mat-error *ngIf="form.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="password">
+            <mat-form-field>
+              <input matInput placeholder="Password" type="password" formControlName="password" />
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-error *ngIf="form.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
+            </mat-form-field>
+            <mat-hint><a routerLink="/reset-password">
+              <small>Forgot Password ?</small>
+            </a></mat-hint>
+          </div>
+          <div class="signUp">
+            <button type="submit">
+              Sign In</button>
+          </div>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="Imagebasgauche">
+    <img src="../../../../assets/img/background/plantebasgauche.png" alt="plante bas gauche">
+
+  </div>
+  <div class="Imagebasdroite">
+    <img src="../../../../assets/img/background/plantebasdroite.png" alt="plante bas droite">
+  </div>
+
+  <div class="registerLink">
+    <p>Don't have an account? <a href="" routerLink="/sign-up">Sign up here</a></p>
+  </div>
+</div>

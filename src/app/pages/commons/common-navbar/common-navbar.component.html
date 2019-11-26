@@ -1,1 +1,12 @@
-<p>common-navbar works!</p>
+<div class="navbar" *ngIf="nav.visible">
+  <ul>
+    <li>
+      <a routerLink="/create">
+        <fa-icon [icon]="faPlus" size="1x"></fa-icon>
+      </a>
+    </li>
+    <li>
+      <div class="avatar" [routerLink]="'/user/'+nav.current_user"><img [src]="user?.avatar_url" [alt]="user?.email"></div>
+    </li>
+  </ul>
+</div>

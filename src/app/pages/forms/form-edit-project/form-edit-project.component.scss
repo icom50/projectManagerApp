@@ -1,0 +1,84 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.form-content {
+  align-items: flex-start;
+  text-align: center;
+  background-color: white;
+  border-radius: 30px;
+  position: relative;
+
+  .edit--project{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+   
+    .leftColumn{
+      display: flex;
+      flex-direction: column;
+      width: 45%;
+      max-width: 300px;
+      align-items: flex-start;
+
+      h2{
+        margin-bottom: 10px;
+        font-size: 3em;
+        font-weight: inherit;
+    }
+
+      mat-form-field{
+        width: 100%;
+      }    
+    }
+    .rightColumn{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 300px;
+      align-items: flex-end;
+      div{
+        width: 100%;
+
+        mat-form-field{
+          width: 100%;
+          mat-datepicker{
+            width: 100%;
+          }
+        }
+      }
+    }  
+  }
+}
+
+.radio-button {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.radio-button {
+  margin: 5px;
+}
+.addColor{
+  margin-top: 25px;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  #addColor{
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    box-shadow: none;
+    outline: none;
+    border: 1px solid black;
+    cursor: pointer;
+  }
+}
+.project--cta{
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+
+
+}

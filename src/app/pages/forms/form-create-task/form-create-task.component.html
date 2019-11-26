@@ -1,1 +1,82 @@
-<p>form-create-task works!</p>
+<div class="global">
+    
+    <h2>{{project?.name}}</h2>
+    <form [formGroup]="formCreateTask" (submit)="createTask(f)">
+        <section>
+            <div>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="name" formControlName="name" required />
+                    <mat-error *ngIf="formCreateTask.controls['name'].invalid">{{getErrorMessage('name')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div>    
+                <mat-form-field>
+                    <textarea matInput placeholder="Description" name="description" ngMaxlength="250"
+                        formControlName="description"></textarea>
+                        <mat-error *ngIf="formCreateTask.controls['description'].invalid">{{getErrorMessage('description')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input matInput type="number" placeholder="Estimated time" formControlName="estimated" />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="deadline" placeholder="Deadline" formControlName="deadline">
+                    <mat-datepicker-toggle matSuffix [for]="deadline"></mat-datepicker-toggle>
+                    <mat-datepicker #deadline></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <mat-form-field>
+                <mat-label>Priority :</mat-label>
+                <mat-select  name="priority" id="priority" formControlName="priority">
+                    <mat-option value="none">None</mat-option>
+                    <mat-option value="high">High</mat-option>
+                    <mat-option value="middle">Middle</mat-option>
+                    <mat-option value="low">Low</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </section>
+        <!-- <section>
+            <h3>Members</h3>
+            <ul class="ul-from-edit">
+                <li *ngFor="let member of task?.assigned; let i = index" class="task--member">
+                    <img src="{{otherTemp[1][i]}}" alt="{{member.user_id}}">
+                    <p>{{ otherTemp[0][i] }}</p>
+                    <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="unnasignedUser(member.user_id)">
+                    </fa-icon>
+                </li>
+            </ul>
+        </section> -->
+        <!-- <section>
+                <div *ngFor="let comment of task?.comments">
+                    <h4>{{getMember(comment.author_id)}} - {{comment.date}}</h4>
+                    <span>{{comment.comment}}</span>
+                </div>
+                <span>{{logged.username || logged.firstname || logged.email || 'Your comment'}} :</span>
+                <textarea ngModel name="newComment" maxlength="250"></textarea>
+                <button (click)="sendComment(f.value.newComment)">Send your comment</button>
+            </section> -->
+        <!-- <section>
+            <h3>To do list</h3>
+            <ul>
+                <li *ngFor="let c of newTask?.checklist">
+                    <input type="checkbox" [name]="c.name" [id]="c.name" [checked]="c.done"
+                        (change)="c.done = $event.currentTarget.checked">
+                    <label [for]="c.name">{{c.name}}</label>
+                </li>
+            </ul>
+            <input ngModel name="addingtochecklist" #checklistinput="ngModel" type="text" maxlength="20"> <button
+                (click)="addToCheckList(checklistinput)">Add item</button>
+        </section> -->
+        <!-- <section>
+                <h3>Time spend</h3>
+                <input ngModel name="spend" type="text" maxlength="20"> <button (click)="addTime(f.value.spend)">Add my time</button> <br/>
+                <span>Total time : {{ 'NEED TO UPDATE DB '}}</span> <br/>
+                <span *ngIf="task?.assigned">My time : {{time_total }}</span>
+            </section> -->
+        <br /> <button class="bigbutton" type="submit">Create Task task</button>
+    </form>
+
+</div>

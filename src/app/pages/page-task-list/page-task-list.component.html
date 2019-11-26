@@ -1,1 +1,58 @@
-<p>page-task-list works!</p>
+<div class="content">
+    <h1>Tasks List</h1>
+    <!-- <div id="tasks">
+        <div *ngFor="let task of tasks" class="task">
+            <div class="taskname">
+                {{task.name}}
+            </div>
+            <div *ngFor="let label of task?.labels" class="tasklabel">
+                <p [style.background-color]=label.color>{{(label?.name.length > 8) ? (label.name | slice:0:8) + "..." : label.name }}
+                </p>
+            </div>
+            <div class="taskdeadline">
+                {{task.deadline | date : "longDate" : '' : 'en'}}
+            </div>
+        </div>
+    </div> -->
+
+    <table>
+        <thead>
+            <th>Task Name</th>
+            <th>Labels</th>
+            <th>Deadline</th>
+            <th>Priority</th>
+        </thead>
+        <tr *ngFor="let task of tasks">
+            <td>{{task.name}}</td>
+            <td>
+                    <!-- | orderBy: 'task.deadline'  -->
+                <span *ngFor="let label of task?.labels">
+                    <span [style.background-color]=label.color class="labelcolor">
+                        {{(label?.name.length > 8) ? (label.name | slice:0:8) + "..." : label.name }}
+                    </span>
+                </span>
+            </td>
+            <td>
+                <p>
+                    {{task.deadline | date : "longDate" : '' : 'en'}}
+                </p>
+            </td>
+            <td>
+                <div [ngSwitch]="task.priority">
+                    <div *ngSwitchCase="'high'">
+                        <span style="background-color: red;" title="High Priority" class="priority">{{task.priority}}</span>
+                    </div>
+                    <div *ngSwitchCase="'middle'">
+                        <span style="background-color: orange;" title="Middle Priority" class="priority">{{task.priority}}</span>
+                    </div>
+                    <div *ngSwitchCase="'low'">
+                        <span style="background-color: green;" title="Low Priority" class="priority">{{task.priority}}</span>
+                    </div>
+                    <div *ngSwitchDefault>
+                        <span style="background-color: grey;" title="No Priority" class="priority">{{task.priority}}</span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

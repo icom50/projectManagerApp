@@ -1,0 +1,20 @@
+<form action="">
+    <textarea placeholder="Write a comment…" dir="auto" #comment (keyup.enter)='addComment(comment)'></textarea>
+</form>
+
+<div class="divsave">
+    <button class="middlebutton" (click)="addComment(comment)" type="submit" value="save">
+        Add comment
+    </button>
+</div>
+
+<div class="comments" *ngFor="let comment of project.comments ; let index = index">
+    <div class="comment">
+        <div class="contentcomment">{{comment.comment}}</div>
+        <div class="icondelete">
+            <button (click)="deleteComment(index)" type="submit" class="middlebutton">
+                <fa-icon [icon]="trash"></fa-icon>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,113 @@
-<p>form-edit-task works!</p>
+<div class="form-bg">
+    <div class="form-content">
+        <form [formGroup]="editTask" >
+            <div class="edit--task">
+                <section>
+                    <h2>Task information</h2>
+                    <mat-form-field>
+                        <input matInput placeholder="Task's name" name="name" type="text" formControlName="name"
+                            required>
+                        <mat-error *ngIf="editTask.controls['name'].invalid">The name is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <textarea matInput placeholder="Description" name="description" ngMaxlength="250"
+                            formControlName="description"></textarea>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Time estimated" name="estimated" formControlName="estimated">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="deadline" placeholder="Deadline" formControlName="deadline">
+                        <mat-datepicker-toggle matSuffix [for]="deadline"></mat-datepicker-toggle>
+                        <mat-datepicker #deadline></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <small class="task--priority">Priority</small>
+                        <select matNativeControl name="priority" id="priority" formControlName="priority">
+                            <option value="none">None</option>
+                            <option value="high">High</option>
+                            <option value="middle">Middle</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </mat-form-field>
+
+                    <small class="task--creator">Project created by {{creator}}</small>
+
+                    <div class="task--mainComm">
+                        <h4>Comments</h4>
+                        <div class="task--comments" *ngIf="task?.comments != 0">
+                            <ul>
+                                <li class="task--a-comment" *ngFor="let comment of task?.comments; let i = index">
+                                    <div>
+                                        <p>{{comment.comment}}</p>
+                                        <small>{{comment.date | date: 'mediumDate'}} • {{showUsersComm[i]}}</small>
+                                    </div>
+                                    
+                                    <div *ngIf="comment.author_id == current_user">
+                                        <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="removeComment(i)"></fa-icon>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="task--mainComm-textarea-btn">
+                            <mat-form-field>
+                                <textarea matInput placeholder="Add a comments" name="comments" ngMaxlength="250" #comment (keyup.enter)="addComment(comment.value)" [(ngModel)] ="resetFieldComment" [ngModelOptions]="{standalone: true}"></textarea> 
+                            </mat-form-field>
+                            <button class="middlebutton" (click)="addComment(comment.value)">Add comment</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4>Members</h4>
+                    <ul class="ul-from-edit">
+                        <li *ngFor="let member of newAssigned; let i = index" class="task--member">
+                            <div class="image--avatar-resize">
+                                <img src="{{otherTemp[1][i]}}"
+                                    alt="{{member.user_id}}">
+                            </div>
+                            
+                            <p>{{ otherTemp[0][i] }}</p>
+                            <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="unnasignedUser(member.user_id)"></fa-icon>
+                        </li>
+                    </ul>
+
+                    <div class="task--assign">
+                        <mat-form-field>
+                            <mat-label>Assign a member</mat-label>
+                            <mat-select matNativeControl name="assigned" formControlName="assigned" >
+                                <mat-option [value]="user" *ngFor="let user of project?.users; let i = index">{{user.email}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <button class="middlebutton" (click)="addAssignedUser(editTask.get('assigned').value)">Add member</button>
+                    </div>
+
+                    <h4>To do list</h4>
+                    <ul class="ul-from-edit">
+                        <li *ngFor="let c of task?.checklist; let i = index" class="task--checklist" >
+                            <input type="checkbox" [checked]="c.done" name="item-{{i}}" id="item-{{i}}" (click)="isClicked(i)" />
+                            <label for="item-{{i}}">{{c.name}}</label>
+                            
+                            <fa-icon class="task--remove" [icon]="faTrash" size="1x" (click)="removeFromChecklist(i)"></fa-icon>
+                        </li>
+                    </ul>
+
+                    <div class="task--checklist-add">
+                        <input name="addingtochecklist" type="text" maxlength="20" [(ngModel)]="addCheckList"
+                        placeholder="Add an item"
+                        [ngModelOptions]="{standalone: true}" (keyup.enter)="addToCheckList()">
+                        <button class="middlebutton" (click)="addToCheckList()">Add to checklist</button>
+                    </div>
+                </section>
+            </div>
+
+            <div class="task--cta">
+                <button (click)="deleteTask()" class="deletebutton">Delete</button>
+                <button (click)="closePopup()" class="bigbutton">Cancel</button>
+                <button (click)="onSubmit()" class="bigbutton">Edit Task</button>
+                
+            </div>
+        </form>
+    </div>
+</div>
