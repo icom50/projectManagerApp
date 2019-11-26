@@ -19,33 +19,42 @@ export class DataService {
   project: Project;
   currentProject: Project;
 
-  // /api/users
+/* ------------------------------- /api/users ------------------------------- */
+
   getUsers():Observable<User[]>{
     return this.restService.getUsers()
   }
+
   getUserById(id:string): Observable<User>{
     return this.restService.getUserById(id)
   }
+
   getUserByEmail(email:string): Observable<User>{
     return this.restService.getUserByEmail(email)
   }
 
-  // /api/user
+/* -------------------------------- /api/user ------------------------------- */
+
   getUserSecure(id:string): Observable<User>{
     return this.restService.getUserSecure(id)
   }
+
   postUser(user:User): Observable<User>{
     return this.restService.postUser(user)
   }
+
   putUser(user:User): Observable<User>{
     return this.restService.putUser(user)
   }
+
   deleteUser(id:string): Observable<User>{
     return this.restService.deleteUser(id)
   }
+
   loginUser(user:User): Observable<User>{
     return this.restService.loginUser(user)
   }
+
   postForgottenPassword(email:string){
     return this.restService.postForgottenPassword(email)
   }
@@ -65,13 +74,18 @@ export class DataService {
   }
 
 
-  // /api/projects
+
+
+/* ------------------------------ /api/projects ----------------------------- */
+
   getProjects():Observable<Project[]>{
     return this.restService.getProjects()
   }
+
   getProjectById(id:string): Observable<Project>{
     return this.restService.getProjectById(id)
   }
+
   postProject(project:Project): Observable<Project>{ // TODO ajouter les users assignés dans users.projects --- A TESTER
     return this.restService.postProject(project)
   }
@@ -127,23 +141,28 @@ export class DataService {
   
   getTaskById(project_id:string, task_id:string): Observable<any>{
     return this.restService.getProjectById(project_id).pipe(map(data => {
-      let output =  data['projects'].tasks.filter( task =>  (task._id === task_id))[0]
+      let output =  data['projects'].tasks.filter( task => (task._id === task_id))[0]
       output = {...output, color : data['projects'].color }
       return output
     }))
   }
+
   getTasksByProject(project_id:string): Observable<any[]>{
     return this.restService.getProjectById(project_id).pipe(map(data => {
       return data['projects'].tasks.map(task => task)
     }))
   }
+
   getUsersByProject(project_id:string): Observable<any[]>{ 
     return this.restService.getProjectById(project_id).pipe(map(data => {
       return data['projects'].users.map(user => user)
     }))
   }
+
+
   getTasksByUser(user_id:string) : Observable<any[]>{ // MODIFIER POUR ALLER CHERCHER DANS L'USER ET NON DANS TOUS LESPROJETS --- A TESTER
     let output = [];
+
     return this.restService.getUserById(user_id).pipe(map(user => {
       user['users'].projects.map(project => {
         project.tasks.map(task => {
@@ -153,6 +172,7 @@ export class DataService {
       return output
     }))
   }
+
   getProjectsByUser(user_id:string): Observable<any[]>{ // MODIFIER POUR ALLER CHERCHER DANS L'USER ET NON DANS TOUS LESPROJETS -- A TESTER
     let output = []
     return this.restService.getUserById(user_id).pipe(map(data => { 
@@ -164,6 +184,7 @@ export class DataService {
       return output
     }))
   }
+
   getTasksByProjectAndUser(project_id: string, user_id:string): Observable<any[]>{ // MODIFIER POUR ALLER CHERCHER DANS L'USER ET NON DANS TOUS LESPROJETS
     let output = []
     return this.restService.getProjectById(project_id).pipe(map(data => {

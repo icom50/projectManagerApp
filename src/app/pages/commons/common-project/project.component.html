@@ -1,6 +1,6 @@
-<div class="content__project" title="{{project?.name}}">
+<div class="content__project" >
         <div class="wrapper__project">
-                <div class="project" [ngStyle]="{'background': project?.color}">
+                <div class="project" [ngStyle]="{'background': project?.color}" (click)="router(project._id)" title="{{project?.name}}" >
 
                         <fa-icon [icon]="poll"></fa-icon>
                         <div (click)="$event.stopPropagation()" mat-button [matMenuTriggerFor]="menu">
@@ -21,6 +21,6 @@
 
                         <img (click)="toggleIsSelected()" [src]="isSelected ? favSelected : favNotSelected" alt="" width="20px">
                 </div>
-                <span class="name" [ngStyle]="{'color': project?.color}">{{(project?.name.length>8)? (project?.name | slice:0:8)+'...':(project?.name)}}</span>
+                <span class="name">{{project?.name}}</span>
         </div>
 </div>

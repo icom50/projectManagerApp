@@ -117,6 +117,8 @@ export class PageProjectComponent implements OnInit {
     })
   }
 
+  
+
   onlyMyTasks() {
     this.myTasks = true;
     this.filter();
@@ -129,79 +131,60 @@ export class PageProjectComponent implements OnInit {
 
   filter() {
 
-    console.log('filter')
-
     this.todoArray = [];
     this.doingArray = [];
     this.doneArray = [];
     this.pausedArray = [];
+    
+    this.dataService
+    .getTasksByProject(this.project_id)
+    .subscribe((data:any) => {
+      this.tasks = data;
 
-    if (this.myTasks) {
-      this.dataService
-        .getTasksByProject(this.project_id)
-        .subscribe((data: any) => {
-          // console.log(data);
+      this.tasks.map(oneTask => {
 
-          this.tasks = data;
-
-          this.tasks.map(oneTask => {
-            oneTask.checklist.map(el => { //for checklist
-              el.done === true ? this.checkedList += 1 : this.checkedList += 0;
-            });
-
-            //filter by status of task
-            this.taskStatus = oneTask.status;
-            if (oneTask.assigned.findIndex(ass => (ass.user_id === this.current_user)) != -1) {
-              switch (this.taskStatus) {
-                case 'todo':
-                  this.todoArray.push(oneTask);
-                  break;
-                case 'doing':
-                  this.doingArray.push(oneTask);
-                  break;
-                case 'done':
-                  this.doneArray.push(oneTask);
-                  break;
-                case 'paused':
-                  this.pausedArray.push(oneTask);
-                  break;
-              }
-            }
-          });
+        oneTask.checklist.map(el => { //for checklist
+          el.done === true ? this.checkedList += 1 : this.checkedList += 0;
         });
 
-    } else {
+        //filter by status of task
+        this.taskStatus = oneTask.status;
 
-      this.dataService
-        .getTasksByProject(this.project_id)
-        .subscribe((data: any) => {
-          this.tasks = data;
-
-          this.tasks.map(oneTask => {
-            oneTask.checklist.map(el => { //for checklist
-              el.done === true ? this.checkedList += 1 : this.checkedList += 0;
-            });
-
-            //filter by status of task
-            this.taskStatus = oneTask.status;
-
-            switch (this.taskStatus) {
-              case 'todo':
+        if(this.myTasks) {
+          if(oneTask.assigned.findIndex(ass => (ass.user_id) === this.current_user) != -1) {
+            switch(this.taskStatus) {
+              case 'todo' :
                 this.todoArray.push(oneTask);
                 break;
-              case 'doing':
+              case 'doing' :
                 this.doingArray.push(oneTask);
                 break;
-              case 'done':
+              case 'done' :
                 this.doneArray.push(oneTask);
                 break;
-              case 'paused':
+              case 'paused' :
                 this.pausedArray.push(oneTask);
                 break;
             }
-          });
-        });
-    }
+          }
+        } else {
+          switch(this.taskStatus) {
+            case 'todo' :
+              this.todoArray.push(oneTask);
+              break;
+            case 'doing' :
+              this.doingArray.push(oneTask);
+              break;
+            case 'done' :
+              this.doneArray.push(oneTask);
+              break;
+            case 'paused' :
+              this.pausedArray.push(oneTask);
+              break;
+          }
+        }
+      });
+    });
   }
 
   ngOnInit() {
