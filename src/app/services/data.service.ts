@@ -19,36 +19,46 @@ export class DataService {
   project: Project;
   currentProject: Project;
 
-  // /api/users
+/* ------------------------------- /api/users ------------------------------- */
+
   getUsers():Observable<User[]>{
     return this.restService.getUsers()
   }
+
   getUserById(id:string): Observable<User>{
     return this.restService.getUserById(id)
   }
+
   getUserByEmail(email:string): Observable<User>{
     return this.restService.getUserByEmail(email)
   }
 
-  // /api/user
+/* -------------------------------- /api/user ------------------------------- */
+
   getUserSecure(id:string): Observable<User>{
     return this.restService.getUserSecure(id)
   }
+
   postUser(user:User): Observable<User>{
     return this.restService.postUser(user)
   }
+
   putUser(user:User): Observable<User>{
     return this.restService.putUser(user)
   }
+
   deleteUser(id:string): Observable<User>{
     return this.restService.deleteUser(id)
   }
+
   loginUser(user:User): Observable<User>{
     return this.restService.loginUser(user)
   }
+
   postForgottenPassword(email:string){
     return this.restService.postForgottenPassword(email)
   }
+
   // addProjectToUser(project, user){ // se fait automatiquement au PUT & POST  --- A TESTER
   //     this.getUserById(user.user_id).subscribe(data => {
   //       let index;
@@ -89,13 +99,18 @@ export class DataService {
   //   })
   // }
 
-  // /api/projects
+
+
+/* ------------------------------ /api/projects ----------------------------- */
+
   getProjects():Observable<Project[]>{
     return this.restService.getProjects()
   }
+
   getProjectById(id:string): Observable<Project>{
     return this.restService.getProjectById(id)
   }
+
   postProject(project:Project): Observable<Project>{ // TODO ajouter les users assignés dans users.projects --- A TESTER
     // this.getUserById(project.author_id).subscribe(user => {
     //   user['users'].projects.push({project_id : project._id, accepted : true, invitedBy : user['users']._id, tasks : []})
@@ -172,24 +187,41 @@ export class DataService {
     }, error => error)
   }
   
-  getTaskById(project_id:string, task_id:string): Observable<any>{
+  getTaskById(project_id:string, task_id:string): Observable<any> {
     return this.restService.getProjectById(project_id).pipe(map(data => {
-      let output =  data['projects'].tasks.filter( task =>  (task._id === task_id))[0]
+      let output =  data['projects'].tasks.filter( task => (task._id === task_id))[0]
       output = {...output, color : data['projects'].color }
       return output
     }))
   }
+
   getTasksByProject(project_id:string): Observable<any[]>{
     return this.restService.getProjectById(project_id).pipe(map(data => {
       return data['projects'].tasks.map(task => task)
     }))
   }
+
   getUsersByProject(project_id:string): Observable<any[]>{ 
     return this.restService.getProjectById(project_id).pipe(map(data => {
       return data['projects'].users.map(user => user)
     }))
   }
+
+  // getTasksByUser(user_id:string) : Observable<any[]>{ // MODIFIER POUR ALLER CHERCHER DANS L'USER ET NON DANS TOUS LESPROJETS
+  // let output = []
+  // return this.restService.getProjects().pipe(map((data) => {
+  //   data['projects'].map(task => {
+  //     return task.tasks.map(projectTask => {
+  //       return projectTask.assigned.map((oneAssigned) => {
+  //         if (oneAssigned.user_id === user_id || oneAssigned._id === user_id) return output.push({...projectTask, project_id: task._id})
+  //       });
+  //     });
+  //     });
+  //     return output;
+  //   }))
+
   getTasksByUser(user_id:string) : Observable<any[]>{ // MODIFIER POUR ALLER CHERCHER DANS L'USER ET NON DANS TOUS LESPROJETS --- A TESTER
+
     // let output = []
     // return this.restService.getProjects().pipe(map((data) => {
     //   data['projects'].map(task => {
@@ -201,13 +233,15 @@ export class DataService {
     //   })
     //   return output
     // }))
+
     let output = [];
+
     return this.restService.getUserById(user_id).pipe(map(user => {
-      console.log(user);
-      user['users'].projects.map(project => {
-        project.tasks.map(task => {
-          console.log('task')
-          console.log(project)
+      // console.log(user);
+      user['users'].projects.map(async project => {
+        await project.tasks.map( task => {
+          // console.log('task')
+          // console.log(project)
           this.getTaskById(project.project_id,task).subscribe(task => output.push({...task, project_id : project.project_id, color : project.color}))
         })
       })
@@ -218,6 +252,7 @@ export class DataService {
     //   return output
     // })    
   }
+
   getProjectsByUser(user_id:string): Observable<any[]>{ // MODIFIER POUR ALLER CHERCHER DANS L'USER ET NON DANS TOUS LESPROJETS -- A TESTER
     // let output = []
     // return this.restService.getProjects().pipe(map((data)=> {
@@ -240,6 +275,7 @@ export class DataService {
       return output
     }))
   }
+
   getTasksByProjectAndUser(project_id: string, user_id:string): Observable<any[]>{ // MODIFIER POUR ALLER CHERCHER DANS L'USER ET NON DANS TOUS LESPROJETS
     let output = []
     return this.restService.getProjectById(project_id).pipe(map(data => {
