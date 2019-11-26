@@ -1,50 +1,70 @@
+<div class="projectdetails">
 
-    <div>
-        <span (click)="deleteProject()">Delete</span>
+    <!-- <div>
+        <button class="middlebuttondelete" (click)="deleteProject()">Delete</button>
+    </div> -->
+
+    <div class="projecttitle">
+        <div>
+            <h2>{{project?.name}}</h2>
+        </div>
+        <div class="projectdate">
+            <div class="startdate">
+                {{project?.start_date | date : 'shortDate' : '' : 'en'}}
+            </div>
+            <div class="enddate">
+                {{project?.deadline | date : 'shortDate' : '' : 'en'}}
+            </div>
+            <div>
+                <a [href]="project.git" class="git">
+                    <fa-icon [icon]="github"></fa-icon>
+                </a>
+            </div>
+        </div>
     </div>
-    <div>
-        <h2>{{project?.name}}
-            <span>
-                ({{project?.start_date | date : 'shortDate' : '' : 'en'}})
-            </span>
-            <span>
-                ({{project?.deadline | date : 'shortDate' : '' : 'en'}})
-            </span>
-            
-           
-        </h2>
-        <span>
-            <!-- Remplacer par le lien qui se trouve dans l'user -->
-            <a [href]="project.git" class="git"><fa-icon [icon]="github"></fa-icon></a>
-        </span>
-        
+
+
+
+    <div class="members">
 
         <h4>Members</h4>
-   
-            <span *ngFor="let user of project?.users; let index = index">           
-                <img src="{{user.avatar_url}}" alt="user : {{user.user_id}}" title="{{user.user_id}}">
-                <button *ngIf="user.user_id !== current_user" (click)="deleteMembers(index)" type="submit">X</button>
-            </span>
-            <span>
-                <label for="email">Ajouter un membre</label>
-                <input type="email" #email placeholder="akroko@gmail.com">
-                
+        <div class="memberlist">
+            <div class="avatar" *ngFor="let user of project?.users; let index = index">
+                <img src="{{user.avatar_url}}" alt="user : {{user.email}}"/>
+                <button *ngIf="user.user_id !== current_user" class="deletebutton" (click)="deleteMembers(index)"
+                    type="submit" title="Remove {{user.email}}">
+                    <fa-icon [icon]="trash"></fa-icon>
+                </button>
+            </div>
+        </div>
+        <br />
+        <div class="addamember">
+
+            <div>
+                <mat-form-field>
+                <label for="email">Add a member</label>
+                <input matInput type="email" #email (keyup.enter)='addMembers(email)'>
+                </mat-form-field>
                 <p *ngIf="isShow">{{msgError}}</p>
-                <a (click)='addMembers(email)'><fa-icon [icon]="faPlus" size="1x"></fa-icon></a>
-            </span>
-       
+            </div>
+
+            <div>
+                <button (click)='addMembers(email)' class="middlebutton">
+                    Add member
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="projectdescription">
         <h4>Project's description</h4>
         <p>{{project?.description}}</p>
-        <!-- <div *ngFor="let comment of project?.comments">
-            <p>{{comment.author_id}}</p>
-            <p>{{comment.comment}}</p>
-        </div> -->
-        <!-- <form [formGroup]="formComment">
-            <mat-form-field>
-                <textarea matInput placeholder="Comment" formControlName="comment" (keyup.enter)="addComment()" ></textarea>
-                <mat-error *ngIf="formComment.controls['comment'].invalid">The content is too heavy</mat-error>
-            </mat-form-field>
-        </form> -->
+        <p>Access : {{isPrivate}}</p>
         <app-comment [project]="project"></app-comment>
-        <p>{{isPrivate}}</p>
+
     </div>
+
+
+</div>

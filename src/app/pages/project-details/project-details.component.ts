@@ -8,6 +8,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProjectsDataService } from 'src/app/services/projects-data.service';
 import { User } from 'src/app/models/users.model';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 
 @Component({
@@ -17,7 +19,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 })
 export class ProjectDetailsComponent implements OnInit {
 
-  project : Project; 
+  project : Project;
   isPrivate: String;
   formComment : FormGroup;
   commentValue: string;
@@ -26,6 +28,7 @@ export class ProjectDetailsComponent implements OnInit {
   msgError:string;
   isShow:boolean=false;
   github = faGithub;
+  trash = faTrash;
   current_user = localStorage.getItem('current_user');
 
   constructor(private _dataService : DataService, 

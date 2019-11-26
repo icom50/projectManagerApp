@@ -1,8 +1,40 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+
 form{
     textarea{
         overflow: hidden; 
         overflow-wrap: break-word; 
         height: 50px;
         width: 100%;
+        border: 2px solid $colorNavBar;
+        border-radius: 5px;
+        margin:10px 0;
     }
+
+}
+
+.divsave{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.comments{
+    margin-bottom: 20px;
+}
+
+.comment{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    
+    // .icondelete{
+        
+    // }
+    // .contentcomment{
+
+    // }
 }

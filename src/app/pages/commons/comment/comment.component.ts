@@ -2,6 +2,8 @@ import { Component, OnInit, Input, NgModule } from '@angular/core';
 import { Project } from 'src/app/models/projects.model';
 import { DataService } from 'src/app/services/data.service';
 import { stringify } from 'querystring';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-comment',
@@ -11,10 +13,9 @@ import { stringify } from 'querystring';
 export class CommentComponent implements OnInit {
 
   current_user:string;
-
   comment:String;
   @Input() project;
-
+  trash = faTrash;
   constructor(private _dataService : DataService) { }
 
   addComment(comment){
