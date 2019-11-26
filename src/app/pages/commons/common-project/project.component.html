@@ -1,17 +1,19 @@
-<div class="content__project" title="{{project?.name}}">
+<div class="content__project">
         <div class="wrapper__project">
-                <div class="project" [ngStyle]="{'background': project?.color}">
+                <div class="project" [ngStyle]="{'background': project?.color}" (click)="router(project._id)"
+                        title="{{project?.name}}">
 
                         <fa-icon [icon]="poll"></fa-icon>
-                        <div (click)="$event.stopPropagation()" mat-button [matMenuTriggerFor]="menu">
+                        <div (click)="$event.stopPropagation()" [matMenuTriggerFor]="belowMenu">
                                 <svg class="svg" aria-hidden="true" focusable="false" data-prefix="fas"
                                         data-icon="ellipsis-h" class="svg-inline--fa fa-ellipsis-h fa-w-16" role="img"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                         <path
                                                 d="M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z">
                                         </path>
-                                </svg></div>
-                        <mat-menu #menu="matMenu">
+                                </svg>
+                        </div>
+                        <mat-menu #belowMenu="matMenu" yPosition="below">
                                 <ul>
                                         <li mat-menu-item (click)="openPopupDetails()">View</li>
                                         <li mat-menu-item (click)="openPopupEdit()">Edit</li>
@@ -19,8 +21,9 @@
                                 </ul>
                         </mat-menu>
 
-                        <img (click)="toggleIsSelected()" [src]="isSelected ? favSelected : favNotSelected" alt="" width="20px">
+                        <img (click)="toggleIsSelected()" [src]="isSelected ? favSelected : favNotSelected" alt=""
+                                width="20px">
                 </div>
-                <span class="name" [ngStyle]="{'color': project?.color}">{{(project?.name.length>8)? (project?.name | slice:0:8)+'...':(project?.name)}}</span>
+                <span class="name">{{project?.name}}</span>
         </div>
 </div>

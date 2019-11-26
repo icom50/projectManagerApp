@@ -6,20 +6,25 @@
     width:150px;
     height: 150px;
     border-radius: 30px;
-    background: red;
+    background: rgba(197, 197, 197, 0.3);
     position: relative;
     text-align: center;
     line-height: 150px;
     margin-right: 20px;
+    cursor: pointer;
     fa-icon{
         font-size: 4rem;
         color: white;
-        
-      }
+    }
 }
-span{
-    color: green;
+
+.name {
     width: 150px;
-    display: block;
     text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    margin: 5px 0 0 0;
+    line-height: 1.2;
 }

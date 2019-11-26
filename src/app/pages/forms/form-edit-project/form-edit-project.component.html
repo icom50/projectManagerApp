@@ -3,7 +3,7 @@
     <form [formGroup]="editProject" (submit)=onSubmit()>
       <div class="edit--project">
         <section class="leftColumn">
-            <h4>{{project?.name}}</h4>
+            <h2>{{project?.name}}</h2>
             <mat-form-field>
               <input matInput placeholder="Name" type="text" name="name" formControlName="name">
               <mat-error *ngIf="f['name'].invalid">{{getErrorMessage('name')}}</mat-error>
@@ -48,8 +48,9 @@
             <label for="addColor">Choose your project color : </label>
             <input id="addColor" [style.background]="color" [(colorPicker)]="color" 
               [cpAlphaChannel]="'disabled'" (colorPickerChange)="updateColor($event)" [(ngModel)]="addColor"
-              [ngModelOptions]="{standalone: true}" />   
+              [ngModelOptions]="{standalone: true}" /> 
           </div>
+          <mat-error *ngIf="error">This Color is invalid</mat-error>
         </section>
       </div>
       <div class="project--cta">

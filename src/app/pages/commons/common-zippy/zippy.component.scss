@@ -5,9 +5,14 @@
     .zippy__title{
         display: flex;
         cursor: pointer;
-        h4{
-            width: 600px;
-            padding-left: 10px;
+        
+        span {
+            margin-top: 8px;
+        }
+
+        h3 {
+            width: 75%;
+            padding: 0 0 5px 10px;
             border-bottom: 1px solid black;
         }
     }

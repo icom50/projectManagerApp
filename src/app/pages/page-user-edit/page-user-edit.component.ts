@@ -81,9 +81,6 @@ export class PageUserEditComponent implements OnInit {
     .subscribe((data: User) => {
       this.user = data['users'];
       this.form.setValue(this.user) // va remplir tout les champs correspondant
-      console.log('data -----------------')
-      console.log(this.user)
-      console.log(this.user.avatar_url);
     })
   }
 }

@@ -15,6 +15,7 @@ export class FormEditProjectComponent implements OnInit {
   editProject : FormGroup;
   date = Date.now();
   addColor;
+  error : boolean = false;
 
   constructor(private _dataService : DataService, 
     public dialogRef: MatDialogRef<FormEditProjectComponent>, 
@@ -37,7 +38,15 @@ export class FormEditProjectComponent implements OnInit {
    }
 
    updateColor(value){
-    this.editProject.controls['color'].patchValue(value);
+     if(value == '#ffffff'){
+      event.preventDefault()
+      this.error = true;
+     }
+     else{
+       this.error = false;
+      this.editProject.controls['color'].patchValue(value);
+     }
+    
    }
 
    onSubmit(){

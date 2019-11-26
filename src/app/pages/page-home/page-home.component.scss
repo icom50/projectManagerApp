@@ -1,8 +1,9 @@
 .task-list{
     font-size: 50%;
     position: absolute;
+    top: 50%;
     right: 0;
-    bottom: 0;
+    transform: translateY(-50%);
     font-weight: normal;
 }
 
@@ -19,22 +20,19 @@ section{
     margin-top: 20px;
 }
 
+h1{
+    font-size: 3em;
+    font-weight: inherit;
+}
+
 .tasks{
     border-bottom: solid 1px black;
     width: 75%;
     position: relative;
-}
-.projects{
-    border-bottom: solid 1px black;
-    width: 75%;
+    font-weight: inherit;
+    padding-bottom: 5px;
 }
 
-app-project{
-    cursor: pointer;
-}
-app-common-task{
-    cursor: pointer;
-}
 .hidden {
     display: none;
 }

@@ -13,11 +13,11 @@ export class AuthGuardsService implements CanActivate{
     state : RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
 
-    if(this._authService.isLoggedOut){
-      return true
+    if(localStorage.length == 0){
+      return this.route.navigate(['/'])
     }
     else{
-      this.route.navigate(['/'])
+    return true;
     }
   }
 }
