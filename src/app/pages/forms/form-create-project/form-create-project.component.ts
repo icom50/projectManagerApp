@@ -31,16 +31,10 @@ export class FormCreateProjectComponent implements OnInit {
           user['users'].projects.push({ project_id: this.project._id, accepted: true, invitedBy: user['users']._id, tasks: [] })
           this.dataService.putUser(user['users']).subscribe()
         })
-        if (this.project.users) this.project.users.map(data => this.dataService.addProjectToUser(this.project, data))
-        this.router.navigate([`/project/${this.project._id}`]);
       })
-<<<<<<< HEAD
     }
-=======
       // if (this.project.users) this.project.users.map(data => this.dataService.addProjectToUser(this.project, data))
       this.router.navigate([`/project/${this.project._id}`]);
-    })
->>>>>>> d253ad1cbac1173d0ef6fafc242b40b45e956111
   }
 
   getErrorMessage(field: string): string {
