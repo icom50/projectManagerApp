@@ -13,7 +13,7 @@
         </div>
     </section>
     <section>
-        <h3 class="projects">Favorites Projects</h3>
+        <h3 class="tasks">Favorites Projects</h3>
         <div class="container">
             <ng-container *ngFor="let project of user?.projects | slice:0:5">
                 <app-project [project_id]="project?.project_id" *ngIf="project?.favorite === true"

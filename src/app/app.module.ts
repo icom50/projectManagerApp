@@ -142,7 +142,6 @@ registerLocaleData(localeFr, 'fr');
     ProjectsDataService,
     AuthGuardsService,
     RandomSentencesService
-    // PageProjectComponent
   ],
   bootstrap: [AppComponent]
 })

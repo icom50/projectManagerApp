@@ -103,13 +103,13 @@ export class PageProjectComponent implements OnInit {
     })
   }
 
-  openPopupup(id){
+  openPopupup(id) {
     this.task_id = id;
-    const dialogRef = this.dialog.open(FormEditTaskComponent,{
-      width : '1000px',
-      data : {
-        task_id : this.task_id,
-        project_id : this.project_id
+    const dialogRef = this.dialog.open(FormEditTaskComponent, {
+      width: '1000px',
+      data: {
+        task_id: this.task_id,
+        project_id: this.project_id
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -200,6 +200,8 @@ export class PageProjectComponent implements OnInit {
         this.users = this.projects.users;
 
         this.dataService.setProject(this.projects);
+      }, err => {
+        if (err) this.router.navigate(['/home'])
       });
 
     this.filter();

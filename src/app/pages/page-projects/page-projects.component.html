@@ -1,50 +1,55 @@
 <div class="content">       
     
-<h1>Boards</h1>
+    <h1>Boards</h1>
 
-
-<app-zippy title='Projects created'>
-        <div class="wrapperProject">
+    <section>
+        <app-zippy title='Projects created'>
+            <div class="wrapperProject">
                 <div *ngFor="let project of projectsData?.projectsUser">
                     <div *ngIf="project.status === 'created'">
                         <app-project [project_id]="project?._id" ></app-project>
                     </div>
                 </div>
             </div>         
-</app-zippy>
+        </app-zippy>
+    </section>
 
 
-<app-zippy title='Projects started'>
-        <div class="wrapperProject">
+    <section>
+        <app-zippy title='Projects started'>
+            <div class="wrapperProject">
                 <div *ngFor="let project of projectsData?.projectsUser">
                     <div *ngIf="project.status === 'started'">
                         <app-project [project_id]="project?._id" ></app-project>
                     </div>
                 </div>
             </div>      
-</app-zippy>
+        </app-zippy>
+    </section>
 
-
-<app-zippy title='Projects finished'>
-        <div class="wrapperProject">
+    <section>
+        <app-zippy title='Projects finished'>
+            <div class="wrapperProject">
                 <div *ngFor="let project of projectsData?.projectsUser">
                     <div *ngIf="project.status === 'finished'">
                         <app-project [project_id]="project?._id" ></app-project>
                     </div>
                 </div>
             </div>      
-</app-zippy>
+        </app-zippy>
+    </section>
 
-
-<app-zippy title='Projects abandoned'>
-        <div class="wrapperProject">
+    <section>
+        <app-zippy title='Projects abandoned'>
+            <div class="wrapperProject">
                 <div *ngFor="let project of projectsData?.projectsUser">
                     <div *ngIf="project.status === 'abandoned'">
                         <app-project [project_id]="project?._id" ></app-project>
                     </div>
                 </div>
             </div>      
-</app-zippy>
+        </app-zippy>
+    </section>
 
 </div>
 
