@@ -1,4 +1,4 @@
-<mat-card (click)="openPopup(task._id)">
+<mat-card (click)="project.openPopupup(task._id)">
     <mat-card-title>
         <div [ngSwitch]="task.priority">
             <div *ngSwitchCase="'high'">

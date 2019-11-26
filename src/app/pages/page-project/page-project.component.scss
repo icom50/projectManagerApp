@@ -42,6 +42,12 @@ mat-card-title{
             &:first-child {
                 margin-right: 10px;
             }
+
+            &:last-child {
+                fa-icon {
+                    margin-right: 10px;
+                }
+            }
         }
 
         .active-btn{
@@ -149,4 +155,10 @@ h3{
     text-indent: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+@media screen and (min-width: 1400px) {
+    .task--col {
+        width: 350px;
+    }
 }
