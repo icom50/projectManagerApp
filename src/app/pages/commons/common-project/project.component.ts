@@ -7,6 +7,7 @@ import { ProjectDetailsComponent } from '../../project-details/project-details.c
 import { MatDialog } from '@angular/material/dialog';
 import { FormEditProjectComponent } from '../../forms/form-edit-project/form-edit-project.component';
 import { faPoll } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 
 
@@ -66,7 +67,8 @@ export class ProjectComponent implements OnInit {
   constructor(
     private _dataService: DataService,
     private dialog: MatDialog,
-    public projectsData: ProjectsDataService
+    public projectsData: ProjectsDataService,
+    private route: Router
   ) { }
 
   openPopupDetails() {
@@ -95,12 +97,18 @@ export class ProjectComponent implements OnInit {
     })
   }
 
+  router(id) {
+    event.stopPropagation();
+    this.route.navigate(['/project/' + id])
+  }
+
   ngOnInit() {
     //console.log(this.project_id)
     this._dataService
       .getProjectById(this.project_id)
       .subscribe((data: Project) => {
         this.project = data['projects'];
+        console.log(this.project._id)
         this._dataService.getUserById(this.user_id).subscribe(data => {
           this.user = data['users']
           this.user.projects.filter(project => {

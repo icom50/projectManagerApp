@@ -12,6 +12,7 @@
       position: relative;
       text-align: center;
       line-height: 150px;
+      cursor: pointer;
 
       .svg-inline--fa,
       .fa-ellipsis-h,
@@ -45,6 +46,9 @@
       width: 150px;
       display: block;
       text-align: center;
+    }
+    .name{
+      word-wrap: break-word;
     }
 
     // .favorite {

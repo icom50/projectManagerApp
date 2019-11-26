@@ -1,5 +1,5 @@
-<div class="wrapper" title="{{task?.name}}">
-    <div class="task" [ngStyle]="{'background': task?.color}">
+<div class="wrapper"  >
+    <div class="task" [ngStyle]="{'background': task?.color}" title="{{task?.name}}">
         <fa-icon [icon]="check"></fa-icon>
     </div>
     <span class="name" >{{(task?.name.length>8)? (task?.name | slice:0:8)+'...':(task?.name)}}</span>

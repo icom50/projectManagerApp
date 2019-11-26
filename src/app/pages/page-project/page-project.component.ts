@@ -117,6 +117,8 @@ export class PageProjectComponent implements OnInit {
     })
   }
 
+  
+
   onlyMyTasks() {
     this.myTasks = true;
     this.filter();
