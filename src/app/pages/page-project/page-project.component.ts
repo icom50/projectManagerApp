@@ -103,13 +103,13 @@ export class PageProjectComponent implements OnInit {
     })
   }
 
-  openPopupup(id){
+  openPopupup(id) {
     this.task_id = id;
-    const dialogRef = this.dialog.open(FormEditTaskComponent,{
-      width : '1000px',
-      data : {
-        task_id : this.task_id,
-        project_id : this.project_id
+    const dialogRef = this.dialog.open(FormEditTaskComponent, {
+      width: '1000px',
+      data: {
+        task_id: this.task_id,
+        project_id: this.project_id
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -136,70 +136,71 @@ export class PageProjectComponent implements OnInit {
     this.doneArray = [];
     this.pausedArray = [];
 
-    if(this.myTasks) {
+    if (this.myTasks) {
       this.dataService
-      .getTasksByUser(this.current_user)
-      .subscribe((data:any) => {
-        // console.log(data);
+        .getTasksByProject(this.project_id)
+        .subscribe((data: any) => {
+          // console.log(data);
 
-        this.tasks = data;
+          this.tasks = data;
 
-        this.tasks.map(oneTask => {
-          oneTask.checklist.map(el => { //for checklist
-            el.done === true ? this.checkedList += 1 : this.checkedList += 0;
+          this.tasks.map(oneTask => {
+            oneTask.checklist.map(el => { //for checklist
+              el.done === true ? this.checkedList += 1 : this.checkedList += 0;
+            });
+
+            //filter by status of task
+            this.taskStatus = oneTask.status;
+            if (oneTask.assigned.findIndex(ass => (ass.user_id === this.current_user)) != -1) {
+              switch (this.taskStatus) {
+                case 'todo':
+                  this.todoArray.push(oneTask);
+                  break;
+                case 'doing':
+                  this.doingArray.push(oneTask);
+                  break;
+                case 'done':
+                  this.doneArray.push(oneTask);
+                  break;
+                case 'paused':
+                  this.pausedArray.push(oneTask);
+                  break;
+              }
+            }
           });
-
-          //filter by status of task
-          this.taskStatus = oneTask.status;
-
-          switch(this.taskStatus) {
-            case 'todo' :
-              this.todoArray.push(oneTask);
-              break;
-            case 'doing' :
-              this.doingArray.push(oneTask);
-              break;
-            case 'done' :
-              this.doneArray.push(oneTask);
-              break;
-            case 'paused' :
-              this.pausedArray.push(oneTask);
-              break;
-          }
         });
-      });
 
     } else {
 
       this.dataService
-      .getTasksByProject(this.project_id)
-      .subscribe((data:any) => {
-        this.tasks = data;
+        .getTasksByProject(this.project_id)
+        .subscribe((data: any) => {
+          this.tasks = data;
 
-        this.tasks.map(oneTask => {
-          oneTask.checklist.map(el => { //for checklist
-            el.done === true ? this.checkedList += 1 : this.checkedList += 0;
+          this.tasks.map(oneTask => {
+            oneTask.checklist.map(el => { //for checklist
+              el.done === true ? this.checkedList += 1 : this.checkedList += 0;
+            });
+
+            //filter by status of task
+            this.taskStatus = oneTask.status;
+
+            switch (this.taskStatus) {
+              case 'todo':
+                this.todoArray.push(oneTask);
+                break;
+              case 'doing':
+                this.doingArray.push(oneTask);
+                break;
+              case 'done':
+                this.doneArray.push(oneTask);
+                break;
+              case 'paused':
+                this.pausedArray.push(oneTask);
+                break;
+            }
           });
-
-          //filter by status of task
-          this.taskStatus = oneTask.status;
-
-          switch(this.taskStatus) {
-            case 'todo' :
-              this.todoArray.push(oneTask);
-              break;
-            case 'doing' :
-              this.doingArray.push(oneTask);
-              break;
-            case 'done' :
-              this.doneArray.push(oneTask);
-              break;
-            case 'paused' :
-              this.pausedArray.push(oneTask);
-              break;
-          }
         });
-      });
     }
   }
 
@@ -216,6 +217,8 @@ export class PageProjectComponent implements OnInit {
         this.users = this.projects.users;
 
         this.dataService.setProject(this.projects);
+      }, err => {
+        if (err) this.router.navigate(['/home'])
       });
 
     this.filter();
