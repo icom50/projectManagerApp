@@ -1,3 +1,5 @@
+Ce projet a été réalisé en vue de la fin de formation de développeur front-end par notre groupe composé de Ling, Gwenaël Halasz, Gabriel Dumortier, Francesco Capizzano, Vincent Midlelaire et Romain Haas.
+
 # Comment push
 - git pull
 - git status (les modifs sont en rouge)
